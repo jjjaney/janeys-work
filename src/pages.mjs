@@ -22,13 +22,12 @@ const eyebrowSpan = (_n, label) => `<span class="eyebrow mono${hue(label) ? ' ey
 //  - in the open space between the heading and the art (desktop only)
 //  - a strip spilling just below the header (all screen sizes)
 const artFloat = (seed) => floaters([
-  [0, -22, 100, 18, 7, true],   // drifting down onto the pile
-  [50, -40, 50, 36, 6, true],   // more falling in on the high side (fills the space beside the buttons on phones)
-  [-14, 0, 12, 45, 2],          // upper left
-  [102, -8, 12, 40, 2],         // upper right
+  [0, -20, 100, 16, 4, true],   // drifting down onto the pile
+  [55, -38, 45, 30, 3, true],   // a few more on the high side (fills the space beside the buttons on phones)
+  [-12, 5, 10, 40, 1],          // one off the upper left
 ], { seed });
 const gapFloat = (seed, regions) => floaters(regions, { seed });
-const spill = (seed) => `<div class="spill">${floaters([[2, 5, 96, 75, 12, true]], { seed })}</div>`;
+const spill = (seed) => `<div class="spill">${floaters([[4, 5, 92, 75, 5, true]], { seed })}</div>`;
 
 const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
 
@@ -139,10 +138,7 @@ export function home() {
     body: `
 <section class="hero">
   ${gapFloat(3, [
-    [44, 18, 8, 8, 3],   // after "I design the"
-    [32, 37, 19, 7, 3],  // after "behind"
-    [40, 45, 11, 6, 2],  // after "the words."
-    [52, 12, 4, 60, 3],  // between the copy and the art
+    [50, 18, 6, 50, 2],  // a couple between the copy and the art
   ])}
   ${spill(4)}
   <div class="wrap hero__inner">
@@ -269,8 +265,7 @@ export function caseStudy(w, i) {
 <article class="case">
   <header class="case__head">
     ${gapFloat(6 + i, [
-      [54, 15, 8, 45, 5],
-      [44, 22, 9, 30, 3],
+      [56, 15, 6, 45, 2],
     ])}
     ${spill(7 + i)}
     <div class="wrap case__head-inner">
@@ -435,8 +430,7 @@ export function aboutPage() {
     body: `
 <section class="page-head page-head--art">
   ${gapFloat(21, [
-    [44, 12, 13, 10, 3],  // after "Hi, I'm Janey."
-    [57, 10, 4, 60, 3],   // between the bio and the art
+    [58, 10, 4, 60, 2],   // a couple between the bio and the art
   ])}
   ${spill(22)}
   <div class="wrap about-head">

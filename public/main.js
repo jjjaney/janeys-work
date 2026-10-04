@@ -172,7 +172,8 @@
           const end = Math.min(r, rows - 1 - r);
           const endFade = end === 0 ? 0.35 : end === 1 ? 0.7 : 1;
           for (let c = 0; c < cols; c++) {
-            const density = (c === 0 ? 0.9 : c === 1 ? 0.55 : c === 2 ? 0.22 : 0.08) * endFade;
+            // a slim edge accent: mostly the outer column, a few strays inward
+            const density = (c === 0 ? 0.62 : c === 1 ? 0.2 : c === 2 ? 0.05 : 0) * endFade;
             if (hash(c, r, seed) >= density) continue;
             const color = flankColors[Math.floor(hash(c, r, seed + 50) * flankColors.length)];
             const top = g.y0 + (firstRow + r) * g.cell - fb.top;
@@ -246,7 +247,7 @@
         flip(r, was);
         setTimeout(() => delete r.dataset.flipped, 750);
       }, 6000);
-    }, 2200);
+    }, 4200);
   }
 
   // Gentle reveal for sections ---------------------------------------------
