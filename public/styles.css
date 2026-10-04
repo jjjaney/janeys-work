@@ -413,6 +413,13 @@ html:not(.js) .theme-toggle { display: none !important; }
 .logos p { margin: 0; }
 .logos ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; list-style: none; margin: 0; padding: 0; }
 .logos li { font: 650 1.05rem var(--display); color: var(--ink); letter-spacing: -0.01em; }
+/* Wide screens: the label and every name on one line (type and gaps shrink a little to fit) */
+@media (min-width: 1340px) {
+  .logos { flex-wrap: nowrap; gap: 0 clamp(1rem, 1.8vw, 2rem); }
+  .logos p { white-space: nowrap; }
+  .logos ul { flex-wrap: nowrap; gap: 0 clamp(1rem, 0.2rem + 1.4vw, 1.75rem); }
+  .logos li { white-space: nowrap; font-size: clamp(0.95rem, 0.6rem + 0.45vw, 1.05rem); }
+}
 .logos a { color: inherit; text-decoration: none; background: linear-gradient(var(--accent), var(--accent)) left bottom / 0 2px no-repeat; transition: background-size 0.2s var(--ease), color 0.2s var(--ease); }
 .logos a:hover, .logos a:focus-visible { color: var(--accent); background-size: 100% 2px; }
 
@@ -594,6 +601,9 @@ html:not(.js) .theme-toggle { display: none !important; }
 
 /* archive: a slim row */
 /* archive: a full-width card with the question and its answer stacked, like the other cards */
+/* clock face: purple in light mode, the warm peach in dark mode */
+.story--archive { --clock: var(--accent); }
+:root[data-theme='dark'] .story--archive { --clock: var(--maroon); }
 .story__mark--clock { width: 56px; height: 40px; }
 .story--archive .story__body { display: grid; gap: 0.75rem; }
 .story--archive .story__q { margin: 0; }

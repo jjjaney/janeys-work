@@ -26,11 +26,11 @@ const artFloat = (seed) => floaters([
   [-12, 5, 10, 40, 1],          // one off the upper left
 ], { seed });
 const gapFloat = (seed, regions) => floaters(regions, { seed });
-// The strip of pixels below a page header: ten pixels, each in its own slot
+// The strip of pixels below a page header: seven pixels, each in its own slot
 // across the right three-quarters so they don't clump, dropping to different
-// depths (a short, deep or middling fall) so they don't sit on one line.
-// Phones show every other one.
-const SPILL_SLOTS = Array.from({ length: 10 }, (_, i) => [22 + i * 7.7, 0, 7.7, [30, 95, 60, 80, 20][i % 5], 1, i % 2 === 0]);
+// depths so they don't sit on one line. Phones show five of them.
+const SPILL_DEPTHS = [30, 95, 55, 80, 20, 70, 40];
+const SPILL_SLOTS = SPILL_DEPTHS.map((h, i) => [22 + i * 11, 0, 11, h, 1, i !== 1 && i !== 4]);
 const spill = (seed) => `<div class="spill">${floaters(SPILL_SLOTS, { seed })}</div>`;
 
 const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
@@ -79,7 +79,7 @@ const CLOCK = [
   '......MMMMMM..',
   '.......MMMM...',
 ];
-const CLOCK_COLORS = { a: 'var(--orange)', w: 'var(--tint)', M: 'var(--maroon)' };
+const CLOCK_COLORS = { a: 'var(--orange)', w: 'var(--tint)', M: 'var(--clock)' }; // --clock is set in styles.css
 function pixelClock() {
   let rects = '';
   CLOCK.forEach((row, y) =>
@@ -265,7 +265,7 @@ export function home() {
   </div>
   <div class="wrap">
     <div class="logos">
-      <p class="mono muted">Led and contributed content at</p>
+      <p class="mono muted">Contributed content at</p>
       <ul>${companies.map((c) => `<li><a href="${esc(c.url)}">${esc(c.name)}</a></li>`).join('')}</ul>
     </div>
   </div>
