@@ -309,11 +309,17 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 :root[data-theme='dark'] .tt-moon { opacity: 1; }
 html:not(.js) .theme-toggle { display: none !important; }
 
+/* The dark mode switch lives in the header on wide screens and inside the
+   menu on narrow ones (the "Dark mode" row at the bottom of the menu). */
+.nav-theme { display: none; }
+
 @media (max-width: 760px) {
-  .theme-toggle { margin-left: auto; }
-  .tile-toggle { margin-right: 0.25rem; }
+  .js .site-header__inner > .theme-toggle { display: none !important; }
+  .js .nav-theme { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.6rem 0.5rem 0.4rem; }
+  .nav-theme__label { font: 600 1.4rem var(--display); color: var(--ink); }
+  .nav-theme .theme-toggle { margin-right: -4px; }
   .nav-toggle {
-    display: inline-flex; align-items: center; gap: 0.55rem;
+    margin-left: auto; display: inline-flex; align-items: center; gap: 0.55rem;
     min-height: 44px; padding: 0 0.9rem;
     background: var(--tint-lilac); border: 0; color: var(--ink);
     font: 500 0.95rem var(--sans); cursor: pointer;

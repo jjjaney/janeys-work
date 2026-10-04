@@ -117,6 +117,12 @@ export function layout({ path, title, description = site.description, body, page
     <a class="brand" href="/" aria-label="${esc(site.name)}, home">${logo()}<span>${esc(site.name)}</span></a>
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>${navLinks}</ul>
+      <div class="nav-theme">
+        <span class="nav-theme__label" aria-hidden="true">Dark mode</span>
+        ${gradientToggle()}
+        ${tileToggle()}
+        ${themeToggle()}
+      </div>
     </nav>
     ${gradientToggle()}
     ${tileToggle()}
