@@ -26,12 +26,30 @@ const artFloat = (seed) => floaters([
   [-12, 5, 10, 40, 1],          // one off the upper left
 ], { seed });
 const gapFloat = (seed, regions) => floaters(regions, { seed });
-// The strip of pixels below a page header: seven pixels, each in its own slot
-// across the right three-quarters so they don't clump, dropping to different
-// depths so they don't sit on one line. Phones show five of them.
-const SPILL_DEPTHS = [30, 95, 55, 80, 20, 70, 40];
-const SPILL_SLOTS = SPILL_DEPTHS.map((h, i) => [22 + i * 11, 0, 11, h, 1, i !== 1 && i !== 4]);
-const spill = (seed) => `<div class="spill">${floaters(SPILL_SLOTS, { seed })}</div>`;
+// The strip of pixels below a page header, placed by hand like the header art:
+// a few small clusters stuck together and a few loose pixels, nine in all
+// (odd numbers group better). Each entry: [left %, row, cells, show on phones].
+// Rows are 0–2, one grid cell apart; cells are [right, down] offsets in grid cells.
+// Phones show five (the first cluster and two loose pixels).
+const SPILL = [
+  [22, 1, [[0, 0]], false],
+  [33, 0, [[0, 0], [1, 0], [1, 1]], true],
+  [50, 2, [[0, 0]], false],
+  [63, 0, [[0, 0]], true],
+  [78, 1, [[0, 0], [1, 0]], false],
+  [90, 2, [[0, 0]], true],
+];
+const SPILL_COLORS = ['#ff7b4d', '#cfa2ed', '#0b704f', '#c99f43', '#b6d8fe', '#6b2337'];
+const spill = (seed) => {
+  let n = 0;
+  const px = SPILL.flatMap(([x, row, cells, phone]) =>
+    cells.map(([dx, dy]) => {
+      const c = SPILL_COLORS[(seed * 7 + n++ * 5) % SPILL_COLORS.length];
+      return `<i${phone ? ' class="m"' : ''} data-dx="${dx}" data-dy="${dy}" style="left:${x}%;top:${((row / 3.4) * 100).toFixed(1)}%;background:${c}"></i>`;
+    })
+  );
+  return `<div class="spill"><div class="floaters" aria-hidden="true">${px.join('')}</div></div>`;
+};
 
 const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
 

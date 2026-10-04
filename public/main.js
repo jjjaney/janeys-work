@@ -108,15 +108,18 @@
         head.querySelectorAll('.floaters i').forEach((i) => {
           // go back to the authored % position, then snap to the nearest grid cell
           if (!i.dataset.left) (i.dataset.left = i.style.left), (i.dataset.top = i.style.top);
-          i.style.left = i.dataset.left;
-          i.style.top = i.dataset.top;
           i.hidden = false;
           if (getComputedStyle(i).display === 'none') return; // desktop-only square on a phone
-          const a = i.getBoundingClientRect();
-          const gx = g.x0 + Math.round((a.left - g.x0) / g.cell) * g.cell;
-          const gy = g.y0 + Math.round((a.top - g.y0) / g.cell) * g.cell;
-          i.style.left = `${parseFloat(getComputedStyle(i).left) + (gx - a.left)}px`;
-          i.style.top = `${parseFloat(getComputedStyle(i).top) + (gy - a.top)}px`;
+          // work from the authored % position inside the floaters box (not the square's
+          // current spot), so recalculating never compounds
+          const box = i.parentElement.getBoundingClientRect();
+          const ax = box.left + (parseFloat(i.dataset.left) / 100) * box.width;
+          const ay = box.top + (parseFloat(i.dataset.top) / 100) * box.height;
+          // squares in a cluster share their anchor's cell plus a whole-cell offset
+          const gx = g.x0 + (Math.round((ax - g.x0) / g.cell) + Number(i.dataset.dx || 0)) * g.cell;
+          const gy = g.y0 + (Math.round((ay - g.y0) / g.cell) + Number(i.dataset.dy || 0)) * g.cell;
+          i.style.left = `${(gx - box.left).toFixed(2)}px`;
+          i.style.top = `${(gy - box.top).toFixed(2)}px`;
           const k = key(gx, gy);
           const snapped = { left: gx, top: gy, right: gx + g.cell, bottom: gy + g.cell };
           // skip squares that would cover text, the art, or another square

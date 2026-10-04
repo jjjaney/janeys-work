@@ -362,7 +362,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 }
 
 /* Sections ----------------------------------------------------------------- */
-.section { padding-block: clamp(4rem, 3rem + 5vw, 7.5rem); }
+.section { padding-block: clamp(5.5rem, 4rem + 6vw, 10rem); }
 .section--tight { padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
 .section--surface { background: var(--tint-sky); }
 .section__head { margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 4rem); }
@@ -409,9 +409,9 @@ html:not(.js) .theme-toggle { display: none !important; }
 .hero__art { position: relative; justify-self: end; width: 100%; max-width: 600px; }
 .hero__art .pixel { width: 100%; height: auto; }
 
-.logos { margin-top: clamp(3rem, 2rem + 4vw, 5rem); padding-top: 1.5rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 2rem; }
+.logos { margin-top: clamp(3rem, 2rem + 4vw, 5rem); padding-top: 1.5rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: center; text-align: center; gap: 0.75rem 2rem; }
 .logos p { margin: 0; }
-.logos ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; list-style: none; margin: 0; padding: 0; }
+.logos ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.75rem; list-style: none; margin: 0; padding: 0; }
 .logos li { font: 650 1.05rem var(--display); color: var(--ink); letter-spacing: -0.01em; }
 /* Wide screens: the label and every name on one line (type and gaps shrink a little to fit) */
 @media (min-width: 1340px) {
@@ -632,7 +632,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .stairs__up { display: block; width: 100%; height: auto; }
 .stairs__bar { display: none; }
 @media (max-width: 760px) {
-  .section--stairs { padding-bottom: clamp(4rem, 3rem + 5vw, 7.5rem); }
+  .section--stairs { padding-bottom: clamp(5.5rem, 4rem + 6vw, 10rem); }
   .stairs { grid-template-columns: 1fr; gap: 1.75rem; margin-top: 0; }
   .stairs__up { display: none; }
   .stairs__bar { display: block; order: -1; align-self: flex-start; height: 28px; width: auto; margin-bottom: 1rem; }
