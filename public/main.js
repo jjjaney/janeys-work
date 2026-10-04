@@ -14,75 +14,47 @@
     window.matchMedia('(min-width: 761px)').addEventListener('change', () => set(false));
   }
 
-  // Pixel art assembles when it scrolls into view ---------------------------
-  const pixels = document.querySelectorAll('.pixel');
-  if ('IntersectionObserver' in window && !reduce) {
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && (e.target.classList.add('is-in'), io.unobserve(e.target))),
-      { threshold: 0.15 }
+  // Pixel art: now and then a single tile flips over to another color --------
+  // One flip at a time across the whole page, only for art that's on screen.
+  // The tile flips back after a while so each composition stays recognizable.
+  if (!reduce && 'IntersectionObserver' in window) {
+    const arts = [...document.querySelectorAll('.pixel')].map((svg) => {
+      const rects = [...svg.querySelectorAll('rect')];
+      return { svg, rects, palette: [...new Set(rects.map((r) => r.getAttribute('fill')))], visible: false };
+    }).filter((a) => a.rects.length && a.palette.length > 1);
+
+    const io = new IntersectionObserver((entries) =>
+      entries.forEach((e) => {
+        const a = arts.find((x) => x.svg === e.target);
+        if (a) a.visible = e.isIntersecting;
+      })
     );
-    pixels.forEach((p) => io.observe(p));
-  } else {
-    pixels.forEach((p) => p.classList.add('is-in'));
+    arts.forEach((a) => io.observe(a.svg));
+
+    const setColor = (r, c) => (r.setAttribute('fill', c), r.setAttribute('stroke', c));
+    const flip = (r, color) => {
+      r.classList.add('flip');
+      setTimeout(() => setColor(r, color), 350); // swap at the halfway point, when the tile is edge-on
+      setTimeout(() => r.classList.remove('flip'), 720);
+    };
+
+    setInterval(() => {
+      if (document.hidden) return;
+      const onScreen = arts.filter((a) => a.visible);
+      if (!onScreen.length) return;
+      const a = onScreen[Math.floor(Math.random() * onScreen.length)];
+      const r = a.rects[Math.floor(Math.random() * a.rects.length)];
+      if (r.dataset.flipped) return;
+      const was = r.getAttribute('fill');
+      const options = a.palette.filter((c) => c !== was);
+      r.dataset.flipped = '1';
+      flip(r, options[Math.floor(Math.random() * options.length)]);
+      setTimeout(() => {
+        flip(r, was);
+        setTimeout(() => delete r.dataset.flipped, 750);
+      }, 6000);
+    }, 2200);
   }
-
-  // Interactive art: tiles pop on hover; the hero can shuffle ---------------
-  document.querySelectorAll('[data-pixel-play]').forEach((box) => {
-    const svg = box.querySelector('.pixel');
-    if (!svg) return;
-    const rects = [...svg.querySelectorAll('rect')];
-
-    if (!reduce) {
-      svg.addEventListener('pointerover', (e) => {
-        const r = e.target.closest('rect');
-        if (!r || r.classList.contains('pop')) return;
-        r.classList.add('pop');
-        r.addEventListener('animationend', () => r.classList.remove('pop'), { once: true });
-      });
-    }
-
-    // Twinkle: now and then a tile flips to another color from the same art.
-    if (!reduce && rects.length) {
-      const palette = [...new Set(rects.map((r) => r.getAttribute('fill')))];
-      let visible = false;
-      new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(svg);
-      setInterval(() => {
-        if (!visible || document.hidden) return;
-        for (let k = 0; k < 2; k++) {
-          const r = rects[Math.floor(Math.random() * rects.length)];
-          if (r.dataset.twinkling) continue;
-          const was = r.getAttribute('fill');
-          const next = palette.filter((c) => c !== was)[Math.floor(Math.random() * (palette.length - 1))];
-          if (!next) continue;
-          r.dataset.twinkling = '1';
-          r.setAttribute('fill', next);
-          r.setAttribute('stroke', next);
-          setTimeout(() => {
-            if (r.getAttribute('fill') === next) (r.setAttribute('fill', was), r.setAttribute('stroke', was));
-            delete r.dataset.twinkling;
-          }, 1400);
-        }
-      }, 900);
-    }
-
-    if (!document.body.classList.contains('page-home')) return;
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'shuffle';
-    btn.innerHTML =
-      '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h3l6 8h3M2 12h3l6-8h3M12 2l2 2-2 2M12 10l2 2-2 2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Shuffle the tiles';
-    btn.addEventListener('click', () => {
-      const fills = rects.map((r) => r.getAttribute('fill'));
-      for (let i = fills.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [fills[i], fills[j]] = [fills[j], fills[i]];
-      }
-      rects.forEach((r, i) => {
-        setTimeout(() => (r.setAttribute('fill', fills[i]), r.setAttribute('stroke', fills[i])), reduce ? 0 : i * 6);
-      });
-    });
-    box.appendChild(btn);
-  });
 
   // Gentle reveal for sections ---------------------------------------------
   if ('IntersectionObserver' in window && !reduce) {

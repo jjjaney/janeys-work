@@ -250,22 +250,8 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
     linear-gradient(90deg, var(--orange) 0 22%, transparent 0 26%, var(--lilac) 0 48%, transparent 0 52%, var(--green) 0 74%, transparent 0 78%, var(--gold) 0) bottom / 100% 0.14em no-repeat;
   padding-bottom: 0.04em;
 }
-.hero__art { position: relative; justify-self: end; width: 100%; max-width: 480px; padding-bottom: 2.75rem; }
+.hero__art { position: relative; justify-self: end; width: 100%; max-width: 460px; }
 .hero__art .pixel { width: 100%; height: auto; }
-.shuffle {
-  position: absolute; right: 0; bottom: 0;
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  background: var(--tint-lilac); border: 0; padding: 0.45rem 0.7rem; cursor: pointer;
-  font: 500 0.72rem var(--mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent);
-  transition: background 0.2s var(--ease);
-}
-.shuffle:hover { background: var(--lilac); color: var(--accent-deep); }
-.shuffle svg { width: 14px; height: 14px; }
-
-/* floating pixels around the hero art */
-.confetti { position: absolute; inset: -6% -6% 6% -6%; pointer-events: none; z-index: -1; }
-.confetti i { position: absolute; width: var(--s, 14px); height: var(--s, 14px); background: var(--c); animation: float 6s ease-in-out infinite; animation-delay: var(--d, 0s); }
-@keyframes float { 50% { transform: translateY(-10px); } }
 
 .logos { margin-top: clamp(3rem, 2rem + 4vw, 5rem); padding-top: 1.5rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 2rem; }
 .logos p { margin: 0; }
@@ -277,17 +263,13 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
   .hero__art { justify-self: start; max-width: 300px; }
 }
 
-/* Pixel art: flat, pixels appear one by one -------------------------------- */
+/* Pixel art: shown as-is; a single tile occasionally flips to a new color -- */
 .pixel rect, .pixel path { transform-box: fill-box; transform-origin: center; }
-.js .pixel:not(.is-in) rect, .js .pixel:not(.is-in) path { opacity: 0; }
-.pixel.is-in rect, .pixel.is-in path { animation: appear 0.32s steps(3, end) both; animation-delay: var(--d, 0s); }
-@keyframes appear {
-  0% { opacity: 0; transform: scale(0.34); }
-  1% { opacity: 1; }
+.pixel rect.flip { animation: flip 0.7s ease-in-out; }
+@keyframes flip {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0); }
 }
-.pixel rect.pop { animation: pop 0.4s steps(4, end) both !important; }
-@keyframes pop { 50% { transform: scale(0.5); } }
-.pixel rect { transition: fill 0.25s steps(2, end), stroke 0.25s steps(2, end); }
 
 .pixel-rule { display: grid; grid-template-columns: repeat(auto-fill, minmax(28px, 1fr)); width: 100%; height: 100%; }
 .pixel-rule span { aspect-ratio: 1; }
@@ -595,7 +577,6 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-  .js .pixel:not(.is-in) rect, .js .pixel:not(.is-in) path { opacity: 1; }
   .js .reveal { opacity: 1; transform: none; }
-  .ticker__track, .confetti i { animation: none; }
+  .ticker__track { animation: none; }
 }

@@ -98,14 +98,7 @@ export function home() {
         <a class="btn btn--ghost" href="/services/">Work with me</a>
       </div>
     </div>
-    <div class="hero__art" data-pixel-play>
-      <div class="confetti" aria-hidden="true">
-        <i style="--c:var(--orange);top:2%;left:-4%;--s:18px"></i>
-        <i style="--c:var(--lilac);top:-5%;left:20%;--s:12px;--d:-2s"></i>
-        <i style="--c:var(--gold);top:40%;right:-6%;--s:16px;--d:-1s"></i>
-        <i style="--c:var(--sky);bottom:12%;left:-5%;--s:20px;--d:-3s"></i>
-        <i style="--c:var(--green);top:-3%;right:8%;--s:10px;--d:-4s"></i>
-      </div>
+    <div class="hero__art">
       ${pixel('pixel-composition-16', { label: 'Pixel-art composition of colored square tiles' })}
     </div>
   </div>
@@ -224,7 +217,7 @@ export function caseStudy(w, i) {
         <h1>${esc(w.title)}</h1>
         <p class="lede">${esc(w.summary)}</p>
       </div>
-      <div class="case__art" data-pixel-play>${pixel(w.art, { crop: true })}</div>
+      <div class="case__art">${pixel(w.art, { crop: true })}</div>
     </div>
     <div class="wrap">
       <dl class="meta">

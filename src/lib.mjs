@@ -55,7 +55,6 @@ const artCache = new Map();
  * - class-based fills converted to attributes (so several SVGs on one page
  *   don't fight over `.cls-1`),
  * - ids removed (no duplicate ids),
- * - a per-square --d delay so tiles can assemble on load.
  */
 export function pixel(name, { palette = 'original', label = '', className = '', crop = false } = {}) {
   const key = `${name}|${palette}`;
@@ -68,8 +67,7 @@ export function pixel(name, { palette = 'original', label = '', className = '', 
       classes[cls] = palette === 'brand' ? BRAND_MAP[c] ?? c : c;
     }
     const viewBox = raw.match(/viewBox="([^"]+)"/)[1];
-    const [, , , h] = viewBox.split(/\s+/).map(Number);
-    let body = raw
+        let body = raw
       .replace(/<\?xml[^>]*>/, '')
       .replace(/<defs>[\s\S]*?<\/defs>/, '')
       .replace(/^[\s\S]*?<svg[^>]*>/, '')
@@ -80,14 +78,6 @@ export function pixel(name, { palette = 'original', label = '', className = '', 
       .replace(/<g>\s*/g, '')
       .replace(/<\/g>\s*/g, '')
       .replace(/\s+/g, ' ');
-    // Stagger: pixels pop in a scattered order, with a gentle top-to-bottom drift.
-    let i = 0;
-    body = body.replace(/<(rect|path)\s([^>]*?)\/>/g, (m, tag, attrs) => {
-      const y = Number((attrs.match(/\sy="([\d.]+)"/) || [0, 0])[1]);
-      const scatter = ((i++ * 7919) % 101) / 101; // deterministic pseudo-random 0–1
-      const d = (scatter * 0.9 + (y / h) * 0.25).toFixed(2);
-      return `<${tag} ${attrs.trim()} style="--d:${d}s"/>`;
-    });
     svg = { body, viewBox };
     artCache.set(key, svg);
   }
