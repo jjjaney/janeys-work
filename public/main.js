@@ -36,6 +36,15 @@
       applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true);
     })
   );
+  // In the phone menu, the "Dark mode / Light mode" words are part of the
+  // switch: tapping anywhere on that row flips the theme.
+  document.querySelectorAll('.nav-theme').forEach((row) =>
+    row.addEventListener('click', (e) => {
+      if (e.target.closest('.theme-toggle')) return;
+      const btn = [...row.querySelectorAll('.theme-toggle')].find((b) => b.checkVisibility());
+      if (btn) btn.click();
+    })
+  );
   // Follow the system setting until the visitor picks a theme themselves.
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     let saved = null;

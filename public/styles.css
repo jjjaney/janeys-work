@@ -315,7 +315,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 
 @media (max-width: 760px) {
   .js .site-header__inner > .theme-toggle { display: none !important; }
-  .js .nav-theme { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.6rem 0.5rem 0.4rem; }
+  .js .nav-theme { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.6rem 0.5rem 0.4rem; cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; }
+  .nav-theme:hover .grad-toggle__row { outline: 2px solid var(--tint-lilac); outline-offset: 3px; }
   .nav-theme__label { font: 600 1.4rem var(--display); color: var(--ink); }
   /* names the mode the switch will turn on: "Dark mode" in light, "Light mode" in dark */
   .nav-theme__to-light, :root[data-theme='dark'] .nav-theme__to-dark { display: none; }
