@@ -5,7 +5,10 @@
 //   hook        the question the project answered (leads the home-page card)
 //   teaser      a short outcome or fact shown on the card
 //   hue         card color: lilac | peach | gold | sky | mint
-//   badge       three colors for the small pixel mark on the card
+//   badge       three colors for the small pixel mark on the card in dark mode
+//               (the bright palette colors, which all keep 3:1 on the dark cards)
+//   badgeLight  the same mark in light mode: darker theme colors that keep at
+//               least 3:1 contrast on the card (purple, green, maroon, red)
 //   art         pixel composition shown on cards and the case-study header
 //   meta        client / role / timeframe / disciplines
 //   summary     one or two sentences for cards and the page intro
@@ -30,7 +33,8 @@ export const work = [
     hook: "How do you write guidance that both designers and AI agents can follow?",
     teaser: "Docs + a review agent",
     hue: 'lilac',
-    badge: ['#cfa2ed', '#0b704f', '#ff7b4d'],
+    badge: ['#cfa2ed', '#7fd6b3', '#ff7b4d'],
+    badgeLight: ['#4f33cc', '#0b704f', '#cc3333'],
     art: 'pixel-composition-12',
     client: 'FIS × Anthropic',
     cardTitle: 'Content foundations for a design system and the AI agents that use it',
@@ -86,7 +90,8 @@ export const work = [
     hook: "How do you talk to half a million people every week without a playbook?",
     teaser: "500k+ members, weekly",
     hue: 'peach',
-    badge: ['#ff7b4d', '#cfa2ed', '#0b704f'],
+    badge: ['#ff7b4d', '#cfa2ed', '#7fd6b3'],
+    badgeLight: ['#cc3333', '#4f33cc', '#0b704f'],
     art: 'pixel-composition-14',
     client: 'The Browser Company',
     cardTitle: 'Newsletters, release notes and help-center processes for 500k+ Arc members',
@@ -151,7 +156,8 @@ export const work = [
     hook: "How do you grow a program that has outgrown its own front door?",
     teaser: "Launched in 2 new countries",
     hue: 'gold',
-    badge: ['#c99f43', '#6b2337', '#b6d8fe'],
+    badge: ['#c99f43', '#ffab94', '#b6d8fe'],
+    badgeLight: ['#6b2337', '#0b704f', '#4f33cc'],
     art: 'pixel-composition-15',
     client: 'GitHub',
     cardTitle: 'GitHub Sponsors content and sign-up flow refresh',
@@ -208,7 +214,8 @@ export const work = [
     hook: "What should a platform say when your comment might start a fight?",
     teaser: "4 public media partners",
     hue: 'sky',
-    badge: ['#b6d8fe', '#0b704f', '#cfa2ed'],
+    badge: ['#b6d8fe', '#7fd6b3', '#cfa2ed'],
+    badgeLight: ['#4f33cc', '#0b704f', '#6b2337'],
     art: 'pixel-composition-16',
     client: 'New_ Public',
     cardTitle: 'UX writing and translations enablement for the Public Spaces Incubator',
@@ -254,7 +261,8 @@ export const work = [
     hook: "How do you turn concern into letters on a lawmaker's desk before the next election?",
     teaser: "Adopted by GitHub",
     hue: 'mint',
-    badge: ['#0b704f', '#ff7b4d', '#c99f43'],
+    badge: ['#7fd6b3', '#ff7b4d', '#c99f43'],
+    badgeLight: ['#0b704f', '#cc3333', '#4f33cc'],
     art: 'pixel-composition-13',
     client: 'Ally.Guide / ProgramEquity',
     cardTitle: 'Brand and service refresh to help people mail their local representatives',

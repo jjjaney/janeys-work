@@ -606,9 +606,11 @@ html:not(.js) .theme-toggle { display: none !important; }
 
 /* archive: a slim row */
 /* archive: a full-width card with the question and its answer stacked, like the other cards */
-/* clock face: purple in light mode, the warm peach in dark mode */
-.story--archive { --clock: var(--accent); }
-:root[data-theme='dark'] .story--archive { --clock: var(--maroon); }
+/* clock: purple face and red arrow in light mode, peach face and orange arrow in dark (all 3:1 or better on the card) */
+.story__mark--q rect { fill: var(--l); }
+:root[data-theme='dark'] .story__mark--q rect { fill: var(--d); }
+.story--archive { --clock: var(--accent); --clock-arrow: #cc3333; }
+:root[data-theme='dark'] .story--archive { --clock: var(--maroon); --clock-arrow: var(--orange); }
 .story__mark--clock { width: 56px; height: 40px; }
 .story--archive .story__body { display: grid; gap: 0.75rem; }
 .story--archive .story__q { margin: 0; }

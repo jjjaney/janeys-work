@@ -55,14 +55,17 @@ const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`)
 
 // A 5 × 7 pixel question mark: every case study starts with a question.
 const QMARK = ['.###.', '#...#', '....#', '...#.', '..#..', '.....', '..#..'];
-function pixelQuestion(colors) {
+// The card's pixel question mark. Light and dark mode use different colors so
+// every square keeps at least 3:1 contrast against the card (WCAG 1.4.11).
+function pixelQuestion(dark, light = dark) {
   let rects = '';
   QMARK.forEach((row, y) =>
     [...row].forEach((c, x) => {
-      if (c === '#') rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${colors[(x + y) % colors.length]}"/>`;
+      const n = (x + y) % dark.length;
+      if (c === '#') rects += `<rect x="${x}" y="${y}" width="1" height="1" style="--l:${light[n]};--d:${dark[n]}"/>`;
     })
   );
-  return `<svg class="story__mark" viewBox="0 0 5 7" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+  return `<svg class="story__mark story__mark--q" viewBox="0 0 5 7" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
 function storyCard(w, i) {
@@ -70,7 +73,7 @@ function storyCard(w, i) {
     <a class="story__link" href="/work/${w.slug}/">
       <div class="story__top">
         <p class="story__client mono">${esc(w.client)}</p>
-        ${pixelQuestion(w.badge)}
+        ${pixelQuestion(w.badge, w.badgeLight)}
       </div>
       <h3 class="story__q">${esc(w.hook)}</h3>
       <p class="story__a">${esc(w.cardTitle)}</p>
@@ -97,7 +100,7 @@ const CLOCK = [
   '......MMMMMM..',
   '.......MMMM...',
 ];
-const CLOCK_COLORS = { a: 'var(--orange)', w: 'var(--tint)', M: 'var(--clock)' }; // --clock is set in styles.css
+const CLOCK_COLORS = { a: 'var(--clock-arrow)', w: 'var(--tint)', M: 'var(--clock)' }; // --clock is set in styles.css
 function pixelClock() {
   let rects = '';
   CLOCK.forEach((row, y) =>
