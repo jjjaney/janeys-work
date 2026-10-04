@@ -569,7 +569,6 @@ export function aboutPage() {
       ${bio.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${esc(p)}</p>`).join('')}
       <p>My work spans information systems, devtools, academia, ecommerce, finance and entertainment.</p>
       <div class="actions"><a class="btn" href="/contact/">Get in touch ${arrow}</a><a class="btn btn--ghost" href="${site.linkedin}">LinkedIn ${external}</a></div>
-      ${todo('Add a link to your resume (PDF in <code>/public/</code>) if you want a download button here.')}
     </div>
     <div class="portrait">
       ${artFloat(23)}
