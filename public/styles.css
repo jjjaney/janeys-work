@@ -387,6 +387,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 .logos p { margin: 0; }
 .logos ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; list-style: none; margin: 0; padding: 0; }
 .logos li { font: 650 1.05rem var(--display); color: var(--ink); letter-spacing: -0.01em; }
+.logos a { color: inherit; text-decoration: none; background: linear-gradient(var(--accent), var(--accent)) left bottom / 0 2px no-repeat; transition: background-size 0.2s var(--ease), color 0.2s var(--ease); }
+.logos a:hover, .logos a:focus-visible { color: var(--accent); background-size: 100% 2px; }
 
 @media (max-width: 860px) {
   .hero__inner { grid-template-columns: 1fr; }

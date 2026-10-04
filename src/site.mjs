@@ -48,16 +48,17 @@ export const disciplines = [
 ];
 
 export const companies = [
-  'FIS',
-  'Shopify',
-  'GitHub',
-  'The Browser Company',
-  'Carnegie Mellon',
-  'Doppler',
-  'Plex',
-  'New_ Public',
-  'HackerRank',
-  'Rockwell Collins',
+  { name: 'FIS', url: 'https://www.fisglobal.com' },
+  { name: 'Shopify', url: 'https://www.shopify.com' },
+  { name: 'GitHub', url: 'https://github.com' },
+  { name: 'The Browser Company', url: 'https://thebrowser.company' },
+  { name: 'Carnegie Mellon', url: 'https://www.cmu.edu' },
+  { name: 'Doppler', url: 'https://www.doppler.com' },
+  { name: 'Plex', url: 'https://www.plex.tv' },
+  { name: 'New_ Public', url: 'https://newpublic.org' },
+  { name: 'HackerRank', url: 'https://www.hackerrank.com' },
+  // Rockwell Collins is now Collins Aerospace, part of RTX
+  { name: 'Rockwell Collins', url: 'https://www.rtx.com/collinsaerospace' },
 ];
 
 export const testimonials = [

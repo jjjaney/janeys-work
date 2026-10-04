@@ -162,7 +162,7 @@ export function home() {
   <div class="wrap">
     <div class="logos">
       <p class="mono muted">Content contributions at</p>
-      <ul>${companies.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
+      <ul>${companies.map((c) => `<li><a href="${esc(c.url)}">${esc(c.name)}</a></li>`).join('')}</ul>
     </div>
   </div>
 </section>
