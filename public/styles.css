@@ -448,7 +448,8 @@ html:not(.js) .theme-toggle { display: none; }
 .story--gold  { --tint: var(--tint-gold);  --hue: var(--gold); }
 .story--sky   { --tint: var(--tint-sky);   --hue: var(--sky); }
 .story--mint  { --tint: var(--tint-mint);  --hue: var(--green); }
-.story--archive { --tint: var(--paper); --hue: var(--orange); }
+.story--archive { --tint: var(--surface); --hue: var(--maroon); }
+:root[data-theme='dark'] .story--archive { --tint: #2a2747; --hue: #ffab94; }
 
 .story__link {
   position: relative; display: flex; flex-direction: column; gap: 1rem; height: 100%;
@@ -486,12 +487,14 @@ html:not(.js) .theme-toggle { display: none; }
 .story__link:hover .arrow { transform: none; }
 
 /* archive: a slim row */
-.story--archive .story__link { flex-direction: row; align-items: center; gap: clamp(1rem, 3vw, 2rem); padding-block: 1.1rem; }
-.story__strip { width: clamp(72px, 12vw, 140px); flex: none; }
-.story__strip .pixel-rule { grid-template-columns: repeat(6, 1fr); }
-.story__archive-text { flex: 1; }
-.story--archive .story__q { font-size: clamp(1.05rem, 1rem + 0.35vw, 1.25rem); margin-top: 0.35rem; }
-.story--archive .story__cta { flex: none; }
+/* archive: a full-width card; on wide screens the question and the answer sit side by side */
+.story__mark--wide { width: 42px; height: 30px; }
+.story--archive .story__body { display: grid; gap: 0.75rem; }
+.story--archive .story__q { margin: 0; }
+@media (min-width: 901px) {
+  .story--archive .story__body { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 2rem; align-items: end; }
+  .story--archive .story__a { margin-bottom: 0.2em; }
+}
 
 @media (max-width: 900px) {
   .stories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -501,8 +504,6 @@ html:not(.js) .theme-toggle { display: none; }
 @media (max-width: 600px) {
   .stories { grid-template-columns: 1fr; }
   .story, .story:nth-child(2), .story--featured { grid-column: 1 / -1; }
-  .story--archive .story__link { flex-direction: column; align-items: flex-start; }
-  .story__strip { width: 96px; }
 }
 
 /* How I work -------------------------------------------------------------- */

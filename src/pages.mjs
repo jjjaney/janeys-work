@@ -3,7 +3,7 @@ import { work } from './content/work.mjs';
 import { services, engagement, faqs } from './content/services.mjs';
 import { bio, principles, experience, funFacts } from './content/about.mjs';
 import { archive } from './content/archive.mjs';
-import { esc, todo, figure, pixel, pixelRule, pixelBorder, floaters, arrow, external } from './lib.mjs';
+import { esc, todo, figure, pixel, pixelBorder, floaters, arrow, external } from './lib.mjs';
 
 // ---------------------------------------------------------------------------
 // Shared bits
@@ -60,15 +60,33 @@ function storyCard(w, i) {
   </li>`;
 }
 
+// A 7 × 5 pixel "rewind" double chevron (earlier work): for the archive card.
+const BACK = ['..#..#.', '.#..#..', '#..#...', '.#..#..', '..#..#.'];
+function pixelBack(colors) {
+  let rects = '';
+  BACK.forEach((row, y) =>
+    [...row].forEach((c, x) => {
+      if (c === '#') rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${colors[(x + y) % colors.length]}"/>`;
+    })
+  );
+  return `<svg class="story__mark story__mark--wide" viewBox="0 0 7 5" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+}
+
 function archiveStory() {
   return `<li class="story story--archive">
     <a class="story__link" href="/archive/">
-      <div class="story__strip" aria-hidden="true">${pixelRule(24, 4)}</div>
-      <div class="story__archive-text">
-        <p class="story__client mono">2020 &amp; earlier</p>
-        <h3 class="story__q">From the archive: editorial, docs and web work at GitHub, Plex and Carnegie Mellon</h3>
+      <div class="story__top">
+        <p class="story__client mono"><span class="story__n" aria-hidden="true"></span>The archive · 2020 &amp; earlier</p>
+        ${pixelBack(['var(--maroon)'])}
       </div>
-      <span class="story__cta">Browse <span class="story__go" aria-hidden="true">${arrow}</span></span>
+      <div class="story__body">
+        <h3 class="story__q">What did the work look like before all this?</h3>
+        <p class="story__a">Editorial, technical writing and web work at GitHub, Plex, Ripl and Carnegie Mellon.</p>
+      </div>
+      <div class="story__foot">
+        <span class="story__teaser mono">14 projects · 2014–2020</span>
+        <span class="story__cta">Browse the archive <span class="story__go" aria-hidden="true">${arrow}</span></span>
+      </div>
     </a>
   </li>`;
 }
