@@ -3,9 +3,9 @@ export const site = {
   name: 'Janey Annis',
   // Used for canonical URLs, Open Graph tags and the sitemap.
   url: 'https://www.janeys.work',
-  role: 'Product & systems thinker who specializes in content',
+  role: 'Product & systems thinker specializing in content',
   description:
-    'Janey Annis is a product and systems thinker who specializes in content: content strategy, content design, content management, documentation and product management.',
+    'Janey Annis is a product and systems thinker specializing in content: content strategy, content design, content management, documentation and product management.',
   linkedin: 'https://www.linkedin.com/in/janeyannis/',
 
   // TODO(Janey): add a public email if you want one shown. Leave '' to hide it.
