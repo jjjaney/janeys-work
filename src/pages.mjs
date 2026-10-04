@@ -196,7 +196,6 @@ function quotes() {
             .join('')}
         </div>
       </div>
-      ${todo('Add the name and title of each person quoted, if they agree. Attributed quotes are more credible.')}
     </div>
   </section>`;
 }
