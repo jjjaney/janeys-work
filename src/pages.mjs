@@ -26,7 +26,12 @@ const artFloat = (seed) => floaters([
   [-12, 5, 10, 40, 1],          // one off the upper left
 ], { seed });
 const gapFloat = (seed, regions) => floaters(regions, { seed });
-const spill = (seed) => `<div class="spill">${floaters([[2, 5, 96, 75, 12, true]], { seed })}</div>`;
+// The strip of pixels below a page header: ten pixels, each in its own slot
+// across the right three-quarters so they don't clump, dropping to different
+// depths (a short, deep or middling fall) so they don't sit on one line.
+// Phones show every other one.
+const SPILL_SLOTS = Array.from({ length: 10 }, (_, i) => [22 + i * 7.7, 0, 7.7, [30, 95, 60, 80, 20][i % 5], 1, i % 2 === 0]);
+const spill = (seed) => `<div class="spill">${floaters(SPILL_SLOTS, { seed })}</div>`;
 
 const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
 

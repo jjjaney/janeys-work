@@ -409,8 +409,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .hero__art { position: relative; justify-self: end; width: 100%; max-width: 600px; }
 .hero__art .pixel { width: 100%; height: auto; }
 
-/* The label and the names form one block, centered on the page; the label lines up with the first name. */
-.logos { margin-top: clamp(3rem, 2rem + 4vw, 5rem); padding-top: 1.5rem; border-top: 1px solid var(--line); display: grid; grid-template-columns: auto; justify-content: center; justify-items: start; gap: 0.9rem; }
+.logos { margin-top: clamp(3rem, 2rem + 4vw, 5rem); padding-top: 1.5rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 2rem; }
 .logos p { margin: 0; }
 .logos ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; list-style: none; margin: 0; padding: 0; }
 .logos li { font: 650 1.05rem var(--display); color: var(--ink); letter-spacing: -0.01em; }
@@ -463,9 +462,9 @@ html:not(.js) .theme-toggle { display: none !important; }
 .floaters i { position: absolute; width: var(--cell, 32px); height: var(--cell, 32px); }
 .floaters i[hidden] { display: none; }
 /* a strip of strays just below the header */
-.spill { position: absolute; left: 0; right: 0; top: 100%; height: calc(var(--cell, 32px) * 2.4); pointer-events: none; z-index: -1; }
+.spill { position: absolute; left: 0; right: 0; top: 100%; height: calc(var(--cell, 32px) * 3.4); pointer-events: none; z-index: -1; }
 /* give the strip its own space so the next section can breathe */
-.hero, .case__head, .page-head--art { margin-bottom: calc(var(--cell, 32px) * 2.4); }
+.hero, .case__head, .page-head--art { margin-bottom: calc(var(--cell, 32px) * 3.4); }
 @media (max-width: 860px) {
   .floaters i:not(.m) { display: none; }
 }
