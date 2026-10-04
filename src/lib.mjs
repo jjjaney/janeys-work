@@ -56,8 +56,8 @@ const artCache = new Map();
  *   don't fight over `.cls-1`),
  * - ids removed (no duplicate ids),
  */
-export function pixel(name, { palette = 'original', label = '', className = '', crop = false } = {}) {
-  const key = `${name}|${palette}`;
+export function pixel(name, { palette = 'original', label = '', className = '', crop = false, organic = false } = {}) {
+  const key = `${name}|${palette}|${organic}`;
   let svg = artCache.get(key);
   if (!svg) {
     let raw = readFileSync(new URL(`./art/${name}.svg`, import.meta.url), 'utf8');
@@ -78,12 +78,49 @@ export function pixel(name, { palette = 'original', label = '', className = '', 
       .replace(/<g>\s*/g, '')
       .replace(/<\/g>\s*/g, '')
       .replace(/\s+/g, ' ');
+    if (organic) body = erode(body, viewBox);
     svg = { body, viewBox };
     artCache.set(key, svg);
   }
   const aria = label ? `role="img" aria-label="${esc(label)}"` : 'aria-hidden="true" focusable="false"';
-  const par = crop ? ' preserveAspectRatio="xMidYMid slice"' : '';
+  // Organic art always shows its whole silhouette; ragged edges would be lost to cropping.
+  const par = crop && !organic ? ' preserveAspectRatio="xMidYMid slice"' : '';
   return `<svg class="pixel ${className}" viewBox="${svg.viewBox}"${par} xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" ${aria}>${svg.body}</svg>`;
+}
+
+// Stable pseudo-random number in 0–1 for a grid position.
+function hash(x, y, salt = 0) {
+  let h = (Math.round(x) * 374761393 + Math.round(y) * 668265263 + salt * 2147483647) | 0;
+  h = Math.imul(h ^ (h >>> 13), 1274126177);
+  return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
+}
+
+/**
+ * "Organic" pixel art: remove squares so the composition has a ragged,
+ * irregular silhouette and a few holes, letting the page show through.
+ * Squares thin out with distance from the center, with noise along the edge
+ * so the outline wobbles instead of forming a circle. Deterministic, so the
+ * same art always erodes the same way.
+ */
+function erode(body, viewBox) {
+  const [, , W, H] = viewBox.split(/\s+/).map(Number);
+  return body.replace(/<rect\s([^>]*?)\/>/g, (m, attrs) => {
+    const num = (k) => Number((attrs.match(new RegExp(`\\s?${k}="([\\d.]+)"`)) || [0, 0])[1]);
+    const w = num('width'), h = num('height');
+    const cx = (num('x') + w / 2) / W - 0.5;
+    const cy = (num('y') + h / 2) / H - 0.5;
+    // 0 at the center, ~1 at the middle of an edge, ~1.4 at a corner
+    const d = Math.hypot(cx, cy) * 2;
+    // the edge wobbles: low-frequency noise by angle, plus per-square jitter
+    const angle = Math.atan2(cy, cx);
+    const wobble = 0.16 * Math.sin(angle * 3 + 1.3) + 0.1 * Math.sin(angle * 5 + 0.4);
+    const jitter = (hash(num('x'), num('y'), 1) - 0.5) * 0.3;
+    const edge = 0.78 + wobble + jitter;
+    if (d > edge + 0.18) return '';                                  // well outside: gone
+    if (d > edge) return hash(num('x'), num('y'), 2) < 0.45 ? m : ''; // fringe: scattered strays
+    if (hash(num('x'), num('y'), 3) < 0.05) return '';                // a few holes inside
+    return m;
+  });
 }
 
 /** A small decorative strip of squares in the site palette. */

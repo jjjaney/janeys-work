@@ -117,7 +117,7 @@ export function home() {
       </div>
     </div>
     <div class="hero__art">
-      ${pixel('pixel-composition-16', { label: 'Pixel-art composition of colored square tiles' })}
+      ${pixel('pixel-composition-16', { organic: true, label: 'Pixel-art composition of colored square tiles' })}
     </div>
   </div>
   <div class="wrap">
@@ -231,7 +231,7 @@ export function caseStudy(w, i) {
         <h1>${esc(w.title)}</h1>
         <p class="lede">${esc(w.summary)}</p>
       </div>
-      <div class="case__art">${pixel(w.art, { crop: true })}</div>
+      <div class="case__art">${pixel(w.art, { organic: true })}</div>
     </div>
     <div class="wrap">
       <dl class="meta">
@@ -395,7 +395,7 @@ export function aboutPage() {
       ${todo('Add a link to your resume (PDF in <code>/public/</code>) if you want a download button here.')}
     </div>
     <div class="portrait">
-      ${pixel('pixel-composition-12', { crop: true })}
+      ${pixel('pixel-composition-12', { organic: true })}
       ${todo('Optional: add a photo of you. The current site uses a childhood photo, which is charming. Save it as <code>/public/images/janey.jpg</code> and replace this art in <code>aboutPage()</code> in <code>src/pages.mjs</code>.')}
     </div>
   </div>
