@@ -41,9 +41,29 @@
   // just those squares; recheck when the layout changes.
   const floaterBoxes = [...document.querySelectorAll('.floaters')];
   if (floaterBoxes.length) {
-    const cull = () => {
+    // Each header's floating squares are sized to one square of its art and
+    // snapped onto the art's grid, so they read as loose pixels of the same image.
+    const heads = [...document.querySelectorAll('.hero, .case__head, .page-head--art')];
+    const gridFor = (head) => {
+      const svg = head.querySelector('.hero__art .pixel, .case__art .pixel, .portrait .pixel');
+      const rect = svg?.querySelector('rect');
+      if (!rect) return null;
+      const [, , vw, vh] = svg.getAttribute('viewBox').split(/\s+/).map(Number);
+      const box = svg.getBoundingClientRect();
+      const scale = Math.min(box.width / vw, box.height / vh); // the art is scaled to fit its box
+      return {
+        svg,
+        cell: Number(rect.getAttribute('width')) * scale,
+        // where the art's top-left corner lands on the page
+        x0: box.left + (box.width - vw * scale) / 2,
+        y0: box.top + (box.height - vh * scale) / 2,
+      };
+    };
+
+    const layout = () => {
+      // lines of text the squares must stay clear of
       const lines = [];
-      document.querySelectorAll('.hero, .case__head, .page-head--art, .hero + *, .case__body, .about-head').forEach((root) => {
+      document.querySelectorAll('.hero, .case__head, .page-head--art, .hero + *, .page-head--art + *, .case__body, .about-head').forEach((root) => {
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
         while (walker.nextNode()) {
           const n = walker.currentNode;
@@ -55,15 +75,39 @@
         root.querySelectorAll('.btn, .todo, .meta > div').forEach((e) => lines.push(e.getBoundingClientRect()));
       });
       const pad = 10;
-      floaterBoxes.forEach((box) =>
-        box.querySelectorAll('i').forEach((i) => {
+      const onText = (a) => lines.some((r) => a.left < r.right + pad && a.right > r.left - pad && a.top < r.bottom + pad && a.bottom > r.top - pad);
+
+      heads.forEach((head) => {
+        const g = gridFor(head);
+        if (!g) return;
+        head.style.setProperty('--cell', `${g.cell.toFixed(2)}px`);
+        const key = (x, y) => `${Math.round((x - g.x0) / g.cell)},${Math.round((y - g.y0) / g.cell)}`;
+        // grid cells already filled by the art itself
+        const taken = new Set([...g.svg.querySelectorAll('rect')].map((r) => {
+          const b = r.getBoundingClientRect();
+          return key(b.left, b.top);
+        }));
+        head.querySelectorAll('.floaters i').forEach((i) => {
+          // go back to the authored % position, then snap to the nearest grid cell
+          if (!i.dataset.left) (i.dataset.left = i.style.left), (i.dataset.top = i.style.top);
+          i.style.left = i.dataset.left;
+          i.style.top = i.dataset.top;
           i.hidden = false;
+          if (getComputedStyle(i).display === 'none') return; // desktop-only square on a phone
           const a = i.getBoundingClientRect();
-          if (!a.width) return;
-          i.hidden = lines.some((r) => a.left < r.right + pad && a.right > r.left - pad && a.top < r.bottom + pad && a.bottom > r.top - pad);
-        })
-      );
+          const gx = g.x0 + Math.round((a.left - g.x0) / g.cell) * g.cell;
+          const gy = g.y0 + Math.round((a.top - g.y0) / g.cell) * g.cell;
+          i.style.left = `${parseFloat(getComputedStyle(i).left) + (gx - a.left)}px`;
+          i.style.top = `${parseFloat(getComputedStyle(i).top) + (gy - a.top)}px`;
+          const k = key(gx, gy);
+          const snapped = { left: gx, top: gy, right: gx + g.cell, bottom: gy + g.cell };
+          // skip squares that would cover text, the art, or another square
+          if (taken.has(k) || onText(snapped)) i.hidden = true;
+          else taken.add(k);
+        });
+      });
     };
+    const cull = layout;
     cull();
     document.fonts?.ready.then(cull);
     let t;

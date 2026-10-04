@@ -21,13 +21,13 @@ const eyebrowSpan = (_n, label) => `<span class="eyebrow mono${hue(label) ? ' ey
 //  - in the open space between the heading and the art (desktop only)
 //  - a strip spilling just below the header (all screen sizes)
 const artFloat = (seed) => floaters([
-  [-6, -12, 112, 9, 7, true],
-  [-6, 103, 112, 9, 6, true],
-  [-12, 10, 7, 80, 3],
-  [104, 10, 6, 80, 3],
+  [0, -22, 100, 18, 7, true],   // drifting down onto the pile
+  [50, -40, 50, 36, 6, true],   // more falling in on the high side (fills the space beside the buttons on phones)
+  [-14, 0, 12, 45, 2],          // upper left
+  [102, -8, 12, 40, 2],         // upper right
 ], { seed });
 const gapFloat = (seed, regions) => floaters(regions, { seed });
-const spill = (seed) => `<div class="spill">${floaters([[2, 10, 96, 80, 12, true]], { seed })}</div>`;
+const spill = (seed) => `<div class="spill">${floaters([[2, 5, 96, 75, 12, true]], { seed })}</div>`;
 
 const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
 

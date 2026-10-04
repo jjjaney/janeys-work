@@ -96,29 +96,29 @@ function hash(x, y, salt = 0) {
 }
 
 /**
- * "Organic" pixel art: remove squares so the composition has a ragged,
- * irregular silhouette and a few holes, letting the page show through.
- * Squares thin out with distance from the center, with noise along the edge
- * so the outline wobbles instead of forming a circle. Deterministic, so the
- * same art always erodes the same way.
+ * "Organic" pixel art, as a buildup: squares stack up from the bottom and the
+ * pile rises from left to right, like blocks accumulating or a growth chart.
+ * The top surface is uneven, a few squares near it are missing, and a few
+ * loose squares hover just above it as if still landing. Deterministic, so the
+ * same art always builds the same way.
  */
 function erode(body, viewBox) {
   const [, , W, H] = viewBox.split(/\s+/).map(Number);
   return body.replace(/<rect\s([^>]*?)\/>/g, (m, attrs) => {
     const num = (k) => Number((attrs.match(new RegExp(`\\s?${k}="([\\d.]+)"`)) || [0, 0])[1]);
-    const w = num('width'), h = num('height');
-    const cx = (num('x') + w / 2) / W - 0.5;
-    const cy = (num('y') + h / 2) / H - 0.5;
-    // 0 at the center, ~1 at the middle of an edge, ~1.4 at a corner
-    const d = Math.hypot(cx, cy) * 2;
-    // the edge wobbles: low-frequency noise by angle, plus per-square jitter
-    const angle = Math.atan2(cy, cx);
-    const wobble = 0.16 * Math.sin(angle * 3 + 1.3) + 0.1 * Math.sin(angle * 5 + 0.4);
-    const jitter = (hash(num('x'), num('y'), 1) - 0.5) * 0.3;
-    const edge = 0.78 + wobble + jitter;
-    if (d > edge + 0.18) return '';                                  // well outside: gone
-    if (d > edge) return hash(num('x'), num('y'), 2) < 0.45 ? m : ''; // fringe: scattered strays
-    if (hash(num('x'), num('y'), 3) < 0.05) return '';                // a few holes inside
+    const x = num('x'), y = num('y'), w = num('width'), h = num('height');
+    const u = (x + w / 2) / W;           // 0 left → 1 right
+    const v = 1 - (y + h / 2) / H;       // 0 bottom → 1 top
+    // the pile's height at this column: rising left → right, with a lumpy top
+    const col = Math.round(x / w);
+    const lump = 0.09 * Math.sin(u * 9 + 0.6) + (hash(col, 0, 4) - 0.5) * 0.14;
+    const surface = Math.min(1.05, 0.3 + 0.72 * u + lump);
+    const gap = v - surface;             // < 0: inside the pile, > 0: above it
+    const step = h / H;                  // one square, as a fraction of the height
+    if (gap > step * 3.2) return '';                                  // open sky
+    if (gap > step * 0.4) return hash(x, y, 5) < 0.12 / (1 + gap / step) ? m : ''; // loose squares landing
+    if (gap > -step * 1.2) return hash(x, y, 6) < 0.65 ? m : '';      // ragged top surface
+    if (hash(x, y, 3) < 0.03) return '';                              // a rare hole inside
     return m;
   });
 }
@@ -173,16 +173,14 @@ export function pixelBorder({ columns = 160, size = 14, seed = 7 } = {}) {
  */
 export function floaters(spots, { seed = 11 } = {}) {
   const colors = ['#ff7b4d', '#cfa2ed', '#0b704f', '#c99f43', '#b6d8fe', '#6b2337'];
-  const sizes = [10, 14, 14, 18, 22, 28];
   let out = '';
   let n = 0;
   for (const [x, y, w, h, count, mobile = false] of spots) {
     for (let i = 0; i < count; i++, n++) {
       const left = (x + hash(n, seed, 7) * w).toFixed(1);
       const top = (y + hash(n, seed, 8) * h).toFixed(1);
-      const size = sizes[Math.floor(hash(n, seed, 9) * sizes.length)];
       const color = colors[Math.floor(hash(n, seed, 10) * colors.length)];
-      out += `<i${mobile ? ' class="m"' : ''} style="left:${left}%;top:${top}%;--s:${size}px;background:${color}"></i>`;
+      out += `<i${mobile ? ' class="m"' : ''} style="left:${left}%;top:${top}%;background:${color}"></i>`;
     }
   }
   return `<div class="floaters" aria-hidden="true">${out}</div>`;

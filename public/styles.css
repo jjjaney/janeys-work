@@ -361,14 +361,13 @@ html:not(.js) .theme-toggle { display: none; }
 .hero, .case__head, .page-head--art { position: relative; isolation: isolate; overflow-x: clip; }
 .hero__art, .case__art, .portrait { position: relative; }
 .floaters { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
-.floaters i { position: absolute; width: var(--s); height: var(--s); }
+/* --cell is the on-screen size of one square in the nearby art (set by main.js) */
+.floaters i { position: absolute; width: var(--cell, 32px); height: var(--cell, 32px); }
 .floaters i[hidden] { display: none; }
 /* a strip of strays just below the header */
-.spill { position: absolute; left: 0; right: 0; top: 100%; height: 72px; pointer-events: none; z-index: -1; }
+.spill { position: absolute; left: 0; right: 0; top: 100%; height: calc(var(--cell, 32px) * 2.4); pointer-events: none; z-index: -1; }
 @media (max-width: 860px) {
   .floaters i:not(.m) { display: none; }
-  .floaters i { width: calc(var(--s) * 0.7); height: calc(var(--s) * 0.7); }
-  .spill { height: 56px; }
 }
 
 /* Pixel art: shown as-is; a single tile occasionally flips to a new color -- */
@@ -607,7 +606,7 @@ html:not(.js) .theme-toggle { display: none; }
 .case__head h1 { font-size: clamp(2.1rem, 1.5rem + 2.8vw, 3.9rem); }
 .case__art { aspect-ratio: 1; }
 .case__art .pixel { width: 100%; height: 100%; }
-@media (max-width: 760px) { .case__head-inner { grid-template-columns: 1fr; } .case__art { order: -1; margin-inline: calc(var(--gutter) * -1); width: calc(100% + var(--gutter) * 2); max-width: none; aspect-ratio: 16 / 10; } }
+@media (max-width: 760px) { .case__head-inner { grid-template-columns: 1fr; } .case__art { order: -1; margin-inline: calc(var(--gutter) * -1); width: calc(100% + var(--gutter) * 2); max-width: none; aspect-ratio: auto; } }
 
 .meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: clamp(2rem, 4vw, 3.5rem) 0 0; }
 .meta > div { padding: 1.1rem 1.25rem 1.3rem; background: var(--tint-sky); }
@@ -661,7 +660,7 @@ html:not(.js) .theme-toggle { display: none; }
 .about-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
 .about-head p { max-width: 38em; }
 .portrait .pixel { width: 100%; height: auto; }
-@media (max-width: 860px) { .about-head { grid-template-columns: 1fr; } .portrait { margin-inline: calc(var(--gutter) * -1); width: calc(100% + var(--gutter) * 2); max-width: none; } .portrait .pixel { aspect-ratio: 4 / 3; height: auto; } .portrait .todo { margin-inline: var(--gutter); } }
+@media (max-width: 860px) { .about-head { grid-template-columns: 1fr; } .portrait { margin-inline: calc(var(--gutter) * -1); width: calc(100% + var(--gutter) * 2); max-width: none; } .portrait .pixel { width: 100%; height: auto; } .portrait .todo { margin-inline: var(--gutter); } }
 
 .principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 1rem; list-style: none; margin: 0 0 1.5rem; padding: 0; }
 .principles li { padding: 1.5rem; background: var(--paper); border-top: 6px solid var(--c, var(--orange)); }
