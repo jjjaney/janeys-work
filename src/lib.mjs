@@ -163,27 +163,39 @@ export const arrow = `<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true">
 export const external = `<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>`;
 
 /**
- * A pixel border: one full row of colored squares with a sparser row under
- * it, so the edge steps down like pixel art. It carries the `pixel` class, so
- * it gets the same occasional tile flip as the other art.
+ * A small stepped cluster of pixels that hugs the top-right corner of a
+ * section, plus a few loose pixels floating just above it that lead into it.
+ * Squares are one grid cell each; the cell size comes from the page's header
+ * art (--art-cell, set by main.js), so they match the other pixel art.
+ * The cluster carries the `pixel` class, so it gets the occasional tile flip.
+ *
+ * Grid: x counts columns from the right edge, y counts rows from the top of
+ * the section (negative y = above the section).
  */
-export function pixelBorder({ columns = 160, size = 14, seed = 7 } = {}) {
-  const colors = ['#ff7b4d', '#cfa2ed', '#0b704f', '#c99f43', '#b6d8fe', '#6b2337'];
-  let r = seed * 9301 + 49297;
-  const rand = () => ((r = (r * 9301 + 49297) % 233280) / 233280);
-  let rects = '';
-  let last = -1;
-  for (let x = 0; x < columns; x++) {
-    let c = Math.floor(rand() * colors.length);
-    if (c === last) c = (c + 1) % colors.length; // no two neighbors the same
-    last = c;
-    rects += `<rect x="${x * size}" y="0" width="${size}" height="${size}" fill="${colors[c]}" stroke="${colors[c]}" stroke-width="0.6"/>`;
-    if (rand() < 0.3) {
-      const c2 = colors[Math.floor(rand() * colors.length)];
-      rects += `<rect x="${x * size}" y="${size}" width="${size}" height="${size}" fill="${c2}" stroke="${c2}" stroke-width="0.6"/>`;
-    }
-  }
-  return `<div class="pixel-border" aria-hidden="true"><svg class="pixel" width="${columns * size}" height="${size * 2}" viewBox="0 0 ${columns * size} ${size * 2}" shape-rendering="crispEdges">${rects}</svg></div>`;
+export function pixelCorner() {
+  const o = '#ff7b4d', l = '#cfa2ed', g = '#0b704f', y = '#c99f43', s = '#b6d8fe', m = '#6b2337';
+  // [x, y, color] for the cluster: a staircase stepping down into the corner
+  const cluster = [
+    [0, 0, g], [1, 0, o], [2, 0, l], [3, 0, s], [4, 0, y],
+    [0, 1, o], [1, 1, m], [2, 1, y],
+    [0, 2, l], [1, 2, s],
+    [0, 3, y],
+    [3, 2, o], // a loose one just off the steps
+  ];
+  const W = 5, H = 4;
+  const rects = cluster
+    .map(([x, y, c]) => `<rect x="${W - 1 - x}" y="${y}" width="1" height="1" fill="${c}" stroke="${c}" stroke-width="0.03"/>`)
+    .join('');
+  // loose pixels above the section, drifting down into the corner: [x, y, color, show on phones?]
+  const above = [
+    [5, -1, l, true],
+    [7, -2, o, false],
+    [2, -2, g, false],
+  ];
+  return `<svg class="pixel pixel-corner" viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges" aria-hidden="true" focusable="false">${rects}</svg>
+    <div class="corner-floaters" aria-hidden="true">${above
+      .map(([x, y, c, m]) => `<i${m ? ' class="m"' : ''} style="--x:${x};--y:${y};background:${c}"></i>`)
+      .join('')}</div>`;
 }
 
 /**

@@ -48,7 +48,7 @@
   // square can land on a word. Check against the real lines of text and hide
   // just those squares; recheck when the layout changes.
   const floaterBoxes = [...document.querySelectorAll('.floaters')];
-  if (floaterBoxes.length) {
+  if (floaterBoxes.length || document.querySelector('.cta-band')) {
     // Each header's floating squares are sized to one square of its art and
     // snapped onto the art's grid, so they read as loose pixels of the same image.
     const heads = [...document.querySelectorAll('.hero, .case__head, .page-head--art')];
@@ -75,7 +75,7 @@
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
         while (walker.nextNode()) {
           const n = walker.currentNode;
-          if (!n.textContent.trim() || n.parentElement.closest('.floaters')) continue;
+          if (!n.textContent.trim() || n.parentElement.closest('.floaters') || (n.parentElement.checkVisibility && !n.parentElement.checkVisibility())) continue;
           const range = document.createRange();
           range.selectNodeContents(n);
           for (const r of range.getClientRects()) if (r.width && r.height) lines.push(r);
@@ -89,6 +89,7 @@
         const g = gridFor(head);
         if (!g) return;
         head.style.setProperty('--cell', `${g.cell.toFixed(2)}px`);
+        if (head === heads[0]) root.style.setProperty('--art-cell', `${g.cell.toFixed(2)}px`); // the band's corner art uses it too
         const key = (x, y) => `${Math.round((x - g.x0) / g.cell)},${Math.round((y - g.y0) / g.cell)}`;
         // grid cells already filled by the art itself
         const taken = new Set([...g.svg.querySelectorAll('rect')].map((r) => {
@@ -115,7 +116,31 @@
         });
       });
     };
-    const cull = layout;
+    // loose pixels above the closing band: hide any that would sit on text
+    const cullCorner = () => {
+      document.querySelectorAll('.cta-band').forEach((band) => {
+        const prev = band.previousElementSibling;
+        const lines = [];
+        if (prev) {
+          const walker = document.createTreeWalker(prev, NodeFilter.SHOW_TEXT);
+          while (walker.nextNode()) {
+            const n = walker.currentNode;
+            if (!n.textContent.trim() || (n.parentElement.checkVisibility && !n.parentElement.checkVisibility())) continue;
+            const range = document.createRange();
+            range.selectNodeContents(n);
+            for (const r of range.getClientRects()) if (r.width && r.height) lines.push(r);
+          }
+          prev.querySelectorAll('.btn, .todo, a, img').forEach((e) => lines.push(e.getBoundingClientRect()));
+        }
+        band.querySelectorAll('.corner-floaters i').forEach((i) => {
+          i.hidden = false;
+          const a = i.getBoundingClientRect();
+          if (!a.width) return;
+          i.hidden = lines.some((r) => a.left < r.right + 8 && a.right > r.left - 8 && a.top < r.bottom + 8 && a.bottom > r.top - 8);
+        });
+      });
+    };
+    const cull = () => (layout(), cullCorner());
     cull();
     document.fonts?.ready.then(cull);
     let t;

@@ -4,7 +4,7 @@ import { work } from './content/work.mjs';
 import { services, engagement, faqs } from './content/services.mjs';
 import { bio, principles, experience, funFacts } from './content/about.mjs';
 import { archive } from './content/archive.mjs';
-import { esc, todo, figure, pixel, pixelBorder, floaters, arrow, external } from './lib.mjs';
+import { esc, todo, figure, pixel, pixelCorner, floaters, arrow, external } from './lib.mjs';
 
 // ---------------------------------------------------------------------------
 // Shared bits
@@ -116,7 +116,7 @@ function quotes() {
 
 function ctaBand(heading = 'Have a content problem that’s really a systems problem?') {
   return `<section class="cta-band" aria-labelledby="cta-h">
-    ${pixelBorder()}
+    ${pixelCorner()}
     <div class="wrap cta-band__inner">
       <div>
         <h2 id="cta-h">${heading}</h2>

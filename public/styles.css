@@ -649,14 +649,27 @@ html:not(.js) .theme-toggle { display: none !important; }
 .quote__by { margin: 0; line-height: 1.6; }
 
 /* CTA band ----------------------------------------------------------------- */
-.cta-band { position: relative; background: var(--band); color: var(--on-band); overflow: hidden; }
-.cta-band__inner { padding-block: clamp(3.5rem, 3rem + 4vw, 6rem); }
+.cta-band {
+  position: relative; background: var(--band); color: var(--on-band);
+  /* one pixel of the page's header art (set by main.js); a sensible size elsewhere */
+  --c: clamp(20px, var(--art-cell, clamp(28px, 3.2vw, 46px)), 46px);
+}
+.cta-band__inner { position: relative; padding-block: clamp(3.5rem, 3rem + 4vw, 6rem); }
 .cta-band h2 { color: var(--on-band); max-width: 16em; }
 .cta-band p { font-size: 1.15rem; }
 
-/* pixel border along the top edge of the band */
-.pixel-border { height: 28px; overflow: hidden; background: var(--band); line-height: 0; }
-.pixel-border .pixel { max-width: none; display: block; }
+/* minimal pixel art hugging the band's top-right corner */
+.pixel-corner { position: absolute; top: 0; right: 0; width: calc(var(--c) * 5); height: calc(var(--c) * 4); }
+/* loose pixels just above the band, leading into the corner */
+.corner-floaters { position: absolute; top: 0; right: 0; pointer-events: none; }
+.corner-floaters i {
+  position: absolute; width: var(--c); height: var(--c);
+  right: calc(var(--x) * var(--c)); top: calc(var(--y) * var(--c));
+}
+.corner-floaters i[hidden] { display: none; }
+@media (max-width: 600px) { .corner-floaters i:not(.m) { display: none; } }
+/* narrower screens: start the text below the corner art */
+@media (max-width: 860px) { .cta-band__inner { padding-top: calc(var(--c) * 4 + 1.25rem); } }
 
 /* Case study --------------------------------------------------------------- */
 .case__head { padding-top: clamp(2.5rem, 2rem + 4vw, 5rem); }
