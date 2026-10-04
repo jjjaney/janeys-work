@@ -118,7 +118,7 @@ export function layout({ path, title, description = site.description, body, page
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>${navLinks}</ul>
       <div class="nav-theme">
-        <span class="nav-theme__label" aria-hidden="true">Dark mode</span>
+        <span class="nav-theme__label" aria-hidden="true"><span class="nav-theme__to-dark">Dark mode</span><span class="nav-theme__to-light">Light mode</span></span>
         ${gradientToggle()}
         ${tileToggle()}
         ${themeToggle()}

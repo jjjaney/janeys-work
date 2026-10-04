@@ -317,6 +317,9 @@ html:not(.js) .theme-toggle { display: none !important; }
   .js .site-header__inner > .theme-toggle { display: none !important; }
   .js .nav-theme { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.6rem 0.5rem 0.4rem; }
   .nav-theme__label { font: 600 1.4rem var(--display); color: var(--ink); }
+  /* names the mode the switch will turn on: "Dark mode" in light, "Light mode" in dark */
+  .nav-theme__to-light, :root[data-theme='dark'] .nav-theme__to-dark { display: none; }
+  :root[data-theme='dark'] .nav-theme__to-light { display: inline; }
   .nav-theme .theme-toggle { margin-right: -4px; }
   .nav-toggle {
     margin-left: auto; display: inline-flex; align-items: center; gap: 0.55rem;
