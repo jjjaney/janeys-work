@@ -1,6 +1,6 @@
 # janeys.work
 
-Portfolio and services site for Janey Annis: product & systems thinker specializing in content.
+Portfolio and services site for Janey Annis: human-first content for products and systems.
 
 - **Zero dependencies.** A ~100-line Node script (`build.mjs`) renders every page to static HTML in `dist/`. There's nothing to `npm install`, nothing to keep updated, and nothing to break.
 - **Content lives in plain JS files** in `src/content/`, so editing a case study is editing text.
