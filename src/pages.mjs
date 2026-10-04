@@ -145,7 +145,7 @@ export function home() {
     <div class="hero__copy has-flank">
       <div class="flank" data-seed="1" aria-hidden="true"></div>
       <p class="eyebrow mono">${esc(site.role)}</p>
-      <h1 class="hero__title">I design the <span class="hl">systems</span> behind the words.</h1>
+      <h1 class="hero__title"><span class="hero__line">I design the <span class="hl">systems</span></span> <span class="hero__line">behind the words.</span></h1>
       <p class="lede">I’m Janey, a content strategist, content designer and product manager. I’ve led content at FIS, Shopify, GitHub and Carnegie Mellon, building the guidelines, docs and processes that let teams (and their AI tools) get content right at scale.</p>
       <div class="actions">
         <a class="btn" href="/work/">See selected work ${arrow}</a>

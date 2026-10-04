@@ -161,7 +161,7 @@
         const text = flank.parentElement.getBoundingClientRect();
         // columns that fit between the screen edge and the text, rows to cover it
         const textLeft = text.left + parseFloat(getComputedStyle(flank.parentElement).paddingLeft);
-        const cols = Math.max(2, Math.floor((textLeft - 12) / g.cell));
+        const cols = Math.min(3, Math.max(2, Math.floor((textLeft - 12) / g.cell)));
         // snap rows to the art's grid
         const firstRow = Math.floor((fb.top - g.y0) / g.cell);
         const rows = Math.ceil(fb.height / g.cell) + 1;
@@ -172,8 +172,8 @@
           const end = Math.min(r, rows - 1 - r);
           const endFade = end === 0 ? 0.35 : end === 1 ? 0.7 : 1;
           for (let c = 0; c < cols; c++) {
-            // a slim edge accent: mostly the outer column, a few strays inward
-            const density = (c === 0 ? 0.62 : c === 1 ? 0.2 : c === 2 ? 0.05 : 0) * endFade;
+            // three columns: dense at the screen edge, medium, then light toward the text
+            const density = (c === 0 ? 0.85 : c === 1 ? 0.5 : c === 2 ? 0.24 : 0) * endFade;
             if (hash(c, r, seed) >= density) continue;
             const color = flankColors[Math.floor(hash(c, r, seed + 50) * flankColors.length)];
             const top = g.y0 + (firstRow + r) * g.cell - fb.top;
@@ -183,7 +183,21 @@
         flank.innerHTML = out;
       });
     };
-    const cull = () => (layout(), fillFlanks(), cullCorner());
+    // Home headline: two lines on wider screens. The CSS sizes it to the
+    // column; if a line would still overflow with the real font, shrink it.
+    const fitTitle = () => {
+      const title = document.querySelector('.hero__title');
+      if (!title) return;
+      title.style.fontSize = '';
+      const lines = title.querySelectorAll('.hero__line');
+      if (!lines.length || getComputedStyle(lines[0]).display !== 'block') return;
+      const copy = title.parentElement;
+      const cs = getComputedStyle(copy);
+      const avail = copy.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      const widest = Math.max(...[...lines].map((l) => l.scrollWidth));
+      if (widest > avail) title.style.fontSize = `${(parseFloat(getComputedStyle(title).fontSize) * avail / widest * 0.99).toFixed(2)}px`;
+    };
+    const cull = () => (fitTitle(), layout(), fillFlanks(), cullCorner());
     cull();
     document.fonts?.ready.then(cull);
     let t;
