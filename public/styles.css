@@ -628,7 +628,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* How I work -------------------------------------------------------------- */
 /* Pixel staircase: four columns that rise left to right and stand on the
    bottom edge of the section. Each step adds one colored layer. */
-.section--stairs { padding-bottom: 0; }
+/* the section color continues below the staircase as breathing room */
+.section--stairs { padding-bottom: clamp(5.5rem, 4rem + 6vw, 10rem); }
 .stairs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; align-items: end; list-style: none; margin: clamp(1rem, 3vw, 2.5rem) 0 0; padding: 0; }
 .stairs > li { display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; }
 .stairs__text { padding: 0 clamp(0.75rem, 2vw, 1.75rem) clamp(1rem, 2vw, 1.5rem) 0; }
