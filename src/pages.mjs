@@ -69,7 +69,7 @@ function storyCard(w, i) {
   return `<li class="story story--${w.hue}${i === 0 ? ' story--featured' : ''}">
     <a class="story__link" href="/work/${w.slug}/">
       <div class="story__top">
-        <p class="story__client mono"><span class="story__n" aria-hidden="true"></span>${esc(w.client)}</p>
+        <p class="story__client mono">${esc(w.client)}</p>
         ${pixelQuestion(w.badge)}
       </div>
       <h3 class="story__q">${esc(w.hook)}</h3>
@@ -112,7 +112,7 @@ function archiveStory() {
   return `<li class="story story--archive">
     <a class="story__link" href="/archive/">
       <div class="story__top">
-        <p class="story__client mono"><span class="story__n" aria-hidden="true"></span>The archive · 2020 &amp; earlier</p>
+        <p class="story__client mono">The archive · 2020 &amp; earlier</p>
         ${pixelClock()}
       </div>
       <div class="story__body">
