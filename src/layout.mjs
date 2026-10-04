@@ -126,7 +126,6 @@ export function layout({ path, title, description = site.description, body, page
 ${body}
 </main>
 <footer class="site-footer">
-  ${ticker()}
   <div class="wrap site-footer__inner">
     <div>
       <p class="site-footer__name">${logo()} ${esc(site.name)}</p>

@@ -1,4 +1,5 @@
 import { site, companies, testimonials } from './site.mjs';
+import { ticker } from './layout.mjs';
 import { work } from './content/work.mjs';
 import { services, engagement, faqs } from './content/services.mjs';
 import { bio, principles, experience, funFacts } from './content/about.mjs';
@@ -165,6 +166,7 @@ export function home() {
       <ul>${companies.map((c) => `<li><a href="${esc(c.url)}">${esc(c.name)}</a></li>`).join('')}</ul>
     </div>
   </div>
+  ${ticker()}
 </section>
 
 <section class="section" aria-labelledby="work-h">
