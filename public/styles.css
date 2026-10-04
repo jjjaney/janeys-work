@@ -412,8 +412,9 @@ html:not(.js) .theme-toggle { display: none !important; }
   .portrait .todo { margin-right: var(--gutter); }
   .case__art { margin-right: calc(var(--gutter) * -1); }
   /* room for the flank: the text starts a few pixel-widths in from the screen edge */
-  /* room for a three-column flank: three art squares from the screen edge, plus a gap */
-  .has-flank { position: relative; padding-left: max(3.5rem, calc(var(--cell, 40px) * 3 + 1.5rem - var(--gutter))); }
+  /* room for a three-column flank plus one empty square of breathing room:
+     the text starts four art squares from the screen edge */
+  .has-flank { position: relative; padding-left: max(3.5rem, calc(var(--cell, 40px) * 4 - var(--gutter))); }
 
   /* the home headline always sits on two lines, sized to fit its column */
   .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(260px, 32vw, 560px); }
