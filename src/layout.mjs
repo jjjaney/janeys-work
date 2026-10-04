@@ -65,6 +65,14 @@ export function layout({ path, title, description = site.description, body, page
     if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     d.dataset.theme = t;
     d.classList.add('js');
+    // Header art: pick pixel-art-1, -2 or -3, never the one shown last time.
+    // ?art=1|2|3 in the address forces one version (handy while editing).
+    var forced = (location.search.match(/[?&]art=([123])/) || [])[1];
+    var last; try { last = localStorage.getItem('pixelArt'); } catch (e) {}
+    var pool = ['1', '2', '3'].filter(function (n) { return n !== last; });
+    var art = forced || pool[Math.floor(Math.random() * pool.length)];
+    d.dataset.art = art;
+    if (!forced) { try { localStorage.setItem('pixelArt', art); } catch (e) {} }
     var m = document.querySelector('meta[name="theme-color"]');
     if (m) m.content = t === 'dark' ? '#1C1834' : '#F6F3EC';
   })();

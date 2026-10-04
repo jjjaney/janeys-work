@@ -57,6 +57,12 @@ const artCache = new Map();
  * - ids removed (no duplicate ids),
  */
 export function pixel(name, { palette = 'original', label = '', className = '', crop = false, organic = false } = {}) {
+  if (organic === true) {
+    // all three organic versions; the page shows one (see ART_SHAPES)
+    return `<div class="pixel-variants">${ART_NAMES.map((n) =>
+      pixel(name, { palette, label, className: `${className} pixel--organic`.trim(), organic: n }).replace('<svg ', `<svg data-variant="${n}" `)
+    ).join('')}</div>`;
+  }
   const key = `${name}|${palette}|${organic}`;
   let svg = artCache.get(key);
   if (!svg) {
@@ -78,7 +84,7 @@ export function pixel(name, { palette = 'original', label = '', className = '', 
       .replace(/<g>\s*/g, '')
       .replace(/<\/g>\s*/g, '')
       .replace(/\s+/g, ' ');
-    if (organic) body = erode(body, viewBox);
+    if (organic) body = erode(body, viewBox, organic);
     svg = { body, viewBox };
     artCache.set(key, svg);
   }
@@ -96,29 +102,46 @@ function hash(x, y, salt = 0) {
 }
 
 /**
- * "Organic" pixel art, as a buildup: squares stack up from the bottom and the
- * pile rises from left to right, like blocks accumulating or a growth chart.
- * The top surface is uneven, a few squares near it are missing, and a few
- * loose squares hover just above it as if still landing. Deterministic, so the
- * same art always builds the same way.
+ * Header art shapes: "organic" versions of the pixel art that build up from
+ * the bottom. Each page load shows one of these, never the same one twice in
+ * a row. Add ?art=1, ?art=2 or ?art=3 to a page's address to see one version.
+ *
+ * Each recipe returns the height of the pile (0 = bottom, 1 = top) for a
+ * column, given u (0 = left edge, 1 = right edge) and a per-column random
+ * number `r` (0–1) that makes the top edge lumpy. Edit the numbers to reshape.
  */
-function erode(body, viewBox) {
+export const ART_SHAPES = {
+  // pixel-art-1 (default): rises from left to right, like a growing chart
+  'pixel-art-1': (u, r) => 0.3 + 0.72 * u + 0.09 * Math.sin(u * 9 + 0.6) + (r - 0.5) * 0.14,
+  // pixel-art-2: a mound that builds up in the middle, lower at both sides
+  'pixel-art-2': (u, r) => 0.3 + 0.68 * Math.sin(Math.PI * u) + 0.07 * Math.sin(u * 11 + 1.7) + (r - 0.5) * 0.12,
+  // pixel-art-3: blocky stairs that climb from right to left
+  'pixel-art-3': (u, r) => 0.32 + 0.68 * (Math.floor((1 - u) * 4 + 0.5) / 4) + (r - 0.5) * 0.1,
+};
+export const ART_NAMES = Object.keys(ART_SHAPES);
+
+/**
+ * Remove squares to make the organic shape: everything below the pile's
+ * surface stays, the surface itself is ragged, and a few loose squares hover
+ * just above it as if still landing. Deterministic per shape.
+ */
+function erode(body, viewBox, shapeName) {
+  const shape = ART_SHAPES[shapeName];
+  const salt = ART_NAMES.indexOf(shapeName) * 10;
   const [, , W, H] = viewBox.split(/\s+/).map(Number);
   return body.replace(/<rect\s([^>]*?)\/>/g, (m, attrs) => {
     const num = (k) => Number((attrs.match(new RegExp(`\\s?${k}="([\\d.]+)"`)) || [0, 0])[1]);
     const x = num('x'), y = num('y'), w = num('width'), h = num('height');
     const u = (x + w / 2) / W;           // 0 left → 1 right
     const v = 1 - (y + h / 2) / H;       // 0 bottom → 1 top
-    // the pile's height at this column: rising left → right, with a lumpy top
     const col = Math.round(x / w);
-    const lump = 0.09 * Math.sin(u * 9 + 0.6) + (hash(col, 0, 4) - 0.5) * 0.14;
-    const surface = Math.min(1.05, 0.3 + 0.72 * u + lump);
+    const surface = Math.min(1.05, shape(u, hash(col, 0, 4 + salt)));
     const gap = v - surface;             // < 0: inside the pile, > 0: above it
     const step = h / H;                  // one square, as a fraction of the height
-    if (gap > step * 3.2) return '';                                  // open sky
-    if (gap > step * 0.4) return hash(x, y, 5) < 0.12 / (1 + gap / step) ? m : ''; // loose squares landing
-    if (gap > -step * 1.2) return hash(x, y, 6) < 0.65 ? m : '';      // ragged top surface
-    if (hash(x, y, 3) < 0.03) return '';                              // a rare hole inside
+    if (gap > step * 3.2) return '';                                          // open sky
+    if (gap > step * 0.4) return hash(x, y, 5 + salt) < 0.12 / (1 + gap / step) ? m : ''; // loose squares landing
+    if (gap > -step * 1.2) return hash(x, y, 6 + salt) < 0.65 ? m : '';       // ragged top surface
+    if (hash(x, y, 3 + salt) < 0.03) return '';                               // a rare hole inside
     return m;
   });
 }

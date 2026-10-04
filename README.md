@@ -51,6 +51,7 @@ npm run build   # one-off build into dist/
 | Header and footer | `src/layout.mjs` |
 | Colors, type, spacing | `public/styles.css` (the `:root` block at the top; dark mode colors are in the `:root[data-theme='dark']` block right after it) |
 | Pixel art | `src/art/*.svg` |
+| Header art shapes (`pixel-art-1`, `pixel-art-2`, `pixel-art-3`) | `ART_SHAPES` in `src/lib.mjs` |
 | Images, PDFs, favicon, social preview image | `public/` |
 
 ### Adding a case-study screenshot
@@ -74,3 +75,14 @@ Copy one of the objects in `src/content/work.mjs`, give it a new `slug`, and pic
 - **Type:** Bricolage Grotesque (headings), Instrument Sans (body), JetBrains Mono (labels). These load from Google Fonts.
 - **Dark mode:** follows the visitor's system setting until they use the pixel sun/moon switch in the header, then remembers their choice.
 - **Pixel art:** the hero uses a composition recolored to the site palette. Case studies and other accents keep the original colors. Tiles assemble when they scroll into view and pop on hover, and the hero has a "Shuffle the tiles" button. All motion is turned off for visitors who prefer reduced motion.
+
+### Header art versions
+
+The pixel art at the top of the home, case-study and About pages has three "organic" shapes, and each page load shows a different one from the last:
+
+- **pixel-art-1** (default, also shown if JavaScript is off): builds up from left to right, like a growing chart
+- **pixel-art-2**: a mound that builds up in the middle
+- **pixel-art-3**: blocky stairs climbing from right to left
+
+To look at one version, add `?art=1`, `?art=2` or `?art=3` to any page address, for example `/?art=2`. To change a shape, edit its line in `ART_SHAPES` in `src/lib.mjs`.
+

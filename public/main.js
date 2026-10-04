@@ -45,7 +45,7 @@
     // snapped onto the art's grid, so they read as loose pixels of the same image.
     const heads = [...document.querySelectorAll('.hero, .case__head, .page-head--art')];
     const gridFor = (head) => {
-      const svg = head.querySelector('.hero__art .pixel, .case__art .pixel, .portrait .pixel');
+      const svg = [...head.querySelectorAll('.hero__art .pixel, .case__art .pixel, .portrait .pixel')].find((el) => el.getClientRects().length);
       const rect = svg?.querySelector('rect');
       if (!rect) return null;
       const [, , vw, vh] = svg.getAttribute('viewBox').split(/\s+/).map(Number);

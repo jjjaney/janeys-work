@@ -375,6 +375,14 @@ html:not(.js) .theme-toggle { display: none; }
   .floaters i:not(.m) { display: none; }
 }
 
+/* Header art versions: pixel-art-1 (default), -2, -3 ---------------------- */
+.pixel-variants { display: contents; }
+.pixel-variants > .pixel { display: none; }
+:root:not([data-art]) .pixel-variants > [data-variant='pixel-art-1'],
+:root[data-art='1'] .pixel-variants > [data-variant='pixel-art-1'],
+:root[data-art='2'] .pixel-variants > [data-variant='pixel-art-2'],
+:root[data-art='3'] .pixel-variants > [data-variant='pixel-art-3'] { display: block; }
+
 /* Pixel art: shown as-is; a single tile occasionally flips to a new color -- */
 .pixel rect, .pixel path { transform-box: fill-box; transform-origin: center; }
 .pixel rect.flip { animation: flip 0.7s ease-in-out; }
