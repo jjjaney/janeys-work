@@ -111,7 +111,9 @@
           const k = key(gx, gy);
           const snapped = { left: gx, top: gy, right: gx + g.cell, bottom: gy + g.cell };
           // skip squares that would cover text, the art, or another square
-          if (taken.has(k) || onText(snapped)) i.hidden = true;
+          // skip squares that would drift above the section (behind the header bar)
+          const tooHigh = gy < head.getBoundingClientRect().top;
+          if (tooHigh || taken.has(k) || onText(snapped)) i.hidden = true;
           else taken.add(k);
         });
       });

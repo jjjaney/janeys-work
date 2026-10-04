@@ -166,7 +166,6 @@ export function home() {
       <ul>${companies.map((c) => `<li><a href="${esc(c.url)}">${esc(c.name)}</a></li>`).join('')}</ul>
     </div>
   </div>
-  ${ticker()}
 </section>
 
 <section class="section" aria-labelledby="work-h">
@@ -178,6 +177,8 @@ export function home() {
     ${storyGrid()}
   </div>
 </section>
+
+${ticker()}
 
 <section class="section section--surface" aria-labelledby="how-h">
   <div class="wrap">
