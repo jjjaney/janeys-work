@@ -86,3 +86,14 @@ The pixel art at the top of the home, case-study and About pages has three "orga
 
 To look at one version, add `?art=1`, `?art=2` or `?art=3` to any page address, for example `/?art=2`. To change a shape, edit its line in `ART_SHAPES` in `src/lib.mjs`.
 
+### Saved versions (branches on GitHub)
+
+| Branch | What it is |
+| --- | --- |
+| `before-pixel-change-version` | Before the organic header art |
+| `pixel-change-version` | First organic (scattered) header art |
+| `before-flank-version` | Full-width layout, before the flank |
+| `flank-version` | Header art bleeds off the right edge with a ragged bottom; a column of pixels flanks the header text on the left |
+
+To go back to one, ask Claude, or on GitHub open a pull request from that branch into `main`.
+

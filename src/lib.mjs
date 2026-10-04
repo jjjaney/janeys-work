@@ -141,6 +141,9 @@ function erode(body, viewBox, shapeName) {
     if (gap > step * 3.2) return '';                                          // open sky
     if (gap > step * 0.4) return hash(x, y, 5 + salt) < 0.12 / (1 + gap / step) ? m : ''; // loose squares landing
     if (gap > -step * 1.2) return hash(x, y, 6 + salt) < 0.65 ? m : '';       // ragged top surface
+    // ragged bottom edge: the lowest rows thin out, more so away from the right edge
+    if (v < step) return hash(x, y, 7 + salt) < 0.25 + 0.35 * (1 - u) ? '' : m;
+    if (v < step * 2) return hash(x, y, 8 + salt) < 0.08 + 0.17 * (1 - u) ? '' : m;
     if (hash(x, y, 3 + salt) < 0.03) return '';                               // a rare hole inside
     return m;
   });

@@ -405,6 +405,22 @@ html:not(.js) .theme-toggle { display: none !important; }
 :root[data-toggle='sun'] .sun-toggle { display: inline-grid; }
 html:not(.js) .theme-toggle { display: none !important; }
 
+/* Flank version: header art bleeds off the right edge of the screen, and a
+   column of pixels runs down the left edge beside the header text. ---------- */
+@media (min-width: 861px) {
+  .hero__art, .portrait { margin-right: calc(var(--gutter) * -1); }
+  .portrait .todo { margin-right: var(--gutter); }
+  .case__art { margin-right: calc(var(--gutter) * -1); }
+  /* room for the flank: the text starts a few pixel-widths in from the screen edge */
+  .has-flank { position: relative; padding-left: clamp(5.5rem, 3rem + 6vw, 10rem); }
+  .flank {
+    position: absolute; top: 0; bottom: 0; pointer-events: none;
+    left: calc(var(--gutter) * -1);
+  }
+  .flank i { position: absolute; width: var(--cell, 40px); height: var(--cell, 40px); }
+}
+@media (max-width: 860px) { .flank { display: none; } }
+
 /* Floating pixels around page headers --------------------------------------- */
 .hero, .case__head, .page-head--art { position: relative; isolation: isolate; overflow-x: clip; }
 .hero__art, .case__art, .portrait { position: relative; }

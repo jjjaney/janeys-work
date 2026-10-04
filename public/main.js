@@ -142,7 +142,47 @@
         });
       });
     };
-    const cull = () => (layout(), cullCorner());
+    // Flank: fill the strip left of the header text with pixels on the same
+    // grid as the header art. Densest at the screen edge, thinning toward the
+    // text, with ragged top and bottom ends. Same pattern on every visit.
+    const hash = (x, y, salt) => {
+      let h = (x * 374761393 + y * 668265263 + salt * 2147483647) | 0;
+      h = Math.imul(h ^ (h >>> 13), 1274126177);
+      return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
+    };
+    const flankColors = ['#ff7b4d', '#cfa2ed', '#0b704f', '#c99f43', '#b6d8fe', '#6b2337'];
+    const fillFlanks = () => {
+      heads.forEach((head) => {
+        const flank = head.querySelector('.flank');
+        if (!flank || getComputedStyle(flank).display === 'none') return;
+        const g = gridFor(head);
+        if (!g) return;
+        const fb = flank.getBoundingClientRect();
+        const text = flank.parentElement.getBoundingClientRect();
+        // columns that fit between the screen edge and the text, rows to cover it
+        const textLeft = text.left + parseFloat(getComputedStyle(flank.parentElement).paddingLeft);
+        const cols = Math.max(2, Math.floor((textLeft - 12) / g.cell));
+        // snap rows to the art's grid
+        const firstRow = Math.floor((fb.top - g.y0) / g.cell);
+        const rows = Math.ceil(fb.height / g.cell) + 1;
+        const seed = Number(flank.dataset.seed) || 1;
+        let out = '';
+        for (let r = 0; r < rows; r++) {
+          // ends thin out so the flank fades in and out
+          const end = Math.min(r, rows - 1 - r);
+          const endFade = end === 0 ? 0.35 : end === 1 ? 0.7 : 1;
+          for (let c = 0; c < cols; c++) {
+            const density = (c === 0 ? 0.9 : c === 1 ? 0.55 : c === 2 ? 0.22 : 0.08) * endFade;
+            if (hash(c, r, seed) >= density) continue;
+            const color = flankColors[Math.floor(hash(c, r, seed + 50) * flankColors.length)];
+            const top = g.y0 + (firstRow + r) * g.cell - fb.top;
+            out += `<i style="left:${(c * g.cell).toFixed(2)}px;top:${top.toFixed(2)}px;background:${color}"></i>`;
+          }
+        }
+        flank.innerHTML = out;
+      });
+    };
+    const cull = () => (layout(), fillFlanks(), cullCorner());
     cull();
     document.fonts?.ready.then(cull);
     let t;

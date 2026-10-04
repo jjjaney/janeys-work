@@ -146,7 +146,8 @@ export function home() {
   ])}
   ${spill(4)}
   <div class="wrap hero__inner">
-    <div class="hero__copy">
+    <div class="hero__copy has-flank">
+      <div class="flank" data-seed="1" aria-hidden="true"></div>
       <p class="eyebrow mono">${esc(site.role)}</p>
       <h1 class="hero__title">I design the <span class="hl">systems</span> behind the words.</h1>
       <p class="lede">I’m Janey, a content strategist, content designer and product manager. I’ve led content at FIS, Shopify, GitHub and Carnegie Mellon, building the guidelines, docs and processes that let teams (and their AI tools) get content right at scale.</p>
@@ -273,7 +274,8 @@ export function caseStudy(w, i) {
     ])}
     ${spill(7 + i)}
     <div class="wrap case__head-inner">
-      <div>
+      <div class="has-flank">
+        <div class="flank" data-seed="${2 + i}" aria-hidden="true"></div>
         <p class="eyebrow mono"><a href="/work/">Work</a> <span aria-hidden="true">/</span> ${esc(w.client)}</p>
         <h1>${esc(w.title)}</h1>
         <p class="lede">${esc(w.summary)}</p>
@@ -438,7 +440,8 @@ export function aboutPage() {
   ])}
   ${spill(22)}
   <div class="wrap about-head">
-    <div>
+    <div class="has-flank">
+      <div class="flank" data-seed="9" aria-hidden="true"></div>
       ${eyebrow('—', 'About')}
       <h1>Hi, I’m Janey.</h1>
       ${bio.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${esc(p)}</p>`).join('')}
