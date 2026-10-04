@@ -429,11 +429,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .floaters i { position: absolute; width: var(--cell, 32px); height: var(--cell, 32px); }
 .floaters i[hidden] { display: none; }
 /* a strip of strays just below the header */
-.spill { position: absolute; left: 0; right: 0; top: 100%; height: calc(var(--cell, 32px) * 2); pointer-events: none; z-index: -1; }
-/* leave room under each header so the strip of pixels has space */
-.hero, .case__head, .page-head--art { margin-bottom: max(calc(var(--cell, 32px) * 2), 3rem); }
-/* case studies end on the info cards; leave a little air before the strip */
-.case__head .spill { top: calc(100% + max(var(--cell, 32px) * 0.5, 16px)); }
+.spill { position: absolute; left: 0; right: 0; top: 100%; height: calc(var(--cell, 32px) * 2.4); pointer-events: none; z-index: -1; }
 @media (max-width: 860px) {
   .floaters i:not(.m) { display: none; }
 }

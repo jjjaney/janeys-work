@@ -105,9 +105,7 @@
           if (getComputedStyle(i).display === 'none') return; // desktop-only square on a phone
           const a = i.getBoundingClientRect();
           const gx = g.x0 + Math.round((a.left - g.x0) / g.cell) * g.cell;
-          // squares in the strip below a header always snap downward, away from the content above
-          const snapY = i.closest('.spill') ? Math.ceil : Math.round;
-          const gy = g.y0 + snapY((a.top - g.y0) / g.cell - 0.001) * g.cell;
+          const gy = g.y0 + Math.round((a.top - g.y0) / g.cell) * g.cell;
           i.style.left = `${parseFloat(getComputedStyle(i).left) + (gx - a.left)}px`;
           i.style.top = `${parseFloat(getComputedStyle(i).top) + (gy - a.top)}px`;
           const k = key(gx, gy);
@@ -185,19 +183,7 @@
         flank.innerHTML = out;
       });
     };
-    // Spill clusters below headers: never leave a lone square. If a cluster
-    // lost all but one square (to text or other pixels), hide that one too.
-    const noOrphans = () => {
-      document.querySelectorAll('.spill .floaters').forEach((box) => {
-        const groups = {};
-        box.querySelectorAll('i[data-g]').forEach((i) => (groups[i.dataset.g] ||= []).push(i));
-        Object.values(groups).forEach((sq) => {
-          const shown = sq.filter((i) => !i.hidden && getComputedStyle(i).display !== 'none');
-          if (shown.length === 1) shown[0].hidden = true;
-        });
-      });
-    };
-    const cull = () => (layout(), noOrphans(), fillFlanks(), cullCorner());
+    const cull = () => (layout(), fillFlanks(), cullCorner());
     cull();
     document.fonts?.ready.then(cull);
     let t;

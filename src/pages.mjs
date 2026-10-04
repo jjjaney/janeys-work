@@ -4,7 +4,7 @@ import { work } from './content/work.mjs';
 import { services, engagement, faqs } from './content/services.mjs';
 import { bio, principles, experience, funFacts } from './content/about.mjs';
 import { archive } from './content/archive.mjs';
-import { esc, todo, figure, pixel, pixelCorner, floaters, spillClusters, arrow, external } from './lib.mjs';
+import { esc, todo, figure, pixel, pixelCorner, floaters, arrow, external } from './lib.mjs';
 
 // ---------------------------------------------------------------------------
 // Shared bits
@@ -27,7 +27,7 @@ const artFloat = (seed) => floaters([
   [-12, 5, 10, 40, 1],          // one off the upper left
 ], { seed });
 const gapFloat = (seed, regions) => floaters(regions, { seed });
-const spill = (seed) => spillClusters(seed);
+const spill = (seed) => `<div class="spill">${floaters([[2, 5, 96, 75, 12, true]], { seed })}</div>`;
 
 const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
 
