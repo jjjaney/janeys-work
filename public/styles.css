@@ -369,14 +369,16 @@ html:not(.js) .theme-toggle { display: none !important; }
 .section__head h2 { margin: 0; max-width: 17em; }
 .section__head--split { display: flex; justify-content: space-between; align-items: end; gap: 1rem 2rem; flex-wrap: wrap; }
 .section__head--split > div { flex: 1 1 24rem; }
+/* the label and its rule take a full row of their own, like every other section */
+.section__head--split > .eyebrow { flex: 1 0 100%; }
 
 /* Section labels ("Selected work", "How I work"…) anchor each section: larger
    type, a bigger pixel, and a rule running to the edge. The heading under
    each one is the biggest type in its section. */
 .section__head h2 { font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4.25rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.02; }
-.section__head .eyebrow, .quotes .wrap > .eyebrow, .case__h .eyebrow { font-size: clamp(0.9rem, 0.82rem + 0.3vw, 1.05rem); font-weight: 600; letter-spacing: 0.06em; gap: 0.75rem; }
-.section__head .eyebrow, .quotes .wrap > .eyebrow { display: flex; margin-bottom: clamp(1.1rem, 0.8rem + 1vw, 1.75rem); }
-.section__head .eyebrow::after, .quotes .wrap > .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--line-strong); margin-left: 0.5rem; }
+.section__head .eyebrow, .quotes .wrap > .eyebrow, .faq > .eyebrow, .xp > .eyebrow, .case__h .eyebrow { font-size: clamp(0.9rem, 0.82rem + 0.3vw, 1.05rem); font-weight: 600; letter-spacing: 0.06em; gap: 0.75rem; }
+.section__head .eyebrow, .quotes .wrap > .eyebrow, .faq > .eyebrow, .xp > .eyebrow { display: flex; margin-bottom: clamp(1.1rem, 0.8rem + 1vw, 1.75rem); }
+.section__head .eyebrow::after, .quotes .wrap > .eyebrow::after, .faq > .eyebrow::after, .xp > .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--line-strong); margin-left: 0.5rem; }
 .section__head .eyebrow__n, .quotes .wrap > .eyebrow .eyebrow__n, .case__h .eyebrow__n { width: 1.15em; height: 1.15em; }
 
 .page-head { padding-block: clamp(3rem, 2rem + 5vw, 6rem) clamp(2rem, 1.5rem + 2vw, 3rem); border-bottom: 1px solid var(--line); }
@@ -707,6 +709,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .engage__note { display: inline-block; margin: 0 0 1rem; padding: 0.2rem 0.5rem; background: var(--paper); color: var(--ink); }
 .engage p:last-child { margin: 0; }
 
+.faq > .eyebrow, .xp > .eyebrow { grid-column: 1 / -1; margin-bottom: calc(clamp(1.1rem, 0.8rem + 1vw, 1.75rem) - 2rem); }
 .faq { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 2rem clamp(2rem, 5vw, 5rem); }
 @media (max-width: 760px) { .faq { grid-template-columns: 1fr; } }
 .faq__list { border-top: 6px solid transparent; border-image: var(--strip) 1; }

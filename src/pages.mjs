@@ -312,8 +312,8 @@ export function home() {
 <section class="section" aria-labelledby="svc-h">
   <div class="wrap">
     <div class="section__head section__head--split">
+      ${eyebrow('03', 'Services')}
       <div>
-        ${eyebrow('03', 'Services')}
         <h2 id="svc-h">Ways we can work together</h2>
       </div>
       <a class="link-arrow" href="/services/">All services &amp; FAQ ${arrow}</a>
@@ -510,7 +510,8 @@ export function servicesPage() {
 
 <section class="section section--tight" aria-labelledby="faq-h">
   <div class="wrap faq">
-    <div class="section__head">${eyebrow('?', 'Common questions')}<h2 id="faq-h">FAQ</h2></div>
+    ${eyebrow('?', 'Common questions')}
+    <div class="section__head"><h2 id="faq-h">FAQ</h2></div>
     <div class="faq__list">
       ${faqs
         .map(
@@ -572,7 +573,8 @@ export function aboutPage() {
 
 <section class="section" id="experience" aria-labelledby="xp-h">
   <div class="wrap xp">
-    <div class="section__head">${eyebrow('02', 'Experience')}<h2 id="xp-h">Where I’ve worked</h2></div>
+    ${eyebrow('02', 'Experience')}
+    <div class="section__head"><h2 id="xp-h">Where I’ve worked</h2></div>
     <ol class="timeline">
       ${experience
         .map(
