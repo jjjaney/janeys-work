@@ -5,6 +5,8 @@
 export const services = [
   {
     id: 'strategy',
+    short: 'Strategy', // label in the Services page jump bar
+    tint: 'peach', // band color on the Services page
     name: 'Content strategy & editorial',
     for: 'Teams whose content grew faster than its structure, or never had one.',
     body: 'I help establish how you want your audience to see your company: an audit of what exists, company-wide content guidelines, and an editorial plan your team can actually run.',
@@ -21,6 +23,8 @@ export const services = [
   },
   {
     id: 'design',
+    short: 'Design', // label in the Services page jump bar
+    tint: 'lilac', // band color on the Services page
     name: 'Content design, UX writing & storytelling',
     for: 'Product and marketing teams shipping flows, pages and launches that need to land.',
     body: 'From onboarding flows to landing pages and feature launches, I look at the whole experience and the outcome you want, then build the communication plan around it, with wireframes, milestones and service level agreements.',
@@ -37,6 +41,8 @@ export const services = [
   },
   {
     id: 'systems',
+    short: 'Systems', // label in the Services page jump bar
+    tint: 'mint', // band color on the Services page
     name: 'Content systems & design-system content',
     for: 'Design systems and orgs that want consistency at scale, for people and AI.',
     body: 'Voice and tone, conventions and component guidance, written so designers can use it and agents can learn from it.',
@@ -50,6 +56,8 @@ export const services = [
   },
   {
     id: 'docs',
+    short: 'Docs', // label in the Services page jump bar
+    tint: 'gold', // band color on the Services page
     name: 'Documentation & training',
     for: 'Products whose users (or employees) keep asking the same questions.',
     body: 'Help centers, release notes, developer docs, manuals and training materials, with templates and processes that keep them current.',
@@ -64,6 +72,8 @@ export const services = [
   },
   {
     id: 'product',
+    short: 'Product', // label in the Services page jump bar
+    tint: 'sky', // band color on the Services page
     name: 'Product management & product marketing',
     for: 'Content-heavy products and launches that need someone who speaks both languages.',
     body: 'I scope, prioritize and ship where content is the product, then take it to market: product and communication plans, campaigns, events and the docs behind them.',

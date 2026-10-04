@@ -477,30 +477,33 @@ export function servicesPage() {
   </div>
 </section>
 
-<section class="section section--tight">
+<nav class="svc-jump" aria-label="Services on this page">
   <div class="wrap">
-    <ul class="svc-list">
-      ${services
-        .map(
-          (s, i) => `<li class="svc-row" id="${s.id}">
-        <div class="svc-row__head">
-          <span class="svc__n" aria-hidden="true"></span>
-          <h2>${esc(s.name)}</h2>
-          <p class="svc-row__for">${esc(s.for)}</p>
-        </div>
-        <div class="svc-row__body">
-          <p>${esc(s.body)}</p>
-          <ul class="checks">${s.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
-          <a class="link-arrow" href="/contact/?topic=${encodeURIComponent(s.name)}">Ask about this ${arrow}</a>
-        </div>
-      </li>`
-        )
-        .join('')}
-    </ul>
+    <ul>${services.map((s) => `<li><a href="#${s.id}" style="--c: var(--${({ peach: 'orange', lilac: 'lilac', mint: 'green', gold: 'gold', sky: 'sky' })[s.tint]})">${esc(s.short)}</a></li>`).join('')}</ul>
   </div>
-</section>
+</nav>
 
-<section class="section section--surface" aria-labelledby="free-h">
+<div class="svc-bands">
+  ${services
+    .map(
+      (s) => `<section class="svc-band svc-band--${s.tint}" id="${s.id}" aria-labelledby="${s.id}-h">
+    <div class="wrap">
+      <div class="svc-band__top">
+        <div>
+          <h2 id="${s.id}-h">${esc(s.name)}</h2>
+          <p class="svc-band__for">${esc(s.for)}</p>
+        </div>
+        <p class="svc-band__body">${esc(s.body)}</p>
+      </div>
+      <ul class="svc-band__gets" style="--cols: ${s.deliverables.length % 4 === 0 ? 4 : 3}">${s.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
+      <a class="link-arrow" href="/contact/?topic=${encodeURIComponent(s.name)}">Ask about ${esc(s.short.toLowerCase())} work ${arrow}</a>
+    </div>
+  </section>`
+    )
+    .join('')}
+</div>
+
+<section class="section" aria-labelledby="free-h">
   <div class="wrap free">
     <div class="free__art">${pixel('pixel-composition-15', { crop: true })}</div>
     <div>

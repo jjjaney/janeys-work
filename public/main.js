@@ -297,6 +297,33 @@
     }, 4200);
   }
 
+  // Services page: keep the jump bar under the header and mark the service
+  // that's on screen.
+  const header = document.querySelector('.site-header');
+  const setHeaderH = () => header && root.style.setProperty('--header-h', `${header.offsetHeight}px`);
+  setHeaderH();
+  window.addEventListener('resize', setHeaderH);
+  const jump = document.querySelector('.svc-jump');
+  if (jump && 'IntersectionObserver' in window) {
+    const links = [...jump.querySelectorAll('a')];
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          links.forEach((a) => {
+            if (a.getAttribute('href') !== `#${e.target.id}`) return a.removeAttribute('aria-current');
+            a.setAttribute('aria-current', 'true');
+            // on narrow screens, slide the bar so the current service stays visible
+            const ul = a.closest('ul');
+            const l = a.offsetLeft - ul.offsetLeft;
+            if (l < ul.scrollLeft || l + a.offsetWidth > ul.scrollLeft + ul.clientWidth) ul.scrollTo({ left: l - 16, behavior: reduce ? 'auto' : 'smooth' });
+          });
+        }),
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    document.querySelectorAll('.svc-band').forEach((b) => io.observe(b));
+  }
+
   // Kind words: one quote at a time. The pixels switch quotes; they also
   // advance slowly on their own until someone interacts (never with reduced motion).
   document.querySelectorAll('[data-pull]').forEach((pull) => {
