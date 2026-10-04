@@ -1,42 +1,93 @@
-// Service offerings. Your current Services page is password-protected, so
-// these were drafted from your skills and FAQ. Review every one.
+// Service offerings, merged from the "Work with me" page on the Squarespace
+// site (October 2026) with the newer content-systems and AI work. Edit freely.
+// `id` is used for links (/services/#strategy), so keep it stable.
 
 export const services = [
   {
     id: 'strategy',
-    name: 'Content strategy & audits',
-    for: 'Teams whose content grew faster than its structure.',
-    body: 'I audit what exists, map it to user and business goals, and turn the findings into a roadmap your team can actually run.',
-    deliverables: ['Content audit & inventory', 'Taxonomy & information architecture', 'Governance model', 'Prioritized roadmap'],
+    name: 'Content strategy & editorial',
+    for: 'Teams whose content grew faster than its structure, or never had one.',
+    body: 'I help establish how you want your audience to see your company: an audit of what exists, company-wide content guidelines, and an editorial plan your team can actually run.',
+    deliverables: [
+      'Content audit & inventory',
+      'Grammar, terminology & style audit',
+      'Personas & audience actions',
+      'User testing, analytics & SEO (with AEO)',
+      'Editorial calendar & guidelines',
+      'Editing & editorial review',
+      'Taxonomy & information architecture',
+      'Governance & roadmap',
+    ],
   },
   {
     id: 'design',
-    name: 'Content design & UX writing',
-    for: 'Product teams shipping flows, features and moments that need to be clear.',
-    body: 'From onboarding to error states, I design the words and structure alongside the interface, not after it.',
-    deliverables: ['Flow & microcopy design', 'Error & empty states', 'Content testing', 'Localization-ready strings'],
+    name: 'Content design, UX writing & storytelling',
+    for: 'Product and marketing teams shipping flows, pages and launches that need to land.',
+    body: 'From onboarding flows to landing pages and feature launches, I look at the whole experience and the outcome you want, then build the communication plan around it, with wireframes, milestones and service level agreements.',
+    deliverables: [
+      'Audience audits & user journeys',
+      'Flow & microcopy design',
+      'Landing page layout & content ideation',
+      'Narrative & editorial creation or review',
+      'Scripts & storyboards (video, podcasts, learning)',
+      'Ghostwriting & copywriting',
+      'Content & page testing',
+      'Localization-ready strings',
+    ],
   },
   {
     id: 'systems',
     name: 'Content systems & design-system content',
     for: 'Design systems and orgs that want consistency at scale, for people and AI.',
     body: 'Voice and tone, conventions and component guidance, written so designers can use it and agents can learn from it.',
-    deliverables: ['Voice & tone', 'Content guidelines & conventions', 'Component content docs', 'AI-ready guidance, agents & skills'],
+    deliverables: [
+      'Voice & tone guide',
+      'Content guidelines & conventions',
+      'Component content docs',
+      'Templates (email, blog, GitHub issues)',
+      'AI-ready guidance, agents & skills',
+    ],
   },
   {
     id: 'docs',
-    name: 'Documentation & knowledge bases',
+    name: 'Documentation & training',
     for: 'Products whose users (or employees) keep asking the same questions.',
-    body: 'Help centers, release notes, developer docs and internal knowledge bases, with templates and processes that keep them current.',
-    deliverables: ['Help center & KB architecture', 'Release-note systems', 'Technical & developer docs', 'Templates & publishing workflow'],
+    body: 'Help centers, release notes, developer docs, manuals and training materials, with templates and processes that keep them current.',
+    deliverables: [
+      'Help center & KB architecture',
+      'Release-note systems',
+      'Technical & developer docs',
+      'Manuals and factory & site acceptance tests',
+      'Training course materials',
+      'Templates & publishing workflow',
+    ],
   },
   {
     id: 'product',
-    name: 'Content-led product management',
-    for: 'Content-heavy products that need someone who speaks both languages.',
-    body: 'I scope, prioritize and ship where content is the product, working across design, engineering, legal and marketing.',
-    deliverables: ['Discovery & requirements', 'Roadmaps & prioritization', 'Cross-functional delivery', 'Launch & comms plans'],
+    name: 'Product management & product marketing',
+    for: 'Content-heavy products and launches that need someone who speaks both languages.',
+    body: 'I scope, prioritize and ship where content is the product, then take it to market: product and communication plans, campaigns, events and the docs behind them.',
+    deliverables: [
+      'Discovery, requirements & roadmaps',
+      'Product & communication plans',
+      'Go-to-market & launch campaigns',
+      'Email & social campaigns (LinkedIn, Reddit, X, Instagram, Facebook)',
+      'Partner articles & thought leadership',
+      'Newsletters',
+      'Hackathon & event coverage',
+      'Datasheets, e-books & brochures',
+    ],
   },
+];
+
+// Shown under the page heading on the Services page
+export const disciplineLine = ['Content strategy', 'Content design', 'UX writing', 'Copywriting', 'Technical writing', 'Content management', 'Product management'];
+
+// The free review offer for early- to mid-career people
+export const freeReview = [
+  'Resume & cover letter feedback (Google Docs or Figma)',
+  'Portfolio & case-study review (Figma)',
+  'Interview support & guidance',
 ];
 
 export const engagement = [
@@ -58,6 +109,11 @@ export const engagement = [
 ];
 
 export const faqs = [
+  {
+    q: 'What are your content services, and how do I learn more?',
+    a: 'Content strategy and editorial work, content design and storytelling, content systems, documentation and training, and product management and marketing. Each is listed above with what you get. To learn more, use "Ask about this" under any service or send a message, and we\'ll set up a call.',
+    todo: 'This answer is new. The saved copy of your Work with me page didn\'t include the FAQ answers (they were collapsed), so check it reads the way you want.',
+  },
   {
     q: 'How much do content services cost?',
     a: 'I work with hourly rates or fixed project pricing, depending on scope. Lifestyle-oriented pieces like tips or FAQs sit at the lower end of my range. Case studies, white papers and technical deep-dives sit at the upper end. Timing depends on subject matter and where the piece will be published, such as LinkedIn, a company newsletter, an internal knowledge base or a guest blog.',

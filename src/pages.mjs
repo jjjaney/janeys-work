@@ -1,6 +1,6 @@
 import { site, companies, testimonials } from './site.mjs';
 import { work } from './content/work.mjs';
-import { services, engagement, faqs } from './content/services.mjs';
+import { services, engagement, faqs, disciplineLine, freeReview } from './content/services.mjs';
 import { bio, principles, experience, funFacts } from './content/about.mjs';
 import { archive } from './content/archive.mjs';
 import { esc, todo, figure, pixel, pixelCorner, floaters, arrow, external } from './lib.mjs';
@@ -465,14 +465,15 @@ export function servicesPage() {
   return {
     path: '/services/',
     title: 'Services',
-    description: 'Content strategy, content design, content systems, documentation and content-led product management.',
+    description: 'Content strategy and editorial, content design and storytelling, content systems, documentation and training, and product management and marketing.',
     body: `
 <section class="page-head">
   <div class="wrap">
     ${eyebrow('—', 'Services')}
     <h1>Work with me</h1>
     <p class="lede">I help teams build content that scales: clear for the people reading it, and structured for the teams and tools maintaining it.</p>
-    ${todo('Your current Services page is password-protected, so these offerings were drafted from your skills and FAQ. Review names, descriptions and deliverables. Add pricing or packages if you want them public.')}
+    <p class="svc-disciplines mono">${disciplineLine.map(esc).join('<span aria-hidden="true"> · </span>')}</p>
+    ${todo('Services now include everything from your Work with me page, merged into five groups. Review the names and lists, and add pricing or packages if you want them public.')}
   </div>
 </section>
 
@@ -505,7 +506,8 @@ export function servicesPage() {
     <div>
       ${eyebrow('★', 'Free, for early- to mid-career folks')}
       <h2 id="free-h">Resume, portfolio &amp; case-study reviews</h2>
-      <p>I’ll review your resume, CV, portfolio or case studies for general content feedback or from a hiring manager’s perspective, for free. No catch. Clarity helps you land the next opportunity, and that’s the satisfaction for me.</p>
+      <p>I’ve been on many hiring committees and worked with many hiring managers, and with a long and varied career behind me, I’d like to help others build theirs. Whether you’re searching for a role or ready for a resume or portfolio refresh, I’ll review it for general content feedback or from a hiring manager’s perspective, for free. No catch.</p>
+      <ul class="checks">${freeReview.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
       <div class="actions">
         <a class="btn" href="/contact/?topic=Free%20review">Request a review ${arrow}</a>
         ${site.kofiUrl ? `<a class="btn btn--ghost" href="${esc(site.kofiUrl)}">Buy me a Ko-fi</a>` : todo('Add your Ko-fi link in <code>src/site.mjs</code> to show a "Buy me a Ko-fi" button here.', { inline: true })}
