@@ -112,8 +112,8 @@ export function layout({ path, title, description = site.description, body, page
     if (m) m.content = t === 'dark' ? '#1C1834' : '#F6F3EC';
   })();
 </script>
-<link rel="icon" href="/favicon.svg?v=paperclip-2" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/favicon.svg?v=paperclip-2">
+<link rel="icon" href="/favicon.svg?v=paperclip-3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg?v=paperclip-3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
