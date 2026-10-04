@@ -71,8 +71,9 @@ export const work = [
     ],
     links: [],
     todos: [
+      'The lead screenshot loads from your Squarespace site. Before you cancel Squarespace, save it into /public/images/work/fis-design-systems-ai/ and update cover.src.',
       'Confirm what you can share publicly about the FIS × Anthropic partnership and the agent.',
-      'Add screenshots to /public/images/work/fis-design-systems-ai/ (the current site has 3).',
+      'Add the gallery screenshots from your current Case Studies page (Unify docs pages, form messaging guidance, the Copilot review agent) to /public/images/work/fis-design-systems-ai/.',
     ],
   },
   {
@@ -135,7 +136,10 @@ export const work = [
       { label: 'Arc Search landing page', href: 'https://arc.net/search' },
       { label: 'Arc Search Hidden Features', href: 'https://arc.net/blog/arc-search-hidden-features' },
     ],
-    todos: ['Confirm the timeframe (year range) for this contract.'],
+    todos: [
+      'The lead screenshot loads from your Squarespace site. Before you cancel Squarespace, save it into /public/images/work/browser-company-member-content/ and update cover.src.',
+      'Confirm the timeframe (year range) for this contract.',
+    ],
   },
   {
     slug: 'github-sponsors',
@@ -190,6 +194,7 @@ export const work = [
       { label: 'Welcome Malta and Cyprus to GitHub Sponsors', href: 'https://github.blog/2020-07-28-welcome-malta-and-cyprus-to-github-sponsors-plus-updates/' },
     ],
     todos: [
+      'The lead screenshot loads from your Squarespace site. Before you cancel Squarespace, save it into /public/images/work/github-sponsors/ and update cover.src.',
       'Check the "Overhauling the waitlist" and "Actions, collaborators and hurdles" descriptions. The current site only has headings for these, so I drafted the text.',
     ],
   },
@@ -239,6 +244,7 @@ export const work = [
     ],
     links: [],
     todos: [
+      'The lead screenshot loads from your Squarespace site. Before you cancel Squarespace, save it into /public/images/work/new-public-public-spaces-incubator/ and update cover.src.',
       'Confirm the timeframe for this contract.',
       'Check the drafted descriptions for the three highlights. The current site only has headings for these.',
     ],
@@ -294,6 +300,9 @@ export const work = [
       { todo: 'Add numbers from your "Results" slide, e.g. letters mailed, funds raised or volunteers.' },
     ],
     links: [],
-    todos: ['Confirm the year for this project and whether "ProgramEquity" should be named here.'],
+    todos: [
+      'The "Why we built Amplify" screenshot loads from your Squarespace site. Before you cancel Squarespace, save it into /public/images/work/ally-guide/ and update its src.',
+      'Confirm the year for this project and whether "ProgramEquity" should be named here.',
+    ],
   },
 ];

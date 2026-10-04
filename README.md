@@ -54,6 +54,10 @@ npm run build   # one-off build into dist/
 | Header art shapes (`pixel-art-1`, `pixel-art-2`, `pixel-art-3`) | `ART_SHAPES` in `src/lib.mjs` |
 | Images, PDFs, favicon, social preview image | `public/` |
 
+### Screenshots that still load from Squarespace
+
+Each case study's lead screenshot (and the Amplify screenshot on Ally.Guide) is loaded from your current Squarespace site's image server. They'll keep working while that site exists. Before you cancel Squarespace, download each one into `public/images/work/<case-study-slug>/` and change its `src` (or `cover.src`) in `src/content/work.mjs`. Each case study shows a TODO note as a reminder.
+
 ### Adding a case-study screenshot
 
 1. Save the image in `public/images/work/<case-study-slug>/`, for example `public/images/work/github-sponsors/landing-before-after.png`.
