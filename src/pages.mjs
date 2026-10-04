@@ -17,32 +17,49 @@ const eyebrowSpan = (n, label) => `<span class="eyebrow mono${hue(label) ? ' eye
 
 const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
 
-function workCard(w, i) {
-  return `<li class="card">
-    <a class="card__link" href="/work/${w.slug}/">
-      <div class="card__art">${pixel(w.art, { crop: true })}</div>
-      <div class="card__body">
-        <p class="card__meta mono"><span>${String(i + 1).padStart(2, '0')}</span><span>${esc(w.client)}</span><span>${esc(w.timeframe)}</span></p>
-        <h3 class="card__title">${esc(w.cardTitle)}</h3>
-        ${tags(w.disciplines.slice(0, 3))}
-        <span class="card__cta">Read case study ${arrow}</span>
+// A 5 × 7 pixel question mark: every case study starts with a question.
+const QMARK = ['.###.', '#...#', '....#', '...#.', '..#..', '.....', '..#..'];
+function pixelQuestion(colors) {
+  let rects = '';
+  QMARK.forEach((row, y) =>
+    [...row].forEach((c, x) => {
+      if (c === '#') rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${colors[(x + y) % colors.length]}"/>`;
+    })
+  );
+  return `<svg class="story__mark" viewBox="0 0 5 7" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+}
+
+function storyCard(w, i) {
+  return `<li class="story story--${w.hue}${i === 0 ? ' story--featured' : ''}">
+    <a class="story__link" href="/work/${w.slug}/">
+      <div class="story__top">
+        <p class="story__client mono"><span class="story__n">${String(i + 1).padStart(2, '0')}</span>${esc(w.client)}</p>
+        ${pixelQuestion(w.badge)}
+      </div>
+      <h3 class="story__q">${esc(w.hook)}</h3>
+      <p class="story__a">${esc(w.cardTitle)}</p>
+      <div class="story__foot">
+        <span class="story__teaser mono">${esc(w.teaser)}</span>
+        <span class="story__cta">Read the story <span class="story__go" aria-hidden="true">${arrow}</span></span>
       </div>
     </a>
   </li>`;
 }
 
-function archiveCard() {
-  return `<li class="card card--archive">
-    <a class="card__link" href="/archive/">
-      <div class="card__art card__art--pattern" aria-hidden="true">${pixelRule(60, 4)}</div>
-      <div class="card__body">
-        <p class="card__meta mono"><span>2020 &amp; earlier</span></p>
-        <h3 class="card__title">The archive: GitHub, Plex, Carnegie Mellon and more</h3>
-        <span class="card__cta">Browse the archive ${arrow}</span>
+function archiveStory() {
+  return `<li class="story story--archive">
+    <a class="story__link" href="/archive/">
+      <div class="story__strip" aria-hidden="true">${pixelRule(24, 4)}</div>
+      <div class="story__archive-text">
+        <p class="story__client mono">2020 &amp; earlier</p>
+        <h3 class="story__q">From the archive: editorial, docs and web work at GitHub, Plex and Carnegie Mellon</h3>
       </div>
+      <span class="story__cta">Browse <span class="story__go" aria-hidden="true">${arrow}</span></span>
     </a>
   </li>`;
 }
+
+const storyGrid = () => `<ul class="stories">${work.map(storyCard).join('')}${archiveStory()}</ul>`;
 
 function quotes() {
   return `<section class="section quotes" aria-labelledby="quotes-h">
@@ -114,12 +131,9 @@ export function home() {
   <div class="wrap">
     <div class="section__head">
       ${eyebrow('01', 'Selected work')}
-      <h2 id="work-h">Content foundations, member communications, product launches and localization.</h2>
+      <h2 id="work-h">Every project starts with a question. Here’s how I answered a few.</h2>
     </div>
-    <ul class="cards">
-      ${work.map(workCard).join('')}
-      ${archiveCard()}
-    </ul>
+    ${storyGrid()}
   </div>
 </section>
 
@@ -186,7 +200,7 @@ export function workIndex() {
 </section>
 <section class="section section--tight">
   <div class="wrap">
-    <ul class="cards">${work.map(workCard).join('')}${archiveCard()}</ul>
+    ${storyGrid()}
   </div>
 </section>
 ${ctaBand()}`,

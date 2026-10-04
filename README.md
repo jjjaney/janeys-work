@@ -43,13 +43,13 @@ npm run build   # one-off build into dist/
 | --- | --- |
 | Name, LinkedIn, email, contact form ID, booking/Ko-fi links | `src/site.mjs` |
 | Testimonials, company list, disciplines ticker | `src/site.mjs` |
-| Case studies (text, outcomes, links, screenshots) | `src/content/work.mjs` |
+| Case studies (text, outcomes, links, screenshots, and the hook question, teaser and color used on the Selected Work cards) | `src/content/work.mjs` |
 | Services, engagement models, FAQ | `src/content/services.mjs` |
 | Bio, principles, experience, fun facts | `src/content/about.mjs` |
 | Archive (2020 and earlier) | `src/content/archive.mjs` |
 | Page layouts and sections | `src/pages.mjs` |
 | Header and footer | `src/layout.mjs` |
-| Colors, type, spacing | `public/styles.css` (the `:root` block at the top) |
+| Colors, type, spacing | `public/styles.css` (the `:root` block at the top; dark mode colors are in the `:root[data-theme='dark']` block right after it) |
 | Pixel art | `src/art/*.svg` |
 | Images, PDFs, favicon, social preview image | `public/` |
 
@@ -72,4 +72,5 @@ Copy one of the objects in `src/content/work.mjs`, give it a new `slug`, and pic
 
 - **Palette:** cream `#F6F3EC` (background), gray-blue `#DBE0E6` (surfaces), purple `#4F33CC` (accent and links), red `#CC3333` (highlights), charcoal `#4F4F4F` (text).
 - **Type:** Bricolage Grotesque (headings), Instrument Sans (body), JetBrains Mono (labels). These load from Google Fonts.
+- **Dark mode:** follows the visitor's system setting until they use the pixel sun/moon switch in the header, then remembers their choice.
 - **Pixel art:** the hero uses a composition recolored to the site palette. Case studies and other accents keep the original colors. Tiles assemble when they scroll into view and pop on hover, and the hero has a "Shuffle the tiles" button. All motion is turned off for visitors who prefer reduced motion.

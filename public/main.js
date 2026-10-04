@@ -14,6 +14,27 @@
     window.matchMedia('(min-width: 761px)').addEventListener('change', () => set(false));
   }
 
+  // Theme toggle -----------------------------------------------------------
+  const root = document.documentElement;
+  const themeBtn = document.querySelector('.theme-toggle');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const applyTheme = (t, save) => {
+    root.dataset.theme = t;
+    if (themeBtn) themeBtn.setAttribute('aria-checked', String(t === 'dark'));
+    if (meta) meta.content = t === 'dark' ? '#1C1834' : '#F6F3EC';
+    if (save) {
+      try { localStorage.setItem('theme', t); } catch {}
+    }
+  };
+  applyTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+  themeBtn?.addEventListener('click', () => applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true));
+  // Follow the system setting until the visitor picks a theme themselves.
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    let saved = null;
+    try { saved = localStorage.getItem('theme'); } catch {}
+    if (!saved) applyTheme(e.matches ? 'dark' : 'light');
+  });
+
   // Pixel art: now and then a single tile flips over to another color --------
   // One flip at a time across the whole page, only for art that's on screen.
   // The tile flips back after a while so each composition stays recognizable.
@@ -58,7 +79,7 @@
 
   // Gentle reveal for sections ---------------------------------------------
   if ('IntersectionObserver' in window && !reduce) {
-    const targets = document.querySelectorAll('.card, .quote, .steps li, .svc, .svc-row, .principles li, .outcome, .highlight, .archive li, .engage li, .facts li');
+    const targets = document.querySelectorAll('.story, .card, .quote, .steps li, .svc, .svc-row, .principles li, .outcome, .highlight, .archive li, .engage li, .facts li');
     targets.forEach((t) => t.classList.add('reveal'));
     const io = new IntersectionObserver(
       (entries) =>

@@ -2,6 +2,10 @@
 //
 // Each case study has:
 //   slug        URL: /work/<slug>/
+//   hook        the question the project answered (leads the home-page card)
+//   teaser      a short outcome or fact shown on the card
+//   hue         card color: lilac | peach | gold | sky | mint
+//   badge       three colors for the small pixel mark on the card
 //   art         pixel composition shown on cards and the case-study header
 //   meta        client / role / timeframe / disciplines
 //   summary     one or two sentences for cards and the page intro
@@ -16,6 +20,10 @@
 export const work = [
   {
     slug: 'fis-design-systems-ai',
+    hook: "How do you write guidance that both designers and AI agents can follow?",
+    teaser: "Docs + a review agent",
+    hue: 'lilac',
+    badge: ['#cfa2ed', '#0b704f', '#ff7b4d'],
     art: 'pixel-composition-12',
     client: 'FIS × Anthropic',
     cardTitle: 'Content foundations for a design system and the AI agents that use it',
@@ -62,6 +70,10 @@ export const work = [
   },
   {
     slug: 'browser-company-member-content',
+    hook: "How do you talk to half a million people every week without a playbook?",
+    teaser: "500k+ members, weekly",
+    hue: 'peach',
+    badge: ['#ff7b4d', '#cfa2ed', '#0b704f'],
     art: 'pixel-composition-14',
     client: 'The Browser Company',
     cardTitle: 'Newsletters, release notes and help-center processes for 500k+ Arc members',
@@ -112,6 +124,10 @@ export const work = [
   },
   {
     slug: 'github-sponsors',
+    hook: "How do you grow a program that has outgrown its own front door?",
+    teaser: "Launched in 2 new countries",
+    hue: 'gold',
+    badge: ['#c99f43', '#6b2337', '#b6d8fe'],
     art: 'pixel-composition-15',
     client: 'GitHub',
     cardTitle: 'GitHub Sponsors content and sign-up flow refresh',
@@ -159,6 +175,10 @@ export const work = [
   },
   {
     slug: 'new-public-public-spaces-incubator',
+    hook: "What should a platform say when your comment might start a fight?",
+    teaser: "4 public media partners",
+    hue: 'sky',
+    badge: ['#b6d8fe', '#0b704f', '#cfa2ed'],
     art: 'pixel-composition-16',
     client: 'New_ Public',
     cardTitle: 'UX writing and translations enablement for the Public Spaces Incubator',
@@ -200,6 +220,10 @@ export const work = [
   },
   {
     slug: 'ally-guide',
+    hook: "How do you turn concern into letters on a lawmaker's desk before the next election?",
+    teaser: "Adopted by GitHub",
+    hue: 'mint',
+    badge: ['#0b704f', '#ff7b4d', '#c99f43'],
     art: 'pixel-composition-13',
     client: 'Ally.Guide / ProgramEquity',
     cardTitle: 'Brand and service refresh to help people mail their local representatives',
