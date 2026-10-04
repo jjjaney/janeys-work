@@ -16,18 +16,26 @@
 
   // Theme toggle -----------------------------------------------------------
   const root = document.documentElement;
-  const themeBtn = document.querySelector('.theme-toggle');
+  const themeBtns = document.querySelectorAll('.theme-toggle');
   const meta = document.querySelector('meta[name="theme-color"]');
   const applyTheme = (t, save) => {
     root.dataset.theme = t;
-    if (themeBtn) themeBtn.setAttribute('aria-checked', String(t === 'dark'));
+    themeBtns.forEach((b) => b.setAttribute('aria-checked', String(t === 'dark')));
     if (meta) meta.content = t === 'dark' ? '#1C1834' : '#F6F3EC';
     if (save) {
       try { localStorage.setItem('theme', t); } catch {}
     }
   };
   applyTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
-  themeBtn?.addEventListener('click', () => applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true));
+  themeBtns.forEach((b) =>
+    b.addEventListener('click', () => {
+      // replay the tile flip wave each time
+      b.classList.remove('is-flipping');
+      void b.offsetWidth;
+      b.classList.add('is-flipping');
+      applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true);
+    })
+  );
   // Follow the system setting until the visitor picks a theme themselves.
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     let saved = null;

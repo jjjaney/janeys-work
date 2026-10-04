@@ -228,7 +228,37 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 
 .nav-toggle { display: none; }
 
-/* Theme toggle: a pixel-art switch ----------------------------------------- */
+/* Theme toggle: tile flip (default) -------------------------------------------
+   A 3 × 3 pixel tile: a sun on sky in light mode, a crescent moon with a star
+   in dark mode. Each square flips edge-on in a diagonal wave (--i is its
+   diagonal, 0–4) and switches color at the halfway point of its own flip. */
+.tile-toggle {
+  flex: none; display: inline-grid; place-items: center;
+  width: 44px; height: 44px; padding: 0;
+  background: none; border: 0; cursor: pointer;
+}
+.tile-toggle__grid { display: grid; grid-template-columns: repeat(3, 10px); grid-template-rows: repeat(3, 10px); }
+.tile-toggle__grid i {
+  display: block; background: var(--c);
+  --flip: 0.36s; --stagger: 0.06s;
+  transition: background-color 0s linear calc(var(--i) * var(--stagger) + var(--flip) / 2);
+}
+.tile-toggle.is-flipping .tile-toggle__grid i { animation: flip var(--flip) ease-in-out calc(var(--i) * var(--stagger)) both; }
+/* light: a pixel sun on sky */
+.tile-toggle__grid i:nth-child(odd) { --c: var(--sky); }
+.tile-toggle__grid i:nth-child(even) { --c: var(--orange); }
+.tile-toggle__grid i:nth-child(5) { --c: var(--gold); }
+/* dark: a crescent moon, with a gold star in the top-right corner */
+:root[data-theme='dark'] .tile-toggle__grid i { --c: #2f2552; }
+:root[data-theme='dark'] .tile-toggle__grid i:is(:nth-child(1), :nth-child(2), :nth-child(4), :nth-child(7), :nth-child(8)) { --c: var(--lilac); }
+:root[data-theme='dark'] .tile-toggle__grid i:nth-child(3) { --c: var(--gold); }
+.tile-toggle:hover .tile-toggle__grid { outline: 2px solid var(--tint-lilac); outline-offset: 3px; }
+
+/* only one switch shows: the tile (default) or, with ?toggle=sun, the slider */
+:root:not([data-toggle='sun']) .sun-toggle,
+:root[data-toggle='sun'] .tile-toggle { display: none; }
+
+/* Theme toggle: sun/moon slider (?toggle=sun) ----------------------------------------- */
 .theme-toggle {
   flex: none; display: inline-grid; place-items: center;
   width: 64px; height: 44px; padding: 0 4px;
@@ -251,10 +281,11 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 :root[data-theme='dark'] .tt-knob { transform: translate(9px, 1px); }
 :root[data-theme='dark'] .tt-sun { opacity: 0; }
 :root[data-theme='dark'] .tt-moon { opacity: 1; }
-html:not(.js) .theme-toggle { display: none; }
+html:not(.js) .theme-toggle { display: none !important; }
 
 @media (max-width: 760px) {
   .theme-toggle { margin-left: auto; }
+  .tile-toggle { margin-right: 0.25rem; }
   .nav-toggle {
     display: inline-flex; align-items: center; gap: 0.55rem;
     min-height: 44px; padding: 0 0.9rem;
@@ -279,7 +310,37 @@ html:not(.js) .theme-toggle { display: none; }
   html:not(.js) .site-header__inner { flex-wrap: wrap; }
   html:not(.js) .nav-toggle { display: none; }
 
-/* Theme toggle: a pixel-art switch ----------------------------------------- */
+/* Theme toggle: tile flip (default) -------------------------------------------
+   A 3 × 3 pixel tile: a sun on sky in light mode, a crescent moon with a star
+   in dark mode. Each square flips edge-on in a diagonal wave (--i is its
+   diagonal, 0–4) and switches color at the halfway point of its own flip. */
+.tile-toggle {
+  flex: none; display: inline-grid; place-items: center;
+  width: 44px; height: 44px; padding: 0;
+  background: none; border: 0; cursor: pointer;
+}
+.tile-toggle__grid { display: grid; grid-template-columns: repeat(3, 10px); grid-template-rows: repeat(3, 10px); }
+.tile-toggle__grid i {
+  display: block; background: var(--c);
+  --flip: 0.36s; --stagger: 0.06s;
+  transition: background-color 0s linear calc(var(--i) * var(--stagger) + var(--flip) / 2);
+}
+.tile-toggle.is-flipping .tile-toggle__grid i { animation: flip var(--flip) ease-in-out calc(var(--i) * var(--stagger)) both; }
+/* light: a pixel sun on sky */
+.tile-toggle__grid i:nth-child(odd) { --c: var(--sky); }
+.tile-toggle__grid i:nth-child(even) { --c: var(--orange); }
+.tile-toggle__grid i:nth-child(5) { --c: var(--gold); }
+/* dark: a crescent moon, with a gold star in the top-right corner */
+:root[data-theme='dark'] .tile-toggle__grid i { --c: #2f2552; }
+:root[data-theme='dark'] .tile-toggle__grid i:is(:nth-child(1), :nth-child(2), :nth-child(4), :nth-child(7), :nth-child(8)) { --c: var(--lilac); }
+:root[data-theme='dark'] .tile-toggle__grid i:nth-child(3) { --c: var(--gold); }
+.tile-toggle:hover .tile-toggle__grid { outline: 2px solid var(--tint-lilac); outline-offset: 3px; }
+
+/* only one switch shows: the tile (default) or, with ?toggle=sun, the slider */
+:root:not([data-toggle='sun']) .sun-toggle,
+:root[data-toggle='sun'] .tile-toggle { display: none; }
+
+/* Theme toggle: sun/moon slider (?toggle=sun) ----------------------------------------- */
 .theme-toggle {
   flex: none; display: inline-grid; place-items: center;
   width: 64px; height: 44px; padding: 0 4px;
@@ -302,7 +363,7 @@ html:not(.js) .theme-toggle { display: none; }
 :root[data-theme='dark'] .tt-knob { transform: translate(9px, 1px); }
 :root[data-theme='dark'] .tt-sun { opacity: 0; }
 :root[data-theme='dark'] .tt-moon { opacity: 1; }
-html:not(.js) .theme-toggle { display: none; }
+html:not(.js) .theme-toggle { display: none !important; }
   html:not(.js) .site-nav ul { flex-direction: row; flex-wrap: wrap; }
   html:not(.js) .site-nav a { font-size: 1rem; border: 0; padding: 0.4rem 0.6rem; }
 }

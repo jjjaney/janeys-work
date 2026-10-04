@@ -10,8 +10,21 @@ function logo() {
 
 // Pixel-art light/dark switch: a pixel sun or moon slides along a track of
 // pixel clouds (light) or stars (dark). Grid is 16 × 8 pixels.
+// Tile-flip switch (default): a 3 × 3 pixel tile showing a sun (light) or a
+// crescent moon (dark). On toggle the squares flip over in a diagonal wave and
+// land on their new colors, like the tiles in the header art.
+// Square colors per theme are set in styles.css (.tile-toggle).
+function tileToggle() {
+  let squares = '';
+  for (let i = 0; i < 9; i++) squares += `<i style="--i:${Math.floor(i / 3) + (i % 3)}"></i>`;
+  return `<button class="theme-toggle tile-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" title="Toggle dark mode">
+    <span class="tile-toggle__grid" aria-hidden="true">${squares}</span>
+  </button>`;
+}
+
+// Sun/moon slider (earlier version): preview it with ?toggle=sun
 function themeToggle() {
-  return `<button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" title="Toggle dark mode">
+  return `<button class="theme-toggle sun-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" title="Toggle dark mode">
     <svg viewBox="0 0 16 8" shape-rendering="crispEdges" aria-hidden="true">
       <g class="tt-track"><rect x="1" y="0" width="14" height="8"/><rect x="0" y="1" width="16" height="6"/></g>
       <g class="tt-clouds"><rect x="10" y="2" width="3" height="1"/><rect x="9" y="3" width="5" height="1"/><rect x="11" y="5" width="2" height="1"/><rect x="10" y="6" width="4" height="1"/></g>
@@ -72,6 +85,8 @@ export function layout({ path, title, description = site.description, body, page
     var pool = ['1', '2', '3'].filter(function (n) { return n !== last; });
     var art = forced || pool[Math.floor(Math.random() * pool.length)];
     d.dataset.art = art;
+    // ?toggle=sun previews the earlier sun/moon switch
+    d.dataset.toggle = /[?&]toggle=sun/.test(location.search) ? 'sun' : 'tile';
     if (!forced) { try { localStorage.setItem('pixelArt', art); } catch (e) {} }
     var m = document.querySelector('meta[name="theme-color"]');
     if (m) m.content = t === 'dark' ? '#1C1834' : '#F6F3EC';
@@ -92,6 +107,7 @@ export function layout({ path, title, description = site.description, body, page
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>${navLinks}</ul>
     </nav>
+    ${tileToggle()}
     ${themeToggle()}
     <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span class="nav-toggle__box" aria-hidden="true"><i></i><i></i></span><span class="nav-toggle__label">Menu</span></button>
   </div>
