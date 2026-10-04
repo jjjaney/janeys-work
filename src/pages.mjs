@@ -563,8 +563,7 @@ export function aboutPage() {
   ])}
   ${spill(22)}
   <div class="wrap about-head">
-    <div class="has-flank">
-      <div class="flank" data-seed="9" aria-hidden="true"></div>
+    <div>
       ${eyebrow('—', 'About')}
       <h1>Hi, I’m Janey.</h1>
       ${bio.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${esc(p)}</p>`).join('')}
