@@ -10,7 +10,7 @@ function logo() {
 // Pixel-art light/dark switch: a pixel sun or moon slides along a track of
 // pixel clouds (light) or stars (dark). Grid is 16 × 8 pixels.
 // Gradient switch (default): three pixels, each the size of the logo pixel.
-// Light mode steps from dark to bright; dark mode steps from bright to dark.
+// Light mode steps from lightest to darkest; dark mode from darkest to lightest.
 // On toggle they flip over left to right and land on the new gradient.
 // Colors are set in styles.css (.grad-toggle).
 function gradientToggle() {

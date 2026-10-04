@@ -229,8 +229,8 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 .nav-toggle { display: none; }
 
 /* Theme toggle: gradient (default) --------------------------------------------
-   Three pixels the size of the logo pixel: dark → bright in light mode,
-   bright → dark in dark mode. Each flips edge-on in turn (left to right) and
+   Three pixels the size of the logo pixel: lightest → darkest in light mode,
+   darkest → lightest in dark mode. Each flips edge-on in turn (left to right) and
    switches color at the halfway point of its own flip. */
 .grad-toggle {
   flex: none; display: inline-grid; place-items: center;
@@ -244,14 +244,14 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
   transition: background-color 0s linear calc(var(--i) * var(--stagger) + var(--flip) / 2);
 }
 .grad-toggle.is-flipping .grad-toggle__row i { animation: flip var(--flip) ease-in-out calc(var(--i) * var(--stagger)) both; }
-/* light: dark → bright */
-.grad-toggle__row i:nth-child(1) { --c: #4f33cc; }
+/* light: lightest → darkest */
+.grad-toggle__row i:nth-child(1) { --c: #cfa2ed; }
 .grad-toggle__row i:nth-child(2) { --c: #8e6ee0; }
-.grad-toggle__row i:nth-child(3) { --c: #cfa2ed; }
-/* dark: bright → dark */
-:root[data-theme='dark'] .grad-toggle__row i:nth-child(1) { --c: #cfa2ed; }
+.grad-toggle__row i:nth-child(3) { --c: #4f33cc; }
+/* dark: darkest → lightest */
+:root[data-theme='dark'] .grad-toggle__row i:nth-child(1) { --c: #3d3170; }
 :root[data-theme='dark'] .grad-toggle__row i:nth-child(2) { --c: #7a5cc8; }
-:root[data-theme='dark'] .grad-toggle__row i:nth-child(3) { --c: #3d3170; }
+:root[data-theme='dark'] .grad-toggle__row i:nth-child(3) { --c: #cfa2ed; }
 .grad-toggle:hover .grad-toggle__row { outline: 2px solid var(--tint-lilac); outline-offset: 3px; }
 
 /* Theme toggle: tile flip (?toggle=tile) ----------------------------------------
