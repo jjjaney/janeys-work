@@ -226,11 +226,10 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 .site-nav a {
   position: relative; display: block; padding: 0.55rem 0.85rem;
   color: var(--ink); text-decoration: none; font-weight: 500;
-  transition: background 0.2s var(--ease);
+  transition: color 0.2s var(--ease);
 }
-.site-nav a:hover { background: var(--tint-sky); color: var(--ink); }
+.site-nav a:hover { color: var(--accent); }
 .site-nav a[aria-current='page'] { background: var(--tint-lilac); color: var(--accent); }
-.site-nav a[aria-current='page']::before { content: ''; position: absolute; left: 0; top: 0; width: 6px; height: 6px; background: var(--orange); }
 
 .nav-toggle { display: none; }
 
