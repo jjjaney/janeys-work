@@ -209,12 +209,12 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 .site-nav { margin-left: auto; }
 .brand { display: inline-flex; align-items: center; gap: 0.65rem; text-decoration: none; color: var(--ink); font: 700 1.15rem/1 var(--display); letter-spacing: -0.01em; }
 .brand:hover { color: var(--ink); }
-.logo-mark { width: 22px; height: 22px; }
-.logo-mark rect { transition: transform 0.35s var(--pop); transform-box: fill-box; transform-origin: center; }
-.brand:hover .logo-mark rect:nth-child(1) { transform: translate(-0.15px, -0.15px); }
-.brand:hover .logo-mark rect:nth-child(2) { transform: translate(0.15px, -0.15px); }
-.brand:hover .logo-mark rect:nth-child(3) { transform: translate(-0.15px, 0.15px); }
-.brand:hover .logo-mark rect:nth-child(4) { transform: translate(0.15px, 0.15px); }
+/* Logo pixel: one square that starts orange and flips through the art colors */
+.logo-pixel {
+  flex: none; display: inline-block; width: 20px; height: 20px;
+  background: var(--logo, var(--orange));
+}
+.logo-pixel.is-flipping { animation: flip 0.36s ease-in-out; }
 
 .site-nav ul { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
 .site-nav a {
@@ -808,7 +808,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .site-footer { background: var(--bg-deep); }
 .site-footer__inner { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem 2rem; padding-block: 3rem 2rem; align-items: start; }
 .site-footer__name { display: flex; align-items: center; gap: 0.6rem; margin: 0 0 0.25rem; font: 700 1.3rem var(--display); color: var(--ink); }
-.site-footer__name .logo-mark { width: 20px; height: 20px; }
+.site-footer__name .logo-pixel { width: 18px; height: 18px; }
 .site-footer__links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; list-style: none; margin: 0; padding: 0; }
 .site-footer__links a { color: var(--ink); font-weight: 500; }
 .site-footer__links a:hover { color: var(--accent); }

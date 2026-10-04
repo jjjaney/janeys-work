@@ -1,11 +1,10 @@
 import { site, nav, disciplines } from './site.mjs';
 import { esc } from './lib.mjs';
 
+// The logo: a single pixel that starts orange and flips to the next art
+// color every few seconds (see "Logo pixel" in main.js and styles.css).
 function logo() {
-  // 2×2 pixel mark in the site palette.
-  return `<svg class="logo-mark" viewBox="0 0 2 2" aria-hidden="true" shape-rendering="crispEdges">
-    <rect width="1" height="1" fill="var(--orange)"/><rect x="1" width="1" height="1" fill="var(--accent)"/>
-    <rect y="1" width="1" height="1" fill="var(--lilac)"/><rect x="1" y="1" width="1" height="1" fill="var(--green)"/></svg>`;
+  return `<span class="logo-pixel" aria-hidden="true"></span>`;
 }
 
 // Pixel-art light/dark switch: a pixel sun or moon slides along a track of

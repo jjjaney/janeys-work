@@ -122,6 +122,24 @@
     window.addEventListener('resize', () => (clearTimeout(t), (t = setTimeout(cull, 150))));
   }
 
+  // Logo pixel: starts orange, then every few seconds flips over edge-on and
+  // lands on the next art color. Stays orange for reduced-motion visitors.
+  const logos = document.querySelectorAll('.logo-pixel');
+  if (logos.length && !reduce) {
+    const cycle = ['--orange', '--lilac', '--green', '--gold', '--sky', '--maroon'];
+    let n = 0;
+    setInterval(() => {
+      if (document.hidden) return;
+      n = (n + 1) % cycle.length;
+      logos.forEach((el) => {
+        el.classList.remove('is-flipping');
+        void el.offsetWidth;
+        el.classList.add('is-flipping');
+        setTimeout(() => el.style.setProperty('--logo', `var(${cycle[n]})`), 180); // swap when edge-on
+      });
+    }, 3200);
+  }
+
   // Pixel art: now and then a single tile flips over to another color --------
   // One flip at a time across the whole page, only for art that's on screen.
   // The tile flips back after a while so each composition stays recognizable.
