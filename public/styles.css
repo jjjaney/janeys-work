@@ -575,14 +575,11 @@ html:not(.js) .theme-toggle { display: none !important; }
 .story__link:hover .arrow { transform: none; }
 
 /* archive: a slim row */
-/* archive: a full-width card; on wide screens the question and the answer sit side by side */
+/* archive: a full-width card with the question and its answer stacked, like the other cards */
 .story__mark--wide { width: 42px; height: 30px; }
 .story--archive .story__body { display: grid; gap: 0.75rem; }
 .story--archive .story__q { margin: 0; }
-@media (min-width: 901px) {
-  .story--archive .story__body { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 2rem; align-items: end; }
-  .story--archive .story__a { margin-bottom: 0.2em; }
-}
+.story--archive .story__a { max-width: 48em; }
 
 @media (max-width: 900px) {
   .stories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
