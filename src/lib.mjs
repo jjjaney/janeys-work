@@ -223,3 +223,35 @@ export function floaters(spots, { seed = 11 } = {}) {
   }
   return `<div class="floaters" aria-hidden="true">${out}</div>`;
 }
+
+/**
+ * Pixels spilling just below a page header, as a few small clusters of 2–3
+ * touching squares (never a lone square). Squares sit mostly in the first row
+ * under the header, where there's no text. Positions are offsets of one art
+ * square (--cell), so main.js can snap them onto the art's grid.
+ * Clusters marked desktop-only are hidden on phones to avoid crowding.
+ */
+export function spillClusters(seed = 1) {
+  const colors = ['#ff7b4d', '#cfa2ed', '#0b704f', '#c99f43', '#b6d8fe', '#6b2337'];
+  // cluster shapes as [dx, dy] square offsets
+  const shapes = [
+    [[0, 0], [1, 0], [1, 1]],   // L
+    [[0, 0], [1, 0]],           // pair
+    [[0, 0], [0, 1], [1, 0]],   // corner
+    [[0, 0], [1, 1]],           // diagonal step
+  ];
+  // [x%, show on phones?]: spread across the width
+  const anchors = [[7, true], [31, false], [52, true], [80, true]];
+  let out = '';
+  anchors.forEach(([x, phone], g) => {
+    const jitter = (hash(g, seed, 31) - 0.5) * 8;
+    const shape = shapes[Math.floor(hash(g, seed, 32) * shapes.length)];
+    const base = Math.floor(hash(g, seed, 33) * colors.length);
+    shape.forEach(([dx, dy], k) => {
+      const color = colors[(base + k * 2) % colors.length]; // squares in a cluster never share a color
+      out += `<i class="${phone ? 'm' : ''}" data-g="${g}" style="left:calc(${(x + jitter).toFixed(1)}% + ${dx} * var(--cell, 32px));top:calc(${dy} * var(--cell, 32px));background:${color}"></i>`;
+    });
+  });
+  return `<div class="spill"><div class="floaters" aria-hidden="true">${out}</div></div>`;
+}
+
