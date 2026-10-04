@@ -162,3 +162,28 @@ export function pixelBorder({ columns = 160, size = 14, seed = 7 } = {}) {
   }
   return `<div class="pixel-border" aria-hidden="true"><svg class="pixel" width="${columns * size}" height="${size * 2}" viewBox="0 0 ${columns * size} ${size * 2}" shape-rendering="crispEdges">${rects}</svg></div>`;
 }
+
+/**
+ * Floating pixels: loose squares scattered around a page header, in the open
+ * space around the heading and the art, with a few spilling just below the
+ * header. Positions are percentages of the header box; `spots` lists the
+ * regions to scatter into as [left%, top%, width%, height%, count].
+ * Squares in `mobile` regions also show on phones; the rest are desktop-only
+ * so they never sit on top of text in the stacked phone layout.
+ */
+export function floaters(spots, { seed = 11 } = {}) {
+  const colors = ['#ff7b4d', '#cfa2ed', '#0b704f', '#c99f43', '#b6d8fe', '#6b2337'];
+  const sizes = [10, 14, 14, 18, 22, 28];
+  let out = '';
+  let n = 0;
+  for (const [x, y, w, h, count, mobile = false] of spots) {
+    for (let i = 0; i < count; i++, n++) {
+      const left = (x + hash(n, seed, 7) * w).toFixed(1);
+      const top = (y + hash(n, seed, 8) * h).toFixed(1);
+      const size = sizes[Math.floor(hash(n, seed, 9) * sizes.length)];
+      const color = colors[Math.floor(hash(n, seed, 10) * colors.length)];
+      out += `<i${mobile ? ' class="m"' : ''} style="left:${left}%;top:${top}%;--s:${size}px;background:${color}"></i>`;
+    }
+  }
+  return `<div class="floaters" aria-hidden="true">${out}</div>`;
+}

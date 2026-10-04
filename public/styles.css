@@ -357,6 +357,20 @@ html:not(.js) .theme-toggle { display: none; }
   .hero__art { justify-self: stretch; margin-inline: calc(var(--gutter) * -1); width: calc(100% + var(--gutter) * 2); max-width: none; }
 }
 
+/* Floating pixels around page headers --------------------------------------- */
+.hero, .case__head, .page-head--art { position: relative; isolation: isolate; overflow-x: clip; }
+.hero__art, .case__art, .portrait { position: relative; }
+.floaters { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.floaters i { position: absolute; width: var(--s); height: var(--s); }
+.floaters i[hidden] { display: none; }
+/* a strip of strays just below the header */
+.spill { position: absolute; left: 0; right: 0; top: 100%; height: 72px; pointer-events: none; z-index: -1; }
+@media (max-width: 860px) {
+  .floaters i:not(.m) { display: none; }
+  .floaters i { width: calc(var(--s) * 0.7); height: calc(var(--s) * 0.7); }
+  .spill { height: 56px; }
+}
+
 /* Pixel art: shown as-is; a single tile occasionally flips to a new color -- */
 .pixel rect, .pixel path { transform-box: fill-box; transform-origin: center; }
 .pixel rect.flip { animation: flip 0.7s ease-in-out; }

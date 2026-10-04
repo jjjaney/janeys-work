@@ -3,7 +3,7 @@ import { work } from './content/work.mjs';
 import { services, engagement, faqs } from './content/services.mjs';
 import { bio, principles, experience, funFacts } from './content/about.mjs';
 import { archive } from './content/archive.mjs';
-import { esc, todo, figure, pixel, pixelRule, pixelBorder, arrow, external } from './lib.mjs';
+import { esc, todo, figure, pixel, pixelRule, pixelBorder, floaters, arrow, external } from './lib.mjs';
 
 // ---------------------------------------------------------------------------
 // Shared bits
@@ -15,6 +15,19 @@ const hue = (label) => hues[[...label].reduce((a, c) => a + c.charCodeAt(0), 0) 
 const eyebrow = (_n, label) => `<p class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}"><span class="eyebrow__n" aria-hidden="true"></span>${esc(label)}</p>`;
 
 const eyebrowSpan = (_n, label) => `<span class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}"><span class="eyebrow__n" aria-hidden="true"></span>${esc(label)}</span>`;
+
+// Floating pixels for page headers, in three layers:
+//  - around the art (all screen sizes): above, below and beside it
+//  - in the open space between the heading and the art (desktop only)
+//  - a strip spilling just below the header (all screen sizes)
+const artFloat = (seed) => floaters([
+  [-6, -12, 112, 9, 7, true],
+  [-6, 103, 112, 9, 6, true],
+  [-12, 10, 7, 80, 3],
+  [104, 10, 6, 80, 3],
+], { seed });
+const gapFloat = (seed, regions) => floaters(regions, { seed });
+const spill = (seed) => `<div class="spill">${floaters([[2, 10, 96, 80, 12, true]], { seed })}</div>`;
 
 const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
 
@@ -106,6 +119,13 @@ export function home() {
     pageClass: 'page-home',
     body: `
 <section class="hero">
+  ${gapFloat(3, [
+    [44, 18, 8, 8, 3],   // after "I design the"
+    [32, 37, 19, 7, 3],  // after "behind"
+    [40, 45, 11, 6, 2],  // after "the words."
+    [52, 12, 4, 60, 3],  // between the copy and the art
+  ])}
+  ${spill(4)}
   <div class="wrap hero__inner">
     <div class="hero__copy">
       <p class="eyebrow mono">${esc(site.role)}</p>
@@ -117,6 +137,7 @@ export function home() {
       </div>
     </div>
     <div class="hero__art">
+      ${artFloat(5)}
       ${pixel('pixel-composition-16', { organic: true, label: 'Pixel-art composition of colored square tiles' })}
     </div>
   </div>
@@ -225,13 +246,18 @@ export function caseStudy(w, i) {
     body: `
 <article class="case">
   <header class="case__head">
+    ${gapFloat(6 + i, [
+      [54, 15, 8, 45, 5],
+      [44, 22, 9, 30, 3],
+    ])}
+    ${spill(7 + i)}
     <div class="wrap case__head-inner">
       <div>
         <p class="eyebrow mono"><a href="/work/">Work</a> <span aria-hidden="true">/</span> ${esc(w.client)}</p>
         <h1>${esc(w.title)}</h1>
         <p class="lede">${esc(w.summary)}</p>
       </div>
-      <div class="case__art">${pixel(w.art, { organic: true })}</div>
+      <div class="case__art">${artFloat(8 + i)}${pixel(w.art, { organic: true })}</div>
     </div>
     <div class="wrap">
       <dl class="meta">
@@ -384,7 +410,12 @@ export function aboutPage() {
     title: 'About',
     description: 'Janey Annis: content strategist, content designer and product manager. Experience at FIS, Shopify, GitHub, Plex and Carnegie Mellon.',
     body: `
-<section class="page-head">
+<section class="page-head page-head--art">
+  ${gapFloat(21, [
+    [44, 12, 13, 10, 3],  // after "Hi, I'm Janey."
+    [57, 10, 4, 60, 3],   // between the bio and the art
+  ])}
+  ${spill(22)}
   <div class="wrap about-head">
     <div>
       ${eyebrow('—', 'About')}
@@ -395,6 +426,7 @@ export function aboutPage() {
       ${todo('Add a link to your resume (PDF in <code>/public/</code>) if you want a download button here.')}
     </div>
     <div class="portrait">
+      ${artFloat(23)}
       ${pixel('pixel-composition-12', { organic: true })}
       ${todo('Optional: add a photo of you. The current site uses a childhood photo, which is charming. Save it as <code>/public/images/janey.jpg</code> and replace this art in <code>aboutPage()</code> in <code>src/pages.mjs</code>.')}
     </div>

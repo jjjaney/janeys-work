@@ -35,6 +35,41 @@
     if (!saved) applyTheme(e.matches ? 'dark' : 'light');
   });
 
+  // Floating pixels: hide any that would sit on top of text -----------------
+  // Positions are fixed percentages, so on some titles or screen widths a
+  // square can land on a word. Check against the real lines of text and hide
+  // just those squares; recheck when the layout changes.
+  const floaterBoxes = [...document.querySelectorAll('.floaters')];
+  if (floaterBoxes.length) {
+    const cull = () => {
+      const lines = [];
+      document.querySelectorAll('.hero, .case__head, .page-head--art, .hero + *, .case__body, .about-head').forEach((root) => {
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        while (walker.nextNode()) {
+          const n = walker.currentNode;
+          if (!n.textContent.trim() || n.parentElement.closest('.floaters')) continue;
+          const range = document.createRange();
+          range.selectNodeContents(n);
+          for (const r of range.getClientRects()) if (r.width && r.height) lines.push(r);
+        }
+        root.querySelectorAll('.btn, .todo, .meta > div').forEach((e) => lines.push(e.getBoundingClientRect()));
+      });
+      const pad = 10;
+      floaterBoxes.forEach((box) =>
+        box.querySelectorAll('i').forEach((i) => {
+          i.hidden = false;
+          const a = i.getBoundingClientRect();
+          if (!a.width) return;
+          i.hidden = lines.some((r) => a.left < r.right + pad && a.right > r.left - pad && a.top < r.bottom + pad && a.bottom > r.top - pad);
+        })
+      );
+    };
+    cull();
+    document.fonts?.ready.then(cull);
+    let t;
+    window.addEventListener('resize', () => (clearTimeout(t), (t = setTimeout(cull, 150))));
+  }
+
   // Pixel art: now and then a single tile flips over to another color --------
   // One flip at a time across the whole page, only for art that's on screen.
   // The tile flips back after a while so each composition stays recognizable.
