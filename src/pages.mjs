@@ -12,9 +12,9 @@ import { esc, todo, figure, pixel, pixelCorner, floaters, arrow, external } from
 const hues = ['', 'orange', 'green', 'lilac', 'gold', 'sky'];
 const hue = (label) => hues[[...label].reduce((a, c) => a + c.charCodeAt(0), 0) % hues.length];
 // Section labels get a colored pixel, not a number: the sections aren't a sequence.
-const eyebrow = (_n, label) => `<p class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}"><span class="eyebrow__n" aria-hidden="true"></span>${esc(label)}</p>`;
+const eyebrow = (_n, label) => `<p class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}">${esc(label)}</p>`;
 
-const eyebrowSpan = (_n, label) => `<span class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}"><span class="eyebrow__n" aria-hidden="true"></span>${esc(label)}</span>`;
+const eyebrowSpan = (_n, label) => `<span class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}">${esc(label)}</span>`;
 
 // Floating pixels for page headers, in three layers:
 //  - around the art (all screen sizes): above, below and beside it
@@ -284,7 +284,7 @@ export function home() {
   <div class="wrap">
     <div class="logos">
       <p class="mono muted">Contributed content at</p>
-      <ul>${companies.map((c) => `<li><a href="${esc(c.url)}">${esc(c.name)}</a></li>`).join('')}</ul>
+      <ul data-fit-lines="2">${companies.map((c) => `<li><a href="${esc(c.url)}">${esc(c.name)}</a></li>`).join('')}<li class="logos__more"><a href="/about/#experience">and more ${arrow}</a></li></ul>
     </div>
   </div>
 </section>
@@ -570,7 +570,7 @@ export function aboutPage() {
   </div>
 </section>
 
-<section class="section" aria-labelledby="xp-h">
+<section class="section" id="experience" aria-labelledby="xp-h">
   <div class="wrap xp">
     <div class="section__head">${eyebrow('02', 'Experience')}<h2 id="xp-h">Where I’ve worked</h2></div>
     <ol class="timeline">

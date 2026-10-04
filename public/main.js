@@ -52,6 +52,27 @@
     if (!saved) applyTheme(e.matches ? 'dark' : 'light');
   });
 
+  // Company names under the home header: never more than two lines (one on
+  // wide screens). If they'd wrap further or run past the edge, drop names
+  // from the end; the "and more" link always stays last.
+  const fitLists = () =>
+    document.querySelectorAll('[data-fit-lines]').forEach((ul) => {
+      const max = Number(ul.dataset.fitLines);
+      const items = [...ul.children].filter((li) => !li.classList.contains('logos__more'));
+      items.forEach((li) => (li.hidden = false));
+      const box = ul.parentElement;
+      const tooBig = () => {
+        const shown = [...ul.children].filter((li) => !li.hidden);
+        const rows = new Set(shown.map((li) => Math.round(li.getBoundingClientRect().top))).size;
+        return rows > max || shown.at(-1).getBoundingClientRect().right > box.getBoundingClientRect().right + 1;
+      };
+      for (let n = items.length - 1; n > 0 && tooBig(); n--) items[n].hidden = true;
+    });
+  fitLists();
+  document.fonts?.ready.then(fitLists);
+  let fitT;
+  window.addEventListener('resize', () => (clearTimeout(fitT), (fitT = setTimeout(fitLists, 120))));
+
   // Floating pixels: hide any that would sit on top of text -----------------
   // Positions are fixed percentages, so on some titles or screen widths a
   // square can land on a word. Check against the real lines of text and hide

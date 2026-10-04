@@ -420,6 +420,9 @@ html:not(.js) .theme-toggle { display: none !important; }
   .logos ul { flex-wrap: nowrap; gap: 0 clamp(1rem, 0.2rem + 1.4vw, 1.75rem); }
   .logos li { white-space: nowrap; font-size: clamp(0.95rem, 0.6rem + 0.45vw, 1.05rem); }
 }
+.logos__more a { color: var(--accent) !important; display: inline-flex; align-items: center; gap: 0.35rem; white-space: nowrap; }
+.logos li[hidden] { display: none; }
+#experience { scroll-margin-top: 80px; }
 .logos a { color: inherit; text-decoration: none; background: linear-gradient(var(--accent), var(--accent)) left bottom / 0 2px no-repeat; transition: background-size 0.2s var(--ease), color 0.2s var(--ease); }
 .logos a:hover, .logos a:focus-visible { color: var(--accent); background-size: 100% 2px; }
 
