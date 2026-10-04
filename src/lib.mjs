@@ -101,3 +101,27 @@ export function pixelRule(count = 12, seed = 1) {
 
 export const arrow = `<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>`;
 export const external = `<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>`;
+
+/**
+ * A pixel border: one full row of colored squares with a sparser row under
+ * it, so the edge steps down like pixel art. It carries the `pixel` class, so
+ * it gets the same occasional tile flip as the other art.
+ */
+export function pixelBorder({ columns = 160, size = 14, seed = 7 } = {}) {
+  const colors = ['#ff7b4d', '#cfa2ed', '#0b704f', '#c99f43', '#b6d8fe', '#6b2337'];
+  let r = seed * 9301 + 49297;
+  const rand = () => ((r = (r * 9301 + 49297) % 233280) / 233280);
+  let rects = '';
+  let last = -1;
+  for (let x = 0; x < columns; x++) {
+    let c = Math.floor(rand() * colors.length);
+    if (c === last) c = (c + 1) % colors.length; // no two neighbors the same
+    last = c;
+    rects += `<rect x="${x * size}" y="0" width="${size}" height="${size}" fill="${colors[c]}" stroke="${colors[c]}" stroke-width="0.6"/>`;
+    if (rand() < 0.3) {
+      const c2 = colors[Math.floor(rand() * colors.length)];
+      rects += `<rect x="${x * size}" y="${size}" width="${size}" height="${size}" fill="${c2}" stroke="${c2}" stroke-width="0.6"/>`;
+    }
+  }
+  return `<div class="pixel-border" aria-hidden="true"><svg class="pixel" width="${columns * size}" height="${size * 2}" viewBox="0 0 ${columns * size} ${size * 2}" shape-rendering="crispEdges">${rects}</svg></div>`;
+}

@@ -578,13 +578,14 @@ html:not(.js) .theme-toggle { display: none; }
 .quote__by { margin: 0; line-height: 1.6; }
 
 /* CTA band ----------------------------------------------------------------- */
-.cta-band { background: var(--band); color: var(--on-band); overflow: hidden; }
-.cta-band__inner { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); gap: 2rem; align-items: center; padding-block: clamp(3.5rem, 3rem + 4vw, 6rem); }
+.cta-band { position: relative; background: var(--band); color: var(--on-band); overflow: hidden; }
+.cta-band__inner { padding-block: clamp(3.5rem, 3rem + 4vw, 6rem); }
 .cta-band h2 { color: var(--on-band); max-width: 16em; }
 .cta-band p { font-size: 1.15rem; }
-.cta-band__art { justify-self: end; width: 100%; max-width: 280px; }
-.cta-band__art .pixel { width: 100%; height: auto; }
-@media (max-width: 760px) { .cta-band__inner { grid-template-columns: 1fr; } .cta-band__art { justify-self: start; max-width: 160px; order: -1; } }
+
+/* pixel border along the top edge of the band */
+.pixel-border { height: 28px; overflow: hidden; background: var(--band); line-height: 0; }
+.pixel-border .pixel { max-width: none; display: block; }
 
 /* Case study --------------------------------------------------------------- */
 .case__head { padding-top: clamp(2.5rem, 2rem + 4vw, 5rem); }
