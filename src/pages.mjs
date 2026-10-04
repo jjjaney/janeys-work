@@ -392,8 +392,7 @@ export function caseStudy(w, i) {
     ])}
     ${spill(7 + i)}
     <div class="wrap case__head-inner">
-      <div class="has-flank">
-        <div class="flank" data-seed="${2 + i}" aria-hidden="true"></div>
+      <div>
         <p class="eyebrow mono"><a href="/work/">Work</a> <span aria-hidden="true">/</span> ${esc(w.client)}</p>
         <h1>${esc(w.title)}</h1>
         <p class="lede">${esc(w.summary)}</p>
