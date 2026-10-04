@@ -307,6 +307,11 @@ html:not(.js) .theme-toggle { display: none; }
   html:not(.js) .site-nav a { font-size: 1rem; border: 0; padding: 0.4rem 0.6rem; }
 }
 @keyframes drop { from { opacity: 0; transform: translateY(-6px); } }
+/* phones: the menu button shows just its icon */
+@media (max-width: 600px) {
+  .nav-toggle__label { display: none; }
+  .nav-toggle { width: 44px; padding: 0; justify-content: center; }
+}
 
 /* Sections ----------------------------------------------------------------- */
 .section { padding-block: clamp(4rem, 3rem + 5vw, 7.5rem); }

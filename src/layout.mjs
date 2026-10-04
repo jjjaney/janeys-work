@@ -85,7 +85,7 @@ export function layout({ path, title, description = site.description, body, page
       <ul>${navLinks}</ul>
     </nav>
     ${themeToggle()}
-    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle__box" aria-hidden="true"><i></i><i></i></span><span class="nav-toggle__label">Menu</span></button>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span class="nav-toggle__box" aria-hidden="true"><i></i><i></i></span><span class="nav-toggle__label">Menu</span></button>
   </div>
 </header>
 <main id="main">
