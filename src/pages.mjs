@@ -573,7 +573,6 @@ export function aboutPage() {
     <div class="portrait">
       ${artFloat(23)}
       ${pixel('pixel-composition-12', { organic: true })}
-      ${todo('Optional: add a photo of you. The current site uses a childhood photo, which is charming. Save it as <code>/public/images/janey.jpg</code> and replace this art in <code>aboutPage()</code> in <code>src/pages.mjs</code>.')}
     </div>
   </div>
 </section>
@@ -584,7 +583,6 @@ export function aboutPage() {
     <ul class="principles">
       ${principles.map((p, i) => `<li><h3>${esc(p.title)}</h3><p>${esc(p.body)}</p></li>`).join('')}
     </ul>
-    ${todo('These principles were drafted to frame you as a product and systems thinker. Rewrite them in your own voice.')}
   </div>
 </section>
 
