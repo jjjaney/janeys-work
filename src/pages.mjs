@@ -60,15 +60,18 @@ function storyCard(w, i) {
 }
 
 // A 7 × 5 pixel "rewind" double chevron (earlier work): for the archive card.
-const BACK = ['..#..#.', '.#..#..', '#..#...', '.#..#..', '..#..#.'];
-function pixelBack(colors) {
+// The archive card's mark: a pixel file box with colored files peeking out of
+// the top. It has no direction, so it doesn't fight the card's hover arrow.
+const BOX = ['.oo.....', '.ooyy...', '.ooyygg.', 'MMMMMMMM', '.MMMMMM.', '.MM..MM.', '.MMMMMM.'];
+const BOX_COLORS = { o: 'var(--orange)', y: 'var(--gold)', g: 'var(--green)', M: 'var(--maroon)' };
+function pixelBox() {
   let rects = '';
-  BACK.forEach((row, y) =>
+  BOX.forEach((row, y) =>
     [...row].forEach((c, x) => {
-      if (c === '#') rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${colors[(x + y) % colors.length]}"/>`;
+      if (BOX_COLORS[c]) rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${BOX_COLORS[c]}"/>`;
     })
   );
-  return `<svg class="story__mark story__mark--wide" viewBox="0 0 7 5" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+  return `<svg class="story__mark story__mark--box" viewBox="0 0 8 7" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
 function archiveStory() {
@@ -76,7 +79,7 @@ function archiveStory() {
     <a class="story__link" href="/archive/">
       <div class="story__top">
         <p class="story__client mono"><span class="story__n" aria-hidden="true"></span>The archive · 2020 &amp; earlier</p>
-        ${pixelBack(['var(--maroon)'])}
+        ${pixelBox()}
       </div>
       <div class="story__body">
         <h3 class="story__q">What did the work look like before all this?</h3>
