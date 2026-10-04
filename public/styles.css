@@ -51,7 +51,7 @@
   --header-bg: rgb(246 243 236 / 0.9);
   color-scheme: light;
 
-  --display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
@@ -69,6 +69,11 @@
 
 /* Dark theme -----------------------------------------------------------------
    Deep indigo grounds (not black) so the pixel-art colors still glow. */
+/* Heading font previews (?font=schibsted | onest | bricolage) */
+:root[data-font='schibsted'] { --display: 'Schibsted Grotesk', ui-sans-serif, system-ui, sans-serif; }
+:root[data-font='onest'] { --display: 'Onest', ui-sans-serif, system-ui, sans-serif; }
+:root[data-font='bricolage'] { --display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif; }
+
 :root[data-theme='dark'] {
   --bg: #1c1834;
   --paper: #252044;
@@ -126,7 +131,7 @@ h1, h2, h3 {
   font-family: var(--display);
   color: var(--ink);
   line-height: 1.08;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   margin: 0 0 0.5em;
   font-weight: 700;
   text-wrap: balance;
@@ -368,7 +373,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Section labels ("Selected work", "How I work"…) anchor each section: larger
    type, a bigger pixel, and a rule running to the edge. The heading under
    each one is the biggest type in its section. */
-.section__head h2 { font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4.25rem); font-weight: 750; letter-spacing: -0.03em; line-height: 1.02; }
+.section__head h2 { font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4.25rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.02; }
 .section__head .eyebrow, .quotes .wrap > .eyebrow, .case__h .eyebrow { font-size: clamp(0.9rem, 0.82rem + 0.3vw, 1.05rem); font-weight: 600; letter-spacing: 0.06em; gap: 0.75rem; }
 .section__head .eyebrow, .quotes .wrap > .eyebrow { display: flex; margin-bottom: clamp(1.1rem, 0.8rem + 1vw, 1.75rem); }
 .section__head .eyebrow::after, .quotes .wrap > .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--line-strong); margin-left: 0.5rem; }
@@ -635,7 +640,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .svc-type summary { display: grid; grid-template-columns: auto minmax(0, 1.5fr) minmax(0, 1fr) auto; align-items: center; gap: 0.5rem clamp(1rem, 3vw, 3rem); padding-block: clamp(1.1rem, 0.8rem + 1.2vw, 1.9rem); cursor: pointer; list-style: none; }
 .svc-type summary::-webkit-details-marker { display: none; }
 .svc-type__dot { width: 0.7em; height: 0.7em; background: var(--c); font-size: clamp(1.6rem, 1rem + 2.4vw, 3.4rem); transition: transform 0.35s var(--ease); }
-.svc-type__name { font: 600 clamp(1.6rem, 1rem + 2.4vw, 3.4rem)/1.05 var(--display); letter-spacing: -0.025em; color: var(--ink); text-wrap: balance; transition: color 0.2s var(--ease); }
+.svc-type__name { font: 600 clamp(1.6rem, 1rem + 2.4vw, 3.4rem)/1.05 var(--display); letter-spacing: -0.015em; color: var(--ink); text-wrap: balance; transition: color 0.2s var(--ease); }
 .svc-type__for { color: var(--muted); font-size: 1rem; max-width: 26em; }
 .svc-type__icon { position: relative; width: 14px; height: 14px; }
 .svc-type__icon::before, .svc-type__icon::after { content: ''; position: absolute; inset: 6px 0 auto; height: 2px; background: var(--accent); transition: transform 0.2s var(--ease); }
@@ -715,7 +720,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .js .pull__item.is-active { opacity: 1; visibility: visible; transition: opacity 0.6s var(--ease); }
 .pull__item { margin: 0 0 2rem; }
 .pull blockquote { margin: 0 0 1.25rem; }
-.pull blockquote p { margin: 0; font: 600 clamp(1.75rem, 1rem + 3.6vw, 4.6rem)/1.08 var(--display); letter-spacing: -0.03em; color: var(--ink); text-wrap: balance; }
+.pull blockquote p { margin: 0; font: 600 clamp(1.75rem, 1rem + 3.6vw, 4.6rem)/1.08 var(--display); letter-spacing: -0.018em; color: var(--ink); text-wrap: balance; }
 .pull blockquote p::before { content: '“'; color: var(--accent); }
 .pull blockquote p::after { content: '”'; color: var(--accent); }
 .pull figcaption { font-size: 0.9rem; line-height: 1.6; }
@@ -796,7 +801,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .outcomes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 1rem; }
 .outcome { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem; background: var(--tint-lilac); }
 .outcome:nth-child(2) { background: var(--tint-peach); }
-.outcome__stat { font: 750 clamp(2rem, 1.6rem + 1.6vw, 3rem)/1 var(--display); color: var(--accent); letter-spacing: -0.03em; }
+.outcome__stat { font: 750 clamp(2rem, 1.6rem + 1.6vw, 3rem)/1 var(--display); color: var(--accent); letter-spacing: -0.018em; }
 .outcome__label { font-size: 0.95rem; }
 .outcome--todo { grid-column: 1 / -1; padding: 0; background: none; }
 .outcome--todo .todo { margin: 0; }

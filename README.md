@@ -76,7 +76,7 @@ Copy one of the objects in `src/content/work.mjs`, give it a new `slug`, and pic
 ## Design notes
 
 - **Palette:** cream `#F6F3EC` (background), gray-blue `#DBE0E6` (surfaces), purple `#4F33CC` (accent and links), red `#CC3333` (highlights), charcoal `#4F4F4F` (text).
-- **Type:** Bricolage Grotesque (headings), Instrument Sans (body), JetBrains Mono (labels). These load from Google Fonts.
+- **Type:** Plus Jakarta Sans (headings), Instrument Sans (body), JetBrains Mono (labels). These load from Google Fonts. To preview another heading font, add `?font=schibsted` (Schibsted Grotesk), `?font=onest` (Onest) or `?font=bricolage` (Bricolage Grotesque, the earlier font) to any page address.
 - **Dark mode:** follows the visitor's system setting until they use the switch in the header, then remembers their choice. The switch is three pixels the size of the logo pixel: lightest → darkest in light mode, darkest → lightest in dark mode, flipping over left to right when tapped (`gradientToggle()` in `src/layout.mjs`). Earlier switches can be previewed with `?toggle=tile` (the 3×3 sun/moon tile) or `?toggle=sun` (the sun/moon slider).
 - **Pixel art:** the hero uses a composition recolored to the site palette. Case studies and other accents keep the original colors. Tiles assemble when they scroll into view and pop on hover, and the hero has a "Shuffle the tiles" button. All motion is turned off for visitors who prefer reduced motion.
 
@@ -99,6 +99,7 @@ To look at one version, add `?art=1`, `?art=2` or `?art=3` to any page address, 
 | `before-flank-version` | Full-width layout, before the flank |
 | `flank-version` | Header art bleeds off the right edge with a ragged bottom; a column of pixels flanks the header text on the left |
 | `before-noncard-version` | Home page with How I work, Services and Kind words as cards |
+| `before-font-change` | Bricolage Grotesque headings, before the switch to Plus Jakarta Sans |
 | `noncard-version` | How I work as a pixel staircase, Services as a big typographic list, Kind words as one large pull quote |
 
 To go back to one, ask Claude, or on GitHub open a pull request from that branch into `main`.

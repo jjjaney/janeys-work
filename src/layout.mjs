@@ -99,6 +99,15 @@ export function layout({ path, title, description = site.description, body, page
     // ?toggle=tile or ?toggle=sun previews an earlier switch
     d.dataset.toggle = (location.search.match(/[?&]toggle=(tile|sun)/) || [])[1] || 'gradient';
     if (!forced) { try { localStorage.setItem('pixelArt', art); } catch (e) {} }
+    // ?font=schibsted, ?font=onest or ?font=bricolage previews another heading font
+    var fonts = { schibsted: 'Schibsted+Grotesk:wght@400..900', onest: 'Onest:wght@400..900', bricolage: 'Bricolage+Grotesque:opsz,wght@12..96,400..800' };
+    var f = (location.search.match(/[?&]font=(schibsted|onest|bricolage)/) || [])[1];
+    if (f) {
+      d.dataset.font = f;
+      var l = document.createElement('link');
+      l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=' + fonts[f] + '&display=swap';
+      document.head.appendChild(l);
+    }
     var m = document.querySelector('meta[name="theme-color"]');
     if (m) m.content = t === 'dark' ? '#1C1834' : '#F6F3EC';
   })();
@@ -106,7 +115,7 @@ export function layout({ path, title, description = site.description, body, page
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/styles.css">
 <script src="/main.js" defer></script>
 </head>
