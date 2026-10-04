@@ -1,0 +1,14 @@
+{
+  "name": "janeys-work",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Portfolio site for Janey Annis. Zero-dependency static build, deployed on Vercel.",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node build.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

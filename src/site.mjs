@@ -1,0 +1,80 @@
+// Global site settings. Edit these first.
+export const site = {
+  name: 'Janey Annis',
+  // Used for canonical URLs, Open Graph tags and the sitemap.
+  url: 'https://www.janeys.work',
+  role: 'Product & systems thinker who specializes in content',
+  description:
+    'Janey Annis is a product and systems thinker who specializes in content: content strategy, content design, content management, documentation and product management.',
+  linkedin: 'https://www.linkedin.com/in/janeyannis/',
+
+  // TODO(Janey): add a public email if you want one shown. Leave '' to hide it.
+  email: '',
+
+  // TODO(Janey): create a free form at https://formspree.io and paste its ID
+  // (the part after /f/ in the endpoint URL). Until then the contact form
+  // shows a placeholder and falls back to LinkedIn.
+  formspreeId: '',
+
+  // TODO(Janey): optional booking link (Calendly, Cal.com, SavvyCal…).
+  bookingUrl: '',
+
+  // TODO(Janey): optional Ko-fi link for the free review offer.
+  kofiUrl: '',
+
+  // Placeholder notes ("TODO" boxes) are visible on the site so you can find
+  // what still needs content. Set HIDE_TODOS=1 in Vercel's environment
+  // variables to hide them on the live site.
+  showTodos: process.env.HIDE_TODOS !== '1',
+};
+
+export const nav = [
+  { href: '/work/', label: 'Work' },
+  { href: '/services/', label: 'Services' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+];
+
+export const disciplines = [
+  'Content strategy',
+  'Content design',
+  'Content management',
+  'Documentation',
+  'Product management',
+  'UX writing',
+  'Technical writing',
+  'Localization',
+  'Content for AI & agents',
+];
+
+export const companies = [
+  'FIS',
+  'Shopify',
+  'GitHub',
+  'The Browser Company',
+  'Carnegie Mellon',
+  'Doppler',
+  'Plex',
+  'New_ Public',
+  'HackerRank',
+  'Rockwell Collins',
+];
+
+export const testimonials = [
+  {
+    quote: 'You elevate any content that you touch.',
+    context: 'Content strategy & UX writing',
+    org: 'FIS, Design Systems',
+  },
+  {
+    quote: 'You are a master at your craft.',
+    context: 'Storytelling & member content',
+    org: 'The Browser Company',
+  },
+  {
+    quote:
+      "You're totally rocking it, and I'm so glad to have your copy/linguistic expertise on the project!!",
+    context: 'UX writing, translations & localization',
+    org: 'New_ Public, Public Spaces Incubator',
+  },
+];

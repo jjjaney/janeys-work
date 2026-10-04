@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="separate-pixel-compositions" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 566.94 566.94">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #c99f43;
+      }
+
+      .cls-2 {
+        fill: #ff7b4d;
+      }
+
+      .cls-3 {
+        fill: #cfa2ed;
+      }
+
+      .cls-4 {
+        fill: #0b704f;
+      }
+
+      .cls-5 {
+        fill: #6b2337;
+      }
+
+      .cls-6 {
+        fill: #b6d8fe;
+      }
+    </style>
+  </defs>
+  <g id="pixel-composition-13">
+    <g id="pixel-tile-241">
+      <rect id="square" class="cls-2" x="380.49" y="0" width="37.29" height="37.29"/>
+      <rect id="square-2" data-name="square" class="cls-2" x="417.78" y="0" width="37.29" height="37.29"/>
+      <rect id="square-3" data-name="square" class="cls-2" x="455.07" y="0" width="37.29" height="37.29"/>
+      <rect id="square-4" data-name="square" class="cls-2" x="529.65" y="0" width="37.29" height="37.29"/>
+      <rect id="square-5" data-name="square" class="cls-2" x="380.49" y="37.29" width="37.29" height="37.29"/>
+      <rect id="square-6" data-name="square" class="cls-2" x="492.36" y="0" width="37.29" height="37.29"/>
+      <rect id="square-7" data-name="square" class="cls-3" x="417.78" y="37.29" width="37.29" height="37.29"/>
+      <rect id="square-8" data-name="square" class="cls-4" x="455.07" y="37.29" width="37.29" height="37.29"/>
+      <rect id="square-9" data-name="square" class="cls-3" x="492.36" y="37.29" width="37.29" height="37.29"/>
+      <rect id="square-10" data-name="square" class="cls-2" x="529.65" y="37.29" width="37.29" height="37.29"/>
+      <rect id="square-11" data-name="square" class="cls-2" x="380.49" y="74.58" width="37.29" height="37.29"/>
+      <rect id="square-12" data-name="square" class="cls-4" x="417.78" y="74.58" width="37.29" height="37.29"/>
+      <rect id="square-13" data-name="square" class="cls-2" x="455.07" y="74.58" width="37.29" height="37.29"/>
+      <rect id="square-14" data-name="square" class="cls-4" x="492.36" y="74.58" width="37.29" height="37.29"/>
+      <rect id="square-15" data-name="square" class="cls-2" x="529.65" y="74.58" width="37.29" height="37.29"/>
+      <rect id="square-16" data-name="square" class="cls-2" x="380.49" y="111.87" width="37.29" height="37.29"/>
+      <rect id="square-17" data-name="square" class="cls-3" x="417.78" y="111.87" width="37.29" height="37.29"/>
+      <rect id="square-18" data-name="square" class="cls-3" x="455.07" y="111.87" width="37.29" height="37.29"/>
+      <rect id="square-19" data-name="square" class="cls-3" x="492.36" y="111.87" width="37.29" height="37.29"/>
+      <rect id="square-20" data-name="square" class="cls-2" x="529.65" y="111.87" width="37.29" height="37.29"/>
+      <rect id="square-21" data-name="square" class="cls-2" x="380.49" y="149.15" width="37.29" height="37.29"/>
+      <rect id="square-22" data-name="square" class="cls-2" x="417.78" y="149.15" width="37.29" height="37.29"/>
+      <rect id="square-23" data-name="square" class="cls-2" x="455.07" y="149.15" width="37.29" height="37.29"/>
+      <rect id="square-24" data-name="square" class="cls-2" x="492.36" y="149.15" width="37.29" height="37.29"/>
+      <rect id="square-25" data-name="square" class="cls-2" x="529.65" y="149.15" width="37.29" height="37.29"/>
+    </g>
+    <g id="pixel-tile-231">
+      <rect id="square-26" data-name="square" class="cls-6" x="190.25" width="37.29" height="37.29"/>
+      <rect id="square-27" data-name="square" class="cls-6" x="227.54" width="37.29" height="37.29"/>
+      <rect id="square-28" data-name="square" class="cls-6" x="264.82" width="37.29" height="37.29"/>
+      <rect id="square-29" data-name="square" class="cls-6" x="339.4" width="37.29" height="37.29"/>
+      <rect id="square-30" data-name="square" class="cls-1" x="190.25" y="37.29" width="37.29" height="37.29"/>
+      <rect id="square-31" data-name="square" class="cls-6" x="302.11" width="37.29" height="37.29"/>
+      <rect id="square-32" data-name="square" class="cls-1" x="227.54" y="37.29" width="37.29" height="37.29"/>
+      <rect id="square-33" data-name="square" class="cls-1" x="264.82" y="37.29" width="37.29" height="37.29"/>
+      <rect id="square-34" data-name="square" class="cls-1" x="302.11" y="37.29" width="37.29" height="37.29"/>
+      <rect id="square-35" data-name="square" class="cls-1" x="339.4" y="37.29" width="37.29" height="37.29"/>
+      <rect id="square-36" data-name="square" class="cls-1" x="190.25" y="74.58" width="37.29" height="37.29"/>
+      <rect id="square-37" data-name="square" class="cls-4" x="227.54" y="74.58" width="37.29" height="37.29"/>
+      <rect id="square-38" data-name="square" class="cls-1" x="264.82" y="74.58" width="37.29" height="37.29"/>
+      <rect id="square-39" data-name="square" class="cls-4" x="302.11" y="74.58" width="37.29" height="37.29"/>
+      <rect id="square-40" data-name="square" class="cls-1" x="339.4" y="74.58" width="37.29" height="37.29"/>
+      <rect id="square-41" data-name="square" class="cls-1" x="190.25" y="111.87" width="37.29" height="37.29"/>
+      <rect id="square-42" data-name="square" class="cls-1" x="227.54" y="111.87" width="37.29" height="37.29"/>
+      <rect id="square-43" data-name="square" class="cls-1" x="264.82" y="111.87" width="37.29" height="37.29"/>
+      <rect id="square-44" data-name="square" class="cls-1" x="302.11" y="111.87" width="37.29" height="37.29"/>
+      <rect id="square-45" data-name="square" class="cls-1" x="339.4" y="111.87" width="37.29" height="37.29"/>
+      <rect id="square-46" data-name="square" class="cls-6" x="190.25" y="149.15" width="37.29" height="37.29"/>
+      <rect id="square-47" data-name="square" class="cls-6" x="227.54" y="149.15" width="37.29" height="37.29"/>
+      <rect id="square-48" data-name="square" class="cls-6" x="264.82" y="149.15" width="37.29" height="37.29"/>
+      <rect id="square-49" data-name="square" class="cls-6" x="302.11" y="149.15" width="37.29" height="37.29"/>
+      <rect id="square-50" data-name="square" class="cls-6" x="339.4" y="149.15" width="37.29" height="37.29"/>
+    </g>
+    <g id="pixel-tile-178">
+      <g>
+        <g id="square-51" data-name="square">
+          <rect class="cls-5" x="339.4" y="339.4" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-52" data-name="square">
+          <rect class="cls-5" x="302.11" y="339.4" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-53" data-name="square">
+          <rect class="cls-5" x="264.82" y="339.4" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-54" data-name="square">
+          <rect class="cls-5" x="190.25" y="339.4" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-55" data-name="square">
+          <rect class="cls-5" x="339.4" y="302.11" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-56" data-name="square">
+          <rect class="cls-5" x="227.54" y="339.4" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-57" data-name="square">
+          <rect class="cls-6" x="302.11" y="302.11" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-58" data-name="square">
+          <rect class="cls-6" x="264.82" y="302.11" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-59" data-name="square">
+          <rect class="cls-6" x="227.54" y="302.11" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-60" data-name="square">
+          <rect class="cls-5" x="190.25" y="302.11" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-61" data-name="square">
+          <rect class="cls-4" x="339.4" y="264.82" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-62" data-name="square">
+          <rect class="cls-4" x="302.11" y="264.82" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-63" data-name="square">
+          <rect class="cls-4" x="264.82" y="264.82" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-64" data-name="square">
+          <rect class="cls-4" x="227.54" y="264.82" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-65" data-name="square">
+          <rect class="cls-4" x="190.25" y="264.82" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-66" data-name="square">
+          <rect class="cls-4" x="339.4" y="227.54" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-67" data-name="square">
+          <rect class="cls-3" x="302.11" y="227.54" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-68" data-name="square">
+          <rect class="cls-4" x="264.82" y="227.54" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-69" data-name="square">
+          <rect class="cls-3" x="227.54" y="227.54" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-70" data-name="square">
+          <rect class="cls-4" x="190.25" y="227.54" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-71" data-name="square">
+          <rect class="cls-4" x="339.4" y="190.25" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-72" data-name="square">
+          <rect class="cls-4" x="302.11" y="190.25" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-73" data-name="square">
+          <rect class="cls-4" x="264.82" y="190.25" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-74" data-name="square">
+          <rect class="cls-4" x="227.54" y="190.25" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-75" data-name="square">
+          <rect class="cls-4" x="190.25" y="190.25" width="37.29" height="37.29"/>
+        </g>
+      </g>
+    </g>
+    <g id="pixel-tile-169">
+      <g>
+        <g id="square-76" data-name="square">
+          <rect class="cls-3" x="380.49" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-77" data-name="square">
+          <rect class="cls-3" x="417.78" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-78" data-name="square">
+          <rect class="cls-3" x="455.07" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-79" data-name="square">
+          <rect class="cls-3" x="529.65" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-80" data-name="square">
+          <rect class="cls-5" x="380.49" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-81" data-name="square">
+          <rect class="cls-3" x="492.36" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-82" data-name="square">
+          <rect class="cls-6" x="417.78" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-83" data-name="square">
+          <rect class="cls-3" x="455.07" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-84" data-name="square">
+          <rect class="cls-5" x="492.36" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-85" data-name="square">
+          <rect class="cls-6" x="529.65" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-86" data-name="square">
+          <rect class="cls-3" x="380.49" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-87" data-name="square">
+          <rect class="cls-3" x="417.78" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-88" data-name="square">
+          <rect class="cls-2" x="455.07" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-89" data-name="square">
+          <rect class="cls-3" x="492.36" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-90" data-name="square">
+          <rect class="cls-3" x="529.65" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-91" data-name="square">
+          <rect class="cls-3" x="380.49" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-92" data-name="square">
+          <rect class="cls-4" x="417.78" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-93" data-name="square">
+          <rect class="cls-3" x="455.07" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-94" data-name="square">
+          <rect class="cls-4" x="492.36" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-95" data-name="square">
+          <rect class="cls-3" x="529.65" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-96" data-name="square">
+          <rect class="cls-3" x="380.49" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-97" data-name="square">
+          <rect class="cls-4" x="417.78" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-98" data-name="square">
+          <rect class="cls-4" x="455.07" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-99" data-name="square">
+          <rect class="cls-4" x="492.36" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-100" data-name="square">
+          <rect class="cls-3" x="529.65" y="529.65" width="37.29" height="37.29"/>
+        </g>
+      </g>
+    </g>
+    <g id="pixel-tile-168">
+      <g>
+        <g id="square-101" data-name="square">
+          <rect class="cls-1" x="190.25" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-102" data-name="square">
+          <rect class="cls-1" x="227.54" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-103" data-name="square">
+          <rect class="cls-1" x="264.82" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-104" data-name="square">
+          <rect class="cls-1" x="339.4" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-105" data-name="square">
+          <rect class="cls-1" x="190.25" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-106" data-name="square">
+          <rect class="cls-1" x="302.11" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-107" data-name="square">
+          <rect class="cls-6" x="227.54" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-108" data-name="square">
+          <rect class="cls-1" x="264.82" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-109" data-name="square">
+          <rect class="cls-6" x="302.11" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-110" data-name="square">
+          <rect class="cls-1" x="339.4" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-111" data-name="square">
+          <rect class="cls-1" x="190.25" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-112" data-name="square">
+          <rect class="cls-1" x="227.54" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-113" data-name="square">
+          <rect class="cls-4" x="264.82" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-114" data-name="square">
+          <rect class="cls-1" x="302.11" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-115" data-name="square">
+          <rect class="cls-1" x="339.4" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-116" data-name="square">
+          <rect class="cls-1" x="190.25" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-117" data-name="square">
+          <rect class="cls-3" x="227.54" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-118" data-name="square">
+          <rect class="cls-3" x="264.82" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-119" data-name="square">
+          <rect class="cls-3" x="302.11" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-120" data-name="square">
+          <rect class="cls-1" x="339.4" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-121" data-name="square">
+          <rect class="cls-1" x="190.25" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-122" data-name="square">
+          <rect class="cls-3" x="227.54" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-123" data-name="square">
+          <rect class="cls-1" x="264.82" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-124" data-name="square">
+          <rect class="cls-3" x="302.11" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-125" data-name="square">
+          <rect class="cls-1" x="339.4" y="529.65" width="37.29" height="37.29"/>
+        </g>
+      </g>
+    </g>
+    <g id="pixel-tile-167">
+      <g>
+        <g id="square-126" data-name="square">
+          <rect class="cls-2" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-127" data-name="square">
+          <rect class="cls-3" x="37.29" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-128" data-name="square">
+          <rect class="cls-2" x="74.58" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-129" data-name="square">
+          <rect class="cls-2" x="149.15" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-130" data-name="square">
+          <rect class="cls-4" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-131" data-name="square">
+          <rect class="cls-3" x="111.87" y="380.49" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-132" data-name="square">
+          <rect class="cls-2" x="37.29" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-133" data-name="square">
+          <rect class="cls-5" x="74.58" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-134" data-name="square">
+          <rect class="cls-2" x="111.87" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-135" data-name="square">
+          <rect class="cls-4" x="149.15" y="417.78" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-136" data-name="square">
+          <rect class="cls-4" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-137" data-name="square">
+          <rect class="cls-4" x="37.29" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-138" data-name="square">
+          <rect class="cls-4" x="74.58" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-139" data-name="square">
+          <rect class="cls-4" x="111.87" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-140" data-name="square">
+          <rect class="cls-4" x="149.15" y="455.07" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-141" data-name="square">
+          <rect class="cls-4" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-142" data-name="square">
+          <rect class="cls-3" x="37.29" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-143" data-name="square">
+          <rect class="cls-3" x="74.58" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-144" data-name="square">
+          <rect class="cls-3" x="111.87" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-145" data-name="square">
+          <rect class="cls-4" x="149.15" y="492.36" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-146" data-name="square">
+          <rect class="cls-4" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-147" data-name="square">
+          <rect class="cls-4" x="37.29" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-148" data-name="square">
+          <rect class="cls-4" x="74.58" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-149" data-name="square">
+          <rect class="cls-4" x="111.87" y="529.65" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-150" data-name="square">
+          <rect class="cls-4" x="149.15" y="529.65" width="37.29" height="37.29"/>
+        </g>
+      </g>
+    </g>
+    <g id="pixel-tile-166">
+      <g>
+        <g id="square-151" data-name="square">
+          <rect class="cls-5" x="380.49" y="190.25" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-152" data-name="square">
+          <rect class="cls-5" x="417.78" y="190.25" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-153" data-name="square">
+          <rect class="cls-5" x="455.07" y="190.25" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-154" data-name="square">
+          <rect class="cls-5" x="529.65" y="190.25" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-155" data-name="square">
+          <rect class="cls-5" x="380.49" y="227.54" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-156" data-name="square">
+          <rect class="cls-5" x="492.36" y="190.25" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-157" data-name="square">
+          <rect class="cls-2" x="417.78" y="227.54" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-158" data-name="square">
+          <rect class="cls-2" x="455.07" y="227.54" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-159" data-name="square">
+          <rect class="cls-2" x="492.36" y="227.54" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-160" data-name="square">
+          <rect class="cls-5" x="529.65" y="227.54" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-161" data-name="square">
+          <rect class="cls-5" x="380.49" y="264.82" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-162" data-name="square">
+          <rect class="cls-6" x="417.78" y="264.82" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-163" data-name="square">
+          <rect class="cls-2" x="455.07" y="264.82" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-164" data-name="square">
+          <rect class="cls-6" x="492.36" y="264.82" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-165" data-name="square">
+          <rect class="cls-5" x="529.65" y="264.82" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-166" data-name="square">
+          <rect class="cls-2" x="380.49" y="302.11" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-167" data-name="square">
+          <rect class="cls-2" x="417.78" y="302.11" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-168" data-name="square">
+          <rect class="cls-4" x="455.07" y="302.11" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-169" data-name="square">
+          <rect class="cls-2" x="492.36" y="302.11" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-170" data-name="square">
+          <rect class="cls-2" x="529.65" y="302.11" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-171" data-name="square">
+          <rect class="cls-2" x="380.49" y="339.4" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-172" data-name="square">
+          <rect class="cls-6" x="417.78" y="339.4" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-173" data-name="square">
+          <rect class="cls-6" x="455.07" y="339.4" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-174" data-name="square">
+          <rect class="cls-6" x="492.36" y="339.4" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-175" data-name="square">
+          <rect class="cls-2" x="529.65" y="339.4" width="37.29" height="37.29"/>
+        </g>
+      </g>
+    </g>
+    <g id="pixel-tile-165">
+      <g>
+        <g id="square-176" data-name="square">
+          <rect class="cls-1" y="0" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-177" data-name="square">
+          <rect class="cls-1" x="37.29" y="0" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-178" data-name="square">
+          <rect class="cls-1" x="74.58" y="0" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-179" data-name="square">
+          <rect class="cls-1" x="149.15" y="0" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-180" data-name="square">
+          <rect class="cls-4" y="37.29" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-181" data-name="square">
+          <rect class="cls-1" x="111.87" y="0" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-182" data-name="square">
+          <rect class="cls-4" x="37.29" y="37.29" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-183" data-name="square">
+          <rect class="cls-2" x="74.58" y="37.29" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-184" data-name="square">
+          <rect class="cls-4" x="111.87" y="37.29" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-185" data-name="square">
+          <rect class="cls-4" x="149.15" y="37.29" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-186" data-name="square">
+          <rect class="cls-6" y="74.58" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-187" data-name="square">
+          <rect class="cls-4" x="37.29" y="74.58" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-188" data-name="square">
+          <rect class="cls-2" x="74.58" y="74.58" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-189" data-name="square">
+          <rect class="cls-4" x="111.87" y="74.58" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-190" data-name="square">
+          <rect class="cls-6" x="149.15" y="74.58" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-191" data-name="square">
+          <rect class="cls-4" y="111.87" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-192" data-name="square">
+          <rect class="cls-4" x="37.29" y="111.87" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-193" data-name="square">
+          <rect class="cls-3" x="74.58" y="111.87" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-194" data-name="square">
+          <rect class="cls-4" x="111.87" y="111.87" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-195" data-name="square">
+          <rect class="cls-4" x="149.15" y="111.87" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-196" data-name="square">
+          <rect class="cls-2" y="149.15" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-197" data-name="square">
+          <rect class="cls-3" x="37.29" y="149.15" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-198" data-name="square">
+          <rect class="cls-3" x="74.58" y="149.15" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-199" data-name="square">
+          <rect class="cls-3" x="111.87" y="149.15" width="37.29" height="37.29"/>
+        </g>
+        <g id="square-200" data-name="square">
+          <rect class="cls-2" x="149.15" y="149.15" width="37.29" height="37.29"/>
+        </g>
+      </g>
+    </g>
+    <g id="pixel-tile-141">
+      <rect class="cls-5" y="190.25" width="186.44" height="186.44"/>
+      <path class="cls-6" d="M0,190.25v186.44h186.44v-186.44H0ZM149.15,264.82h-37.29v37.29h37.29v37.29H37.29v-37.29h37.29v-37.29h-37.29v-37.29h37.29v37.29h37.29v-37.29h37.29v37.29Z"/>
+    </g>
+  </g>
+</svg>
