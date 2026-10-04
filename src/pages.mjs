@@ -53,7 +53,7 @@ function storyCard(w, i) {
       <p class="story__a">${esc(w.cardTitle)}</p>
       <div class="story__foot">
         <span class="story__teaser mono">${esc(w.teaser)}</span>
-        <span class="story__cta">Read the story <span class="story__go" aria-hidden="true">${arrow}</span></span>
+        <span class="story__cta"><span class="story__go" aria-hidden="true">${arrow}</span></span>
       </div>
     </a>
   </li>`;
@@ -84,7 +84,7 @@ function archiveStory() {
       </div>
       <div class="story__foot">
         <span class="story__teaser mono">14 projects · 2014–2020</span>
-        <span class="story__cta">Browse the archive <span class="story__go" aria-hidden="true">${arrow}</span></span>
+        <span class="story__cta"><span class="story__go" aria-hidden="true">${arrow}</span></span>
       </div>
     </a>
   </li>`;
