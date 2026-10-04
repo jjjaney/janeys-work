@@ -9,9 +9,11 @@ import { esc, todo, figure, pixel, pixelRule, arrow, external } from './lib.mjs'
 // Shared bits
 // ---------------------------------------------------------------------------
 
-const eyebrow = (n, label) => `<p class="eyebrow mono"><span class="eyebrow__n">${n}</span>${esc(label)}</p>`;
+const hues = ['', 'orange', 'green', 'lilac', 'gold', 'sky'];
+const hue = (label) => hues[[...label].reduce((a, c) => a + c.charCodeAt(0), 0) % hues.length];
+const eyebrow = (n, label) => `<p class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}"><span class="eyebrow__n">${n}</span>${esc(label)}</p>`;
 
-const eyebrowSpan = (n, label) => `<span class="eyebrow mono"><span class="eyebrow__n">${n}</span>${esc(label)}</span>`;
+const eyebrowSpan = (n, label) => `<span class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}"><span class="eyebrow__n">${n}</span>${esc(label)}</span>`;
 
 const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
 
@@ -97,7 +99,14 @@ export function home() {
       </div>
     </div>
     <div class="hero__art" data-pixel-play>
-      ${pixel('pixel-composition-16', { palette: 'brand', label: 'Pixel-art composition of colored square tiles' })}
+      <div class="confetti" aria-hidden="true">
+        <i style="--c:var(--orange);top:2%;left:-4%;--s:18px"></i>
+        <i style="--c:var(--lilac);top:-5%;left:20%;--s:12px;--d:-2s"></i>
+        <i style="--c:var(--gold);top:40%;right:-6%;--s:16px;--d:-1s"></i>
+        <i style="--c:var(--sky);bottom:12%;left:-5%;--s:20px;--d:-3s"></i>
+        <i style="--c:var(--green);top:-3%;right:8%;--s:10px;--d:-4s"></i>
+      </div>
+      ${pixel('pixel-composition-16', { label: 'Pixel-art composition of colored square tiles' })}
     </div>
   </div>
   <div class="wrap">

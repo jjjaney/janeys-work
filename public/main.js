@@ -41,6 +41,30 @@
       });
     }
 
+    // Twinkle: now and then a tile flips to another color from the same art.
+    if (!reduce && rects.length) {
+      const palette = [...new Set(rects.map((r) => r.getAttribute('fill')))];
+      let visible = false;
+      new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(svg);
+      setInterval(() => {
+        if (!visible || document.hidden) return;
+        for (let k = 0; k < 2; k++) {
+          const r = rects[Math.floor(Math.random() * rects.length)];
+          if (r.dataset.twinkling) continue;
+          const was = r.getAttribute('fill');
+          const next = palette.filter((c) => c !== was)[Math.floor(Math.random() * (palette.length - 1))];
+          if (!next) continue;
+          r.dataset.twinkling = '1';
+          r.setAttribute('fill', next);
+          r.setAttribute('stroke', next);
+          setTimeout(() => {
+            if (r.getAttribute('fill') === next) (r.setAttribute('fill', was), r.setAttribute('stroke', was));
+            delete r.dataset.twinkling;
+          }, 1400);
+        }
+      }, 900);
+    }
+
     if (!document.body.classList.contains('page-home')) return;
     const btn = document.createElement('button');
     btn.type = 'button';

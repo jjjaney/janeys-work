@@ -4,8 +4,8 @@ import { esc } from './lib.mjs';
 function logo() {
   // 2×2 pixel mark in the site palette.
   return `<svg class="logo-mark" viewBox="0 0 2 2" aria-hidden="true" shape-rendering="crispEdges">
-    <rect width="1" height="1" fill="var(--accent)"/><rect x="1" width="1" height="1" fill="var(--highlight)"/>
-    <rect y="1" width="1" height="1" fill="var(--ink)"/><rect x="1" y="1" width="1" height="1" fill="var(--surface)"/></svg>`;
+    <rect width="1" height="1" fill="var(--orange)"/><rect x="1" width="1" height="1" fill="var(--accent)"/>
+    <rect y="1" width="1" height="1" fill="var(--lilac)"/><rect x="1" y="1" width="1" height="1" fill="var(--green)"/></svg>`;
 }
 
 export function ticker() {

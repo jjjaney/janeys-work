@@ -36,8 +36,9 @@ export function figure(image, slug) {
 // Pixel art
 // ---------------------------------------------------------------------------
 
-// The original pixel-art palette, mapped onto tints of the site palette.
-// Used where the art should sit quietly in the brand (the hero).
+// Optional: map the pixel-art palette onto the site's core colors with
+// pixel(name, { palette: 'brand' }). Not used by default; the art keeps its
+// original colors, which are part of the site palette.
 const BRAND_MAP = {
   '#ff7b4d': '#4f33cc', // orange → accent purple
   '#cfa2ed': '#a99bea', // lilac → purple tint
@@ -67,7 +68,7 @@ export function pixel(name, { palette = 'original', label = '', className = '', 
       classes[cls] = palette === 'brand' ? BRAND_MAP[c] ?? c : c;
     }
     const viewBox = raw.match(/viewBox="([^"]+)"/)[1];
-    const [, , w, h] = viewBox.split(/\s+/).map(Number);
+    const [, , , h] = viewBox.split(/\s+/).map(Number);
     let body = raw
       .replace(/<\?xml[^>]*>/, '')
       .replace(/<defs>[\s\S]*?<\/defs>/, '')
@@ -75,17 +76,16 @@ export function pixel(name, { palette = 'original', label = '', className = '', 
       .replace(/<\/svg>\s*$/, '')
       .replace(/\s(id|data-name)="[^"]*"/g, '')
       // stroke in the same color hides anti-aliasing seams between tiles
-      .replace(/class="(cls-\d+)"/g, (_, c) => `fill="${classes[c]}" stroke="${classes[c]}" stroke-width="0.75"`)
+      .replace(/class="(cls-\d+)"/g, (_, c) => `fill="${classes[c]}" stroke="${classes[c]}" stroke-width="1.1"`)
       .replace(/<g>\s*/g, '')
       .replace(/<\/g>\s*/g, '')
       .replace(/\s+/g, ' ');
-    // Stagger: diagonal wave from top-left, plus a little deterministic noise.
+    // Stagger: pixels pop in a scattered order, with a gentle top-to-bottom drift.
     let i = 0;
     body = body.replace(/<(rect|path)\s([^>]*?)\/>/g, (m, tag, attrs) => {
-      const x = Number((attrs.match(/\sx="([\d.]+)"/) || [0, 0])[1]);
       const y = Number((attrs.match(/\sy="([\d.]+)"/) || [0, 0])[1]);
-      const noise = ((i++ * 37) % 11) / 11;
-      const d = ((x / w + y / h) * 0.6 + noise * 0.25).toFixed(2);
+      const scatter = ((i++ * 7919) % 101) / 101; // deterministic pseudo-random 0–1
+      const d = (scatter * 0.9 + (y / h) * 0.25).toFixed(2);
       return `<${tag} ${attrs.trim()} style="--d:${d}s"/>`;
     });
     svg = { body, viewBox };
@@ -98,7 +98,7 @@ export function pixel(name, { palette = 'original', label = '', className = '', 
 
 /** A small decorative strip of squares in the site palette. */
 export function pixelRule(count = 12, seed = 1) {
-  const colors = ['var(--accent)', 'var(--highlight)', 'var(--bg)', 'var(--ink)', 'var(--accent-tint)', 'transparent', 'var(--accent)'];
+  const colors = ['var(--orange)', 'var(--lilac)', 'var(--green)', 'var(--sky)', 'var(--gold)', 'var(--maroon)', 'var(--paper)', 'var(--paper)'];
   let out = '';
   let r = seed * 9301 + 49297; // tiny deterministic PRNG so builds are stable
   for (let i = 0; i < count; i++) {
