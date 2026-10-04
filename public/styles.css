@@ -228,7 +228,33 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 
 .nav-toggle { display: none; }
 
-/* Theme toggle: tile flip (default) -------------------------------------------
+/* Theme toggle: gradient (default) --------------------------------------------
+   Three pixels the size of the logo pixel: dark → bright in light mode,
+   bright → dark in dark mode. Each flips edge-on in turn (left to right) and
+   switches color at the halfway point of its own flip. */
+.grad-toggle {
+  flex: none; display: inline-grid; place-items: center;
+  height: 44px; padding: 0 4px;
+  background: none; border: 0; cursor: pointer;
+}
+.grad-toggle__row { display: flex; }
+.grad-toggle__row i {
+  display: block; width: 20px; height: 20px; background: var(--c);
+  --flip: 0.36s; --stagger: 0.09s;
+  transition: background-color 0s linear calc(var(--i) * var(--stagger) + var(--flip) / 2);
+}
+.grad-toggle.is-flipping .grad-toggle__row i { animation: flip var(--flip) ease-in-out calc(var(--i) * var(--stagger)) both; }
+/* light: dark → bright */
+.grad-toggle__row i:nth-child(1) { --c: #4f33cc; }
+.grad-toggle__row i:nth-child(2) { --c: #8e6ee0; }
+.grad-toggle__row i:nth-child(3) { --c: #cfa2ed; }
+/* dark: bright → dark */
+:root[data-theme='dark'] .grad-toggle__row i:nth-child(1) { --c: #cfa2ed; }
+:root[data-theme='dark'] .grad-toggle__row i:nth-child(2) { --c: #7a5cc8; }
+:root[data-theme='dark'] .grad-toggle__row i:nth-child(3) { --c: #3d3170; }
+.grad-toggle:hover .grad-toggle__row { outline: 2px solid var(--tint-lilac); outline-offset: 3px; }
+
+/* Theme toggle: tile flip (?toggle=tile) ----------------------------------------
    A 3 × 3 pixel tile: a sun on sky in light mode, a crescent moon with a star
    in dark mode. Each square flips edge-on in a diagonal wave (--i is its
    diagonal, 0–4) and switches color at the halfway point of its own flip. */
@@ -254,9 +280,8 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 :root[data-theme='dark'] .tile-toggle__grid i:nth-child(3) { --c: var(--gold); }
 .tile-toggle:hover .tile-toggle__grid { outline: 2px solid var(--tint-lilac); outline-offset: 3px; }
 
-/* only one switch shows: the tile (default) or, with ?toggle=sun, the slider */
-:root:not([data-toggle='sun']) .sun-toggle,
-:root[data-toggle='sun'] .tile-toggle { display: none; }
+/* only one switch shows: the gradient (default), or ?toggle=tile / ?toggle=sun */
+/* (these sit after the switches' own styles so they always win) */
 
 /* Theme toggle: sun/moon slider (?toggle=sun) ----------------------------------------- */
 .theme-toggle {
@@ -310,60 +335,6 @@ html:not(.js) .theme-toggle { display: none !important; }
   html:not(.js) .site-header__inner { flex-wrap: wrap; }
   html:not(.js) .nav-toggle { display: none; }
 
-/* Theme toggle: tile flip (default) -------------------------------------------
-   A 3 × 3 pixel tile: a sun on sky in light mode, a crescent moon with a star
-   in dark mode. Each square flips edge-on in a diagonal wave (--i is its
-   diagonal, 0–4) and switches color at the halfway point of its own flip. */
-.tile-toggle {
-  flex: none; display: inline-grid; place-items: center;
-  width: 44px; height: 44px; padding: 0;
-  background: none; border: 0; cursor: pointer;
-}
-.tile-toggle__grid { display: grid; grid-template-columns: repeat(3, 10px); grid-template-rows: repeat(3, 10px); }
-.tile-toggle__grid i {
-  display: block; background: var(--c);
-  --flip: 0.36s; --stagger: 0.06s;
-  transition: background-color 0s linear calc(var(--i) * var(--stagger) + var(--flip) / 2);
-}
-.tile-toggle.is-flipping .tile-toggle__grid i { animation: flip var(--flip) ease-in-out calc(var(--i) * var(--stagger)) both; }
-/* light: a pixel sun on sky */
-.tile-toggle__grid i:nth-child(odd) { --c: var(--sky); }
-.tile-toggle__grid i:nth-child(even) { --c: var(--orange); }
-.tile-toggle__grid i:nth-child(5) { --c: var(--gold); }
-/* dark: a crescent moon, with a gold star in the top-right corner */
-:root[data-theme='dark'] .tile-toggle__grid i { --c: #2f2552; }
-:root[data-theme='dark'] .tile-toggle__grid i:is(:nth-child(1), :nth-child(2), :nth-child(4), :nth-child(7), :nth-child(8)) { --c: var(--lilac); }
-:root[data-theme='dark'] .tile-toggle__grid i:nth-child(3) { --c: var(--gold); }
-.tile-toggle:hover .tile-toggle__grid { outline: 2px solid var(--tint-lilac); outline-offset: 3px; }
-
-/* only one switch shows: the tile (default) or, with ?toggle=sun, the slider */
-:root:not([data-toggle='sun']) .sun-toggle,
-:root[data-toggle='sun'] .tile-toggle { display: none; }
-
-/* Theme toggle: sun/moon slider (?toggle=sun) ----------------------------------------- */
-.theme-toggle {
-  flex: none; display: inline-grid; place-items: center;
-  width: 64px; height: 44px; padding: 0 4px;
-  background: none; border: 0; cursor: pointer;
-}
-.theme-toggle svg { width: 56px; height: 28px; overflow: visible; }
-.tt-track { fill: var(--tint-sky); transition: fill 0.3s steps(3, end); }
-.tt-clouds { fill: #fffdf8; transition: opacity 0.3s steps(3, end); }
-.tt-stars { fill: var(--gold); opacity: 0; transition: opacity 0.3s steps(3, end); }
-.tt-knob { transform: translate(1px, 1px); transition: transform 0.36s steps(4, end); }
-.tt-sun { fill: var(--orange); transition: opacity 0.2s steps(2, end); }
-.tt-sun-core { fill: var(--gold); }
-.tt-moon { fill: var(--lilac); opacity: 0; transition: opacity 0.2s steps(2, end); }
-.tt-crater { fill: #a77fd6; }
-.theme-toggle:hover .tt-track { fill: var(--sky); }
-:root[data-theme='dark'] .tt-track { fill: #2f2552; }
-:root[data-theme='dark'] .theme-toggle:hover .tt-track { fill: #3b2f68; }
-:root[data-theme='dark'] .tt-clouds { opacity: 0; }
-:root[data-theme='dark'] .tt-stars { opacity: 1; }
-:root[data-theme='dark'] .tt-knob { transform: translate(9px, 1px); }
-:root[data-theme='dark'] .tt-sun { opacity: 0; }
-:root[data-theme='dark'] .tt-moon { opacity: 1; }
-html:not(.js) .theme-toggle { display: none !important; }
   html:not(.js) .site-nav ul { flex-direction: row; flex-wrap: wrap; }
   html:not(.js) .site-nav a { font-size: 1rem; border: 0; padding: 0.4rem 0.6rem; }
 }
@@ -422,6 +393,14 @@ html:not(.js) .theme-toggle { display: none !important; }
   /* phones: the art runs edge to edge */
   .hero__art { justify-self: stretch; margin-inline: calc(var(--gutter) * -1); width: calc(100% + var(--gutter) * 2); max-width: none; }
 }
+
+/* Only one theme switch shows: the gradient (default), or ?toggle=tile / ?toggle=sun */
+:root .theme-toggle { display: none; }
+:root:not([data-toggle]) .grad-toggle,
+:root[data-toggle='gradient'] .grad-toggle,
+:root[data-toggle='tile'] .tile-toggle,
+:root[data-toggle='sun'] .sun-toggle { display: inline-grid; }
+html:not(.js) .theme-toggle { display: none !important; }
 
 /* Floating pixels around page headers --------------------------------------- */
 .hero, .case__head, .page-head--art { position: relative; isolation: isolate; overflow-x: clip; }

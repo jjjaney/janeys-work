@@ -73,7 +73,7 @@ Copy one of the objects in `src/content/work.mjs`, give it a new `slug`, and pic
 
 - **Palette:** cream `#F6F3EC` (background), gray-blue `#DBE0E6` (surfaces), purple `#4F33CC` (accent and links), red `#CC3333` (highlights), charcoal `#4F4F4F` (text).
 - **Type:** Bricolage Grotesque (headings), Instrument Sans (body), JetBrains Mono (labels). These load from Google Fonts.
-- **Dark mode:** follows the visitor's system setting until they use the switch in the header, then remembers their choice. The switch is a 3×3 pixel tile (a sun in light mode, a crescent moon in dark mode) whose squares flip over in a diagonal wave. Add `?toggle=sun` to a page address to preview the earlier sun/moon slider; its code is `themeToggle()` in `src/layout.mjs`.
+- **Dark mode:** follows the visitor's system setting until they use the switch in the header, then remembers their choice. The switch is three pixels the size of the logo pixel: dark → bright in light mode, bright → dark in dark mode, flipping over left to right when tapped (`gradientToggle()` in `src/layout.mjs`). Earlier switches can be previewed with `?toggle=tile` (the 3×3 sun/moon tile) or `?toggle=sun` (the sun/moon slider).
 - **Pixel art:** the hero uses a composition recolored to the site palette. Case studies and other accents keep the original colors. Tiles assemble when they scroll into view and pop on hover, and the hero has a "Shuffle the tiles" button. All motion is turned off for visitors who prefer reduced motion.
 
 ### Header art versions

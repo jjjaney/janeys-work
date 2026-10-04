@@ -9,7 +9,17 @@ function logo() {
 
 // Pixel-art light/dark switch: a pixel sun or moon slides along a track of
 // pixel clouds (light) or stars (dark). Grid is 16 × 8 pixels.
-// Tile-flip switch (default): a 3 × 3 pixel tile showing a sun (light) or a
+// Gradient switch (default): three pixels, each the size of the logo pixel.
+// Light mode steps from dark to bright; dark mode steps from bright to dark.
+// On toggle they flip over left to right and land on the new gradient.
+// Colors are set in styles.css (.grad-toggle).
+function gradientToggle() {
+  return `<button class="theme-toggle grad-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" title="Toggle dark mode">
+    <span class="grad-toggle__row" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i></span>
+  </button>`;
+}
+
+// Tile-flip switch (preview with ?toggle=tile): a 3 × 3 pixel tile showing a sun (light) or a
 // crescent moon (dark). On toggle the squares flip over in a diagonal wave and
 // land on their new colors, like the tiles in the header art.
 // Square colors per theme are set in styles.css (.tile-toggle).
@@ -84,8 +94,8 @@ export function layout({ path, title, description = site.description, body, page
     var pool = ['1', '2', '3'].filter(function (n) { return n !== last; });
     var art = forced || pool[Math.floor(Math.random() * pool.length)];
     d.dataset.art = art;
-    // ?toggle=sun previews the earlier sun/moon switch
-    d.dataset.toggle = /[?&]toggle=sun/.test(location.search) ? 'sun' : 'tile';
+    // ?toggle=tile or ?toggle=sun previews an earlier switch
+    d.dataset.toggle = (location.search.match(/[?&]toggle=(tile|sun)/) || [])[1] || 'gradient';
     if (!forced) { try { localStorage.setItem('pixelArt', art); } catch (e) {} }
     var m = document.querySelector('meta[name="theme-color"]');
     if (m) m.content = t === 'dark' ? '#1C1834' : '#F6F3EC';
@@ -106,6 +116,7 @@ export function layout({ path, title, description = site.description, body, page
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>${navLinks}</ul>
     </nav>
+    ${gradientToggle()}
     ${tileToggle()}
     ${themeToggle()}
     <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span class="nav-toggle__box" aria-hidden="true"><i></i><i></i></span><span class="nav-toggle__label">Menu</span></button>
