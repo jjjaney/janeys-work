@@ -63,6 +63,10 @@ Each case study's lead screenshot (and the Amplify screenshot on Ally.Guide) is 
 1. Save the image in `public/images/work/<case-study-slug>/`, for example `public/images/work/github-sponsors/landing-before-after.png`.
 2. In `src/content/work.mjs`, find the highlight and set `src: '/images/work/github-sponsors/landing-before-after.png'`. Keep the `alt` text accurate.
 
+### Adding company logos to Kind words
+
+Each quote on the home page shows its company's logo beside it, swapping as the quotes change. Save the official logo files (SVG is best, from each company's press or brand page) in `public/images/logos/`, then set `logo` for that quote in `src/site.mjs`, for example `logo: '/images/logos/fis.svg'`. If a logo is dark and disappears in dark mode, add a light version as `logoDark`. Until a logo is added, the company name shows in its place.
+
 ### Adding a case study
 
 Copy one of the objects in `src/content/work.mjs`, give it a new `slug`, and pick one of the pixel compositions for `art`. It shows up on the home page, the Work page and gets its own page automatically.

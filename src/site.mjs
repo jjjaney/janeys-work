@@ -61,21 +61,35 @@ export const companies = [
   { name: 'Rockwell Collins', url: 'https://www.rtx.com/collinsaerospace' },
 ];
 
+// Each quote shows its company's logo beside it on the home page.
+// TODO(Janey): save each official logo (SVG or PNG from the company's press or
+// brand page) in /public/images/logos/ and set `logo` to its path, for example
+// logo: '/images/logos/fis.svg'. If the logo is dark and disappears in dark
+// mode, add a light version as `logoDark`. Until then the company name shows.
 export const testimonials = [
   {
     quote: 'You elevate any content that you touch.',
     context: 'Content strategy & UX writing',
     org: 'FIS, Design Systems',
+    company: 'FIS',
+    logo: '',
+    logoDark: '',
   },
   {
     quote: 'You are a master at your craft.',
     context: 'Storytelling & member content',
     org: 'The Browser Company',
+    company: 'The Browser Company',
+    logo: '',
+    logoDark: '',
   },
   {
     quote:
       "You're totally rocking it, and I'm so glad to have your copy/linguistic expertise on the project!!",
     context: 'UX writing, translations & localization',
     org: 'New_ Public, Public Spaces Incubator',
+    company: 'New_ Public',
+    logo: '',
+    logoDark: '',
   },
 ];

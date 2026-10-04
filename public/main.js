@@ -301,6 +301,7 @@
   // advance slowly on their own until someone interacts (never with reduced motion).
   document.querySelectorAll('[data-pull]').forEach((pull) => {
     const items = [...pull.querySelectorAll('.pull__item')];
+    const logos = [...pull.querySelectorAll('.pull__logo')];
     const dots = [...pull.querySelectorAll('.pull__dots button')];
     const stage = pull.querySelector('.pull__stage');
     let current = 0;
@@ -311,6 +312,7 @@
         it.classList.toggle('is-active', n === current);
         it.setAttribute('aria-hidden', n === current ? 'false' : 'true');
       });
+      logos.forEach((l, n) => l.classList.toggle('is-active', n === current));
       dots.forEach((d, n) => d.setAttribute('aria-pressed', String(n === current)));
     };
     const stop = () => { clearInterval(timer); timer = null; };

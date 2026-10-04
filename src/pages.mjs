@@ -225,6 +225,17 @@ function quotes() {
             )
             .join('')}
         </div>
+        <div class="pull__logos" aria-hidden="true">
+          ${testimonials
+            .map(
+              (t, i) => `<div class="pull__logo${i === 0 ? ' is-active' : ''}${t.logo ? '' : ' pull__logo--name'}">${
+                t.logo
+                  ? `<img src="${esc(t.logo)}" alt="" class="pull__logo-light">${t.logoDark ? `<img src="${esc(t.logoDark)}" alt="" class="pull__logo-dark">` : ''}`
+                  : `<span>${esc(t.company)}</span>`
+              }</div>`
+            )
+            .join('')}
+        </div>
         <div class="pull__dots" role="group" aria-label="Choose a quote">
           ${testimonials
             .map(
@@ -233,6 +244,7 @@ function quotes() {
             .join('')}
         </div>
       </div>
+      ${testimonials.some((t) => !t.logo) ? todo('Add each company’s logo next to its quote: save the files in <code>/public/images/logos/</code> and set <code>logo</code> for each quote in <code>src/site.mjs</code>. Until then the company name shows in its place.') : ''}
     </div>
   </section>`;
 }

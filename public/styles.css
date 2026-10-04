@@ -730,7 +730,25 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Quotes ------------------------------------------------------------------- */
 .quotes { background: var(--tint-lilac); }
 /* One big pull quote at a time, with a pixel per quote to switch */
-.pull { max-width: 72rem; }
+.pull { display: grid; grid-template-columns: minmax(0, 1fr) clamp(180px, 18vw, 260px); grid-template-areas: 'stage logo' 'dots logo'; column-gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.pull__stage { grid-area: stage; max-width: 62rem; }
+.pull__dots { grid-area: dots; }
+/* the company's logo beside its quote, swapping with it */
+.pull__logos { grid-area: logo; display: grid; align-self: center; }
+.pull__logo { grid-area: 1 / 1; display: grid; place-items: center; aspect-ratio: 1; padding: 18%; background: var(--paper); opacity: 0; visibility: hidden; transition: opacity 0.6s var(--ease), visibility 0s 0.6s; }
+.pull__logo.is-active { opacity: 1; visibility: visible; transition: opacity 0.6s var(--ease); }
+html:not(.js) .pull__logo:first-child { opacity: 1; visibility: visible; }
+.pull__logo img { width: 100%; height: 100%; object-fit: contain; }
+.pull__logo-dark, :root[data-theme='dark'] .pull__logo:has(.pull__logo-dark) .pull__logo-light { display: none; }
+:root[data-theme='dark'] .pull__logo-dark { display: block; }
+.pull__logo--name span { font: 700 clamp(1.4rem, 1rem + 1.4vw, 2.2rem)/1.05 var(--display); letter-spacing: -0.02em; color: var(--accent); text-align: center; text-wrap: balance; }
+@media (max-width: 760px) {
+  .pull { grid-template-columns: 1fr; grid-template-areas: 'logo' 'stage' 'dots'; }
+  .pull__logos { justify-self: start; width: 120px; margin-bottom: 1.5rem; }
+  .pull__logo { padding: 14%; }
+  .pull__logo--name span { font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) { .pull__logo, .pull__logo.is-active { transition: none; } }
 .js .pull__stage { display: grid; }
 .js .pull__item { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity 0.6s var(--ease), visibility 0s 0.6s; }
 .js .pull__item.is-active { opacity: 1; visibility: visible; transition: opacity 0.6s var(--ease); }
