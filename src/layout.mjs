@@ -46,6 +46,8 @@ function themeToggle() {
   </button>`;
 }
 
+// Not used right now (removed from the home page). To bring the marquee back,
+// import ticker in src/pages.mjs and put ${ticker()} where it should appear.
 export function ticker() {
   const items = disciplines.map((d) => `<span>${esc(d)}</span>`).join('<i aria-hidden="true">■</i>');
   return `<div class="ticker" aria-label="Disciplines: ${esc(disciplines.join(', '))}">

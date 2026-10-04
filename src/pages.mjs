@@ -1,5 +1,4 @@
 import { site, companies, testimonials } from './site.mjs';
-import { ticker } from './layout.mjs';
 import { work } from './content/work.mjs';
 import { services, engagement, faqs } from './content/services.mjs';
 import { bio, principles, experience, funFacts } from './content/about.mjs';
@@ -263,8 +262,6 @@ export function home() {
     ${storyGrid()}
   </div>
 </section>
-
-${ticker()}
 
 <section class="section section--surface section--stairs" aria-labelledby="how-h">
   <div class="wrap">
