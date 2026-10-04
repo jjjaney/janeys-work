@@ -566,12 +566,15 @@ html:not(.js) .theme-toggle { display: none !important; }
 .story__foot { margin-top: auto; padding-top: 0.75rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; }
 .story__teaser { padding: 0.35rem 0.6rem; background: var(--paper); color: var(--ink); }
 .story__cta { display: inline-flex; align-items: center; margin-left: auto; color: var(--accent); }
+/* No arrow until you point at a card: then a ghost arrow (just the line, no
+   fill) fades in and slides into place. Keyboard focus shows it too. */
 .story__go {
   display: inline-grid; place-items: center; width: 2rem; height: 2rem;
-  background: var(--accent); color: var(--on-accent);
-  transition: transform 0.25s var(--ease);
+  color: var(--accent); opacity: 0; transform: translateX(-8px);
+  transition: opacity 0.25s var(--ease), transform 0.3s var(--ease);
 }
-.story__link:hover .story__go { transform: translateX(4px); }
+.story__go .arrow { width: 1.4rem; height: 1.4rem; }
+.story__link:hover .story__go, .story__link:focus-visible .story__go { opacity: 1; transform: none; }
 .story__link:hover .arrow { transform: none; }
 
 /* archive: a slim row */
