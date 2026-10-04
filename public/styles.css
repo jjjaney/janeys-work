@@ -159,18 +159,12 @@ code { font-family: var(--mono); font-size: 0.85em; background: var(--code-bg); 
 /* Eyebrow labels ------------------------------------------------------------ */
 .eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--ink); margin: 0 0 1rem; }
 .eyebrow a { color: inherit; }
-.eyebrow__n {
-  display: inline-grid; place-items: center;
-  min-width: 2.1em; height: 2.1em; padding: 0 0.3em;
-  background: var(--accent); color: var(--on-accent);
-  font-weight: 500;
-}
+.eyebrow__n { flex: none; width: 0.9em; height: 0.9em; background: var(--accent); }
 .eyebrow--orange .eyebrow__n { background: var(--orange); color: var(--on-bright); }
 .eyebrow--green .eyebrow__n { background: var(--green); color: var(--on-accent); }
 .eyebrow--lilac .eyebrow__n { background: var(--lilac); color: var(--on-bright); }
 .eyebrow--gold .eyebrow__n { background: var(--gold); color: var(--on-bright); }
 .eyebrow--sky .eyebrow__n { background: var(--sky); color: var(--on-bright); }
-.dot { width: 10px; height: 10px; background: var(--orange); display: inline-block; flex: none; box-shadow: 12px 0 0 var(--lilac), 24px 0 0 var(--green); margin-right: 24px; }
 
 /* Buttons: flat, with a pixel that pops out on hover ------------------------ */
 .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; align-items: center; }
@@ -451,8 +445,7 @@ html:not(.js) .theme-toggle { display: none; }
 }
 .story__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
 .story__client { display: flex; align-items: center; gap: 0.6rem; margin: 0; color: var(--ink); }
-.story__n { display: inline-grid; place-items: center; min-width: 2em; height: 2em; padding: 0 0.3em; background: var(--hue); color: var(--on-bright); font-weight: 500; }
-.story--mint .story__n { color: var(--on-accent); }
+.story__n { flex: none; width: 0.9em; height: 0.9em; background: var(--hue); }
 .story__mark { width: 25px; height: 35px; flex: none; }
 .story--featured .story__mark { width: 35px; height: 49px; }
 
@@ -513,7 +506,7 @@ html:not(.js) .theme-toggle { display: none; }
 .svc:nth-child(3) { --c: var(--green); }
 .svc:nth-child(4) { --c: var(--gold); }
 .svc:nth-child(5) { --c: var(--sky); }
-.svc h3 { margin: 0.9rem 0 0.5rem; hyphens: manual; }
+.svc h3 { margin: 0 0 0.5rem; hyphens: manual; }
 .svc p { margin: 0; font-size: 0.97rem; }
 .svc__n { color: var(--green); font-weight: 500; }
 
@@ -521,7 +514,7 @@ html:not(.js) .theme-toggle { display: none; }
 .svc-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1.5rem clamp(2rem, 5vw, 5rem); padding-block: clamp(2rem, 1.5rem + 2vw, 3rem); border-top: 1px solid var(--line-strong); scroll-margin-top: 90px; }
 .svc-row:first-child { border-top: 0; padding-top: 0; }
 .svc-row h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem); margin: 0.6rem 0 0.6rem; }
-.svc-row__head .svc__n { display: inline-grid; place-items: center; width: 2.1rem; height: 2.1rem; background: var(--c, var(--orange)); color: var(--on-bright); }
+.svc-row__head .svc__n { display: block; width: 1rem; height: 1rem; background: var(--c, var(--orange)); }
 .svc-row:nth-child(2) { --c: var(--lilac); }
 .svc-row:nth-child(3) { --c: var(--sky); }
 .svc-row:nth-child(4) { --c: var(--gold); }
@@ -660,7 +653,7 @@ html:not(.js) .theme-toggle { display: none; }
 .principles li:nth-child(2) { --c: var(--lilac); }
 .principles li:nth-child(3) { --c: var(--green); }
 .principles li:nth-child(4) { --c: var(--gold); }
-.principles h3 { margin: 0.9rem 0 0.5rem; }
+.principles h3 { margin: 0 0 0.5rem; }
 .principles p { margin: 0; font-size: 0.97rem; }
 
 .xp { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 2rem clamp(2rem, 5vw, 5rem); }

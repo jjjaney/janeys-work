@@ -11,9 +11,10 @@ import { esc, todo, figure, pixel, pixelRule, arrow, external } from './lib.mjs'
 
 const hues = ['', 'orange', 'green', 'lilac', 'gold', 'sky'];
 const hue = (label) => hues[[...label].reduce((a, c) => a + c.charCodeAt(0), 0) % hues.length];
-const eyebrow = (n, label) => `<p class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}"><span class="eyebrow__n">${n}</span>${esc(label)}</p>`;
+// Section labels get a colored pixel, not a number: the sections aren't a sequence.
+const eyebrow = (_n, label) => `<p class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}"><span class="eyebrow__n" aria-hidden="true"></span>${esc(label)}</p>`;
 
-const eyebrowSpan = (n, label) => `<span class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}"><span class="eyebrow__n">${n}</span>${esc(label)}</span>`;
+const eyebrowSpan = (_n, label) => `<span class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}"><span class="eyebrow__n" aria-hidden="true"></span>${esc(label)}</span>`;
 
 const tags = (list) => `<ul class="tags">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
 
@@ -33,7 +34,7 @@ function storyCard(w, i) {
   return `<li class="story story--${w.hue}${i === 0 ? ' story--featured' : ''}">
     <a class="story__link" href="/work/${w.slug}/">
       <div class="story__top">
-        <p class="story__client mono"><span class="story__n">${String(i + 1).padStart(2, '0')}</span>${esc(w.client)}</p>
+        <p class="story__client mono"><span class="story__n" aria-hidden="true"></span>${esc(w.client)}</p>
         ${pixelQuestion(w.badge)}
       </div>
       <h3 class="story__q">${esc(w.hook)}</h3>
@@ -89,7 +90,7 @@ function ctaBand(heading = 'Have a content problem that’s really a systems pro
         <p>Let’s talk about what you’re building.</p>
         <div class="actions"><a class="btn btn--light" href="/contact/">Start a conversation ${arrow}</a></div>
       </div>
-      <div class="cta-band__art">${pixel('pixel-composition-13')}</div>
+      <div class="cta-band__art">${pixel('pixel-4x4')}</div>
     </div>
   </section>`;
 }
@@ -107,7 +108,7 @@ export function home() {
 <section class="hero">
   <div class="wrap hero__inner">
     <div class="hero__copy">
-      <p class="eyebrow mono"><span class="dot" aria-hidden="true"></span>${esc(site.role)}</p>
+      <p class="eyebrow mono">${esc(site.role)}</p>
       <h1 class="hero__title">I design the <span class="hl">systems</span> behind the words.</h1>
       <p class="lede">I’m Janey, a content strategist, content designer and product manager. I’ve led content at FIS, Shopify, GitHub and Carnegie Mellon, building the guidelines, docs and processes that let teams (and their AI tools) get content right at scale.</p>
       <div class="actions">
@@ -121,7 +122,7 @@ export function home() {
   </div>
   <div class="wrap">
     <div class="logos">
-      <p class="mono muted">Content leadership at</p>
+      <p class="mono muted">Content contributions at</p>
       <ul>${companies.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
     </div>
   </div>
@@ -165,7 +166,6 @@ export function home() {
       ${services
         .map(
           (s, i) => `<li class="svc">
-        <span class="svc__n mono">${String(i + 1).padStart(2, '0')}</span>
         <h3>${esc(s.name)}</h3>
         <p>${esc(s.for)}</p>
       </li>`
@@ -253,7 +253,7 @@ export function caseStudy(w, i) {
 
     <section class="case__section" aria-labelledby="work-${w.slug}">
       <h2 id="work-${w.slug}" class="case__h">${eyebrowSpan('02', 'The work')}</h2>
-      <ol class="highlights">
+      <ul class="highlights">
         ${w.highlights
           .map(
             (h) => `<li class="highlight">
@@ -262,7 +262,7 @@ export function caseStudy(w, i) {
         </li>`
           )
           .join('')}
-      </ol>
+      </ul>
     </section>
 
     <section class="case__section" aria-labelledby="out-${w.slug}">
@@ -315,7 +315,7 @@ export function servicesPage() {
         .map(
           (s, i) => `<li class="svc-row" id="${s.id}">
         <div class="svc-row__head">
-          <span class="svc__n mono">${String(i + 1).padStart(2, '0')}</span>
+          <span class="svc__n" aria-hidden="true"></span>
           <h2>${esc(s.name)}</h2>
           <p class="svc-row__for">${esc(s.for)}</p>
         </div>
@@ -405,7 +405,7 @@ export function aboutPage() {
   <div class="wrap">
     <div class="section__head">${eyebrow('01', 'Operating principles')}<h2 id="pr-h">How I think about content</h2></div>
     <ul class="principles">
-      ${principles.map((p, i) => `<li><span class="mono svc__n">${String(i + 1).padStart(2, '0')}</span><h3>${esc(p.title)}</h3><p>${esc(p.body)}</p></li>`).join('')}
+      ${principles.map((p, i) => `<li><h3>${esc(p.title)}</h3><p>${esc(p.body)}</p></li>`).join('')}
     </ul>
     ${todo('These principles were drafted to frame you as a product and systems thinker. Rewrite them in your own voice.')}
   </div>
