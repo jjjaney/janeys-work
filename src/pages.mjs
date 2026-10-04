@@ -60,18 +60,29 @@ function storyCard(w, i) {
 }
 
 // A 7 × 5 pixel "rewind" double chevron (earlier work): for the archive card.
-// The archive card's mark: a pixel file box with colored files peeking out of
-// the top. It has no direction, so it doesn't fight the card's hover arrow.
-const BOX = ['.oo.....', '.ooyy...', '.ooyygg.', 'MMMMMMMM', '.MMMMMM.', '.MM..MM.', '.MMMMMM.'];
-const BOX_COLORS = { o: 'var(--orange)', y: 'var(--gold)', g: 'var(--green)', M: 'var(--maroon)' };
-function pixelBox() {
+// The archive card's mark: a solid pixel clock face with an orange arrow
+// curving back around it (counterclockwise), like turning back the clock.
+const CLOCK = [
+  '.....aaaa.....',
+  '....a.........',
+  '...a...MMMM...',
+  'aaaaa.MMMwMM..',
+  '.aaa.MMMMwMMM.',
+  '..a..MMMMwMMM.',
+  '.....MMMMwwwM.',
+  '.....MMMMMMMM.',
+  '......MMMMMM..',
+  '.......MMMM...',
+];
+const CLOCK_COLORS = { a: 'var(--orange)', w: 'var(--tint)', M: 'var(--maroon)' };
+function pixelClock() {
   let rects = '';
-  BOX.forEach((row, y) =>
+  CLOCK.forEach((row, y) =>
     [...row].forEach((c, x) => {
-      if (BOX_COLORS[c]) rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${BOX_COLORS[c]}"/>`;
+      if (CLOCK_COLORS[c]) rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${CLOCK_COLORS[c]}"/>`;
     })
   );
-  return `<svg class="story__mark story__mark--box" viewBox="0 0 8 7" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+  return `<svg class="story__mark story__mark--clock" viewBox="0 0 14 10" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
 function archiveStory() {
@@ -79,7 +90,7 @@ function archiveStory() {
     <a class="story__link" href="/archive/">
       <div class="story__top">
         <p class="story__client mono"><span class="story__n" aria-hidden="true"></span>The archive · 2020 &amp; earlier</p>
-        ${pixelBox()}
+        ${pixelClock()}
       </div>
       <div class="story__body">
         <h3 class="story__q">What did the work look like before all this?</h3>
@@ -249,7 +260,7 @@ export function home() {
   </div>
   <div class="wrap">
     <div class="logos">
-      <p class="mono muted">Content contributions at</p>
+      <p class="mono muted">Led and contributed content at</p>
       <ul>${companies.map((c) => `<li><a href="${esc(c.url)}">${esc(c.name)}</a></li>`).join('')}</ul>
     </div>
   </div>
