@@ -395,7 +395,7 @@ export function aboutPage() {
       ${todo('Add a link to your resume (PDF in <code>/public/</code>) if you want a download button here.')}
     </div>
     <div class="portrait">
-      ${pixel('pixel-composition-12')}
+      ${pixel('pixel-composition-12', { crop: true })}
       ${todo('Optional: add a photo of you. The current site uses a childhood photo, which is charming. Save it as <code>/public/images/janey.jpg</code> and replace this art in <code>aboutPage()</code> in <code>src/pages.mjs</code>.')}
     </div>
   </div>
