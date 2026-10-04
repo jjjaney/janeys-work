@@ -98,6 +98,8 @@ To look at one version, add `?art=1`, `?art=2` or `?art=3` to any page address, 
 | `pixel-change-version` | First organic (scattered) header art |
 | `before-flank-version` | Full-width layout, before the flank |
 | `flank-version` | Header art bleeds off the right edge with a ragged bottom; a column of pixels flanks the header text on the left |
+| `before-noncard-version` | Home page with How I work, Services and Kind words as cards |
+| `noncard-version` | How I work as a pixel staircase, Services as a big typographic list, Kind words as one large pull quote |
 
 To go back to one, ask Claude, or on GitHub open a pull request from that branch into `main`.
 

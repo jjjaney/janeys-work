@@ -93,21 +93,110 @@ function archiveStory() {
 
 const storyGrid = () => `<ul class="stories">${work.map(storyCard).join('')}${archiveStory()}</ul>`;
 
+// How I work: a staircase of pixels. Each step adds one layer on top of the
+// last (orange, lilac, green, gold from the bottom up), so step D carries
+// every layer before it. Phones get a horizontal bar that grows instead.
+const STEPS = [
+  ['Audit', 'Inventory what exists, who it serves and where it breaks. Interviews, surveys and data before opinions.'],
+  ['Model', 'Define the structure: taxonomy, flows, voice and the decisions each piece of content has to support.'],
+  ['Systematize', 'Turn decisions into guidelines, templates, components and agent instructions others can reuse.'],
+  ['Ship &amp; measure', 'Publish, train the team, watch the numbers, and iterate like any other product.'],
+];
+const LAYERS = ['#ff7b4d', '#cfa2ed', '#0b704f', '#c99f43'];
+const SPRINKLE = ['#6b2337', '#ff7b4d', '#cfa2ed', '#c99f43'];
+
+function stairSvg(cols, rows, colorAt, cls) {
+  let rects = '';
+  for (let y = 0; y < rows; y++)
+    for (let x = 0; x < cols; x++) {
+      const c = colorAt(x, y);
+      rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${c}" stroke="${c}" stroke-width="0.06"/>`;
+    }
+  return `<svg class="pixel ${cls}" shape-rendering="crispEdges" viewBox="0 0 ${cols} ${rows}" aria-hidden="true" focusable="false">${rects}</svg>`;
+}
+
+const rand = (a, b) => {
+  let h = Math.imul(a * 374761393 + b * 668265263, 1274126177);
+  return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
+};
+
+function stairs() {
+  const COLS = 8;
+  return `<ol class="stairs">
+      ${STEPS.map(([name, body], i) => {
+        const rows = i + 1;
+        // Layer = distance from the bottom, so every step shares the same bands.
+        const layer = (x, y) => {
+          const l = rows - 1 - y;
+          const r = rand(i * 31 + x, y * 17 + l);
+          const pick = SPRINKLE[Math.floor(r * 100) % SPRINKLE.length];
+          return r < 0.07 && pick !== LAYERS[l] ? pick : LAYERS[l];
+        };
+        const up = stairSvg(COLS, rows, layer, 'stairs__up');
+        const bar = stairSvg(rows * 2, 2, (x) => LAYERS[Math.floor(x / 2)], 'stairs__bar');
+        return `<li style="--rows:${rows}">
+        <div class="stairs__text">
+          <span class="stairs__n mono">${'ABCD'[i]}</span>
+          <h3>${name}</h3>
+          <p>${body}</p>
+        </div>
+        ${up}${bar}
+      </li>`;
+      }).join('')}
+    </ol>`;
+}
+
+// Services on the home page: big type on thin rules. Each row opens to show
+// what you get (a native <details>, so it works with a keyboard and without JS).
+function svcList() {
+  return `<ul class="svc-type">
+      ${services
+        .map(
+          (s) => `<li>
+        <details>
+          <summary>
+            <span class="svc-type__dot" aria-hidden="true"></span>
+            <span class="svc-type__name">${esc(s.name)}</span>
+            <span class="svc-type__for">${esc(s.for)}</span>
+            <span class="svc-type__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="svc-type__more">
+            <ul class="svc-type__gets">${s.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
+            <a class="link-arrow" href="/services/#${s.id}">More about this <span class="sr-only">(${esc(s.name)})</span>${arrow}</a>
+          </div>
+        </details>
+      </li>`
+        )
+        .join('')}
+    </ul>`;
+}
+
+// Kind words: one quote at a time in big type, with a pixel for each quote.
+// Without JavaScript all three show, one after another.
 function quotes() {
   return `<section class="section quotes" aria-labelledby="quotes-h">
     <div class="wrap">
       ${eyebrow('04', 'Kind words')}
       <h2 id="quotes-h" class="sr-only">What collaborators say</h2>
-      <ul class="quotes__list">
-        ${testimonials
-          .map(
-            (t) => `<li class="quote">
-          <blockquote><p>${esc(t.quote)}</p></blockquote>
-          <p class="quote__by mono">${esc(t.org)}<br><span class="muted">${esc(t.context)}</span></p>
-        </li>`
-          )
-          .join('')}
-      </ul>
+      <div class="pull" data-pull>
+        <div class="pull__stage">
+          ${testimonials
+            .map(
+              (t, i) => `<figure class="pull__item${i === 0 ? ' is-active' : ''}" id="quote-${i + 1}">
+            <blockquote><p>${esc(t.quote)}</p></blockquote>
+            <figcaption class="mono">${esc(t.org)} <span class="muted">· ${esc(t.context)}</span></figcaption>
+          </figure>`
+            )
+            .join('')}
+        </div>
+        <div class="pull__dots" role="group" aria-label="Choose a quote">
+          ${testimonials
+            .map(
+              (t, i) => `<button type="button" aria-controls="quote-${i + 1}" aria-pressed="${i === 0}" aria-label="Quote ${i + 1} of ${testimonials.length}"></button>`
+            )
+            .join('')}
+        </div>
+      </div>
       ${todo('Add the name and title of each person quoted, if they agree. Attributed quotes are more credible.')}
     </div>
   </section>`;
@@ -177,18 +266,13 @@ export function home() {
 
 ${ticker()}
 
-<section class="section section--surface" aria-labelledby="how-h">
+<section class="section section--surface section--stairs" aria-labelledby="how-h">
   <div class="wrap">
     <div class="section__head">
       ${eyebrow('02', 'How I work')}
       <h2 id="how-h">Content is a product surface. I treat it like one.</h2>
     </div>
-    <ol class="steps">
-      <li><span class="steps__n mono">A</span><h3>Audit</h3><p>Inventory what exists, who it serves and where it breaks. Interviews, surveys and data before opinions.</p></li>
-      <li><span class="steps__n mono">B</span><h3>Model</h3><p>Define the structure: taxonomy, flows, voice and the decisions each piece of content has to support.</p></li>
-      <li><span class="steps__n mono">C</span><h3>Systematize</h3><p>Turn decisions into guidelines, templates, components and agent instructions others can reuse.</p></li>
-      <li><span class="steps__n mono">D</span><h3>Ship &amp; measure</h3><p>Publish, train the team, watch the numbers, and iterate like any other product.</p></li>
-    </ol>
+    ${stairs()}
   </div>
 </section>
 
@@ -201,16 +285,7 @@ ${ticker()}
       </div>
       <a class="link-arrow" href="/services/">All services &amp; FAQ ${arrow}</a>
     </div>
-    <ul class="svc-grid">
-      ${services
-        .map(
-          (s, i) => `<li class="svc">
-        <h3>${esc(s.name)}</h3>
-        <p>${esc(s.for)}</p>
-      </li>`
-        )
-        .join('')}
-    </ul>
+    ${svcList()}
   </div>
 </section>
 
