@@ -289,6 +289,7 @@ export function caseStudy(w, i) {
 
   <div class="wrap case__body">
     ${w.todos.map((t) => todo(t)).join('')}
+    ${w.cover ? `<figure class="case__cover"><img src="${esc(w.cover.src)}" alt="${esc(w.cover.alt)}" loading="lazy" decoding="async">${w.cover.caption ? `<figcaption>${esc(w.cover.caption)}</figcaption>` : ''}</figure>` : ''}
 
     <section class="case__section" aria-labelledby="ctx-${w.slug}">
       <h2 id="ctx-${w.slug}" class="case__h">${eyebrowSpan('01', 'Context')}</h2>

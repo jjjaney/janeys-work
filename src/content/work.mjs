@@ -14,12 +14,19 @@
 //               /public/images/work/<slug>/ and set `src`)
 //   outcomes    results; `todo` entries render as placeholder prompts
 //   links       public links to the shipped work
+//   cover       the lead screenshot shown at the top of the case study
+//               (currently loaded from your Squarespace site; see README)
 //
 // Text marked TODO renders as a visible placeholder note on the site.
 
 export const work = [
   {
     slug: 'fis-design-systems-ai',
+    cover: {
+      src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/15f721b0-fc0e-413b-8b43-da142c3200b7/unify-design-content-docs.png?format=2500w',
+      alt: "Pages from the Unify Design System's 'Conventions and formats' guidance, covering date and time formats, intervals and best practices.",
+      caption: "Content for design systems and agentic workflows: \"Conventions and formats\" pages in the Unify Design System docsite.",
+    },
     hook: "How do you write guidance that both designers and AI agents can follow?",
     teaser: "Docs + a review agent",
     hue: 'lilac',
@@ -34,7 +41,7 @@ export const work = [
     summary:
       'Creating the content foundations and processes behind the Unify Design System at a global FinTech, so product designers ship human-first experiences while AI and agentic workflows use the same guidance.',
     context: `
-      <p>FIS's design department supports product designers across a global financial-technology organization. Through a partnership with Anthropic, the team also builds white-label and bespoke services for other financial institutions, so the design system's guidance has two audiences: the people designing products and the AI tools helping them.</p>
+      <p>Content for design systems and agentic workflows. FIS's design department supports product designers across a global financial-technology organization. Through a partnership with Anthropic, the team also builds white-label and bespoke services for other financial institutions, so the design system's guidance has two audiences: the people designing products and the AI tools helping them.</p>
       <p>Content guidance was scattered or missing, which meant every team solved the same writing problems differently, and an AI assistant had nothing reliable to draw on.</p>
     `,
     highlights: [
@@ -70,6 +77,11 @@ export const work = [
   },
   {
     slug: 'browser-company-member-content',
+    cover: {
+      src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/51cfb97c-ef48-4b3a-92af-d4c3c12e3f08/windows-fixes.png?format=2500w',
+      alt: "The Arc for Windows 2023/2024 release notes page, with a search bar, a Download Arc button and a list of release dates.",
+      caption: "Editorial and member content: Arc for Windows release notes, part of the weekly release-notes system.",
+    },
     hook: "How do you talk to half a million people every week without a playbook?",
     teaser: "500k+ members, weekly",
     hue: 'peach',
@@ -84,7 +96,7 @@ export const work = [
     summary:
       'Designing the templates, guidelines and workflow behind weekly member updates and visual release notes for over 500,000 Arc Browser users across macOS, iOS and Windows.',
     context: `
-      <p>The Browser Company of New York builds browsers that cut down on tedious tasks and bring AI into everyday browsing, including Arc and the AI-driven Arc Search.</p>
+      <p>The Browser Company of New York (BCNY) is a startup <a href="https://www.theverge.com/2022/10/31/23428862/arc-browser-web-company-darin-fisher">developing browsers that streamline tedious tasks and incorporate AI</a>. Its mobile app, Arc Search, features an AI-driven search that compiles results from several sources instead of ranking pages by SEO, like Google Search does.</p>
       <p>When I joined, the team was focused on shipping its latest browser. Member communications and editorial review relied on whoever had time, and the audience had grown past half a million people.</p>
     `,
     highlights: [
@@ -116,7 +128,10 @@ export const work = [
     ],
     links: [
       { label: 'Arc release notes', href: 'https://resources.arc.net/hc/en-us/articles/20498285812375-Release-Notes' },
+      { label: 'Visual release notes v1.56', href: 'https://arc.net/e/65F1A0D1-4AE7-4B3F-97B1-90967E67F700' },
       { label: 'Visual release notes v1.58', href: 'https://arc.net/e/123493AC-A3B7-470F-BC09-DC700B348B59' },
+      { label: 'Visual release notes v1.59', href: 'https://arc.net/e/EDB179D6-AD89-4998-8BF6-5E2FD8D94F57' },
+      { label: 'Arc Resource Center', href: 'https://resources.arc.net/hc/en-us' },
       { label: 'Arc Search landing page', href: 'https://arc.net/search' },
       { label: 'Arc Search Hidden Features', href: 'https://arc.net/blog/arc-search-hidden-features' },
     ],
@@ -124,6 +139,11 @@ export const work = [
   },
   {
     slug: 'github-sponsors',
+    cover: {
+      src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/a200d2dd-fc65-480d-b889-cbb69c050c67/github+sponsors+and+stripe.png?format=2500w',
+      alt: "GitHub's Mona the Octocat holding a pink heart next to the Stripe wordmark, surrounded by confetti.",
+      caption: "Service overhaul and content design for GitHub Sponsors, which pays out to open source maintainers through Stripe.",
+    },
     hook: "How do you grow a program that has outgrown its own front door?",
     teaser: "Launched in 2 new countries",
     hue: 'gold',
@@ -175,6 +195,11 @@ export const work = [
   },
   {
     slug: 'new-public-public-spaces-incubator',
+    cover: {
+      src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/7acc32b3-7881-480a-86ef-b36c469676cd/new-public-discussion.png?format=2500w',
+      alt: "A Public Spaces Incubator discussion about how extreme weather affects outdoor routines, with a poll and a comment marked 'under review'.",
+      caption: "UX writing and translations enablement: a prototype discussion space with AI moderation messaging.",
+    },
     hook: "What should a platform say when your comment might start a fight?",
     teaser: "4 public media partners",
     hue: 'sky',
@@ -257,6 +282,11 @@ export const work = [
         title: 'UX writing and the letter-mailing flow',
         body: 'I redesigned the content for the letter-mailing service (starting with the BREATHE Act), with clear steps, donation options and progress toward funding goals.',
         image: { src: '', alt: 'New letter-mailing flow with steps and a funding progress bar' },
+      },
+      {
+        title: 'The results: funding and adoption',
+        body: 'Ally.Guide was later picked up by GitHub (Microsoft) and evolved into a program for internal teams to take part in civic action in their local communities.',
+        image: { src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/f8352405-92b0-471c-b98d-61b0e08212cf/Screenshot+2026-07-27+at+6.06.18%E2%80%AFPM.png?format=2500w', alt: "The 'Why we built Amplify' page about civic engagement, with logos of participating companies such as Slack, Stripe, Vercel, Red Hat, GitHub, Google and MetLife." },
       },
     ],
     outcomes: [
