@@ -1058,3 +1058,4 @@ html:not(.js) .theme-toggle { display: none !important; }
   .results__stat, .results__label { padding-inline: var(--gutter); }
 }
 
+.h-line { display: inline-block; }

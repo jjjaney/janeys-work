@@ -300,7 +300,7 @@ ${spill(4)}
   <div class="wrap">
     <div class="section__head">
       ${eyebrow('02', 'How I work')}
-      <h2 id="how-h">Content is a product surface. I treat it like one.</h2>
+      <h2 id="how-h"><span class="h-line">Clarity for people.</span> <span class="h-line">Structure for machines.</span></h2>
     </div>
     ${stairs()}
   </div>
