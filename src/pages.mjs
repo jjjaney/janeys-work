@@ -488,10 +488,7 @@ export function servicesPage() {
       (s) => `<section class="svc-band svc-band--${s.tint}" id="${s.id}" aria-labelledby="${s.id}-h">
     <div class="wrap">
       <div class="svc-band__top">
-        <div>
-          <h2 id="${s.id}-h">${esc(s.name)}</h2>
-          <p class="svc-band__for">${esc(s.for)}</p>
-        </div>
+        <h2 id="${s.id}-h">${esc(s.name)}</h2>
         <p class="svc-band__body">${esc(s.body)}</p>
       </div>
       <ul class="svc-band__gets" style="--cols: ${s.deliverables.length % 4 === 0 ? 4 : 3}">${s.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>

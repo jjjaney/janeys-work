@@ -695,15 +695,13 @@ html:not(.js) .theme-toggle { display: none !important; }
 .svc-band--mint  { --band-bg: var(--tint-mint); }
 .svc-band--gold  { --band-bg: var(--tint-gold); }
 .svc-band--sky   { --band-bg: var(--tint-sky); }
-.svc-band__top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem clamp(2rem, 6vw, 6rem); align-items: start; margin-bottom: clamp(2rem, 1.5rem + 1.5vw, 3rem); }
-.svc-band h2 { font-size: clamp(1.9rem, 1.3rem + 2.2vw, 3.25rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.04; margin: 0 0 0.6rem; }
-.svc-band__for { font-style: italic; color: var(--muted); margin: 0; max-width: 32em; }
-.svc-band__body { font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem); line-height: 1.55; margin: 0; max-width: 36em; }
+.svc-band__top { margin-bottom: clamp(2rem, 1.5rem + 1.5vw, 3rem); }
+.svc-band h2 { font-size: clamp(1.9rem, 1.3rem + 2.2vw, 3.25rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.04; margin: 0 0 1rem; }
+.svc-band__body { font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem); line-height: 1.55; margin: 0; max-width: 46em; }
 .svc-band__gets { list-style: none; margin: 0 0 clamp(1.75rem, 1.5rem + 1vw, 2.5rem); padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); column-gap: clamp(1.5rem, 3vw, 3rem); border-top: 1px solid var(--line-strong); }
 .svc-band__gets li { display: flex; align-items: baseline; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid var(--line-strong); font-size: 1.02rem; }
 .svc-band__gets li::before { content: ''; width: 10px; height: 10px; background: var(--accent); flex: none; transform: translateY(-1px); }
 @media (max-width: 760px) {
-  .svc-band__top { grid-template-columns: 1fr; }
   .svc-band__gets { grid-template-columns: 1fr; }
   .svc-jump a { padding: 0.5rem 0.65rem; }
 }
