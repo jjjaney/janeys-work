@@ -418,8 +418,12 @@ export function workIndex() {
     ).join('')}
   </ul>
 </section>
-<section class="section section--work">
+<section class="section section--work" aria-labelledby="cases-h">
   <div class="wrap">
+    <div class="section__head">
+      ${eyebrow('—', 'The case studies')}
+      <h2 id="cases-h">Every project starts with a question. Here’s how I answered a few.</h2>
+    </div>
     ${storyGrid()}
   </div>
 </section>
