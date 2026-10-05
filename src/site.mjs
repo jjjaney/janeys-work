@@ -11,10 +11,9 @@ export const site = {
   // TODO(Janey): add a public email if you want one shown. Leave '' to hide it.
   email: '',
 
-  // TODO(Janey): create a free form at https://formspree.io and paste its ID
-  // (the part after /f/ in the endpoint URL). Until then the contact form
-  // shows a placeholder and falls back to LinkedIn.
-  formspreeId: '',
+  // Formspree form that receives the contact form (https://formspree.io/f/<id>).
+  // Leave '' to show a placeholder that points visitors to LinkedIn instead.
+  formspreeId: 'maeqwgek',
 
   // TODO(Janey): optional booking link (Calendly, Cal.com, SavvyCal…).
   bookingUrl: '',
