@@ -310,9 +310,14 @@
   const jump = document.querySelector('.svc-jump');
   if (jump && 'IntersectionObserver' in window) {
     const links = [...jump.querySelectorAll('a')];
+    const bands = [...document.querySelectorAll('.svc-band')];
+    const inView = new Set();
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
+          e.isIntersecting ? inView.add(e.target) : inView.delete(e.target);
+          // past the last band (or above the first): nothing is current
+          if (!inView.size) return links.forEach((a) => a.removeAttribute('aria-current'));
           if (!e.isIntersecting) return;
           links.forEach((a) => {
             if (a.getAttribute('href') !== `#${e.target.id}`) return a.removeAttribute('aria-current');
@@ -325,7 +330,7 @@
         }),
       { rootMargin: '-45% 0px -50% 0px' }
     );
-    document.querySelectorAll('.svc-band').forEach((b) => io.observe(b));
+    bands.forEach((b) => io.observe(b));
   }
 
   // Kind words: one quote at a time. The pixels switch quotes; they also
@@ -366,9 +371,14 @@
   if ('IntersectionObserver' in window && !reduce) {
     const targets = document.querySelectorAll('.story, .card, .pull, .stairs > li, .svc-type > li, .svc-row, .principles li, .outcome, .highlight, .archive li, .engage li, .facts li');
     targets.forEach((t) => t.classList.add('reveal'));
+    const bands = [...document.querySelectorAll('.svc-band')];
+    const inView = new Set();
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
+          e.isIntersecting ? inView.add(e.target) : inView.delete(e.target);
+          // past the last band (or above the first): nothing is current
+          if (!inView.size) return links.forEach((a) => a.removeAttribute('aria-current'));
           if (!e.isIntersecting) return;
           e.target.classList.add('is-in');
           io.unobserve(e.target);

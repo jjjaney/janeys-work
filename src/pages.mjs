@@ -476,6 +476,7 @@ export function servicesPage() {
   </div>
 </section>
 
+<div class="svc-jumpwrap">
 <nav class="svc-jump" aria-label="Services on this page">
   <div class="wrap">
     <ul>${services.map((s) => `<li><a href="#${s.id}" style="--c: var(--${({ peach: 'orange', lilac: 'lilac', mint: 'green', gold: 'gold', sky: 'sky' })[s.tint]})">${esc(s.short)}</a></li>`).join('')}</ul>
@@ -497,6 +498,7 @@ export function servicesPage() {
   </section>`
     )
     .join('')}
+</div>
 </div>
 
 <section class="section" aria-labelledby="free-h">
@@ -524,7 +526,7 @@ export function servicesPage() {
   </div>
 </section>
 
-<section class="section section--tight" aria-labelledby="faq-h">
+<section class="section section--tight section--faq" aria-labelledby="faq-h">
   <div class="wrap faq">
     ${eyebrow('?', 'Common questions')}
     <div class="section__head"><h2 id="faq-h">FAQ</h2></div>
