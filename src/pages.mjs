@@ -364,7 +364,7 @@ const mix = (a, b) => rand(Math.floor(rand(a * 7919 + 13, b) * 1e6), b * 31 + a)
 function resultColumn({ colors, rows }, i) {
   // Pixels are a fixed size (the same as the closing band's corner art), so the
   // art is drawn wider than any column and trimmed to fit: W columns, H rows.
-  const W = 16, base = rows + 2, H = base + 2;
+  const W = 32, base = rows + 2, H = base + 2;
   let rects = '';
   const at = (x, y, c, cls = '', style = '') => (rects += `<rect${cls ? ` class="${cls}"` : ''} x="${x}" y="${y}" width="1" height="1" fill="${c}" stroke="${c}" stroke-width="0.06"${style ? ` style="${style}"` : ''}/>`);
   const pick = (x, y) => colors[mix(x + i * 20, y * 13 + 5) < 0.8 ? 0 : 1];
