@@ -111,26 +111,16 @@ function pixelClock() {
   return `<svg class="story__mark story__mark--clock" viewBox="0 0 14 10" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
-function archiveStory() {
-  return `<li class="story story--archive">
-    <a class="story__link" href="/archive/">
-      <div class="story__top">
-        <p class="story__client mono">The archive · 2020 &amp; earlier</p>
-        ${pixelClock()}
-      </div>
-      <div class="story__body">
-        <h3 class="story__q">What did the work look like before all this?</h3>
-        <p class="story__a">Editorial, technical writing and web work at GitHub, Plex, Ripl and Carnegie Mellon.</p>
-      </div>
-      <div class="story__foot">
-        <span class="story__teaser mono">14 projects · 2014–2020</span>
-        <span class="story__cta"><span class="story__go" aria-hidden="true">${arrow}</span></span>
-      </div>
-    </a>
-  </li>`;
+// The archive isn't a case study, so it gets a quiet footnote under the cards
+// rather than a card of its own.
+function archiveNote() {
+  const count = archive.reduce((n, g) => n + g.items.length, 0);
+  return `<p class="archive-note">
+    <a href="/archive/">${pixelClock()}<span class="archive-note__q">What did the work look like before all this?</span><span class="archive-note__meta mono">${count} projects · 2014–2020</span>${arrow}</a>
+  </p>`;
 }
 
-const storyGrid = () => `<ul class="stories">${work.map(storyCard).join('')}${archiveStory()}</ul>`;
+const storyGrid = () => `<ul class="stories">${work.map(storyCard).join('')}</ul>${archiveNote()}`;
 
 // How I work: a staircase of pixels. Each step adds one layer on top of the
 // last (orange, lilac, green, gold from the bottom up), so step D carries
