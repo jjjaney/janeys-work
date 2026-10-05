@@ -1029,7 +1029,6 @@ html:not(.js) .pull__logo:first-child { opacity: 1; visibility: visible; }
 .results__px { display: block; width: 100%; height: auto; overflow: visible; }
 .results__drift { transform-box: fill-box; animation: results-drift var(--t, 4s) ease-in-out var(--w, 0s) infinite; }
 @keyframes results-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.6px); } }
-.results__stat[data-count] { font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) { .results__drift { animation: none; } }
 @media (max-width: 900px) {
   .results__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 0; }

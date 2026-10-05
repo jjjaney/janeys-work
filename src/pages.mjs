@@ -400,7 +400,7 @@ export function workIndex() {
   <ul class="results__list">
     ${RESULTS.map(
       (r, i) => `<li class="results__item">
-      <p class="results__stat"${/^\d/.test(r.stat) ? ` data-count="${parseInt(r.stat, 10)}" data-suffix="${esc(r.stat.replace(/^\d+/, ''))}"` : ''}>${esc(r.stat)}</p>
+      <p class="results__stat">${esc(r.stat)}</p>
       <p class="results__label">${esc(r.label)}<span class="mono">${esc(r.who)}</span></p>
       ${resultColumn(r, i)}
     </li>`
