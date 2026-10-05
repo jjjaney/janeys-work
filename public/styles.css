@@ -689,7 +689,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .svc-jump a:hover { background: var(--tint-sky); }
 @media (min-width: 761px) and (max-width: 1100px) { .svc-band__gets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .svc-jump a[aria-current='true'] { background: var(--tint-lilac); color: var(--accent); }
-.svc-band { padding-block: clamp(3.5rem, 2.5rem + 4vw, 6.5rem); scroll-margin-top: calc(var(--header-h, 68px) + 64px); background: var(--band-bg); }
+.svc-band { padding-block: clamp(5rem, 3.5rem + 5vw, 9rem); scroll-margin-top: calc(var(--header-h, 68px) + 64px); background: var(--band-bg); }
 .svc-band--peach { --band-bg: var(--tint-peach); }
 .svc-band--lilac { --band-bg: var(--tint-lilac); }
 .svc-band--mint  { --band-bg: var(--tint-mint); }
@@ -698,8 +698,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 .svc-band__top { margin-bottom: clamp(2rem, 1.5rem + 1.5vw, 3rem); }
 .svc-band h2 { font-size: clamp(1.9rem, 1.3rem + 2.2vw, 3.25rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.04; margin: 0 0 1rem; }
 .svc-band__body { font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem); line-height: 1.55; margin: 0; max-width: 46em; }
-.svc-band__gets { list-style: none; margin: 0 0 clamp(1.75rem, 1.5rem + 1vw, 2.5rem); padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); column-gap: clamp(1.5rem, 3vw, 3rem); border-top: 1px solid var(--line-strong); }
-.svc-band__gets li { display: flex; align-items: baseline; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid var(--line-strong); font-size: 1.02rem; }
+.svc-band__gets { list-style: none; margin: 0 0 clamp(1.75rem, 1.5rem + 1vw, 2.5rem); padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 0.9rem clamp(1.5rem, 3vw, 3rem); }
+.svc-band__gets li { display: flex; align-items: baseline; gap: 0.75rem; font-size: 1.02rem; }
 .svc-band__gets li::before { content: ''; width: 10px; height: 10px; background: var(--accent); flex: none; transform: translateY(-1px); }
 @media (max-width: 760px) {
   .svc-band__gets { grid-template-columns: 1fr; }
