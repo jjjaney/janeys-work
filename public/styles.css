@@ -770,9 +770,9 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Kind words: a wall of tinted cards, all quotes visible at once */
 .quotes { padding-bottom: clamp(8rem, 5.5rem + 9vw, 15rem); }
 .kind { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
-.kind__card { position: relative; background: var(--t); --t: var(--tint-lilac); --kpx: 16px; }
-.kind__card:nth-child(3n + 2) { --t: var(--tint-mint); margin-top: 4rem; }
-.kind__card:nth-child(3n + 3) { --t: var(--tint-gold); margin-top: 1.5rem; }
+.kind__card { position: relative; border: 2px solid var(--t); --t: var(--lilac); --kpx: 16px; }
+.kind__card:nth-child(3n + 2) { --t: var(--green); margin-top: 4rem; }
+.kind__card:nth-child(3n + 3) { --t: var(--gold); margin-top: 1.5rem; }
 .kind__card figure { margin: 0; padding: clamp(1.5rem, 1rem + 1.2vw, 2.25rem); min-height: clamp(260px, 22vw, 340px); display: flex; flex-direction: column; justify-content: space-between; gap: 2.5rem; }
 .kind blockquote { margin: 0; }
 .kind blockquote p { margin: 0; font: 600 clamp(1.35rem, 1rem + 1.1vw, 2.1rem)/1.15 var(--display); letter-spacing: -0.015em; color: var(--ink); text-wrap: balance; }
@@ -786,7 +786,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .kind__logo-dark, :root[data-theme='dark'] .kind__logo:has(.kind__logo-dark) .kind__logo-light { display: none; }
 :root[data-theme='dark'] .kind__logo-dark { display: block; }
 .kind__meta { font-size: 0.82rem; line-height: 1.6; color: var(--ink); }
-.kind__px { position: absolute; top: 0; right: 0; }
+.kind__px { position: absolute; top: -2px; right: -2px; }
 .kind__px i { position: absolute; top: calc(var(--y) * var(--kpx)); right: calc(var(--x) * var(--kpx)); width: var(--kpx); height: var(--kpx); }
 @media (max-width: 900px) {
   .kind { grid-template-columns: 1fr; max-width: 40rem; }
