@@ -1013,5 +1013,4 @@ html:not(.js) .pull__logo:first-child { opacity: 1; visibility: visible; }
 @media (min-width: 861px) { .env { margin-left: auto; } }
 @media (max-width: 860px) { .env { width: min(85%, 340px); margin-top: 2rem; } }
 @media (prefers-reduced-motion: reduce) { .env__float, .env__bob { animation: none; } }
-/* the résumé's floaters and magnifier share the envelope animations */
-.rev .env__float--2 { animation-delay: 3.4s; }
+/* the résumé's sparkle and magnifier share the envelope animations */
