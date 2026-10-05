@@ -504,7 +504,7 @@ export function servicesPage() {
 
 <section class="section" aria-labelledby="free-h">
   <div class="wrap free">
-    <div class="free__art">${pixel('pixel-composition-15', { crop: true })}</div>
+    <div class="free__art">${pixelResume()}</div>
     <div>
       ${eyebrow('★', 'Free, for early- to mid-career folks')}
       <h2 id="free-h">Resume, portfolio &amp; case-study reviews</h2>
@@ -616,6 +616,63 @@ ${ctaBand()}`,
 // ---------------------------------------------------------------------------
 // Contact
 // ---------------------------------------------------------------------------
+
+// Services page, free review: an organic pixel résumé being looked over, with
+// checkmarks beside a few lines and a magnifying glass. Same style as the contact
+// envelopes: frayed edges, loose pixels, a sparkle and star that float up in turn,
+// and a gently bobbing magnifier. Grid units are pixels.
+function pixelResume() {
+  const W = 24, H = 24;
+  const C = { L: '#cfa2ed', P: '#4f33cc', G: '#c99f43', g: '#0b704f', O: '#ff7b4d', M: '#6b2337', S: '#b6d8fe', F: '#a77fd6' };
+  const page = new Map();
+  const glass = new Map();
+  const put = (m, x, y, c) => m.set(`${x},${y}`, [x, y, c]);
+  const x0 = 2, y0 = 2, w = 14, h = 19;
+  // the sheet, with its top-right corner folded over
+  for (let y = y0; y < y0 + h; y++)
+    for (let x = x0; x < x0 + w; x++) {
+      const fx = x - (x0 + w - 4), fy = y - y0; // fold triangle
+      if (fx >= 0 && fy < 4 && fx > fy) continue;
+      put(page, x, y, fx >= 0 && fy < 4 && fx === fy ? 'F' : 'L');
+    }
+  for (let i = 0; i < 4; i++) for (let j = 0; j <= i; j++) put(page, x0 + w - 4 + j, y0 + i, j === i ? 'F' : 'F');
+  // photo block and name lines
+  for (let y = y0 + 2; y < y0 + 5; y++) for (let x = x0 + 2; x < x0 + 5; x++) put(page, x, y, 'G');
+  [[y0 + 2, 6, 'P'], [y0 + 4, 4, 'P']].forEach(([y, len, c]) => { for (let x = x0 + 6; x < x0 + 6 + len; x++) put(page, x, y, c); });
+  // text lines, some with a checkmark beside them
+  [[y0 + 7, 6, true], [y0 + 9, 8, false], [y0 + 11, 9, false], [y0 + 13, 8, false], [y0 + 15, 9, false], [y0 + 17, 6, false]].forEach(([y, len, check]) => {
+    for (let x = x0 + 2; x < x0 + 2 + len; x++) put(page, x, y, 'P');
+    // a small tick: down one, then up two
+    if (check) [[0, 0], [1, 1], [2, 0], [3, -1]].forEach(([dx, dy]) => put(page, x0 + w - 5 + dx, y + dy, 'g'));
+  });
+  // fray the sheet: drop some edge pixels, more along the bottom
+  for (const [k, [x, y]] of [...page]) {
+    const r = rand(x * 11 + 5, y * 7 + 3);
+    const left = x === x0, right = x === x0 + w - 1, bottom = y === y0 + h - 1;
+    if ((bottom && r < 0.4) || ((left || right) && r < 0.18)) page.delete(k);
+  }
+  // magnifying glass: an orange ring over the lower right, with a maroon handle
+  const cx = 10, cy = 17, R = 4; // over the lower lines, as if reading them
+  const lens = new Map();
+  for (let y = cy - R - 1; y <= cy + R + 1; y++)
+    for (let x = cx - R - 1; x <= cx + R + 1; x++) {
+      const d = Math.hypot(x - cx, y - cy);
+      if (d > R - 0.6 && d <= R + 0.5) put(glass, x, y, 'O');
+      else if (d <= R - 0.6) put(lens, x, y, 'S');
+    }
+  // a glint on the glass
+  [[cx - 2, cy - 2], [cx - 1, cy - 2], [cx - 2, cy - 1]].forEach(([x, y]) => lens.delete(`${x},${y}`) || true);
+  [[14, 21], [15, 21], [15, 22], [16, 22], [16, 23], [17, 23]].forEach(([x, y]) => put(glass, x, y, 'M'));
+  // loose pixels
+  [[0, 6, 'S'], [18, 3, 'G'], [21, 8, 'L'], [1, 22, 'g'], [9, 23, 'L'], [23, 12, 'O']].forEach(([x, y, c]) => put(page, x, y, c));
+
+  const rect = ([x, y, c]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${C[c]}" stroke="${C[c]}" stroke-width="0.08"/>`;
+  const shape = (rows, color, x0, y0, n) =>
+    `<g class="env__float env__float--${n}" fill="${color}" stroke="${color}" stroke-width="0.08">${rows
+      .flatMap((row, y) => [...row].map((c, x) => (c === 'X' ? `<rect x="${x0 + x}" y="${y0 + y}" width="1" height="1"/>` : '')))
+      .join('')}</g>`;
+  return `<div class="rev" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges">${shape(['.X.', 'XXX', '.X.'], '#ff7b4d', 18.5, -2, 1)}${shape(['..X..', '.XXX.', 'XXXXX', '.XXX.', '.X.X.'], '#c99f43', 4, -4, 2)}<g>${[...page.values()].map(rect).join('')}</g><g class="env__bob"><g class="rev__glass">${[...lens.values()].filter(([x, y]) => page.has(`${x},${y}`)).map(rect).join('')}</g>${[...lens.values()].filter(([x, y]) => !page.has(`${x},${y}`)).map(rect).join('')}${[cx - 2, cx - 1].map((x) => `<rect x="${x}" y="${cy - 2}" width="1" height="1" fill="#fffdf8"/>`).join('')}<rect x="${cx - 2}" y="${cy - 1}" width="1" height="1" fill="#fffdf8"/>${[...glass.values()].map(rect).join('')}</g></svg></div>`;
+}
 
 // Contact page: three organic pixel envelopes in the header-art style. Edges
 // are eroded and a few loose pixels drift between them; a star, a checkmark and

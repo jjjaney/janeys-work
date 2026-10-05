@@ -731,6 +731,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 
 .free { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
 .free__art .pixel { width: 100%; aspect-ratio: 1; }
+.rev svg { display: block; width: 100%; height: auto; overflow: visible; }
+.rev__glass { opacity: 0.55; }
 @media (max-width: 760px) { .free { grid-template-columns: 1fr; } .free__art { max-width: 240px; } }
 
 .engage { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1rem; list-style: none; margin: 0; padding: 0; }
@@ -1011,3 +1013,5 @@ html:not(.js) .pull__logo:first-child { opacity: 1; visibility: visible; }
 @media (min-width: 861px) { .env { margin-left: auto; } }
 @media (max-width: 860px) { .env { width: min(85%, 340px); margin-top: 2rem; } }
 @media (prefers-reduced-motion: reduce) { .env__float, .env__bob { animation: none; } }
+/* the résumé's floaters and magnifier share the envelope animations */
+.rev .env__float--2 { animation-delay: 3.4s; }
