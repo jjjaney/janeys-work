@@ -370,7 +370,12 @@ function resultColumn({ colors, rows }, i) {
     }
   }
   // loose pixels floating above
-  [[1 + (i % 3), 1], [6 + (i % 2), 0], [8, 2]].forEach(([x, y], k) => rand(i, k) < 0.75 && at(x, y, colors[k % 2]));
+  // loose pixels above drift up and down, each on its own timing
+  [[1 + (i % 3), 1], [6 + (i % 2), 0], [8, 2]].forEach(([x, y], k) => {
+    if (rand(i, k) >= 0.75) return;
+    const c = colors[k % 2];
+    rects += `<rect class="results__drift" x="${x}" y="${y}" width="1" height="1" fill="${c}" stroke="${c}" stroke-width="0.06" style="--t:${(3.2 + rand(k, i) * 2.4).toFixed(2)}s;--w:${(rand(i * 5, k) * -3).toFixed(2)}s"/>`;
+  });
   return `<svg class="pixel results__px" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
@@ -395,7 +400,7 @@ export function workIndex() {
   <ul class="results__list">
     ${RESULTS.map(
       (r, i) => `<li class="results__item">
-      <p class="results__stat">${esc(r.stat)}</p>
+      <p class="results__stat"${/^\d/.test(r.stat) ? ` data-count="${parseInt(r.stat, 10)}" data-suffix="${esc(r.stat.replace(/^\d+/, ''))}"` : ''}>${esc(r.stat)}</p>
       <p class="results__label">${esc(r.label)}<span class="mono">${esc(r.who)}</span></p>
       ${resultColumn(r, i)}
     </li>`

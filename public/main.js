@@ -388,6 +388,34 @@
     targets.forEach((t) => io.observe(t));
   }
 
+  // Work page results: numbers count up from zero the first time they're seen
+  const counters = document.querySelectorAll('.results__stat[data-count]');
+  if (counters.length && !reduce && 'IntersectionObserver' in window) {
+    const run = (el) => {
+      const end = Number(el.dataset.count), suffix = el.dataset.suffix || '';
+      const t0 = performance.now(), dur = 1100 + Math.min(end, 600);
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / dur);
+        el.textContent = `${Math.round(end * (1 - Math.pow(1 - p, 3)))}${suffix}`;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        run(e.target);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach((el) => {
+      // keep the box from changing width while it counts
+      el.style.minWidth = `${el.getBoundingClientRect().width}px`;
+      el.textContent = `0${el.dataset.suffix || ''}`; // start from zero; without JS the real number shows
+      io.observe(el);
+    });
+  }
+
   // Contact form -----------------------------------------------------------
   const form = document.querySelector('[data-contact]');
   if (form) {
