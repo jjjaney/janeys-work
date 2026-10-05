@@ -632,11 +632,11 @@ function pixelEnvelopes() {
   const envelope = (x0, y0, w, h, { body, flap, edge, accent }, seed, bob) => {
     for (let y = y0; y < y0 + h; y++) for (let x = x0; x < x0 + w; x++) put(x, y, body, bob);
     const tip = Math.round(h * 0.68);
-    const outline = new Set(); // flap outline: top edge and both sides of the V, kept whole
+    const outline = new Set(); // flap outline: both sides of the V and its point, kept whole
     for (let r = 0; r < tip; r++) {
       const l = x0 + Math.round((r * (w - 1)) / 2 / tip), rr = x0 + w - 1 - Math.round((r * (w - 1)) / 2 / tip);
       for (let x = l; x <= rr; x++) {
-        const isEdge = r === 0 || x === l || x === rr;
+        const isEdge = r > 0 && (x === l || x === rr);
         put(x, y0 + r, isEdge ? edge : flap, bob);
         if (isEdge) outline.add(`${x},${y0 + r}`);
       }
