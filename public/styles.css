@@ -1019,7 +1019,8 @@ html:not(.js) .pull__logo:first-child { opacity: 1; visibility: visible; }
 
 /* Work page: results strip -------------------------------------------------
    Big numbers on a skyline of organic pixel columns, on the page background. */
-.results { background: var(--bg); color: var(--ink); padding-bottom: clamp(5.5rem, 4rem + 6vw, 10rem); overflow: hidden; }
+.results { background: var(--bg); color: var(--ink); padding-block: clamp(5.5rem, 4rem + 6vw, 10rem); overflow: hidden; }
+.results__span { text-transform: none; letter-spacing: 0.02em; color: var(--muted); font-weight: 400; margin-left: 0.4em; }
 .results h2 { color: var(--accent); font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4.25rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.02; margin: 0 0 clamp(4rem, 3.25rem + 2vw, 5.5rem); max-width: 17em; }
 .results .eyebrow { color: var(--ink); font-size: clamp(0.9rem, 0.82rem + 0.3vw, 1.05rem); font-weight: 600; letter-spacing: 0.06em; }
 /* organic, staggered: each result sits on its own column of pixels. Text keeps

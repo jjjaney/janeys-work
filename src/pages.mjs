@@ -411,7 +411,7 @@ export function workIndex() {
 </section>
 <section class="results" aria-labelledby="results-h">
   <div class="wrap">
-    <p class="eyebrow mono">By the numbers</p>
+    <p class="eyebrow mono">By the numbers <span class="results__span">(last 7 years)</span></p>
     <h2 id="results-h">Some cool results</h2>
   </div>
   <ul class="results__list">
