@@ -333,43 +333,9 @@
     bands.forEach((b) => io.observe(b));
   }
 
-  // Kind words: one quote at a time. The pixels switch quotes; they also
-  // advance slowly on their own until someone interacts (never with reduced motion).
-  document.querySelectorAll('[data-pull]').forEach((pull) => {
-    const items = [...pull.querySelectorAll('.pull__item')];
-    const logos = [...pull.querySelectorAll('.pull__logo')];
-    const dots = [...pull.querySelectorAll('.pull__dots button')];
-    const stage = pull.querySelector('.pull__stage');
-    let current = 0;
-    let timer = null;
-    const show = (i) => {
-      current = (i + items.length) % items.length;
-      items.forEach((it, n) => {
-        it.classList.toggle('is-active', n === current);
-        it.setAttribute('aria-hidden', n === current ? 'false' : 'true');
-      });
-      logos.forEach((l, n) => l.classList.toggle('is-active', n === current));
-      dots.forEach((d, n) => d.setAttribute('aria-pressed', String(n === current)));
-    };
-    const stop = () => { clearInterval(timer); timer = null; };
-    show(0);
-    dots.forEach((d, n) =>
-      d.addEventListener('click', () => {
-        stop();
-        stage.setAttribute('aria-live', 'polite');
-        show(n);
-      })
-    );
-    if (!reduce && items.length > 1) {
-      timer = setInterval(() => { if (!document.hidden) show(current + 1); }, 8000);
-      pull.addEventListener('pointerenter', stop);
-      pull.addEventListener('focusin', stop);
-    }
-  });
-
   // Gentle reveal for sections ---------------------------------------------
   if ('IntersectionObserver' in window && !reduce) {
-    const targets = document.querySelectorAll('.story, .card, .pull, .stairs > li, .svc-type > li, .svc-row, .principles li, .outcome, .highlight, .archive li, .engage li, .facts li');
+    const targets = document.querySelectorAll('.story, .card, .kind__card, .stairs > li, .svc-type > li, .svc-row, .principles li, .outcome, .highlight, .archive li, .engage li, .facts li');
     targets.forEach((t) => t.classList.add('reveal'));
     const bands = [...document.querySelectorAll('.svc-band')];
     const inView = new Set();

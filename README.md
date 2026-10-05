@@ -66,7 +66,7 @@ Each case study's lead screenshot (and the Amplify screenshot on Ally.Guide) is 
 
 ### Adding company logos to Kind words
 
-Each quote on the home page shows its company's logo beside it, swapping as the quotes change. Save the official logo files (SVG is best, from each company's press or brand page) in `public/images/logos/`, then set `logo` for that quote in `src/site.mjs`, for example `logo: '/images/logos/fis.svg'`. If a logo is dark and disappears in dark mode, add a light version as `logoDark`. Until a logo is added, the company name shows in its place.
+Each quote card on the home page shows its company's logo above the team and project line. Save the official logo files (SVG is best, from each company's press or brand page) in `public/images/logos/`, then set `logo` for that quote in `src/site.mjs`, for example `logo: '/images/logos/fis.svg'`. If a logo is dark and disappears in dark mode, add a light version as `logoDark`. Until a logo is added, the company name shows in its place.
 
 ### Adding a case study
 
@@ -107,6 +107,7 @@ To look at one version, add `?art=1`, `?art=2` or `?art=3` to any page address, 
 | `before-font-change` | Bricolage Grotesque headings, before the switch to Plus Jakarta Sans |
 | `before-services-bands` | Services page with the two-column list, before the jump bar and color bands |
 | `before-work-filter` | Work page with only the cards, before the results strip |
+| `before-kind-wall` | Kind words as one rotating pull quote with a logo square, before the tinted wall of cards |
 | `noncard-version` | How I work as a pixel staircase, Services as a big typographic list, Kind words as one large pull quote |
 
 To go back to one, ask Claude, or on GitHub open a pull request from that branch into `main`.

@@ -194,44 +194,42 @@ function svcList() {
     </ul>`;
 }
 
-// Kind words: one quote at a time in big type, with a pixel for each quote.
-// Without JavaScript all three show, one after another.
+// Kind words: every quote at once on a "wall" of tinted cards with uneven
+// tops and a few pixels tucked into each corner.
+const KIND_PIXELS = [
+  [['var(--gold)', 1, 0], ['var(--lilac)', 0, 0], ['var(--orange)', 0, 1]],
+  [['var(--gold)', 2, 0], ['var(--green)', 0, 0]],
+  [['var(--orange)', 0, 0], ['var(--sky)', 0, 2]],
+];
 function quotes() {
   return `<section class="section quotes" aria-labelledby="quotes-h">
     <div class="wrap">
       ${eyebrow('04', 'Kind words')}
       <h2 id="quotes-h" class="sr-only">What collaborators say</h2>
-      <div class="pull" data-pull>
-        <div class="pull__stage">
-          ${testimonials
-            .map(
-              (t, i) => `<figure class="pull__item${i === 0 ? ' is-active' : ''}" id="quote-${i + 1}">
+      <ul class="kind">
+        ${testimonials
+          .map((t, i) => {
+            const team = t.org.replace(t.company, '').replace(/^[,\s]+/, '');
+            const px = (KIND_PIXELS[i % KIND_PIXELS.length])
+              .map(([c, x, y]) => `<i style="background:${c};--x:${x};--y:${y}"></i>`)
+              .join('');
+            return `<li class="kind__card">
+          <span class="kind__px" aria-hidden="true">${px}</span>
+          <figure>
             <blockquote><p>${esc(t.quote)}</p></blockquote>
-            <figcaption class="mono">${esc(t.org)} <span class="muted">· ${esc(t.context)}</span></figcaption>
-          </figure>`
-            )
-            .join('')}
-        </div>
-        <div class="pull__logos" aria-hidden="true">
-          ${testimonials
-            .map(
-              (t, i) => `<div class="pull__logo${i === 0 ? ' is-active' : ''}${t.logo ? '' : ' pull__logo--name'}">${
+            <figcaption>
+              ${
                 t.logo
-                  ? `<img src="${esc(t.logo)}" alt="" class="pull__logo-light">${t.logoDark ? `<img src="${esc(t.logoDark)}" alt="" class="pull__logo-dark">` : ''}`
-                  : `<span>${esc(t.company)}</span>`
-              }</div>`
-            )
-            .join('')}
-        </div>
-        <div class="pull__dots" role="group" aria-label="Choose a quote">
-          ${testimonials
-            .map(
-              (t, i) => `<button type="button" aria-controls="quote-${i + 1}" aria-pressed="${i === 0}" aria-label="Quote ${i + 1} of ${testimonials.length}"></button>`
-            )
-            .join('')}
-        </div>
-      </div>
-      ${testimonials.some((t) => !t.logo) ? todo('Add each company’s logo next to its quote: save the files in <code>/public/images/logos/</code> and set <code>logo</code> for each quote in <code>src/site.mjs</code>. Until then the company name shows in its place.') : ''}
+                  ? `<span class="kind__logo"><img src="${esc(t.logo)}" alt="${esc(t.company)}" class="kind__logo-light">${t.logoDark ? `<img src="${esc(t.logoDark)}" alt="" class="kind__logo-dark">` : ''}</span>`
+                  : `<span class="kind__co">${esc(t.company)}</span>`
+              }
+              <span class="kind__meta mono">${team ? `${esc(team)} <span class="muted">·</span> ` : ''}<span class="muted">${esc(t.context)}</span></span>
+            </figcaption>
+          </figure>
+        </li>`;
+          })
+          .join('')}
+      </ul>
     </div>
   </section>`;
 }
