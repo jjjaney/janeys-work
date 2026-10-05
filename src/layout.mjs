@@ -118,6 +118,10 @@ export function layout({ path, title, description = site.description, body, page
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/styles.css">
+<script type="module">
+  import { inject } from '/analytics.js';
+  inject();
+</script>
 <script src="/main.js" defer></script>
 </head>
 <body class="${pageClass}">
