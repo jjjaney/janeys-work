@@ -364,7 +364,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .section { padding-block: clamp(5.5rem, 4rem + 6vw, 10rem); }
 .section--tight { padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
 /* FAQ is the last section before the closing band: give it the full section space below */
-.section--faq { padding-bottom: clamp(5.5rem, 4rem + 6vw, 10rem); }
+.section--faq, .section--work { padding-bottom: clamp(5.5rem, 4rem + 6vw, 10rem); }
 .section--surface { background: var(--tint-sky); }
 .section__head { margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 4rem); }
 .section__head h2 { margin: 0; max-width: 17em; }

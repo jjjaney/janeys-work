@@ -360,7 +360,7 @@ export function workIndex() {
     <p class="lede">Projects where the words were only half the job. The other half was the system that made them work.</p>
   </div>
 </section>
-<section class="section section--tight">
+<section class="section section--tight section--work">
   <div class="wrap">
     ${storyGrid()}
   </div>
