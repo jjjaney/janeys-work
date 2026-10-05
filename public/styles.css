@@ -788,6 +788,26 @@ html:not(.js) .theme-toggle { display: none !important; }
 .kind__meta { font-size: 0.82rem; line-height: 1.6; color: var(--ink); }
 .kind__px { position: absolute; top: -2px; right: -2px; }
 .kind__px i { position: absolute; top: calc(var(--y) * var(--kpx)); right: calc(var(--x) * var(--kpx)); width: var(--kpx); height: var(--kpx); }
+/* motion: each card drifts slowly on its own beat; corner pixels hop in turn */
+@media (prefers-reduced-motion: no-preference) {
+  .kind__card { animation: kind-float 7s var(--ease) infinite alternate; }
+  .kind__card:nth-child(3n + 2) { animation-duration: 8.5s; animation-delay: -3s; }
+  .kind__card:nth-child(3n + 3) { animation-duration: 7.75s; animation-delay: -5.5s; }
+  .kind__px i { animation: kind-hop 4.8s ease-in-out infinite; }
+  .kind__px i:nth-child(2) { animation-delay: 0.35s; }
+  .kind__px i:nth-child(3) { animation-delay: 0.7s; }
+  .kind__card:nth-child(3n + 2) .kind__px i { animation-delay: 1.6s; }
+  .kind__card:nth-child(3n + 2) .kind__px i:nth-child(2) { animation-delay: 1.95s; }
+  .kind__card:nth-child(3n + 3) .kind__px i { animation-delay: 3.2s; }
+  .kind__card:nth-child(3n + 3) .kind__px i:nth-child(2) { animation-delay: 3.55s; }
+  .kind__card:hover { animation-play-state: paused; }
+}
+@keyframes kind-float { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+@keyframes kind-hop {
+  0%, 82%, 100% { transform: translate(0, 0); }
+  88% { transform: translate(4px, -10px); }
+  94% { transform: translate(2px, 0); }
+}
 @media (max-width: 900px) {
   .kind { grid-template-columns: 1fr; max-width: 40rem; }
   .kind__card:nth-child(n) { margin-top: 0; }
