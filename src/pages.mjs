@@ -617,35 +617,56 @@ ${ctaBand()}`,
 // Contact
 // ---------------------------------------------------------------------------
 
-// Contact page: an organic pixel envelope in the header-art style, with a
-// pixel heart that floats up out of it now and then. Grid units are pixels.
-function pixelEnvelope() {
-  const W = 18, H = 17;
+// Contact page: three organic pixel envelopes in the header-art style. Edges
+// are eroded and a few loose pixels drift between them; a pixel heart floats
+// out of the big one (and later the gold one) now and then, and the two smaller
+// envelopes bob. No entrance animation: it's all in place on load. Grid units are pixels.
+function pixelEnvelopes() {
+  const W = 34, H = 22;
   const C = { S: '#b6d8fe', L: '#cfa2ed', P: '#4f33cc', O: '#ff7b4d', G: '#c99f43', M: '#6b2337', g: '#0b704f' };
   const cells = new Map();
-  const put = (x, y, c) => cells.set(`${x},${y}`, [x, y, c]);
-  // body
-  for (let y = 5; y <= 15; y++) for (let x = 1; x <= 16; x++) put(x, y, 'S');
-  // flap: a V from the top corners to the middle, purple along its edges
-  for (let y = 5; y <= 12; y++) {
-    const l = 1 + (y - 5), r = 16 - (y - 5);
-    for (let x = l; x <= r; x++) put(x, y, y > 5 && (x === l || x === r) ? 'P' : 'L');
-  }
-  // stamp
-  for (let y = 6; y <= 8; y++) for (let x = 12; x <= 14; x++) put(x, y, x === 13 && y === 7 ? 'G' : 'O');
-  // a little texture in the paper, like the mixed tiles in the header art
-  [[3, 13, 'L'], [9, 14, 'G'], [14, 12, 'L'], [5, 10, 'G'], [12, 14, 'L']].forEach(([x, y, c]) => put(x, y, c));
-  // organic edges: a few missing pixels, mostly along the bottom
-  [[1, 15], [16, 15], [16, 14], [5, 15], [11, 15], [1, 9]].forEach(([x, y]) => cells.delete(`${x},${y}`));
-  // loose pixels drifting off it
-  [[0, 13, 'g'], [17, 9, 'G'], [2, 3, 'L'], [16, 2, 'O'], [17, 15, 'L'], [0, 6, 'M']].forEach(([x, y, c]) => put(x, y, c));
-  const px = [...cells.values()]
-    .map(([x, y, c]) => `<rect class="env__px" x="${x}" y="${y}" width="1" height="1" fill="${C[c]}" stroke="${C[c]}" stroke-width="0.08" style="--d:${(x + y) * 22}ms"/>`)
-    .join('');
-  const heart = ['.H.H.', 'HHHHH', '.HHH.', '..H..']
-    .flatMap((row, y) => [...row].map((c, x) => (c === 'H' ? `<rect x="${6.5 + x}" y="${y}" width="1" height="1"/>` : '')))
-    .join('');
-  return `<div class="env" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges"><g class="env__heart" fill="#cc3333" stroke="#cc3333" stroke-width="0.08">${heart}</g>${px}</svg></div>`;
+  const put = (x, y, c, bob = '') => cells.set(`${x},${y}`, [x, y, c, bob]);
+  const drop = (x, y) => cells.delete(`${x},${y}`);
+
+  // One envelope: body, a V-shaped flap with colored edges, then erosion so
+  // it frays at the edges like the header art.
+  const envelope = (x0, y0, w, h, { body, flap, edge, accent }, seed, bob) => {
+    for (let y = y0; y < y0 + h; y++) for (let x = x0; x < x0 + w; x++) put(x, y, body, bob);
+    const tip = Math.round(h * 0.68);
+    for (let r = 0; r < tip; r++) {
+      const l = x0 + Math.round((r * (w - 1)) / 2 / tip), rr = x0 + w - 1 - Math.round((r * (w - 1)) / 2 / tip);
+      for (let x = l; x <= rr; x++) put(x, y0 + r, r > 0 && (x === l || x === rr) ? edge : flap, bob);
+    }
+    // paper texture
+    for (let y = y0 + 1; y < y0 + h; y++)
+      for (let x = x0; x < x0 + w; x++) if (cells.get(`${x},${y}`)?.[2] === body && rand(x * 7 + seed, y * 3) < 0.07) put(x, y, accent, bob);
+    // fray: drop some edge pixels (more along the bottom), and the odd one inside
+    for (let y = y0; y < y0 + h; y++)
+      for (let x = x0; x < x0 + w; x++) {
+        const edgeX = x === x0 || x === x0 + w - 1, bottom = y === y0 + h - 1, nearBottom = y === y0 + h - 2;
+        const r = rand(x + seed * 31, y + seed * 17);
+        if ((bottom && r < 0.4) || (edgeX && r < 0.22) || (nearBottom && edgeX && r < 0.5) || (!edgeX && !bottom && y > y0 + tip && r < 0.025)) drop(x, y);
+      }
+  };
+
+  envelope(1, 9, 16, 11, { body: 'S', flap: 'L', edge: 'P', accent: 'L' }, 3, '');
+  envelope(20, 2, 11, 8, { body: 'G', flap: 'O', edge: 'M', accent: 'O' }, 8, 'a');
+  envelope(23, 13, 8, 6, { body: 'L', flap: 'S', edge: 'g', accent: 'S' }, 13, 'b');
+  // a stamp on the big one
+  for (let y = 10; y <= 12; y++) for (let x = 12; x <= 14; x++) put(x, y, x === 13 && y === 11 ? 'G' : 'O');
+  // loose pixels drifting off and between them
+  [[0, 17, 'g'], [3, 6, 'L'], [17, 8, 'O'], [18, 14, 'G'], [19, 11, 'S'], [32, 5, 'L'], [33, 11, 'O'], [21, 20, 'M'], [26, 11, 'S'], [12, 21, 'L'], [32, 17, 'G']]
+    .forEach(([x, y, c]) => put(x, y, c));
+
+  const rect = ([x, y, c]) => `<rect class="env__px" x="${x}" y="${y}" width="1" height="1" fill="${C[c]}" stroke="${C[c]}" stroke-width="0.08"/>`;
+  const all = [...cells.values()];
+  // each small envelope is its own group so it bobs as one piece
+  const px = ['', 'a', 'b'].map((k) => `<g${k ? ` class="env__bob env__bob--${k}"` : ''}>${all.filter((c) => c[3] === k).map(rect).join('')}</g>`).join('');
+  const heart = (x0, y0, cls) =>
+    `<g class="env__heart ${cls}" fill="#cc3333" stroke="#cc3333" stroke-width="0.08">${['.H.H.', 'HHHHH', '.HHH.', '..H..']
+      .flatMap((row, y) => [...row].map((c, x) => (c === 'H' ? `<rect x="${x0 + x}" y="${y0 + y}" width="1" height="1"/>` : '')))
+      .join('')}</g>`;
+  return `<div class="env" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges">${heart(6.5, 4, '')}${heart(23, -3.5, 'env__heart--late')}${px}</svg></div>`;
 }
 
 export function contactPage() {
@@ -667,7 +688,7 @@ export function contactPage() {
         ${site.email ? `<li><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></li>` : ''}
         ${site.bookingUrl ? `<li><a href="${esc(site.bookingUrl)}">Book a call ${external}</a></li>` : ''}
       </ul>
-      ${pixelEnvelope()}
+      ${pixelEnvelopes()}
     </div>
     <div>
       ${!action ? todo('The form isn’t connected yet. Create a free form at <a href="https://formspree.io">formspree.io</a> and paste its ID as <code>formspreeId</code> in <code>src/site.mjs</code>. Until then, submitting shows a note pointing to LinkedIn.') : ''}

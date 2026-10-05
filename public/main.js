@@ -378,15 +378,6 @@
     targets.forEach((t) => io.observe(t));
   }
 
-  // Contact envelope: play its entrance the first time it scrolls into view
-  document.querySelectorAll('.env').forEach((el) => {
-    if (reduce || !('IntersectionObserver' in window)) return el.classList.add('is-in');
-    const io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) (el.classList.add('is-in'), io.disconnect());
-    }, { threshold: 0.3 });
-    io.observe(el);
-  });
-
   // Contact form -----------------------------------------------------------
   const form = document.querySelector('[data-contact]');
   if (form) {
