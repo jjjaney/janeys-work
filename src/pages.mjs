@@ -648,6 +648,7 @@ export function contactPage() {
           <select id="f-topic" name="topic">${topics.map((t) => `<option>${esc(t)}</option>`).join('')}</select></div>
         <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="6" required placeholder="A little about your team, the problem and your timeline."></textarea></div>
         <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="New message from janeys.work">
         <button class="btn" type="submit">Send message ${arrow}</button>
         <p class="form__status" role="status" aria-live="polite"></p>
       </form>
