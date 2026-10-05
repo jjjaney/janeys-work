@@ -990,21 +990,24 @@ html:not(.js) .pull__logo:first-child { opacity: 1; visibility: visible; }
 }
 
 /* Contact: pixel envelopes ---------------------------------------------------
-   Already in place when the page loads. A small heart floats up out of the big
-   envelope (and later the gold one) every few seconds, and the two smaller
-   envelopes bob gently. Still for reduced motion. */
+   Already in place when the page loads. A star, a checkmark and a sparkle take
+   turns floating up out of them, and the two smaller envelopes bob gently. Still for reduced motion. */
 .env { width: min(100%, 480px); margin-top: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
 .env svg { display: block; width: 100%; height: auto; overflow: visible; }
-.env__heart { opacity: 0; animation: env-heart 5s ease-in-out 1s infinite; }
-.env__heart--late { animation-delay: 3.5s; }
-@keyframes env-heart {
+.env__float { opacity: 0; animation: env-float 6s ease-in-out infinite; }
+.env__float--1 { animation-delay: 0.8s; }
+.env__float--2 { animation-delay: 2.8s; }
+.env__float--3 { animation-delay: 4.8s; }
+@keyframes env-float {
   0% { opacity: 0; transform: translateY(5px); }
   12% { opacity: 1; transform: translateY(2px); }
   45% { opacity: 1; transform: translateY(-1px); }
-  60%, 100% { opacity: 0; transform: translateY(-3px); }
+  55%, 100% { opacity: 0; transform: translateY(-3px); }
 }
 .env__bob { animation: env-bob 3.6s ease-in-out infinite; }
 .env__bob--b { animation-duration: 4.4s; animation-delay: 0.8s; }
 @keyframes env-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.4px); } }
+/* wide screens: the group sits at the right of its column, beside the form */
+@media (min-width: 861px) { .env { margin-left: auto; } }
 @media (max-width: 860px) { .env { width: min(85%, 340px); margin-top: 2rem; } }
-@media (prefers-reduced-motion: reduce) { .env__heart, .env__bob { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .env__float, .env__bob { animation: none; } }

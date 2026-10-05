@@ -618,9 +618,8 @@ ${ctaBand()}`,
 // ---------------------------------------------------------------------------
 
 // Contact page: three organic pixel envelopes in the header-art style. Edges
-// are eroded and a few loose pixels drift between them; a pixel heart floats
-// out of the big one (and later the gold one) now and then, and the two smaller
-// envelopes bob. No entrance animation: it's all in place on load. Grid units are pixels.
+// are eroded and a few loose pixels drift between them; a star, a checkmark and
+// a sparkle take turns floating up out of them, and the two smaller envelopes bob. No entrance animation: it's all in place on load. Grid units are pixels.
 function pixelEnvelopes() {
   const W = 34, H = 22;
   const C = { S: '#b6d8fe', L: '#cfa2ed', P: '#4f33cc', O: '#ff7b4d', G: '#c99f43', M: '#6b2337', g: '#0b704f' };
@@ -662,11 +661,18 @@ function pixelEnvelopes() {
   const all = [...cells.values()];
   // each small envelope is its own group so it bobs as one piece
   const px = ['', 'a', 'b'].map((k) => `<g${k ? ` class="env__bob env__bob--${k}"` : ''}>${all.filter((c) => c[3] === k).map(rect).join('')}</g>`).join('');
-  const heart = (x0, y0, cls) =>
-    `<g class="env__heart ${cls}" fill="#cc3333" stroke="#cc3333" stroke-width="0.08">${['.H.H.', 'HHHHH', '.HHH.', '..H..']
-      .flatMap((row, y) => [...row].map((c, x) => (c === 'H' ? `<rect x="${x0 + x}" y="${y0 + y}" width="1" height="1"/>` : '')))
-      .join('')}</g>`;
-  return `<div class="env" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges">${heart(6.5, 4, '')}${heart(23, -3.5, 'env__heart--late')}${px}</svg></div>`;
+  // small pixel shapes that float up out of the envelopes in turn
+  const SHAPES = {
+    star: { color: '#c99f43', rows: ['..X..', '.XXX.', 'XXXXX', '.XXX.', '.X.X.'] },
+    check: { color: '#0b704f', rows: ['....X', '...X.', 'X.X..', '.X...'] },
+    sparkle: { color: '#ff7b4d', rows: ['.X.', 'XXX', '.X.'] },
+  };
+  const floater = (name, x0, y0, n) => {
+    const { color, rows } = SHAPES[name];
+    const rects = rows.flatMap((row, y) => [...row].map((c, x) => (c === 'X' ? `<rect x="${x0 + x}" y="${y0 + y}" width="1" height="1"/>` : ''))).join('');
+    return `<g class="env__float env__float--${n}" fill="${color}" stroke="${color}" stroke-width="0.08">${rects}</g>`;
+  };
+  return `<div class="env" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges">${floater('star', 6.5, 3, 1)}${floater('check', 22.5, -3.5, 2)}${floater('sparkle', 25.5, 9, 3)}${px}</svg></div>`;
 }
 
 export function contactPage() {
