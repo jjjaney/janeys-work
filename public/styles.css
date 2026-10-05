@@ -376,7 +376,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Section labels ("Selected work", "How I work"…) anchor each section: larger
    type, a bigger pixel, and a rule running to the edge. The heading under
    each one is the biggest type in its section. */
-.section__head h2 { font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4.25rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.02; }
+.section__head h2 { font-size: clamp(1.9rem, 1.5rem + 1.5vw, 3rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.02; }
 .section__head .eyebrow, .quotes .wrap > .eyebrow, .faq > .eyebrow, .xp > .eyebrow, .case__h .eyebrow { font-size: clamp(0.9rem, 0.82rem + 0.3vw, 1.05rem); font-weight: 600; letter-spacing: 0.06em; gap: 0.75rem; }
 .section__head .eyebrow, .quotes .wrap > .eyebrow, .faq > .eyebrow, .xp > .eyebrow { display: flex; margin-bottom: clamp(1.1rem, 0.8rem + 1vw, 1.75rem); }
 .section__head .eyebrow__n, .quotes .wrap > .eyebrow .eyebrow__n, .case__h .eyebrow__n { width: 1.15em; height: 1.15em; }
@@ -458,9 +458,9 @@ html:not(.js) .theme-toggle { display: none !important; }
   .has-flank { position: relative; padding-left: max(3.5rem, calc(var(--cell, 40px) * 4 - var(--gutter))); }
 
   /* the home headline always sits on two lines, sized to fit its column */
-  .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(260px, 32vw, 560px); }
+  .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(220px, 25vw, 460px); }
   .hero__copy { container-type: inline-size; }
-  .hero__title { max-width: none; font-size: min(5.25rem, 11cqi); text-wrap: nowrap; }
+  .hero__title { max-width: none; font-size: min(5.5rem, 11cqi); text-wrap: nowrap; }
   .hero__line { display: block; white-space: nowrap; }
   .flank {
     position: absolute; top: 0; bottom: 0; pointer-events: none;
@@ -702,7 +702,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .svc-band--gold  { --band-bg: var(--tint-gold); }
 .svc-band--sky   { --band-bg: var(--tint-sky); }
 .svc-band__top { margin-bottom: clamp(2rem, 1.5rem + 1.5vw, 3rem); }
-.svc-band h2 { font-size: clamp(1.9rem, 1.3rem + 2.2vw, 3.25rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.04; margin: 0 0 2.25rem; }
+.svc-band h2 { font-size: clamp(1.9rem, 1.5rem + 1.5vw, 3rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.04; margin: 0 0 2.25rem; }
 .svc-band__body { font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem); line-height: 1.55; margin: 0; max-width: 46em; }
 .svc-band__gets { list-style: none; margin: 0 0 clamp(1.75rem, 1.5rem + 1vw, 2.5rem); padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 0.9rem clamp(1.5rem, 3vw, 3rem); }
 .svc-band__gets li { display: flex; align-items: baseline; gap: 0.75rem; font-size: 1.02rem; }
@@ -1011,7 +1011,7 @@ html:not(.js) .theme-toggle { display: none !important; }
    Big numbers on a skyline of organic pixel columns, on the page background. */
 .results { background: var(--bg); color: var(--ink); padding-block: clamp(5.5rem, 4rem + 6vw, 10rem); overflow: hidden; }
 .results__span { text-transform: none; letter-spacing: 0.02em; color: var(--muted); font-weight: 400; margin-left: 0.4em; }
-.results h2 { color: var(--accent); font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4.25rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.02; margin: 0 0 clamp(4rem, 3.25rem + 2vw, 5.5rem); max-width: 17em; }
+.results h2 { color: var(--accent); font-size: clamp(1.9rem, 1.5rem + 1.5vw, 3rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.02; margin: 0 0 clamp(4rem, 3.25rem + 2vw, 5.5rem); max-width: 17em; }
 .results .eyebrow { color: var(--ink); font-size: clamp(0.9rem, 0.82rem + 0.3vw, 1.05rem); font-weight: 600; letter-spacing: 0.06em; }
 /* organic, staggered: each result sits on its own column of pixels. Text keeps
    clear of the pixels: a pixel's height of space below it, and (after the first
