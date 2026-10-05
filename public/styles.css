@@ -389,9 +389,11 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Hero --------------------------------------------------------------------- */
 .hero {
   position: relative;
-  padding-block: clamp(3rem, 2rem + 6vw, 7rem) clamp(2.5rem, 2rem + 3vw, 4rem);
+  padding-block: clamp(4.5rem, 3rem + 7vw, 10rem) clamp(3.5rem, 2.5rem + 4vw, 6rem);
   isolation: isolate;
 }
+/* home: extra breathing room after the pixels below the hero */
+.hero + .spill { margin-bottom: clamp(1.5rem, 1rem + 2vw, 3rem); }
 .hero::before {
   content: ''; position: absolute; inset: 0; z-index: -1;
   background-image:
