@@ -395,7 +395,7 @@ export function workIndex() {
 <section class="results" aria-labelledby="results-h">
   <div class="wrap">
     <p class="eyebrow mono">By the numbers</p>
-    <h2 id="results-h">What the work added up to</h2>
+    <h2 id="results-h">Some cool results</h2>
   </div>
   <ul class="results__list">
     ${RESULTS.map(
