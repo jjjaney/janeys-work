@@ -199,7 +199,7 @@ function svcList() {
 const KIND_PIXELS = [
   [['var(--gold)', 1, 0], ['var(--lilac)', 0, 0], ['var(--orange)', 0, 1]],
   [['var(--gold)', 2, 0], ['var(--green)', 0, 0]],
-  [['var(--orange)', 0, 0], ['var(--sky)', 0, 2]],
+  [['var(--orange)', 0, 0], ['var(--sky)', 2, 0]],
 ];
 function quotes() {
   return `<section class="section quotes" aria-labelledby="quotes-h">

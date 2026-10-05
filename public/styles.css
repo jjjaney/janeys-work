@@ -184,14 +184,7 @@ code { font-family: var(--mono); font-size: 0.85em; background: var(--code-bg); 
   text-decoration: none; cursor: pointer;
   transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
-.btn::before, .btn::after {
-  content: ''; position: absolute; width: 10px; height: 10px; pointer-events: none;
-  transform: scale(0); transition: transform 0.25s var(--pop);
-}
-.btn::before { top: -6px; right: -6px; background: var(--orange); }
-.btn::after { bottom: -6px; left: -6px; background: var(--lilac); transition-delay: 0.05s; }
 .btn:hover { color: var(--on-accent); background: var(--accent-deep); border-color: var(--accent-deep); text-decoration: none; }
-.btn:hover::before, .btn:hover::after { transform: scale(1); }
 .btn:active { transform: translateY(1px); }
 .btn--ghost { background: transparent; color: var(--accent); border-color: var(--accent); }
 .btn--ghost:hover { background: var(--tint-lilac); color: var(--accent-deep); }
@@ -769,8 +762,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Quotes ------------------------------------------------------------------- */
 /* Kind words: a wall of tinted cards, all quotes visible at once */
 .quotes { padding-bottom: clamp(8rem, 5.5rem + 9vw, 15rem); }
-.kind { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
-.kind__card { position: relative; border: 2px solid var(--t); --t: var(--lilac); --kpx: 16px; }
+.kind { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr); --kpx: clamp(20px, var(--art-cell, clamp(28px, 3.2vw, 46px)), 46px); gap: calc(var(--kpx) * 0.5 + 1rem); align-items: start; }
+.kind__card { position: relative; border: 2px solid var(--t); --t: var(--lilac); }
 .kind__card:nth-child(3n + 2) { --t: var(--green); margin-top: 4rem; }
 .kind__card:nth-child(3n + 3) { --t: var(--gold); margin-top: 1.5rem; }
 .kind__card figure { margin: 0; padding: clamp(1.5rem, 1rem + 1.2vw, 2.25rem); min-height: clamp(260px, 22vw, 340px); display: flex; flex-direction: column; justify-content: space-between; gap: 2.5rem; }
@@ -786,7 +779,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .kind__logo-dark, :root[data-theme='dark'] .kind__logo:has(.kind__logo-dark) .kind__logo-light { display: none; }
 :root[data-theme='dark'] .kind__logo-dark { display: block; }
 .kind__meta { font-size: 0.82rem; line-height: 1.6; color: var(--ink); }
-.kind__px { position: absolute; top: -2px; right: -2px; }
+.kind__px { position: absolute; top: calc(var(--kpx) * -0.5); right: calc(var(--kpx) * -0.5); }
 .kind__px i { position: absolute; top: calc(var(--y) * var(--kpx)); right: calc(var(--x) * var(--kpx)); width: var(--kpx); height: var(--kpx); }
 /* motion: each card drifts slowly on its own beat; corner pixels hop in turn */
 @media (prefers-reduced-motion: no-preference) {
@@ -813,6 +806,9 @@ html:not(.js) .theme-toggle { display: none !important; }
   .kind__card:nth-child(n) { margin-top: 0; }
   .kind__card:nth-child(3n + 2) { margin-left: clamp(1rem, 6vw, 3rem); }
   .kind__card figure { min-height: 0; }
+  .kind__px { right: -2px; }
+  .kind__card figure { padding-top: calc(var(--kpx) * 0.5 + 1.5rem); }
+  .kind__card:nth-child(3n + 1) figure { padding-top: calc(var(--kpx) * 1.5 + 0.75rem); }
 }
 
 /* CTA band ----------------------------------------------------------------- */
