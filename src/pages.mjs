@@ -616,8 +616,7 @@ ${ctaBand()}`,
 
 // Services page, free review: an organic pixel résumé being looked over, with
 // checkmarks beside a few lines and a magnifying glass. Same style as the contact
-// envelopes: frayed edges, loose pixels, a sparkle that floats up now and then,
-// and a gently bobbing magnifier. Grid units are pixels.
+// envelopes: frayed edges, loose pixels and a gently bobbing magnifier. Grid units are pixels.
 function pixelResume() {
   const W = 24, H = 24;
   const C = { L: '#cfa2ed', P: '#4f33cc', G: '#c99f43', g: '#0b704f', O: '#ff7b4d', M: '#6b2337', S: '#b6d8fe', F: '#a77fd6' };
@@ -664,11 +663,7 @@ function pixelResume() {
   [[0, 6, 'S'], [18, 3, 'G'], [21, 8, 'L'], [1, 22, 'g'], [9, 23, 'L'], [23, 12, 'O']].forEach(([x, y, c]) => put(page, x, y, c));
 
   const rect = ([x, y, c]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${C[c]}" stroke="${C[c]}" stroke-width="0.08"/>`;
-  const shape = (rows, color, x0, y0, n) =>
-    `<g class="env__float env__float--${n}" fill="${color}" stroke="${color}" stroke-width="0.08">${rows
-      .flatMap((row, y) => [...row].map((c, x) => (c === 'X' ? `<rect x="${x0 + x}" y="${y0 + y}" width="1" height="1"/>` : '')))
-      .join('')}</g>`;
-  return `<div class="rev" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges">${shape(['.X.', 'XXX', '.X.'], '#ff7b4d', 18.5, -2, 1)}<g>${[...page.values()].map(rect).join('')}</g><g class="env__bob"><g class="rev__glass">${[...lens.values()].filter(([x, y]) => page.has(`${x},${y}`)).map(rect).join('')}</g>${[...lens.values()].filter(([x, y]) => !page.has(`${x},${y}`)).map(rect).join('')}${[cx - 2, cx - 1].map((x) => `<rect x="${x}" y="${cy - 2}" width="1" height="1" fill="#fffdf8"/>`).join('')}<rect x="${cx - 2}" y="${cy - 1}" width="1" height="1" fill="#fffdf8"/>${[...glass.values()].map(rect).join('')}</g></svg></div>`;
+  return `<div class="rev" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges"><g>${[...page.values()].map(rect).join('')}</g><g class="env__bob"><g class="rev__glass">${[...lens.values()].filter(([x, y]) => page.has(`${x},${y}`)).map(rect).join('')}</g>${[...lens.values()].filter(([x, y]) => !page.has(`${x},${y}`)).map(rect).join('')}${[cx - 2, cx - 1].map((x) => `<rect x="${x}" y="${cy - 2}" width="1" height="1" fill="#fffdf8"/>`).join('')}<rect x="${cx - 2}" y="${cy - 1}" width="1" height="1" fill="#fffdf8"/>${[...glass.values()].map(rect).join('')}</g></svg></div>`;
 }
 
 // Contact page: three organic pixel envelopes in the header-art style. Edges

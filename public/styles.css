@@ -1011,4 +1011,4 @@ html:not(.js) .pull__logo:first-child { opacity: 1; visibility: visible; }
 @media (min-width: 861px) { .env { margin-left: auto; } }
 @media (max-width: 860px) { .env { width: min(85%, 340px); margin-top: 2rem; } }
 @media (prefers-reduced-motion: reduce) { .env__float, .env__bob { animation: none; } }
-/* the résumé's sparkle and magnifier share the envelope animations */
+/* the résumé's magnifier bobs with the envelope animation */
