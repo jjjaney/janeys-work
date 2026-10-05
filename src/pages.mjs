@@ -175,25 +175,19 @@ function stairs() {
     </ol>`;
 }
 
-// Services on the home page: big type on thin rules. Each row opens to show
-// what you get (a native <details>, so it works with a keyboard and without JS).
+// Services on the home page: big type on thin rules. Each row is a link to
+// that service's band on the Services page.
 function svcList() {
   return `<ul class="svc-type">
       ${services
         .map(
           (s) => `<li>
-        <details>
-          <summary>
-            <span class="svc-type__dot" aria-hidden="true"></span>
-            <span class="svc-type__name">${esc(s.name)}</span>
-            <span class="svc-type__for">${esc(s.for)}</span>
-            <span class="svc-type__icon" aria-hidden="true"></span>
-          </summary>
-          <div class="svc-type__more">
-            <ul class="svc-type__gets">${s.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
-            <a class="link-arrow" href="/services/#${s.id}">More about this <span class="sr-only">(${esc(s.name)})</span>${arrow}</a>
-          </div>
-        </details>
+        <a class="svc-type__row" href="/services/#${s.id}">
+          <span class="svc-type__dot" aria-hidden="true"></span>
+          <span class="svc-type__name">${esc(s.name)}</span>
+          <span class="svc-type__for">${esc(s.for)}</span>
+          <span class="svc-type__icon" aria-hidden="true">${arrow}</span>
+        </a>
       </li>`
         )
         .join('')}
