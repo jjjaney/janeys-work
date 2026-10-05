@@ -768,6 +768,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 
 /* Quotes ------------------------------------------------------------------- */
 /* Kind words: a wall of tinted cards, all quotes visible at once */
+.quotes { padding-bottom: clamp(8rem, 5.5rem + 9vw, 15rem); }
 .kind { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
 .kind__card { position: relative; background: var(--t); --t: var(--tint-lilac); --kpx: 16px; }
 .kind__card:nth-child(3n + 2) { --t: var(--tint-mint); margin-top: 4rem; }
