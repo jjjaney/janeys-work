@@ -52,7 +52,8 @@ npm run build   # one-off build into dist/
 | Colors, type, spacing | `public/styles.css` (the `:root` block at the top; dark mode colors are in the `:root[data-theme='dark']` block right after it) |
 | Pixel art | `src/art/*.svg` |
 | Header art shapes (`pixel-art-1`, `pixel-art-2`, `pixel-art-3`) | `ART_SHAPES` in `src/lib.mjs` |
-| Images, PDFs, favicon, social preview image | `public/` |
+| Images, PDFs, social preview image | `public/` |
+| Favicon (browser tab icon) | `public/icons/` and `public/favicon.ico`. When you change it, save it under a new name (for example `paperclip-v5.svg`) and update the `<link rel="icon">` lines in `src/layout.mjs`, so browsers can't show an old copy. |
 
 ### Screenshots that still load from Squarespace
 
