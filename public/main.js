@@ -388,32 +388,6 @@
     targets.forEach((t) => io.observe(t));
   }
 
-  // Work page: filter projects by skill. Matching cards stay bright (the rest
-  // fade back, so the grid doesn't jump); index rows that don't match hide.
-  const wf = document.querySelector('[data-work-filter]');
-  if (wf) {
-    const btns = [...wf.querySelectorAll('.work-filter button')];
-    const count = wf.querySelector('.work-filter__count');
-    const cards = [...wf.querySelectorAll('.story')];
-    const rows = [...document.querySelectorAll('.idx tbody tr[data-skills]')];
-    const archiveHead = document.querySelector('.idx__group');
-    const has = (el, k) => !k || el.dataset.skills.split(' ').includes(k);
-    const apply = (k) => {
-      btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.skill === k)));
-      let n = 0;
-      cards.forEach((c) => {
-        const on = has(c, k);
-        c.classList.toggle('is-dim', !on);
-        if (on) n++;
-      });
-      rows.forEach((r) => (r.hidden = !has(r, k)));
-      if (archiveHead) archiveHead.hidden = !rows.some((r) => !r.hidden && r.closest('.idx__archive'));
-      const label = btns.find((b) => b.dataset.skill === k)?.textContent;
-      count.textContent = k ? `${n} of ${cards.length} highlighted for ${label}. The index below shows only matching projects.` : '';
-    };
-    btns.forEach((b) => b.addEventListener('click', () => apply(b.dataset.skill)));
-  }
-
   // Contact form -----------------------------------------------------------
   const form = document.querySelector('[data-contact]');
   if (form) {

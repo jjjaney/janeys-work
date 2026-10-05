@@ -68,21 +68,8 @@ function pixelQuestion(dark, light = dark) {
   return `<svg class="story__mark story__mark--q" viewBox="0 0 5 7" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
-// Work page filter: each project's disciplines rolled up into a few skills.
-const SKILLS = {
-  strategy: { label: 'Content strategy', from: ['Content strategy', 'Content management', 'Content operations', 'Editorial', 'Brand'] },
-  design: { label: 'Content design & UX writing', from: ['Content design', 'UX writing'] },
-  docs: { label: 'Documentation', from: ['Documentation', 'Release notes'] },
-  product: { label: 'Product management', from: ['Product management'] },
-  l10n: { label: 'Localization', from: ['Localization'] },
-  ai: { label: 'Content for AI', from: ['Content for AI'] },
-};
-const skillsFor = (disciplines) => Object.keys(SKILLS).filter((k) => SKILLS[k].from.some((d) => disciplines.includes(d)));
-// archive groups map onto the same skills
-const ARCHIVE_SKILLS = { 'Editorial & marketing': ['strategy'], 'Technical writing': ['docs'], 'Web & social': ['strategy', 'design'] };
-
 function storyCard(w, i) {
-  return `<li class="story story--${w.hue}${i === 0 ? ' story--featured' : ''}" data-skills="${skillsFor(w.disciplines).join(' ')}">
+  return `<li class="story story--${w.hue}${i === 0 ? ' story--featured' : ''}">
     <a class="story__link" href="/work/${w.slug}/">
       <div class="story__top">
         <p class="story__client mono">${esc(w.client)}</p>
@@ -125,7 +112,7 @@ function pixelClock() {
 }
 
 function archiveStory() {
-  return `<li class="story story--archive" data-skills="strategy docs design">
+  return `<li class="story story--archive">
     <a class="story__link" href="/archive/">
       <div class="story__top">
         <p class="story__client mono">The archive · 2020 &amp; earlier</p>
@@ -360,35 +347,43 @@ ${ctaBand()}
 // Work index + case studies
 // ---------------------------------------------------------------------------
 
+// Work page: the results, as big numbers standing on a skyline of organic
+// pixel columns (like the header art), and links to the work out in the world.
+const RESULTS = [
+  { stat: '500K+', label: 'members reached by weekly updates', who: 'The Browser Company', colors: ['#ff7b4d', '#cfa2ed'], rows: 6 },
+  { stat: '4', label: 'public media partners', who: 'New_ Public', colors: ['#b6d8fe', '#cfa2ed'], rows: 4 },
+  { stat: 'GitHub', label: 'adopted the Ally.Guide program internally', who: 'Ally.Guide', colors: ['#0b704f', '#b6d8fe'], rows: 7 },
+  { stat: '2', label: 'new countries launched', who: 'GitHub Sponsors', colors: ['#c99f43', '#ff7b4d'], rows: 3 },
+  { stat: '3', label: 'platforms on one release-notes process', who: 'The Browser Company', colors: ['#cfa2ed', '#c99f43'], rows: 5 },
+];
+
+function resultColumn({ colors, rows }, i) {
+  const W = 10, H = rows + 3; // a few rows of headroom for loose pixels
+  let rects = '';
+  const at = (x, y, c) => (rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${c}" stroke="${c}" stroke-width="0.06"/>`);
+  for (let x = 0; x < W; x++) {
+    // ragged top: each column a little taller or shorter
+    const top = 3 + Math.floor(rand(x + i * 13, 5) * 2.2);
+    for (let y = top; y < H; y++) {
+      if (y === top && rand(x * 3 + i, y) < 0.3) continue; // fray the top edge
+      at(x, y, colors[rand(x + i * 7, y * 11) < 0.78 ? 0 : 1]);
+    }
+  }
+  // loose pixels floating above
+  [[1 + (i % 3), 1], [6 + (i % 2), 0], [8, 2]].forEach(([x, y], k) => rand(i, k) < 0.75 && at(x, y, colors[k % 2]));
+  return `<svg class="pixel results__px" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+}
+
 export function workIndex() {
-  const used = new Set([...work.flatMap((w) => skillsFor(w.disciplines)), 'strategy', 'docs', 'design']);
-  const filter = `<div class="work-filter" role="group" aria-label="Filter projects by skill">
-      <button type="button" aria-pressed="true" data-skill="">All</button>
-      ${Object.keys(SKILLS).filter((k) => used.has(k)).map((k) => `<button type="button" aria-pressed="false" data-skill="${k}">${esc(SKILLS[k].label)}</button>`).join('')}
-    </div>
-    <p class="work-filter__count muted" aria-live="polite"></p>`;
-  const caseRows = work
-    .map(
-      (w) => `<tr data-skills="${skillsFor(w.disciplines).join(' ')}">
-        <th scope="row"><a href="/work/${w.slug}/">${esc(w.cardTitle)}</a><span class="idx__role">${esc(w.role)}</span></th>
-        <td>${esc(w.client)}</td>
-        <td>${w.disciplines.map(esc).join(', ')}</td>
-        <td>${esc(w.teaser)}</td>
-      </tr>`
-    )
-    .join('');
-  const archiveRows = archive
-    .flatMap((g) =>
-      g.items.map(
-        (it) => `<tr data-skills="${(ARCHIVE_SKILLS[g.group] || []).join(' ')}">
-        <th scope="row">${esc(it.title)}</th>
-        <td>${esc(it.org)}</td>
-        <td>${esc(g.group)}</td>
-        <td>${it.links.length ? it.links.map((l) => `<a href="${esc(l.href)}">${esc(l.label)}</a>`).join(', ') : '<span class="muted">Ask me about it</span>'}</td>
-      </tr>`
-      )
-    )
-    .join('');
+  const live = work
+    .filter((w) => w.links?.length)
+    .map((w) => ({ who: w.client, slug: w.slug, links: w.links }))
+    .concat(
+      archive
+        .flatMap((g) => g.items)
+        .filter((it) => it.links.some((l) => !l.href.includes('janeys.work/s/')))
+        .map((it) => ({ who: `${it.org} · 2014–2020`, links: ((ls) => ls.map((l) => ({ ...l, label: ls.length > 1 ? `${it.title} (${l.label})` : it.title })))(it.links.filter((l) => !l.href.includes('janeys.work/s/'))) }))
+    );
   return {
     path: '/work/',
     title: 'Work',
@@ -402,20 +397,39 @@ export function workIndex() {
   </div>
 </section>
 <section class="section section--tight">
-  <div class="wrap" data-work-filter>
-    ${filter}
+  <div class="wrap">
     ${storyGrid()}
   </div>
 </section>
-<section class="section section--work" aria-labelledby="idx-h">
+
+<section class="results" aria-labelledby="results-h">
   <div class="wrap">
-    <div class="section__head">${eyebrow('—', 'Project index')}<h2 id="idx-h">Everything, at a glance</h2></div>
-    <div class="idx-wrap">
-      <table class="idx">
-        <thead><tr><th scope="col">Project</th><th scope="col">Client</th><th scope="col">Skills</th><th scope="col">Result</th></tr></thead>
-        <tbody>${caseRows}</tbody>
-        <tbody class="idx__archive"><tr class="idx__group"><th colspan="4" scope="colgroup">2014–2020 · <a href="/archive/">full archive</a></th></tr>${archiveRows}</tbody>
-      </table>
+    <p class="eyebrow mono">By the numbers</p>
+    <h2 id="results-h">What the work added up to</h2>
+  </div>
+  <ul class="results__list">
+    ${RESULTS.map(
+      (r, i) => `<li class="results__item">
+      <p class="results__stat">${esc(r.stat)}</p>
+      <p class="results__label">${esc(r.label)}<span class="mono">${esc(r.who)}</span></p>
+      ${resultColumn(r, i)}
+    </li>`
+    ).join('')}
+  </ul>
+</section>
+
+<section class="section section--work" aria-labelledby="live-h">
+  <div class="wrap">
+    <div class="section__head">${eyebrow('—', 'See it live')}<h2 id="live-h">The work, out in the world</h2></div>
+    <div class="live">
+      ${live
+        .map(
+          (g) => `<div class="live__group">
+        <p class="live__who mono">${g.slug ? `<a href="/work/${g.slug}/">${esc(g.who)}</a>` : esc(g.who)}</p>
+        <ul>${g.links.map((l) => `<li><a href="${esc(l.href)}">${esc(l.label)} ${external}</a></li>`).join('')}</ul>
+      </div>`
+        )
+        .join('')}
     </div>
   </div>
 </section>
