@@ -1035,4 +1035,10 @@ html:not(.js) .pull__logo:first-child { opacity: 1; visibility: visible; }
   .results__item:last-child { grid-column: 1 / -1; }
   .results__item:last-child .results__px { width: 50%; }
 }
+/* phones: one result per row, the pixels running edge to edge */
+@media (max-width: 600px) {
+  .results__list { grid-template-columns: 1fr; gap: 2.5rem; padding: 0; }
+  .results__item:last-child .results__px { width: 100%; }
+  .results__stat, .results__label { padding-inline: var(--gutter); }
+}
 
