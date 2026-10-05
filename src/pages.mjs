@@ -357,19 +357,30 @@ const RESULTS = [
   { stat: '3', label: 'platforms on one release-notes process', who: 'The Browser Company', colors: ['#cfa2ed', '#c99f43'], rows: 5 },
 ];
 
+// a better-mixed random number for the skyline's ragged bottom (rand() gives
+// near-identical values for neighbouring columns with these inputs)
+const mix = (a, b) => rand(Math.floor(rand(a * 7919 + 13, b) * 1e6), b * 31 + a);
+
 function resultColumn({ colors, rows }, i) {
-  const W = 10, H = rows + 3; // a few rows of headroom for loose pixels
+  // a few rows of headroom for loose pixels, and two below for a ragged bottom
+  const W = 10, base = rows + 3, H = base + 2;
   let rects = '';
   const at = (x, y, c) => (rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${c}" stroke="${c}" stroke-width="0.06"/>`);
+  const pick = (x, y) => colors[rand(x + i * 7, y * 11) < 0.78 ? 0 : 1];
   for (let x = 0; x < W; x++) {
     // ragged top: each column a little taller or shorter
     const top = 3 + Math.floor(rand(x + i * 13, 5) * 2.2);
-    for (let y = top; y < H; y++) {
+    // ragged bottom: some columns stop a pixel short, some jut down one or two
+    const r = mix(x + i * 10, 41);
+    const bottom = r < 0.06 ? base - 2 : r < 0.24 ? base - 1 : r < 0.84 ? base : base + 1;
+    for (let y = top; y <= bottom; y++) {
       if (y === top && rand(x * 3 + i, y) < 0.3) continue; // fray the top edge
-      at(x, y, colors[rand(x + i * 7, y * 11) < 0.78 ? 0 : 1]);
+      if (y > top + 1 && y >= base - 3 && mix(x + i * 10, y * 7 + 3) < 0.08) continue; // the odd hole near the bottom
+      at(x, y, pick(x, y));
     }
   }
-  // loose pixels floating above
+  // a loose pixel or two dropping off the bottom
+  [[2 + (i % 4), H - 1], [7, H - 1]].forEach(([x, y], k) => mix(i * 3 + k, 97) < 0.5 && at(x, y, colors[(k + 1) % 2]));
   // loose pixels above drift up and down, each on its own timing
   [[1 + (i % 3), 1], [6 + (i % 2), 0], [8, 2]].forEach(([x, y], k) => {
     if (rand(i, k) >= 0.75) return;
