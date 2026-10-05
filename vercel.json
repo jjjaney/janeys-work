@@ -33,7 +33,25 @@
   ],
   "headers": [
     {
-      "source": "/(favicon.ico|favicon.svg|icons/(.*))",
+      "source": "/favicon.ico",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/favicon.svg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/icons/:path*",
       "headers": [
         {
           "key": "Cache-Control",
