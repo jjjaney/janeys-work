@@ -377,7 +377,6 @@ html:not(.js) .theme-toggle { display: none !important; }
 .section__head h2 { font-size: clamp(2.2rem, 1.3rem + 3.2vw, 4.25rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.02; }
 .section__head .eyebrow, .quotes .wrap > .eyebrow, .faq > .eyebrow, .xp > .eyebrow, .case__h .eyebrow { font-size: clamp(0.9rem, 0.82rem + 0.3vw, 1.05rem); font-weight: 600; letter-spacing: 0.06em; gap: 0.75rem; }
 .section__head .eyebrow, .quotes .wrap > .eyebrow, .faq > .eyebrow, .xp > .eyebrow { display: flex; margin-bottom: clamp(1.1rem, 0.8rem + 1vw, 1.75rem); }
-.section__head .eyebrow::after, .quotes .wrap > .eyebrow::after, .faq > .eyebrow::after, .xp > .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--line-strong); margin-left: 0.5rem; }
 .section__head .eyebrow__n, .quotes .wrap > .eyebrow .eyebrow__n, .case__h .eyebrow__n { width: 1.15em; height: 1.15em; }
 
 .page-head { padding-block: clamp(3rem, 2rem + 5vw, 6rem) clamp(2rem, 1.5rem + 2vw, 3rem); border-bottom: 1px solid var(--line); }
