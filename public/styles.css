@@ -473,9 +473,12 @@ html:not(.js) .theme-toggle { display: none !important; }
 .floaters i { position: absolute; width: var(--cell, 32px); height: var(--cell, 32px); }
 .floaters i[hidden] { display: none; }
 /* a strip of strays just below the header */
-.spill { position: absolute; left: 0; right: 0; top: 100%; height: calc(var(--cell, 32px) * 3.4); pointer-events: none; z-index: -1; }
+/* sits right after the header in the page flow, so the header's side clipping can't cut it off (Safari) */
+.spill { position: relative; isolation: isolate; height: calc(var(--cell, 32px) * 3.4); pointer-events: none; }
+/* case studies end their header with colored boxes, so start the pixels one row lower */
+.case__head + .spill { margin-top: var(--cell, 32px); }
 /* give the strip its own space so the next section can breathe */
-.hero, .case__head, .page-head--art { margin-bottom: calc(var(--cell, 32px) * 3.4); }
+
 @media (max-width: 860px) {
   .floaters i:not(.m) { display: none; }
 }

@@ -101,7 +101,7 @@
     const layout = () => {
       // lines of text the squares must stay clear of
       const lines = [];
-      document.querySelectorAll('.hero, .case__head, .page-head--art, .hero + *, .page-head--art + *, .case__body, .about-head').forEach((root) => {
+      document.querySelectorAll('.hero, .case__head, .page-head--art, .spill + *, .case__body, .about-head').forEach((root) => {
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
         while (walker.nextNode()) {
           const n = walker.currentNode;
@@ -119,6 +119,10 @@
         const g = gridFor(head);
         if (!g) return;
         head.style.setProperty('--cell', `${g.cell.toFixed(2)}px`);
+        // the strip of pixels just below the header lives right after it (outside the
+        // header, so nothing the header clips can cut it off)
+        const strip = head.nextElementSibling?.classList.contains('spill') ? head.nextElementSibling : null;
+        strip?.style.setProperty('--cell', `${g.cell.toFixed(2)}px`);
         if (head === heads[0]) root.style.setProperty('--art-cell', `${g.cell.toFixed(2)}px`); // the band's corner art uses it too
         const key = (x, y) => `${Math.round((x - g.x0) / g.cell)},${Math.round((y - g.y0) / g.cell)}`;
         // grid cells already filled by the art itself
@@ -126,7 +130,7 @@
           const b = r.getBoundingClientRect();
           return key(b.left, b.top);
         }));
-        head.querySelectorAll('.floaters i').forEach((i) => {
+        [...head.querySelectorAll('.floaters i'), ...(strip ? strip.querySelectorAll('.floaters i') : [])].forEach((i) => {
           // go back to the authored % position, then snap to the nearest grid cell
           if (!i.dataset.left) (i.dataset.left = i.style.left), (i.dataset.top = i.style.top);
           i.hidden = false;

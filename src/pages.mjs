@@ -279,7 +279,6 @@ export function home() {
   ${gapFloat(3, [
     [50, 18, 6, 50, 2],  // a couple between the copy and the art
   ])}
-  ${spill(4)}
   <div class="wrap hero__inner">
     <div class="hero__copy has-flank">
       <div class="flank" data-seed="1" aria-hidden="true"></div>
@@ -303,6 +302,7 @@ export function home() {
     </div>
   </div>
 </section>
+${spill(4)}
 
 <section class="section" aria-labelledby="work-h">
   <div class="wrap">
@@ -390,7 +390,6 @@ export function caseStudy(w, i) {
     ${gapFloat(6 + i, [
       [56, 15, 6, 45, 2],
     ])}
-    ${spill(7 + i)}
     <div class="wrap case__head-inner">
       <div>
         <p class="eyebrow mono"><a href="/work/">Work</a> <span aria-hidden="true">/</span> ${esc(w.client)}</p>
@@ -408,6 +407,7 @@ export function caseStudy(w, i) {
       </dl>
     </div>
   </header>
+  ${spill(7 + i)}
 
   <div class="wrap case__body">
     ${w.todos.map((t) => todo(t)).join('')}
@@ -561,7 +561,6 @@ export function aboutPage() {
   ${gapFloat(21, [
     [58, 10, 4, 60, 2],   // a couple between the bio and the art
   ])}
-  ${spill(22)}
   <div class="wrap about-head">
     <div>
       ${eyebrow('—', 'About')}
@@ -576,6 +575,7 @@ export function aboutPage() {
     </div>
   </div>
 </section>
+${spill(22)}
 
 <section class="section section--surface" aria-labelledby="pr-h">
   <div class="wrap">
