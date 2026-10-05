@@ -417,8 +417,10 @@ export function workIndex() {
   <ul class="results__list">
     ${RESULTS.map(
       (r, i) => `<li class="results__item">
-      <p class="results__stat">${esc(r.stat)}</p>
-      <p class="results__label">${esc(r.label)}<span class="mono">${esc(r.who)}</span></p>
+      <div class="results__text">
+        <p class="results__stat">${esc(r.stat)}</p>
+        <p class="results__label">${esc(r.label)}<span class="mono">${esc(r.who)}</span></p>
+      </div>
       ${resultColumn(r, i)}
     </li>`
     ).join('')}
