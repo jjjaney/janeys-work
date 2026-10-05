@@ -400,18 +400,13 @@ export function workIndex() {
     body: `
 <section class="page-head">
   <div class="wrap">
-    ${eyebrow('—', 'Case studies')}
-    <h1>Selected work</h1>
-    <p class="lede">Projects where the words were only half the job. The other half was the system that made them work.</p>
+    ${eyebrow('—', 'Selected work')}
+    <h1 class="work-h1"><span>Every project starts with a question.</span> <span>Here’s how I answered a few.</span></h1>
   </div>
 </section>
 
-<section class="section" aria-labelledby="cases-h">
+<section class="section section--tight">
   <div class="wrap">
-    <div class="section__head">
-      ${eyebrow('—', 'The case studies')}
-      <h2 id="cases-h">Every project starts with a question. Here’s how I answered a few.</h2>
-    </div>
     ${storyGrid()}
   </div>
 </section>

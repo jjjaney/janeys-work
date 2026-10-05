@@ -383,6 +383,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 
 .page-head { padding-block: clamp(3rem, 2rem + 5vw, 6rem) clamp(2rem, 1.5rem + 2vw, 3rem); border-bottom: 1px solid var(--line); }
 .page-head h1 { max-width: 14em; }
+/* Work page: one sentence per line on wider screens */
+@media (min-width: 861px) { .page-head .work-h1 { max-width: none; font-size: clamp(2.4rem, 1rem + 3.4vw, 4.6rem); } .work-h1 span { display: block; } }
 
 /* Hero --------------------------------------------------------------------- */
 .hero {
