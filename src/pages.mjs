@@ -636,8 +636,6 @@ export function contactPage() {
         ${site.email ? `<li><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></li>` : ''}
         ${site.bookingUrl ? `<li><a href="${esc(site.bookingUrl)}">Book a call ${external}</a></li>` : ''}
       </ul>
-      ${!site.bookingUrl ? todo('Optional: add a booking link (Calendly or similar) as <code>bookingUrl</code> in <code>src/site.mjs</code>.') : ''}
-      <div class="contact__art">${pixel('pixel-composition-13')}</div>
     </div>
     <div>
       ${!action ? todo('The form isn’t connected yet. Create a free form at <a href="https://formspree.io">formspree.io</a> and paste its ID as <code>formspreeId</code> in <code>src/site.mjs</code>. Until then, submitting shows a note pointing to LinkedIn.') : ''}
