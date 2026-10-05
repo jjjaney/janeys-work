@@ -617,6 +617,37 @@ ${ctaBand()}`,
 // Contact
 // ---------------------------------------------------------------------------
 
+// Contact page: an organic pixel envelope in the header-art style, with a
+// pixel heart that floats up out of it now and then. Grid units are pixels.
+function pixelEnvelope() {
+  const W = 18, H = 17;
+  const C = { S: '#b6d8fe', L: '#cfa2ed', P: '#4f33cc', O: '#ff7b4d', G: '#c99f43', M: '#6b2337', g: '#0b704f' };
+  const cells = new Map();
+  const put = (x, y, c) => cells.set(`${x},${y}`, [x, y, c]);
+  // body
+  for (let y = 5; y <= 15; y++) for (let x = 1; x <= 16; x++) put(x, y, 'S');
+  // flap: a V from the top corners to the middle, purple along its edges
+  for (let y = 5; y <= 12; y++) {
+    const l = 1 + (y - 5), r = 16 - (y - 5);
+    for (let x = l; x <= r; x++) put(x, y, y > 5 && (x === l || x === r) ? 'P' : 'L');
+  }
+  // stamp
+  for (let y = 6; y <= 8; y++) for (let x = 12; x <= 14; x++) put(x, y, x === 13 && y === 7 ? 'G' : 'O');
+  // a little texture in the paper, like the mixed tiles in the header art
+  [[3, 13, 'L'], [9, 14, 'G'], [14, 12, 'L'], [5, 10, 'G'], [12, 14, 'L']].forEach(([x, y, c]) => put(x, y, c));
+  // organic edges: a few missing pixels, mostly along the bottom
+  [[1, 15], [16, 15], [16, 14], [5, 15], [11, 15], [1, 9]].forEach(([x, y]) => cells.delete(`${x},${y}`));
+  // loose pixels drifting off it
+  [[0, 13, 'g'], [17, 9, 'G'], [2, 3, 'L'], [16, 2, 'O'], [17, 15, 'L'], [0, 6, 'M']].forEach(([x, y, c]) => put(x, y, c));
+  const px = [...cells.values()]
+    .map(([x, y, c]) => `<rect class="env__px" x="${x}" y="${y}" width="1" height="1" fill="${C[c]}" stroke="${C[c]}" stroke-width="0.08" style="--d:${(x + y) * 22}ms"/>`)
+    .join('');
+  const heart = ['.H.H.', 'HHHHH', '.HHH.', '..H..']
+    .flatMap((row, y) => [...row].map((c, x) => (c === 'H' ? `<rect x="${6.5 + x}" y="${y}" width="1" height="1"/>` : '')))
+    .join('');
+  return `<div class="env" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges"><g class="env__heart" fill="#cc3333" stroke="#cc3333" stroke-width="0.08">${heart}</g>${px}</svg></div>`;
+}
+
 export function contactPage() {
   const topics = [...services.map((s) => s.name), 'Free review', 'Full-time role', 'Something else'];
   const action = site.formspreeId ? `https://formspree.io/f/${site.formspreeId}` : '';
@@ -636,6 +667,7 @@ export function contactPage() {
         ${site.email ? `<li><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></li>` : ''}
         ${site.bookingUrl ? `<li><a href="${esc(site.bookingUrl)}">Book a call ${external}</a></li>` : ''}
       </ul>
+      ${pixelEnvelope()}
     </div>
     <div>
       ${!action ? todo('The form isn’t connected yet. Create a free form at <a href="https://formspree.io">formspree.io</a> and paste its ID as <code>formspreeId</code> in <code>src/site.mjs</code>. Until then, submitting shows a note pointing to LinkedIn.') : ''}

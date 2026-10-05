@@ -988,3 +988,26 @@ html:not(.js) .pull__logo:first-child { opacity: 1; visibility: visible; }
   .js .reveal { opacity: 1; transform: none; }
   .ticker__track { animation: none; }
 }
+
+/* Contact: pixel envelope ----------------------------------------------------
+   Pixels pop in on a diagonal wave the first time it's on screen, then a small
+   heart floats up out of the envelope every few seconds. Still for reduced motion. */
+.env { width: min(100%, 340px); margin-top: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
+.env svg { display: block; width: 100%; height: auto; overflow: visible; }
+.env__px { transform-box: fill-box; transform-origin: center; }
+.js .env:not(.is-in) .env__px { transform: scale(0); }
+.env.is-in .env__px { animation: env-pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) both; animation-delay: var(--d); }
+@keyframes env-pop { from { transform: scale(0); } to { transform: scale(1); } }
+.env__heart { opacity: 0; }
+.env.is-in .env__heart { animation: env-heart 5s ease-in-out 1.4s infinite; }
+@keyframes env-heart {
+  0% { opacity: 0; transform: translateY(5px); }
+  12% { opacity: 1; transform: translateY(2px); }
+  45% { opacity: 1; transform: translateY(-1px); }
+  60%, 100% { opacity: 0; transform: translateY(-3px); }
+}
+@media (max-width: 860px) { .env { width: min(60%, 240px); margin-top: 2rem; } }
+@media (prefers-reduced-motion: reduce) {
+  .js .env:not(.is-in) .env__px, .env.is-in .env__px { transform: none; animation: none; }
+  .env.is-in .env__heart { animation: none; }
+}
