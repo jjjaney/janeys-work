@@ -632,9 +632,20 @@ function pixelEnvelopes() {
   const envelope = (x0, y0, w, h, { body, flap, edge, accent }, seed, bob) => {
     for (let y = y0; y < y0 + h; y++) for (let x = x0; x < x0 + w; x++) put(x, y, body, bob);
     const tip = Math.round(h * 0.68);
+    const outline = new Set(); // flap outline: top edge and both sides of the V, kept whole
     for (let r = 0; r < tip; r++) {
       const l = x0 + Math.round((r * (w - 1)) / 2 / tip), rr = x0 + w - 1 - Math.round((r * (w - 1)) / 2 / tip);
-      for (let x = l; x <= rr; x++) put(x, y0 + r, r > 0 && (x === l || x === rr) ? edge : flap, bob);
+      for (let x = l; x <= rr; x++) {
+        const isEdge = r === 0 || x === l || x === rr;
+        put(x, y0 + r, isEdge ? edge : flap, bob);
+        if (isEdge) outline.add(`${x},${y0 + r}`);
+      }
+    }
+    // close the point of the V (only if its last row left a gap)
+    const lastL = x0 + Math.round(((tip - 1) * (w - 1)) / 2 / tip), lastR = x0 + w - 1 - Math.round(((tip - 1) * (w - 1)) / 2 / tip);
+    if (lastR - lastL > 1) {
+      const l = x0 + Math.round((tip * (w - 1)) / 2 / tip), rr = x0 + w - 1 - Math.round((tip * (w - 1)) / 2 / tip);
+      for (let x = Math.min(l, rr); x <= Math.max(l, rr); x++) (put(x, y0 + tip, edge, bob), outline.add(`${x},${y0 + tip}`));
     }
     // paper texture
     for (let y = y0 + 1; y < y0 + h; y++)
@@ -644,6 +655,7 @@ function pixelEnvelopes() {
       for (let x = x0; x < x0 + w; x++) {
         const edgeX = x === x0 || x === x0 + w - 1, bottom = y === y0 + h - 1, nearBottom = y === y0 + h - 2;
         const r = rand(x + seed * 31, y + seed * 17);
+        if (outline.has(`${x},${y}`)) continue;
         if ((bottom && r < 0.4) || (edgeX && r < 0.22) || (nearBottom && edgeX && r < 0.5) || (!edgeX && !bottom && y > y0 + tip && r < 0.025)) drop(x, y);
       }
   };
