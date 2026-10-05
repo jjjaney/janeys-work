@@ -1034,10 +1034,3 @@ html:not(.js) .pull__logo:first-child { opacity: 1; visibility: visible; }
   .results__item:last-child .results__px { width: 50%; }
 }
 
-/* Work page: see it live */
-.live { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: clamp(2rem, 3vw, 3rem) clamp(2rem, 4vw, 4rem); }
-.live__who { margin: 0 0 0.9rem; color: var(--muted); }
-.live__who a { color: inherit; }
-.live ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
-.live li a { display: inline-flex; align-items: baseline; gap: 0.4rem; font-weight: 600; font-size: 1.05rem; text-decoration: none; }
-.live li a:hover { text-decoration: underline; }

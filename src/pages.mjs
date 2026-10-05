@@ -348,7 +348,7 @@ ${ctaBand()}
 // ---------------------------------------------------------------------------
 
 // Work page: the results, as big numbers standing on a skyline of organic
-// pixel columns (like the header art), and links to the work out in the world.
+// pixel columns (like the header art), right under the page heading.
 const RESULTS = [
   { stat: '500K+', label: 'members reached by weekly updates', who: 'The Browser Company', colors: ['#ff7b4d', '#cfa2ed'], rows: 6 },
   { stat: '4', label: 'public media partners', who: 'New_ Public', colors: ['#b6d8fe', '#cfa2ed'], rows: 4 },
@@ -375,15 +375,6 @@ function resultColumn({ colors, rows }, i) {
 }
 
 export function workIndex() {
-  const live = work
-    .filter((w) => w.links?.length)
-    .map((w) => ({ who: w.client, slug: w.slug, links: w.links }))
-    .concat(
-      archive
-        .flatMap((g) => g.items)
-        .filter((it) => it.links.some((l) => !l.href.includes('janeys.work/s/')))
-        .map((it) => ({ who: `${it.org} · 2014–2020`, links: ((ls) => ls.map((l) => ({ ...l, label: ls.length > 1 ? `${it.title} (${l.label})` : it.title })))(it.links.filter((l) => !l.href.includes('janeys.work/s/'))) }))
-    );
   return {
     path: '/work/',
     title: 'Work',
@@ -396,12 +387,6 @@ export function workIndex() {
     <p class="lede">Projects where the words were only half the job. The other half was the system that made them work.</p>
   </div>
 </section>
-<section class="section section--tight">
-  <div class="wrap">
-    ${storyGrid()}
-  </div>
-</section>
-
 <section class="results" aria-labelledby="results-h">
   <div class="wrap">
     <p class="eyebrow mono">By the numbers</p>
@@ -417,22 +402,15 @@ export function workIndex() {
     ).join('')}
   </ul>
 </section>
-
-<section class="section section--work" aria-labelledby="live-h">
+<section class="section section--work">
   <div class="wrap">
-    <div class="section__head">${eyebrow('—', 'See it live')}<h2 id="live-h">The work, out in the world</h2></div>
-    <div class="live">
-      ${live
-        .map(
-          (g) => `<div class="live__group">
-        <p class="live__who mono">${g.slug ? `<a href="/work/${g.slug}/">${esc(g.who)}</a>` : esc(g.who)}</p>
-        <ul>${g.links.map((l) => `<li><a href="${esc(l.href)}">${esc(l.label)} ${external}</a></li>`).join('')}</ul>
-      </div>`
-        )
-        .join('')}
-    </div>
+    ${storyGrid()}
   </div>
 </section>
+
+
+
+
 ${ctaBand()}`,
   };
 }

@@ -106,7 +106,7 @@ To look at one version, add `?art=1`, `?art=2` or `?art=3` to any page address, 
 | `before-noncard-version` | Home page with How I work, Services and Kind words as cards |
 | `before-font-change` | Bricolage Grotesque headings, before the switch to Plus Jakarta Sans |
 | `before-services-bands` | Services page with the two-column list, before the jump bar and color bands |
-| `before-work-filter` | Work page with only the cards, before the results strip and See it live |
+| `before-work-filter` | Work page with only the cards, before the results strip |
 | `noncard-version` | How I work as a pixel staircase, Services as a big typographic list, Kind words as one large pull quote |
 
 To go back to one, ask Claude, or on GitHub open a pull request from that branch into `main`.
