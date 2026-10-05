@@ -512,7 +512,7 @@ export function servicesPage() {
       <ul class="checks">${freeReview.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
       <div class="actions">
         <a class="btn" href="/contact/?topic=Free%20review">Request a review ${arrow}</a>
-        ${site.kofiUrl ? `<a class="btn btn--ghost" href="${esc(site.kofiUrl)}">Buy me a Ko-fi</a>` : todo('Add your Ko-fi link in <code>src/site.mjs</code> to show a "Buy me a Ko-fi" button here.', { inline: true })}
+        ${site.kofiUrl ? `<a class="btn btn--ghost" href="${esc(site.kofiUrl)}">Buy me a Ko-fi</a>` : ''}
       </div>
     </div>
   </div>
