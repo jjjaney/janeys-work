@@ -350,46 +350,45 @@ ${ctaBand()}
 // Work page: the results, as big numbers standing on a skyline of organic
 // pixel columns (like the header art), after the case-study cards.
 const RESULTS = [
-  { stat: '500K+', label: 'members reached by weekly updates', who: 'The Browser Company', colors: ['#ff7b4d', '#cfa2ed'], rows: 6 },
-  { stat: '4', label: 'public media partners', who: 'New_ Public', colors: ['#b6d8fe', '#cfa2ed'], rows: 4 },
-  { stat: 'GitHub', label: 'adopted the Ally.Guide program internally', who: 'Ally.Guide', colors: ['#0b704f', '#b6d8fe'], rows: 7 },
-  { stat: '2', label: 'new countries launched', who: 'GitHub Sponsors', colors: ['#c99f43', '#ff7b4d'], rows: 3 },
-  { stat: '3', label: 'platforms on one release-notes process', who: 'The Browser Company', colors: ['#cfa2ed', '#c99f43'], rows: 5 },
+  { stat: '500K+', label: 'members reached by weekly updates', who: 'The Browser Company', colors: ['#ff7b4d', '#cfa2ed'], rows: 4 },
+  { stat: '4', label: 'public media partners', who: 'New_ Public', colors: ['#b6d8fe', '#cfa2ed'], rows: 3 },
+  { stat: 'GitHub', label: 'adopted the Ally.Guide program internally', who: 'Ally.Guide', colors: ['#0b704f', '#b6d8fe'], rows: 5 },
+  { stat: '2', label: 'new countries launched', who: 'GitHub Sponsors', colors: ['#c99f43', '#ff7b4d'], rows: 2 },
+  { stat: '3', label: 'platforms on one release-notes process', who: 'The Browser Company', colors: ['#cfa2ed', '#c99f43'], rows: 3 },
 ];
 
-// a better-mixed random number for the skyline's ragged bottom (rand() gives
+// a better-mixed random number for the results skyline (rand() gives
 // near-identical values for neighbouring columns with these inputs)
 const mix = (a, b) => rand(Math.floor(rand(a * 7919 + 13, b) * 1e6), b * 31 + a);
 
-function resultColumn({ colors, rows }, i, W = 10, cls = '') {
-  // a few rows of headroom for loose pixels, and two below for a ragged bottom.
-  // Phones get a wider version (more, smaller pixels) so it's shorter at full width.
-  const base = rows + 3, H = base + 2;
-  const R = W > 10 ? (a, b) => mix(a + 500, b + 7) : rand; // the wide phone version needs better-mixed randomness to avoid repeats
+function resultColumn({ colors, rows }, i) {
+  // Pixels are a fixed size (the same as the closing band's corner art), so the
+  // art is drawn wider than any column and trimmed to fit: W columns, H rows.
+  const W = 16, base = rows + 2, H = base + 2;
   let rects = '';
-  const at = (x, y, c) => (rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${c}" stroke="${c}" stroke-width="0.06"/>`);
-  const pick = (x, y) => colors[R(x + i * 7, y * 11) < 0.78 ? 0 : 1];
+  const at = (x, y, c, cls = '', style = '') => (rects += `<rect${cls ? ` class="${cls}"` : ''} x="${x}" y="${y}" width="1" height="1" fill="${c}" stroke="${c}" stroke-width="0.06"${style ? ` style="${style}"` : ''}/>`);
+  const pick = (x, y) => colors[mix(x + i * 20, y * 13 + 5) < 0.8 ? 0 : 1];
   for (let x = 0; x < W; x++) {
-    // ragged top: each column a little taller or shorter
-    const top = 3 + Math.floor(R(x + i * 13, 5) * 2.2);
-    // ragged bottom: some columns stop a pixel short, some jut down one or two
-    const r = mix(x + i * 10, 41);
-    const bottom = r < 0.06 ? base - 2 : r < 0.24 ? base - 1 : r < 0.84 ? base : base + 1;
+    // ragged top: columns rise one row higher or lower than their neighbours
+    const top = 2 + Math.floor(mix(x + i * 20, 3) * 2.4);
+    // ragged bottom: most columns sit on the baseline, some stop short, some jut down
+    const r = mix(x + i * 20, 41);
+    const bottom = r < 0.12 ? base - 1 : r < 0.82 ? base : base + 1;
     for (let y = top; y <= bottom; y++) {
-      if (y === top && R(x * 3 + i, y) < 0.3) continue; // fray the top edge
-      if (y > top + 1 && y >= base - 3 && mix(x + i * 10, y * 7 + 3) < 0.08) continue; // the odd hole near the bottom
+      if (y === top && y < base && mix(x * 3 + i, y + 50) < 0.25) continue; // fray the top
+      if (y > top && y < base && mix(x + i * 20, y * 7 + 3) < 0.06) continue; // the odd hole
       at(x, y, pick(x, y));
     }
   }
-  // a loose pixel or two dropping off the bottom
-  [[2 + (i % 4), H - 1], [W - 3, H - 1]].forEach(([x, y], k) => mix(i * 3 + k, 97) < 0.5 && at(x, y, colors[(k + 1) % 2]));
-  // loose pixels above drift up and down, each on its own timing
-  [[1 + (i % 3), 1], [Math.round(W * 0.6) + (i % 2), 0], [W - 2, 2], ...(W > 10 ? [[Math.round(W * 0.35), 0], [W - 6, 1]] : [])].forEach(([x, y], k) => {
-    if (rand(i, k) >= 0.75) return;
-    const c = colors[k % 2];
-    rects += `<rect class="results__drift" x="${x}" y="${y}" width="1" height="1" fill="${c}" stroke="${c}" stroke-width="0.06" style="--t:${(3.2 + rand(k, i) * 2.4).toFixed(2)}s;--w:${(rand(i * 5, k) * -3).toFixed(2)}s"/>`;
+  // a loose pixel dropping off the bottom now and then
+  [[1 + (i % 3), H - 1], [4 + (i % 2), H - 1]].forEach(([x, y], k) => mix(i * 3 + k, 97) < 0.4 && at(x, y, colors[(k + 1) % 2]));
+  // loose pixels above drift up and down, each on its own timing (kept near the
+  // left, where every screen width still shows them)
+  [[1 + (i % 2), 0], [3 + (i % 2), 1]].forEach(([x, y], k) => {
+    if (mix(i, k + 70) >= 0.7) return;
+    at(x, y, colors[k % 2], 'results__drift', `--t:${(3.2 + mix(k, i + 9) * 2.4).toFixed(2)}s;--w:${(mix(i * 5, k + 2) * -3).toFixed(2)}s`);
   });
-  return `<svg class="pixel results__px${cls}" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+  return `<svg class="pixel results__px" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMinYMax slice" style="--h:${H}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
 export function workIndex() {
@@ -420,7 +419,7 @@ export function workIndex() {
       (r, i) => `<li class="results__item">
       <p class="results__stat">${esc(r.stat)}</p>
       <p class="results__label">${esc(r.label)}<span class="mono">${esc(r.who)}</span></p>
-      ${resultColumn(r, i)}${resultColumn(r, i, 20, ' results__px--phone')}
+      ${resultColumn(r, i)}
     </li>`
     ).join('')}
   </ul>
