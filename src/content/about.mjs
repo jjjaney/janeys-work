@@ -43,3 +43,22 @@ export const funFacts = [
   'I argued about apartment security with an ex on Judge John Hodgman\'s podcast, in the <a href="https://maximumfun.org/episodes/judge-john-hodgman/judge-john-hodgman-episode-172-daily-security-beefing/">"Daily Security Beefing" episode (#172)</a>.',
   'I have two cats who know nothing of the internet.',
 ];
+
+// "About this website" at the end of the About page. `intro` paragraphs sit on
+// the left; `versions` run down the right as a timeline, oldest first. Each
+// version: `label` (short, shown small like the years in Experience), `name`,
+// and `body`. Edit the wording freely; add dates to `label` if you like
+// (for example 'v2 · 2023').
+export const siteStory = {
+  heading: 'Built like the work it shows',
+  intro: [
+    'This site is my portfolio, and a working example of how I approach content: as a product, with real users, a clear structure, and a system behind it.',
+    'It’s for hiring managers, product and design leaders, and teams deciding whether I’m the right fit, and for anyone early in their career looking for a free resume or portfolio review.',
+    'Inside, you’ll find case studies that start with the question each project answered, the services I offer, how I work, and an archive of projects from 2014 to 2020.',
+  ],
+  versions: [
+    { label: 'v1', name: 'Squarespace', body: 'Where janeys.work began: a template-based site that held my case studies, services, and archive.' },
+    { label: 'v2', name: 'Webflow', body: 'A rebuild with more control over layout, structure, and the way the work was presented.' },
+    { label: 'v3', name: 'Claude', body: 'This version. I directed the content, design, and decisions in conversation with Claude, which wrote the code: a hand-built site on GitHub, published with Vercel, with original pixel art, light and dark modes, and accessibility checks along the way.' },
+  ],
+};

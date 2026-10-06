@@ -1,7 +1,7 @@
 import { site, companies, testimonials } from './site.mjs';
 import { work } from './content/work.mjs';
 import { services, engagement, faqs, disciplineLine, freeReview } from './content/services.mjs';
-import { bio, principles, experience, funFacts } from './content/about.mjs';
+import { bio, principles, experience, funFacts, siteStory } from './content/about.mjs';
 import { archive } from './content/archive.mjs';
 import { esc, todo, figure, pixel, pixelCorner, floaters, arrow, external } from './lib.mjs';
 
@@ -758,6 +758,24 @@ ${spill(22)}
   <div class="wrap">
     <div class="section__head">${eyebrow('03', 'Fun facts')}<h2 id="ff-h">Off the clock</h2></div>
     <ul class="facts">${funFacts.map((f, i) => `<li>${factArt(i)}<p>${f}</p></li>`).join('')}</ul>
+  </div>
+</section>
+<section class="section section--site" aria-labelledby="site-h">
+  <div class="wrap site-story">
+    <div>
+      <div class="section__head">${eyebrow('04', 'About this website')}<h2 id="site-h">${esc(siteStory.heading)}</h2></div>
+      ${siteStory.intro.map((p) => `<p>${esc(p)}</p>`).join('')}
+    </div>
+    <ol class="timeline site-story__versions" aria-label="Versions of this website">
+      ${siteStory.versions
+        .map(
+          (v) => `<li>
+        <p class="timeline__year mono">${esc(v.label)}</p>
+        <div><h3>${esc(v.name)}</h3><p>${esc(v.body)}</p></div>
+      </li>`
+        )
+        .join('')}
+    </ol>
   </div>
 </section>
 ${ctaBand(undefined, undefined, 'orange')}`,
