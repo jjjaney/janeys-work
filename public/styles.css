@@ -923,13 +923,29 @@ html:not(.js) .theme-toggle { display: none !important; }
 .timeline ul li { font-size: 0.97rem; }
 @media (max-width: 460px) { .timeline > li { grid-template-columns: 1fr; gap: 0.25rem; } }
 
-.facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem; }
-.facts li { padding: 1.5rem; background: var(--tint-peach); --fpx: clamp(9px, 0.4rem + 0.35vw, 12px); }
-.facts__art { display: block; width: calc(var(--w) * var(--fpx)); height: calc(var(--h) * var(--fpx)); margin: calc((13 - var(--h)) * var(--fpx)) 0 1.25rem; }
-.section--facts { padding-bottom: clamp(8rem, 5.5rem + 9vw, 15rem); }
-.facts li p { margin: 0; }
+.facts { --fpx: clamp(9px, 0.4rem + 0.35vw, 12px); --fpx: round(down, clamp(9px, 0.4rem + 0.35vw, 12px), 1px); list-style: none; margin: calc(var(--fpx) * 6 + 1rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: calc(var(--fpx) * 6 + 1rem) 1rem; }
+.facts li { position: relative; padding: 1.5rem; background: var(--tint-peach); }
 .facts li:nth-child(2) { background: var(--tint-sky); }
 .facts li:nth-child(3) { background: var(--tint-mint); }
+/* the art's bottom 8 rows sit inside the card; the rest rises out of the top */
+.facts__art { display: block; overflow: visible; width: calc(var(--w) * var(--fpx)); height: calc(var(--h) * var(--fpx)); margin: calc((8 - var(--h)) * var(--fpx) - 1.5rem) 0 1.25rem; }
+.facts li p { margin: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .facts__art rect[class] { transform-box: view-box; }
+  .fa-sun { animation: fa-bob 3.2s steps(1) infinite; }
+  .fa-drift { animation: fa-drift 5s ease-in-out infinite alternate; }
+  .fa-drift--b { animation-duration: 6.5s; animation-delay: -2s; }
+  .fa-drift--c { animation-duration: 4.4s; animation-delay: -3.3s; }
+  .fa-pan-l { animation: fa-weigh 4s steps(1) infinite; }
+  .fa-pan-r { animation: fa-weigh 4s steps(1) infinite reverse; }
+  .fa-blink--o { animation: fa-blink-o 5s steps(1) infinite; }
+  .fa-blink--m { animation: fa-blink-m 5s steps(1) infinite; animation-delay: -1.9s; }
+}
+@keyframes fa-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
+@keyframes fa-drift { from { transform: translate(0, 0); } to { transform: translate(0.6px, -1.4px); } }
+@keyframes fa-weigh { 0%, 100% { transform: translateY(0); } 25% { transform: translateY(1px); } 50% { transform: translateY(0); } 75% { transform: translateY(-1px); } }
+@keyframes fa-blink-o { 0%, 90%, 96%, 100% { fill: var(--maroon); } 92% { fill: var(--orange); } }
+@keyframes fa-blink-m { 0%, 90%, 96%, 100% { fill: var(--gold); } 92% { fill: var(--maroon); } }
 
 /* Contact ------------------------------------------------------------------ */
 .contact { display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }

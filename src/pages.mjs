@@ -719,60 +719,84 @@ function pixelResume() {
 // are eroded and a few loose pixels drift between them; a star, a checkmark and
 // a sparkle take turns floating up out of them, and the two smaller envelopes bob. No entrance animation: it's all in place on load. Grid units are pixels.
 // Fun facts: a small hand-placed pixel picture for each card, drawn on the
-// same palette as the header art (letters map to colors; '.' is empty).
-const FACT_COLORS = { O: 'var(--orange)', G: 'var(--gold)', g: 'var(--green)', M: 'var(--maroon)', S: 'var(--sky)', L: 'var(--lilac)', P: 'var(--accent)' };
+// same palette as the header art. Letters map to colors ('.' is empty); some
+// letters also carry a class so that part can move (sun, scale pans, blinking
+// eyes, drifting loose pixels). The pictures rise out of the top of the card,
+// and a few loose pixels sit outside it, like the rest of the site's art.
+const FACT_COLORS = {
+  O: ['var(--orange)'], G: ['var(--gold)'], g: ['var(--green)'], M: ['var(--maroon)'], S: ['var(--sky)'], L: ['var(--lilac)'], P: ['var(--accent)'],
+  U: ['var(--orange)', 'fa-sun'],
+  l: ['var(--lilac)', 'fa-drift'], s: ['var(--sky)', 'fa-drift fa-drift--b'], o: ['var(--orange)', 'fa-drift fa-drift--c'],
+  h: ['var(--gold)', 'fa-pan-l'], a: ['var(--gold)', 'fa-pan-l'], A: ['var(--orange)', 'fa-pan-l'],
+  k: ['var(--gold)', 'fa-pan-r'], b: ['var(--gold)', 'fa-pan-r'], B: ['var(--lilac)', 'fa-pan-r'],
+  e: ['var(--maroon)', 'fa-blink fa-blink--o'], y: ['var(--gold)', 'fa-blink fa-blink--m'],
+};
 const FACT_ART = [
-  // a tropical island: palm, sun, and water (the retreat)
-  [
-    '...........OO...',
-    '.gg..gg...OOOO..',
-    'ggggggggg..OO...',
-    'gg.ggMgg.g......',
-    'g....M..g.....L.',
-    '.....M..........',
-    '......M.........',
-    '......M.........',
-    '.S....M.........',
-    '.....GGG....S...',
-    'S..SGGGGGS.SSS.S',
-    'SSSSSSSSSSSSSSSS',
-  ],
-  // the scales of justice (for Judge John Hodgman)
-  [
-    '.......P......S',
-    '......PPP......',
-    '.GGGGGGGGGGGGG.',
-    '.G.....M.....G.',
-    'G.G....M....G.G',
-    'G.G....M....G.G',
-    'OOOOO..M..LLLLL',
-    '.OOO...M...LLL.',
-    '.......M.......',
-    'L......M.......',
-    '.......M.......',
-    '.....MMMMM.....',
-    '....GGGGGGG....',
-  ],
-  // two cats, blissfully offline
-  [
-    'O...O......M...M...',
-    'OO.OO...L..MM.MM...',
-    'OOOOO......MMMMM...',
-    'OMOMO......MGMGM...',
-    'OOOOO....S.MMMMM...',
-    '.OOO........MMM....',
-    'OOOOO......MMMMM...',
-    'OOOOO.O...MMMMMMM..',
-    'OOOOOO.O..MMMMMMM.M',
-    'OOOOOO.O..MMMMMMM.M',
-    '.OOOO.OO...MMMMM.MM',
-  ],
+  {
+    // a tropical island: palm, sun, and water (the retreat)
+    rows: [
+      '...........UU...',
+      '.gg..gg...UUUU..',
+      'ggggggggg..UU...',
+      'gg.ggMgg.g......',
+      'g....M..g.....l.',
+      '.....M..........',
+      '......M.........',
+      '......M.........',
+      '.s....M.........',
+      '.....GGG....S...',
+      'S..SGGGGGS.SSS.S',
+      'SSSSSSSSSSSSSSSS',
+    ],
+    loose: [[-3, 6, 'o'], [18, 2, 's']],
+  },
+  {
+    // the scales of justice (for Judge John Hodgman); the pans gently weigh
+    rows: [
+      '.......P.......',
+      '......PPP......',
+      '.hhhhhhGkkkkkk.',
+      '.a.....M.....b.',
+      'a.a....M....b.b',
+      'a.a....M....b.b',
+      'AAAAA..M..BBBBB',
+      '.AAA...M...BBB.',
+      '.......M.......',
+      '.......M.......',
+      '.......M.......',
+      '.....MMMMM.....',
+      '....GGGGGGG....',
+    ],
+    loose: [[17, 0, 's'], [-3, 9, 'l']],
+  },
+  {
+    // two cats, blissfully offline (they blink)
+    rows: [
+      'O...O......M...M...',
+      'OO.OO......MM.MM...',
+      'OOOOO......MMMMM...',
+      'OeOeO......MyMyM...',
+      'OOOOO......MMMMM...',
+      '.OOO........MMM....',
+      'OOOOO......MMMMM...',
+      'OOOOO.O...MMMMMMM..',
+      'OOOOOO.O..MMMMMMM.M',
+      'OOOOOO.O..MMMMMMM.M',
+      '.OOOO.OO...MMMMM.MM',
+    ],
+    loose: [[8, -2, 'l'], [9, 1, 's'], [22, 4, 'o']],
+  },
 ];
 function factArt(i) {
-  const rows = FACT_ART[i % FACT_ART.length];
+  const { rows, loose = [] } = FACT_ART[i % FACT_ART.length];
   const W = Math.max(...rows.map((r) => r.length)), H = rows.length;
+  const rect = (x, y, ch) => {
+    const [fill, cls] = FACT_COLORS[ch] || [];
+    return fill ? `<rect x="${x}" y="${y}" width="1" height="1" fill="${fill}"${cls ? ` class="${cls}"` : ''}/>` : '';
+  };
   let rects = '';
-  rows.forEach((r, y) => [...r].forEach((c, x) => { if (FACT_COLORS[c]) rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${FACT_COLORS[c]}"/>`; }));
+  rows.forEach((r, y) => [...r].forEach((c, x) => (rects += rect(x, y, c))));
+  loose.forEach(([x, y, c]) => (rects += rect(x, y, c)));
   return `<svg class="facts__art" viewBox="0 0 ${W} ${H}" style="--w:${W};--h:${H}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
