@@ -730,6 +730,7 @@ function versionCard(v, i) {
 // Each entry links to a section id on the page; keep it in step with the
 // sections below if you add, remove, or reorder them.
 const ABOUT_TOC = [
+  ['about-janey', 'About Janey', 'var(--accent)'],
   ['principles', 'Operating principles', 'var(--orange)'],
   ['experience', 'Experience', 'var(--lilac)'],
   ['this-site', 'About this website', 'var(--green)'],
@@ -745,7 +746,7 @@ export function aboutPage() {
     title: 'About',
     description: 'Janey Annis: content strategist, content designer, and product manager. Experience at FIS, Shopify, GitHub, Plex, and Carnegie Mellon.',
     body: `
-<section class="page-head page-head--art">
+<section class="page-head page-head--art" id="about-janey">
   ${gapFloat(21, [
     [58, 10, 4, 60, 2],   // a couple between the bio and the art
   ])}
