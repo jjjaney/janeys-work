@@ -726,6 +726,19 @@ function versionCard(v, i) {
     </li>`;
 }
 
+// About page: a small "On this page" callout in the intro, under the pixel art.
+// Each entry links to a section id on the page; keep it in step with the
+// sections below if you add, remove, or reorder them.
+const ABOUT_TOC = [
+  ['principles', 'Operating principles', 'var(--orange)'],
+  ['experience', 'Experience', 'var(--lilac)'],
+  ['this-site', 'About this website', 'var(--green)'],
+  ['fun-facts', 'Fun facts', 'var(--gold)'],
+];
+function aboutToc() {
+  return `<nav class="toc" aria-label="On this page"><p class="toc__title mono">On this page</p><ol>${ABOUT_TOC.map(([id, label, c]) => `<li><a href="#${id}" style="--c:${c}">${esc(label)}</a></li>`).join('')}</ol></nav>`;
+}
+
 export function aboutPage() {
   return {
     path: '/about/',
@@ -747,12 +760,13 @@ export function aboutPage() {
     <div class="portrait">
       ${artFloat(23)}
       ${pixel('pixel-composition-12', { organic: true })}
+      ${aboutToc()}
     </div>
   </div>
 </section>
 ${spill(22)}
 
-<section class="section section--surface" aria-labelledby="pr-h">
+<section class="section section--surface" id="principles" aria-labelledby="pr-h">
   <div class="wrap">
     <div class="section__head">${eyebrow('01', 'Operating principles')}<h2 id="pr-h">How I think about content</h2></div>
     <ul class="principles">
@@ -778,7 +792,7 @@ ${spill(22)}
   </div>
 </section>
 
-<section class="section section--site" aria-labelledby="site-h">
+<section class="section section--site" id="this-site" aria-labelledby="site-h">
   <div class="wrap">
     <div class="site-story">
       <div class="section__head">${eyebrow('04', 'About this website')}<h2 id="site-h">${esc(siteStory.heading)}</h2></div>
@@ -789,7 +803,7 @@ ${spill(22)}
     </ol>
   </div>
 </section>
-<section class="section section--tight section--facts" aria-labelledby="ff-h">
+<section class="section section--tight section--facts" id="fun-facts" aria-labelledby="ff-h">
   <div class="wrap">
     <div class="section__head">${eyebrow('03', 'Fun facts')}<h2 id="ff-h">Off the clock</h2></div>
     <ul class="facts">${funFacts.map((f, i) => `<li>${factArt(i)}<p>${f}</p></li>`).join('')}</ul>

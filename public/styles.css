@@ -925,6 +925,15 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* About -------------------------------------------------------------------- */
 .about-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
 .about-head p { max-width: 38em; }
+/* About: "On this page" callout under the intro art */
+.toc { position: relative; z-index: 2; margin-top: 2rem; width: min(100%, 300px); border: 2px solid var(--lilac); background: var(--bg); padding: 1.1rem 1.25rem 1.2rem; }
+.toc__title { margin: 0 0 0.7rem; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.toc a { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; font-weight: 500; transition: color 0.2s var(--ease); }
+.toc a::before { content: ''; width: 8px; height: 8px; background: var(--c); flex: none; }
+.toc a:hover, .toc a:focus-visible { color: var(--accent); }
+#principles, #experience, #this-site, #fun-facts { scroll-margin-top: calc(var(--header-h, 68px) + 1rem); }
+@media (max-width: 860px) { .toc { margin: 1.5rem var(--gutter) 0; width: auto; max-width: 300px; } }
 .portrait .pixel { width: 100%; height: auto; }
 @media (max-width: 860px) { .about-head { grid-template-columns: 1fr; } .portrait { margin-inline: calc(var(--gutter) * -1); width: calc(100% + var(--gutter) * 2); max-width: none; } .portrait .pixel { width: 100%; height: auto; } .portrait .todo { margin-inline: var(--gutter); } }
 
