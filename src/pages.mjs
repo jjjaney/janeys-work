@@ -511,7 +511,7 @@ export function servicesPage() {
   return {
     path: '/services/',
     title: 'Services',
-    description: 'Content strategy and editorial, content design and storytelling, content systems, documentation and training, and product management and marketing.',
+    description: 'Content strategy and editorial; content design, UX writing, and storytelling; content for design systems; documentation and training; and product management and marketing.',
     body: `
 <section class="page-head">
   <div class="wrap">
