@@ -237,8 +237,8 @@ function quotes() {
 // Each page gets its own band color so the closing call to action never reads
 // as a repeat of the home page's. Case studies use the strong version of their
 // card color.
-const CTA_TONES = { purple: '#4f33cc', green: '#0b704f', maroon: '#6b2337', orange: '#ff7b4d', gold: '#c99f43', lilac: '#cfa2ed', sky: '#b6d8fe', mint: '#9fdcc4' };
-const CARD_TONE = { lilac: 'lilac', peach: 'orange', gold: 'gold', sky: 'sky', mint: 'mint' };
+const CTA_TONES = { purple: '#4f33cc', green: '#0b704f', maroon: '#6b2337', orange: '#ff7b4d', lilac: '#cfa2ed', sky: '#b6d8fe', mint: '#9fdcc4' };
+const CARD_TONE = { lilac: 'lilac', peach: 'orange', gold: 'green', sky: 'sky', mint: 'mint' };
 function ctaBand(heading = 'Let’s build something people understand.', sub = 'Content strategy, design, and systems for products and teams.', tone = 'purple') {
   return `<section class="cta-band cta-band--${tone}" aria-labelledby="cta-h">
     ${pixelCorner(CTA_TONES[tone])}
@@ -938,7 +938,7 @@ ${archive
 </section>`
   )
   .join('')}
-${ctaBand(undefined, undefined, 'gold')}`,
+${ctaBand(undefined, undefined, 'sky')}`,
   };
 }
 
