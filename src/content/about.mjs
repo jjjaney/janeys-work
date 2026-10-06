@@ -44,11 +44,18 @@ export const funFacts = [
   'I have two cats who know nothing of the internet.',
 ];
 
-// "About this website" at the end of the About page. `intro` paragraphs sit on
-// the left; `versions` run down the right as a timeline, oldest first. Each
-// version: `label` (short, shown small like the years in Experience), `name`,
-// and `body`. Edit the wording freely; add dates to `label` if you like
-// (for example 'v2 · 2023').
+// "About this website" at the end of the About page: the intro paragraphs, then
+// one card per version of the site, oldest first, stepping upward like a
+// staircase. Each version has:
+//   label  short tag shown small (add a date if you like, e.g. 'v2 · 2023')
+//   name   the platform it was built on
+//   body   a sentence or two on what changed
+//   image  a screenshot of that version. Save it in /public/images/site/ and set
+//          the path, e.g. image: '/images/site/v1-squarespace.png'. Wide
+//          screenshots of the home page work best (about 1600 x 1000 px); the
+//          frame shows the top-left of the image and trims the rest. Leave '' to show a placeholder.
+//   alt    what the screenshot shows, for people using screen readers
+//   tint   card color: peach | lilac | mint | sky | gold
 export const siteStory = {
   heading: 'Built like the work it shows',
   intro: [
@@ -57,8 +64,8 @@ export const siteStory = {
     'Inside, you’ll find case studies that start with the question each project answered, the services I offer, how I work, and an archive of projects from 2014 to 2020.',
   ],
   versions: [
-    { label: 'v1', name: 'Squarespace', body: 'Where janeys.work began: a template-based site that held my case studies, services, and archive.' },
-    { label: 'v2', name: 'Webflow', body: 'A rebuild with more control over layout, structure, and the way the work was presented.' },
-    { label: 'v3', name: 'Claude', body: 'This version. I directed the content, design, and decisions in conversation with Claude, which wrote the code: a hand-built site on GitHub, published with Vercel, with original pixel art, light and dark modes, and accessibility checks along the way.' },
+    { label: 'v1', name: 'Squarespace', tint: 'peach', image: '', alt: 'The Squarespace version of janeys.work', body: 'Where janeys.work began: a template-based site that held my case studies, services, and archive.' },
+    { label: 'v2', name: 'Webflow', tint: 'lilac', image: '', alt: 'The Webflow version of janeys.work', body: 'A rebuild with more control over layout, structure, and the way the work was presented.' },
+    { label: 'v3', name: 'Claude', tint: 'mint', image: '', alt: 'This version of janeys.work, built with Claude', body: 'This version. I directed the content, design, and decisions in conversation with Claude, which wrote the code: a hand-built site on GitHub, published with Vercel, with original pixel art, light and dark modes, and accessibility checks along the way.' },
   ],
 };

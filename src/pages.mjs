@@ -702,6 +702,30 @@ ${ctaBand('Not sure which service fits?', 'Let’s talk about what you’re buil
 // About
 // ---------------------------------------------------------------------------
 
+// About this website: one card per version, with its screenshot in a simple
+// browser-window frame. Without a screenshot, the frame shows a pixel placeholder
+// in the card's color (a few blocks suggesting a page layout).
+const VERSION_TONE = { peach: 'var(--orange)', lilac: 'var(--lilac)', mint: 'var(--green)', sky: 'var(--sky)', gold: 'var(--gold)' };
+function versionCard(v, i) {
+  const tone = VERSION_TONE[v.tint] || 'var(--lilac)';
+  const shot = v.image
+    ? `<img src="${esc(v.image)}" alt="${esc(v.alt || v.name)}" loading="lazy">`
+    : `<div class="version__placeholder" role="img" aria-label="${esc(`Screenshot of the ${v.name} version, coming soon`)}">
+          <span style="--x:1;--y:1;--w:5;--h:1"></span><span style="--x:9;--y:1;--w:2;--h:1;opacity:.5"></span>
+          <span style="--x:1;--y:3;--w:7;--h:2;opacity:.85"></span><span style="--x:9;--y:3;--w:2;--h:4;opacity:.35"></span>
+          <span style="--x:1;--y:6;--w:3;--h:1;opacity:.45"></span><span style="--x:5;--y:6;--w:3;--h:1;opacity:.45"></span>
+        </div>`;
+  return `<li class="version version--${esc(v.tint || 'lilac')}" style="--tone:${tone};--step:${i}">
+      <div class="version__frame">
+        <div class="version__bar" aria-hidden="true"><i></i><i></i><i></i><span class="mono">janeys.work</span></div>
+        <div class="version__shot">${shot}</div>
+      </div>
+      <p class="version__label mono">${esc(v.label)}</p>
+      <h3>${esc(v.name)}</h3>
+      <p>${esc(v.body)}</p>
+    </li>`;
+}
+
 export function aboutPage() {
   return {
     path: '/about/',
@@ -761,20 +785,13 @@ ${spill(22)}
   </div>
 </section>
 <section class="section section--site" aria-labelledby="site-h">
-  <div class="wrap site-story">
-    <div>
+  <div class="wrap">
+    <div class="site-story">
       <div class="section__head">${eyebrow('04', 'About this website')}<h2 id="site-h">${esc(siteStory.heading)}</h2></div>
-      ${siteStory.intro.map((p) => `<p>${esc(p)}</p>`).join('')}
+      <div class="site-story__intro">${siteStory.intro.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
     </div>
-    <ol class="timeline site-story__versions" aria-label="Versions of this website">
-      ${siteStory.versions
-        .map(
-          (v) => `<li>
-        <p class="timeline__year mono">${esc(v.label)}</p>
-        <div><h3>${esc(v.name)}</h3><p>${esc(v.body)}</p></div>
-      </li>`
-        )
-        .join('')}
+    <ol class="versions" aria-label="Versions of this website">
+      ${siteStory.versions.map((v, i) => versionCard(v, i)).join('')}
     </ol>
   </div>
 </section>
