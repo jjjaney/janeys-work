@@ -15,8 +15,8 @@
 //     short: 'Research',            // one word for the Services page jump bar
 //     ask: 'Ask about research',    // optional: link text under the band
 //                                   //   (leave out to get "Ask about <short> work")
-//     pxSeed: 7,                    // optional: picks the pattern of the pixel run on
-//                                   //   top of the band; try other numbers for a new look
+//     pxSeed: 7,                    // optional: picks the pattern of the pixel run along
+//                                   //   the bottom of the band; try other numbers for a new look
 //     tint: 'lilac',                // band color: peach | lilac | mint | gold | sky
 //     name: 'Content Research and Testing',   // Title Case, serial comma, "and" not "&"
 //     for: 'One line for the home page list, next to the name.',
@@ -71,7 +71,7 @@ export const services = [
   {
     id: 'design',
     short: 'Design', // label in the Services page jump bar
-    pxSeed: 18, // picks the pattern of the pixel run atop this band; change the number for another look
+    pxSeed: 18, // picks the pattern of the pixel run along the bottom of this band; change the number for another look
     tint: 'lilac', // band color on the Services page
     name: 'Content Design, UX Writing, and Storytelling',
     for: 'Product and marketing teams shipping flows, pages, and launches that need to land.',

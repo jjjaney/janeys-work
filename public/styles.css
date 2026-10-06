@@ -691,8 +691,11 @@ html:not(.js) .theme-toggle { display: none !important; }
 .svc-jump a::before { content: ''; width: 12px; height: 12px; background: var(--c); flex: none; }
 .svc-jump a:hover { background: var(--tint-sky); }
 .svc-jump a[aria-current='true'] { background: var(--tint-lilac); color: var(--accent); }
-.svc-band { padding-block: clamp(5rem, 3.5rem + 5vw, 9rem); scroll-margin-top: calc(var(--header-h, 68px) + 64px); background: var(--band-bg); position: relative; --bpx: clamp(20px, var(--px-art), 46px); padding-top: calc(var(--bpx) * 2 + clamp(3.5rem, 2.5rem + 4vw, 7rem)); }
-.svc-band__px { position: absolute; top: 0; right: 0; width: min(100%, calc(var(--w) * var(--bpx))); height: calc(var(--bpx) * 2); display: block; pointer-events: none; }
+/* each band has a pixel border along its bottom-right edge; the extra bottom
+   padding keeps the content clear of it */
+.svc-band { padding-block: clamp(5rem, 3.5rem + 5vw, 9rem); scroll-margin-top: calc(var(--header-h, 68px) + 64px); background: var(--band-bg); position: relative; --bpx: clamp(20px, var(--px-art), 46px); padding-bottom: calc(var(--bpx) * 2 + clamp(3.5rem, 2.5rem + 4vw, 7rem)); }
+/* flipped so the pixels that drop a row now rise from the bottom edge */
+.svc-band__px { position: absolute; bottom: 0; right: 0; width: min(100%, calc(var(--w) * var(--bpx))); height: calc(var(--bpx) * 2); display: block; pointer-events: none; transform: scaleY(-1); }
 .svc-band--peach { --band-bg: var(--tint-peach); }
 .svc-band--lilac { --band-bg: var(--tint-lilac); }
 .svc-band--mint  { --band-bg: var(--tint-mint); }
