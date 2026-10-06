@@ -1111,7 +1111,7 @@ html:not(.js) .theme-toggle { display: none !important; }
    Big numbers on a skyline of organic pixel columns, on the page background. */
 .results { background: var(--bg); color: var(--ink); padding-block: clamp(5.5rem, 4rem + 6vw, 10rem); overflow: hidden; }
 .results__span { text-transform: none; letter-spacing: 0.02em; color: var(--muted); font-weight: 400; margin-left: 0.4em; }
-.results h2 { color: var(--accent); font-size: clamp(1.9rem, 1.5rem + 1.5vw, 3rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.02; margin: 0 0 clamp(4rem, 3.25rem + 2vw, 5.5rem); max-width: 17em; }
+.results h2 { color: var(--ink); font-size: clamp(1.9rem, 1.5rem + 1.5vw, 3rem); font-weight: 750; letter-spacing: -0.018em; line-height: 1.02; margin: 0 0 clamp(4rem, 3.25rem + 2vw, 5.5rem); max-width: 17em; }
 .results .eyebrow { color: var(--ink); font-size: clamp(0.9rem, 0.82rem + 0.3vw, 1.05rem); font-weight: 600; letter-spacing: 0.06em; }
 /* organic, staggered: each result sits on its own column of pixels. Text keeps
    clear of the pixels: a pixel's height of space below it, and (after the first
