@@ -952,8 +952,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 @media (max-width: 460px) { .timeline > li { grid-template-columns: 1fr; gap: 0.25rem; } }
 
 .facts { --fpx: clamp(10px, 0.45rem + 0.55vw, 16px); --fpx: round(down, clamp(10px, 0.45rem + 0.55vw, 16px), 1px); --fpad: clamp(1.5rem, 1rem + 1.5vw, 2.75rem); list-style: none; margin: calc(var(--fpx) * 6 + 3rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: calc(var(--fpx) * 6 + 1.25rem) clamp(1rem, 0.5rem + 1vw, 1.75rem); }
-/* the generous space before the closing band now follows "About this website" */
-.section--site { padding-bottom: clamp(10rem, 7rem + 11vw, 19rem); }
+/* Fun facts close the About page, with generous space before the closing band */
+.section--facts { padding-bottom: clamp(10rem, 7rem + 11vw, 19rem); }
 /* heading first, then the intro beneath it, like the other sections */
 .site-story { margin-bottom: clamp(3rem, 2rem + 4vw, 5.5rem); }
 .site-story__intro { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem clamp(1.5rem, 4vw, 4rem); margin-top: 1.5rem; }

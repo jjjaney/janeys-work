@@ -778,12 +778,6 @@ ${spill(22)}
   </div>
 </section>
 
-<section class="section section--tight section--facts" aria-labelledby="ff-h">
-  <div class="wrap">
-    <div class="section__head">${eyebrow('03', 'Fun facts')}<h2 id="ff-h">Off the clock</h2></div>
-    <ul class="facts">${funFacts.map((f, i) => `<li>${factArt(i)}<p>${f}</p></li>`).join('')}</ul>
-  </div>
-</section>
 <section class="section section--site" aria-labelledby="site-h">
   <div class="wrap">
     <div class="site-story">
@@ -793,6 +787,12 @@ ${spill(22)}
     <ol class="versions" aria-label="Versions of this website">
       ${siteStory.versions.map((v, i) => versionCard(v, i)).join('')}
     </ol>
+  </div>
+</section>
+<section class="section section--tight section--facts" aria-labelledby="ff-h">
+  <div class="wrap">
+    <div class="section__head">${eyebrow('03', 'Fun facts')}<h2 id="ff-h">Off the clock</h2></div>
+    <ul class="facts">${funFacts.map((f, i) => `<li>${factArt(i)}<p>${f}</p></li>`).join('')}</ul>
   </div>
 </section>
 ${ctaBand(undefined, undefined, 'orange')}`,
