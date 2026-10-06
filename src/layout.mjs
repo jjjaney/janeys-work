@@ -153,10 +153,10 @@ ${body}
       <p class="muted">${esc(site.role)}.</p>
     </div>
     <div class="site-footer__nav">
-      <ul class="site-footer__links">
+      <ul class="site-footer__links" role="list">
         ${nav.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('')}
       </ul>
-      <ul class="site-footer__links site-footer__links--social">
+      <ul class="site-footer__links site-footer__links--social" role="list">
         ${site.github ? `<li><a href="${site.github}">GitHub</a></li>` : ''}
         <li><a href="${site.linkedin}">LinkedIn</a></li>
       </ul>
