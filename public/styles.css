@@ -209,12 +209,11 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 .site-nav { margin-left: auto; }
 .brand { display: inline-flex; align-items: center; gap: 0.65rem; text-decoration: none; color: var(--ink); font: 700 1.15rem/1 var(--display); letter-spacing: -0.01em; }
 .brand:hover { color: var(--ink); }
-/* Logo pixel: one square that starts orange and flips through the art colors */
+/* Logo pixel: one orange square, next to the name in the footer */
 .logo-pixel {
   flex: none; display: inline-block; width: 20px; height: 20px;
   background: var(--logo, var(--orange));
 }
-.logo-pixel.is-flipping { animation: flip 0.36s ease-in-out; }
 
 .site-nav ul { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
 .site-nav a {

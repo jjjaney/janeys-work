@@ -1,8 +1,8 @@
 import { site, nav, disciplines } from './site.mjs';
 import { esc } from './lib.mjs';
 
-// The logo: a single pixel that starts orange and flips to the next art
-// color every few seconds (see "Logo pixel" in main.js and styles.css).
+// The logo pixel: a single orange square. It's only in the footer now; the
+// header shows the name on its own so the page content stays the focus.
 function logo() {
   return `<span class="logo-pixel" aria-hidden="true"></span>`;
 }
@@ -127,7 +127,7 @@ export function layout({ path, title, description = site.description, body, page
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="brand" href="/" aria-label="${esc(site.name)}, home">${logo()}<span>${esc(site.name)}</span></a>
+    <a class="brand" href="/" aria-label="${esc(site.name)}, home"><span>${esc(site.name)}</span></a>
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>${navLinks}</ul>
       <div class="nav-theme">
