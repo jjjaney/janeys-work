@@ -7,6 +7,7 @@ export const site = {
   description:
     'Janey Annis creates human-first content for products and systems: content strategy, content design, content management, documentation, and product management.',
   linkedin: 'https://www.linkedin.com/in/janeyannis/',
+  github: 'https://github.com/jjjaney',
 
   // TODO(Janey): add a public email if you want one shown. Leave '' to hide it.
   email: '',

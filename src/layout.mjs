@@ -152,11 +152,16 @@ ${body}
       <p class="site-footer__name">${logo()} ${esc(site.name)}</p>
       <p class="muted">${esc(site.role)}.</p>
     </div>
-    <ul class="site-footer__links">
-      ${nav.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('')}
-      <li><a href="/archive/">Archive</a></li>
-      <li><a href="${site.linkedin}">LinkedIn</a></li>
-    </ul>
+    <div class="site-footer__nav">
+      <ul class="site-footer__links">
+        ${nav.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('')}
+        <li><a href="/archive/">Archive</a></li>
+      </ul>
+      <ul class="site-footer__links site-footer__links--social">
+        <li><a href="${site.linkedin}">LinkedIn</a></li>
+        ${site.github ? `<li><a href="${site.github}">GitHub</a></li>` : ''}
+      </ul>
+    </div>
     <p class="site-footer__meta mono">© ${new Date().getFullYear()} ${esc(site.name)}</p>
   </div>
 </footer>
