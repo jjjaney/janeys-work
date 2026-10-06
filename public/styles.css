@@ -729,8 +729,23 @@ html:not(.js) .theme-toggle { display: none !important; }
 
 .free { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
 .free__art .pixel { width: 100%; aspect-ratio: 1; }
-.rev svg { display: block; width: 100%; height: auto; overflow: visible; }
+.free__art { container-type: inline-size; }
+.rev { --rpx: 12px; --rpx: round(down, min(18px, 100cqi / 24), 1px); }
+.rev svg { display: block; width: calc(var(--w) * var(--rpx)); height: calc(var(--h) * var(--rpx)); overflow: visible; margin-inline: auto; }
 .rev__glass { opacity: 0.55; }
+@media (prefers-reduced-motion: no-preference) {
+  .rev__mag { transform-box: view-box; animation: rev-read 9s infinite; }
+}
+/* the glass reads down the page one line at a time (one pixel per step), pauses, then hops back up */
+@keyframes rev-read {
+  0% { transform: translateY(-8px); animation-timing-function: steps(1, end); }
+  10% { transform: translateY(-8px); animation-timing-function: steps(4, end); }
+  35% { transform: translateY(-4px); animation-timing-function: steps(1, end); }
+  45% { transform: translateY(-4px); animation-timing-function: steps(4, end); }
+  70% { transform: translateY(0); animation-timing-function: steps(1, end); }
+  85% { transform: translateY(0); animation-timing-function: steps(8, end); }
+  100% { transform: translateY(-8px); }
+}
 @media (max-width: 760px) { .free { grid-template-columns: 1fr; } .free__art { max-width: 240px; } }
 
 .engage { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1rem; list-style: none; margin: 0; padding: 0; }
@@ -1031,10 +1046,6 @@ html:not(.js) .theme-toggle { display: none !important; }
 @keyframes env-hop { 0%, 60%, 100% { transform: translateY(0); } 70%, 80% { transform: translateY(-1px); } }
 @media (min-width: 861px) { .env { margin-left: auto; width: fit-content; } }
 @media (max-width: 860px) { .env { margin-top: 2rem; } }
-/* the résumé's magnifier on the Services page bobs gently */
-.env__bob { animation: env-bob 3.6s ease-in-out infinite; }
-@keyframes env-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.4px); } }
-@media (prefers-reduced-motion: reduce) { .env__bob { animation: none; } }
 
 /* Work page: results strip -------------------------------------------------
    Big numbers on a skyline of organic pixel columns, on the page background. */

@@ -663,61 +663,49 @@ ${ctaBand()}`,
 // Contact
 // ---------------------------------------------------------------------------
 
-// Services page, free review: an organic pixel résumé being looked over, with
-// checkmarks beside a few lines and a magnifying glass. Same style as the contact
-// envelopes: frayed edges, loose pixels and a gently bobbing magnifier. Grid units are pixels.
+// Services page, free review: a pixel résumé being looked over, in the same
+// style as the About page's fun-facts art and the contact envelopes: clean
+// shapes, no loose sparkles, and the motion lives in the picture itself. The
+// magnifying glass reads down the page in whole-pixel steps. Still for reduced
+// motion. Outlines use fixed brand colors so they stay dark in both themes.
 function pixelResume() {
   const W = 24, H = 24;
-  const C = { L: '#cfa2ed', P: '#4f33cc', G: '#c99f43', g: '#0b704f', O: '#ff7b4d', M: '#6b2337', S: '#b6d8fe', F: '#a77fd6' };
-  const page = new Map();
-  const glass = new Map();
+  const C = { L: 'var(--lilac)', F: '#a77fd6', P: '#4f33cc', G: 'var(--gold)', g: '#0b704f', O: 'var(--orange)', M: '#6b2337', S: 'var(--sky)' };
+  const page = new Map(), lens = new Map(), glass = new Map();
   const put = (m, x, y, c) => m.set(`${x},${y}`, [x, y, c]);
-  const x0 = 2, y0 = 2, w = 14, h = 19;
+  const x0 = 3, y0 = 2, w = 14, h = 19;
   // the sheet, with its top-right corner folded over
   for (let y = y0; y < y0 + h; y++)
     for (let x = x0; x < x0 + w; x++) {
-      const fx = x - (x0 + w - 4), fy = y - y0; // fold triangle
-      if (fx >= 0 && fy < 4 && fx > fy) continue;
-      put(page, x, y, fx >= 0 && fy < 4 && fx === fy ? 'F' : 'L');
+      const fx = x - (x0 + w - 4), fy = y - y0;
+      if (fx >= 0 && fy < 4 && fx > fy) continue; // cut corner
+      put(page, x, y, fx >= 0 && fy < 4 ? 'F' : 'L'); // the fold
     }
-  for (let i = 0; i < 4; i++) for (let j = 0; j <= i; j++) put(page, x0 + w - 4 + j, y0 + i, j === i ? 'F' : 'F');
   // photo block and name lines
   for (let y = y0 + 2; y < y0 + 5; y++) for (let x = x0 + 2; x < x0 + 5; x++) put(page, x, y, 'G');
-  [[y0 + 2, 6, 'P'], [y0 + 4, 4, 'P']].forEach(([y, len, c]) => { for (let x = x0 + 6; x < x0 + 6 + len; x++) put(page, x, y, c); });
-  // text lines, some with a checkmark beside them
-  [[y0 + 7, 6, true], [y0 + 9, 8, false], [y0 + 11, 9, false], [y0 + 13, 8, false], [y0 + 15, 9, false], [y0 + 17, 6, false]].forEach(([y, len, check]) => {
+  for (const [y, len] of [[y0 + 2, 5], [y0 + 4, 3]]) for (let x = x0 + 6; x < x0 + 6 + len; x++) put(page, x, y, 'P');
+  // text lines; two have a check beside them
+  for (const [y, len, check] of [[y0 + 7, 7, true], [y0 + 9, 9, false], [y0 + 11, 8, true], [y0 + 13, 9, false], [y0 + 15, 7, false], [y0 + 17, 9, false]]) {
     for (let x = x0 + 2; x < x0 + 2 + len; x++) put(page, x, y, 'P');
-    // a small tick: down one, then up two
-    if (check) [[0, 0], [1, 1], [2, 0], [3, -1]].forEach(([dx, dy]) => put(page, x0 + w - 5 + dx, y + dy, 'g'));
-  });
-  // fray the sheet: drop some edge pixels, more along the bottom
-  for (const [k, [x, y]] of [...page]) {
-    const r = rand(x * 11 + 5, y * 7 + 3);
-    const left = x === x0, right = x === x0 + w - 1, bottom = y === y0 + h - 1;
-    if ((bottom && r < 0.4) || ((left || right) && r < 0.18)) page.delete(k);
+    if (check) for (const [dx, dy] of [[0, 0], [1, 1], [2, 0], [3, -1]]) put(page, x0 + w - 4 + dx - 1, y + dy, 'g');
   }
-  // magnifying glass: an orange ring over the lower right, with a maroon handle
-  const cx = 10, cy = 17, R = 4; // over the lower lines, as if reading them
-  const lens = new Map();
+  // magnifying glass: orange ring, see-through lens, maroon handle
+  const cx = 11, cy = 15, R = 4;
   for (let y = cy - R - 1; y <= cy + R + 1; y++)
     for (let x = cx - R - 1; x <= cx + R + 1; x++) {
       const d = Math.hypot(x - cx, y - cy);
       if (d > R - 0.6 && d <= R + 0.5) put(glass, x, y, 'O');
       else if (d <= R - 0.6) put(lens, x, y, 'S');
     }
-  // a glint on the glass
-  [[cx - 2, cy - 2], [cx - 1, cy - 2], [cx - 2, cy - 1]].forEach(([x, y]) => lens.delete(`${x},${y}`) || true);
-  [[14, 21], [15, 21], [15, 22], [16, 22], [16, 23], [17, 23]].forEach(([x, y]) => put(glass, x, y, 'M'));
-  // loose pixels
-  [[0, 6, 'S'], [18, 3, 'G'], [21, 8, 'L'], [1, 22, 'g'], [9, 23, 'L'], [23, 12, 'O']].forEach(([x, y, c]) => put(page, x, y, c));
+  for (const [x, y] of [[15, 19], [16, 19], [16, 20], [17, 20], [17, 21], [18, 21], [18, 22], [19, 22]]) put(glass, x, y, 'M');
+  const glint = [[cx - 2, cy - 2], [cx - 1, cy - 2], [cx - 2, cy - 1]];
+  glint.forEach(([x, y]) => lens.delete(`${x},${y}`));
 
-  const rect = ([x, y, c]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${C[c]}" stroke="${C[c]}" stroke-width="0.08"/>`;
-  return `<div class="rev" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges"><g>${[...page.values()].map(rect).join('')}</g><g class="env__bob"><g class="rev__glass">${[...lens.values()].filter(([x, y]) => page.has(`${x},${y}`)).map(rect).join('')}</g>${[...lens.values()].filter(([x, y]) => !page.has(`${x},${y}`)).map(rect).join('')}${[cx - 2, cx - 1].map((x) => `<rect x="${x}" y="${cy - 2}" width="1" height="1" fill="#fffdf8"/>`).join('')}<rect x="${cx - 2}" y="${cy - 1}" width="1" height="1" fill="#fffdf8"/>${[...glass.values()].map(rect).join('')}</g></svg></div>`;
+  const rect = ([x, y, c]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${C[c]}"/>`;
+  const glintRects = glint.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="#fffdf8"/>`).join('');
+  return `<div class="rev" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" style="--w:${W};--h:${H}" shape-rendering="crispEdges"><g>${[...page.values()].map(rect).join('')}</g><g class="rev__mag"><g class="rev__glass">${[...lens.values()].map(rect).join('')}</g>${glintRects}${[...glass.values()].map(rect).join('')}</g></svg></div>`;
 }
 
-// Contact page: three organic pixel envelopes in the header-art style. Edges
-// are eroded and a few loose pixels drift between them; a star, a checkmark and
-// a sparkle take turns floating up out of them, and the two smaller envelopes bob. No entrance animation: it's all in place on load. Grid units are pixels.
 // Fun facts: a small hand-placed pixel picture for each card, drawn on the
 // same palette as the header art. Letters map to colors ('.' is empty); some
 // letters also carry a class so that part can move (sun, scale pans, blinking
