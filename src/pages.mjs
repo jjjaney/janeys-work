@@ -1030,11 +1030,11 @@ export function archivePage() {
   return {
     path: '/archive/',
     title: 'Archive',
-    description: 'Work from 2020 and earlier: editorial, marketing, technical writing, and web at GitHub, Plex, Carnegie Mellon, and more.',
+    description: 'Earlier work: editorial, marketing, technical writing, and web at GitHub, Plex, Carnegie Mellon, and more.',
     body: `
 <section class="page-head">
   <div class="wrap">
-    ${eyebrow('—', '2020 and earlier')}
+    ${eyebrow('—', 'Earlier work')}
     <h1>The archive</h1>
     <p class="lede">Marketing, editorial, technical writing, and web work from GitHub, Plex, Ripl, and Carnegie Mellon.</p>
     ${todo('Archive links still point to files on your Squarespace site. Download those PDFs into <code>/public/archive/</code> and update the links in <code>src/content/archive.mjs</code> before you cancel Squarespace.')}

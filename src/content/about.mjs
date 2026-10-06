@@ -62,7 +62,7 @@ export const siteStory = {
   intro: [
     { label: 'What it is', text: 'My portfolio, and a working example of how I approach content: as a product, with real users, a clear structure, and a system behind it.' },
     { label: 'Who it’s for', text: 'Hiring managers, product and design leaders, and teams deciding whether I’m the right fit, plus anyone early in their career looking for a free resume or portfolio review.' },
-    { label: 'What’s inside', text: 'Case studies that start with the question each project answered, the services I offer, how I work, and an archive of projects from 2014 to 2020.' },
+    { label: 'What’s inside', text: 'Case studies that start with the question each project answered, the services I offer, how I work, and an archive of earlier projects.' },
   ],
   versions: [
     { label: 'v1', name: 'Squarespace', tint: 'peach', image: '', alt: 'The Squarespace version of janeys.work', body: 'Where janeys.work began: a template-based site that held my case studies, services, and archive.' },

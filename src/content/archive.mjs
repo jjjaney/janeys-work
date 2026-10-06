@@ -1,4 +1,4 @@
-// Work from 2020 and earlier. Links to /s/... files still point at the
+// Earlier work (the Archive page). Links to /s/... files still point at the
 // Squarespace site. TODO(Janey): before you cancel Squarespace, download those
 // PDFs into /public/archive/ and change each href to '/archive/<file>.pdf'.
 const old = (p) => `https://www.janeys.work/s/${p}`;
