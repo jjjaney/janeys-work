@@ -293,9 +293,12 @@ ${spill(4)}
 
 <section class="section" aria-labelledby="work-h">
   <div class="wrap">
-    <div class="section__head">
+    <div class="section__head section__head--split">
       ${eyebrow('01', 'Selected work')}
-      <h2 id="work-h">Every project starts with a question. Here’s how I answered a few.</h2>
+      <div>
+        <h2 id="work-h">Every project starts with a question. Here’s how I answered a few.</h2>
+      </div>
+      <a class="link-arrow" href="/work/">All case studies ${arrow}</a>
     </div>
     ${storyGrid()}
   </div>
