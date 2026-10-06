@@ -175,8 +175,11 @@ export const external = `<svg class="arrow" viewBox="0 0 16 16" aria-hidden="tru
  * Grid: x counts columns from the right edge, y counts rows from the top of
  * the section (negative y = above the section).
  */
-export function pixelCorner() {
-  const o = '#ff7b4d', l = '#cfa2ed', g = '#0b704f', y = '#c99f43', s = '#b6d8fe', m = '#6b2337';
+// bg: the band's own color; any corner pixel that would match it turns purple
+// instead, so the cluster always reads against the band.
+export function pixelCorner(bg = '#4f33cc') {
+  const sw = (c) => (c.toLowerCase() === bg.toLowerCase() ? '#4f33cc' : c);
+  const o = sw('#ff7b4d'), l = sw('#cfa2ed'), g = sw('#0b704f'), y = sw('#c99f43'), s = sw('#b6d8fe'), m = sw('#6b2337');
   // [x, y, color] for the cluster: a staircase stepping down into the corner
   const cluster = [
     [0, 0, g], [1, 0, o], [2, 0, l], [3, 0, s], [4, 0, y],

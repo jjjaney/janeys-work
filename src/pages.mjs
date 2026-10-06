@@ -234,9 +234,14 @@ function quotes() {
   </section>`;
 }
 
-function ctaBand(heading = 'Let’s build something people understand.', sub = 'Content strategy, design, and systems for products and teams.') {
-  return `<section class="cta-band" aria-labelledby="cta-h">
-    ${pixelCorner()}
+// Each page gets its own band color so the closing call to action never reads
+// as a repeat of the home page's. Case studies use the strong version of their
+// card color.
+const CTA_TONES = { purple: '#4f33cc', green: '#0b704f', maroon: '#6b2337', orange: '#ff7b4d', gold: '#c99f43', lilac: '#cfa2ed', sky: '#b6d8fe', mint: '#9fdcc4' };
+const CARD_TONE = { lilac: 'lilac', peach: 'orange', gold: 'gold', sky: 'sky', mint: 'mint' };
+function ctaBand(heading = 'Let’s build something people understand.', sub = 'Content strategy, design, and systems for products and teams.', tone = 'purple') {
+  return `<section class="cta-band cta-band--${tone}" aria-labelledby="cta-h">
+    ${pixelCorner(CTA_TONES[tone])}
     <div class="wrap cta-band__inner">
       <div>
         <h2 id="cta-h">${heading}</h2>
@@ -412,7 +417,7 @@ export function workIndex() {
 
 
 
-${ctaBand()}`,
+${ctaBand(undefined, undefined, 'green')}`,
   };
 }
 
@@ -499,7 +504,7 @@ export function caseStudy(w, i) {
     <a href="/work/${next.slug}/"><span class="mono muted">Next</span><span>${esc(next.client)} ${arrow}</span></a>
   </nav>
 </article>
-${ctaBand('Want results like these on your team?', 'Let’s talk about what you’re building.')}`,
+${ctaBand('Want results like these on your team?', 'Let’s talk about what you’re building.', CARD_TONE[w.hue] || 'lilac')}`,
   };
 }
 
@@ -621,7 +626,7 @@ export function servicesPage() {
     </div>
   </div>
 </section>
-${ctaBand('Not sure which service fits?', 'Let’s talk about what you’re building.')}`,
+${ctaBand('Not sure which service fits?', 'Let’s talk about what you’re building.', 'maroon')}`,
   };
 }
 
@@ -687,7 +692,7 @@ ${spill(22)}
     <ul class="facts">${funFacts.map((f, i) => `<li>${factArt(i)}<p>${f}</p></li>`).join('')}</ul>
   </div>
 </section>
-${ctaBand()}`,
+${ctaBand(undefined, undefined, 'orange')}`,
   };
 }
 
@@ -933,7 +938,7 @@ ${archive
 </section>`
   )
   .join('')}
-${ctaBand()}`,
+${ctaBand(undefined, undefined, 'gold')}`,
   };
 }
 

@@ -835,6 +835,14 @@ html:not(.js) .theme-toggle { display: none !important; }
   /* one pixel of the page's header art (set by main.js); a sensible size elsewhere */
   --c: clamp(20px, var(--art-cell, var(--px-art)), 46px);
 }
+/* per-page band colors; light bands take maroon text in both themes */
+.cta-band--green { --band: #0b704f; --on-band: #fffdf8; }
+.cta-band--maroon { --band: #6b2337; --on-band: #fffdf8; }
+.cta-band--orange { --band: #ff7b4d; --on-band: #4a1522; }
+.cta-band--gold { --band: #c99f43; --on-band: #4a1522; }
+.cta-band--lilac { --band: #cfa2ed; --on-band: #4a1522; }
+.cta-band--sky { --band: #b6d8fe; --on-band: #4a1522; }
+.cta-band--mint { --band: #9fdcc4; --on-band: #4a1522; }
 .cta-band__inner { position: relative; padding-block: clamp(3.5rem, 3rem + 4vw, 6rem); }
 .cta-band h2 { color: var(--on-band); max-width: 16em; }
 .cta-band p { font-size: 1.15rem; }
