@@ -924,7 +924,10 @@ html:not(.js) .theme-toggle { display: none !important; }
 @media (max-width: 460px) { .timeline > li { grid-template-columns: 1fr; gap: 0.25rem; } }
 
 .facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem; }
-.facts li { padding: 1.5rem; background: var(--tint-peach); }
+.facts li { padding: 1.5rem; background: var(--tint-peach); --fpx: clamp(9px, 0.4rem + 0.35vw, 12px); }
+.facts__art { display: block; width: calc(var(--w) * var(--fpx)); height: calc(var(--h) * var(--fpx)); margin: calc((13 - var(--h)) * var(--fpx)) 0 1.25rem; }
+.section--facts { padding-bottom: clamp(8rem, 5.5rem + 9vw, 15rem); }
+.facts li p { margin: 0; }
 .facts li:nth-child(2) { background: var(--tint-sky); }
 .facts li:nth-child(3) { background: var(--tint-mint); }
 

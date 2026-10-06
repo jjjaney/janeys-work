@@ -649,10 +649,10 @@ ${spill(22)}
   </div>
 </section>
 
-<section class="section section--tight" aria-labelledby="ff-h">
+<section class="section section--tight section--facts" aria-labelledby="ff-h">
   <div class="wrap">
     <div class="section__head">${eyebrow('03', 'Fun facts')}<h2 id="ff-h">Off the clock</h2></div>
-    <ul class="facts">${funFacts.map((f) => `<li>${f}</li>`).join('')}</ul>
+    <ul class="facts">${funFacts.map((f, i) => `<li>${factArt(i)}<p>${f}</p></li>`).join('')}</ul>
   </div>
 </section>
 ${ctaBand()}`,
@@ -718,6 +718,64 @@ function pixelResume() {
 // Contact page: three organic pixel envelopes in the header-art style. Edges
 // are eroded and a few loose pixels drift between them; a star, a checkmark and
 // a sparkle take turns floating up out of them, and the two smaller envelopes bob. No entrance animation: it's all in place on load. Grid units are pixels.
+// Fun facts: a small hand-placed pixel picture for each card, drawn on the
+// same palette as the header art (letters map to colors; '.' is empty).
+const FACT_COLORS = { O: 'var(--orange)', G: 'var(--gold)', g: 'var(--green)', M: 'var(--maroon)', S: 'var(--sky)', L: 'var(--lilac)', P: 'var(--accent)' };
+const FACT_ART = [
+  // a tropical island: palm, sun, and water (the retreat)
+  [
+    '...........OO...',
+    '.gg..gg...OOOO..',
+    'ggggggggg..OO...',
+    'gg.ggMgg.g......',
+    'g....M..g.....L.',
+    '.....M..........',
+    '......M.........',
+    '......M.........',
+    '.S....M.........',
+    '.....GGG....S...',
+    'S..SGGGGGS.SSS.S',
+    'SSSSSSSSSSSSSSSS',
+  ],
+  // a podcast microphone with sound coming off it
+  [
+    '....LLLL.....',
+    '...LPLLPL...O',
+    '...LLPLLL..O.',
+    '...LPLLPL....',
+    '...LLLPLL..O.',
+    '.M..LLLL..M.O',
+    '.M...MM...M..',
+    '..M..MM..M...',
+    '...MMMMMM....',
+    '.....MM......',
+    '.....MM......',
+    '...GGGGGG....',
+    '..GG.GGGG....',
+  ],
+  // two cats, blissfully offline
+  [
+    'O...O......M...M...',
+    'OO.OO...L..MM.MM...',
+    'OOOOO......MMMMM...',
+    'OMOMO......MGMGM...',
+    'OOOOO....S.MMMMM...',
+    '.OOO........MMM....',
+    'OOOOO......MMMMM...',
+    'OOOOO.O...MMMMMMM..',
+    'OOOOOO.O..MMMMMMM.M',
+    'OOOOOO.O..MMMMMMM.M',
+    '.OOOO.OO...MMMMM.MM',
+  ],
+];
+function factArt(i) {
+  const rows = FACT_ART[i % FACT_ART.length];
+  const W = Math.max(...rows.map((r) => r.length)), H = rows.length;
+  let rects = '';
+  rows.forEach((r, y) => [...r].forEach((c, x) => { if (FACT_COLORS[c]) rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${FACT_COLORS[c]}"/>`; }));
+  return `<svg class="facts__art" viewBox="0 0 ${W} ${H}" style="--w:${W};--h:${H}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+}
+
 function pixelEnvelopes() {
   const W = 34, H = 22;
   const C = { S: '#b6d8fe', L: '#cfa2ed', P: '#4f33cc', O: '#ff7b4d', G: '#c99f43', M: '#6b2337', g: '#0b704f' };
