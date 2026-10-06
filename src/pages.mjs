@@ -683,7 +683,7 @@ function pixelResume() {
     }
   // photo block and name lines
   for (let y = y0 + 2; y < y0 + 5; y++) for (let x = x0 + 2; x < x0 + 5; x++) put(page, x, y, 'G');
-  for (const [y, len] of [[y0 + 2, 5], [y0 + 4, 3]]) for (let x = x0 + 6; x < x0 + 6 + len; x++) put(page, x, y, 'P');
+  for (const [y, len] of [[y0 + 2, 4], [y0 + 4, 3]]) for (let x = x0 + 6; x < x0 + 6 + len; x++) put(page, x, y, 'P');
   // text lines
   for (const [y, len] of [[y0 + 7, 7], [y0 + 9, 9], [y0 + 11, 8], [y0 + 13, 9], [y0 + 15, 7], [y0 + 17, 9]])
     for (let x = x0 + 2; x < x0 + 2 + len; x++) put(page, x, y, 'P');
