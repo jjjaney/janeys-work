@@ -124,12 +124,10 @@ export const faqs = [
   {
     q: 'What are your content services, and how do I learn more?',
     a: 'There are five: content strategy and editorial; content design, UX writing, and storytelling; content for teams; documentation and training; and product management and marketing. Each is listed above with what you get. To learn more, use "Ask about this" under any service or send a message, and we\'ll set up a call.',
-    todo: 'This answer is new. The saved copy of your Work with me page didn\'t include the FAQ answers (they were collapsed), so check it reads the way you want.',
   },
   {
     q: 'How much do content services cost?',
     a: 'I work with hourly rates or fixed project pricing, depending on scope. Lifestyle-oriented pieces like tips or FAQs sit at the lower end of my range. Case studies, white papers, and technical deep-dives sit at the upper end. Timing depends on subject matter and where the piece will be published, such as LinkedIn, a company newsletter, an internal knowledge base, or a guest blog.',
-    todo: 'Add your rate range here if you want to publish it.',
   },
   {
     q: 'Do you prefer contracts, freelance, or full-time work?',
