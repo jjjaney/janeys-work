@@ -653,7 +653,7 @@ function bandWork(id) {
     .sort((a, b) => (b.year || 0) - (a.year || 0))
     .slice(0, RELATED_MAX);
   if (!items.length) return '';
-  return `<div class="svc-work"><p class="svc-work__label mono">Related work</p><ul>${items
+  return `<div class="svc-work"><h3 class="svc-work__label">Related work</h3><ul>${items
     .map((w) => `<li><a href="/work/${w.slug}/"><span class="svc-work__who mono">${esc(w.short || w.client)}</span><span class="svc-work__what">${esc(w.cardTitle)}</span></a></li>`)
     .join('')}</ul></div>`;
 }
