@@ -551,7 +551,6 @@ export function servicesPage() {
     <h1>Work with me</h1>
     <p class="lede">I help teams build content that scales: clear for the people reading it, and structured for the teams and tools maintaining it.</p>
     <p class="svc-disciplines mono">${disciplineLine.map(esc).join('<span aria-hidden="true"> · </span>')}</p>
-    ${todo('Services now include everything from your Work with me page, merged into five groups. Review the names and lists, and add pricing or packages if you want them public.')}
   </div>
 </section>
 
