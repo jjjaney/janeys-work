@@ -821,9 +821,8 @@ function pixelEnvelopes() {
     }
   };
 
-  // the big envelope, with a stamp
+  // the big envelope
   envelope(front, 1, 9, 16, 11, { body: 'S', flap: 'L', edge: 'P' });
-  for (let y = 10; y <= 12; y++) for (let x = 12; x <= 14; x++) put(front, x, y, x === 13 && y === 11 ? 'G' : 'O');
 
   // a letter tucked into the gold envelope (drawn behind it, so it can rise)
   for (let y = 1; y <= 8; y++) for (let x = 22; x <= 28; x++) put(back, x, y, 'L', 'env__letter');
