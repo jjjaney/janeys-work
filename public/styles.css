@@ -9,6 +9,9 @@
    ========================================================================== */
 
 :root {
+  /* Height of the sticky header (68px min-height + 1px border). The Services
+     jump bar sticks right under it; update this if the header height changes. */
+  --header-h: 69px;
   --px-art: clamp(24px, 2.5vw, 40px); /* one pixel size for all pixel art outside the headers (CTA corner, results, Kind words, service bands): matches the home page header art */
   /* grounds */
   --bg: #f6f3ec;
@@ -205,7 +208,7 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
   -webkit-backdrop-filter: saturate(1.4) blur(10px);
   border-bottom: 1px solid var(--line);
 }
-.site-header__inner { display: flex; align-items: center; min-height: 68px; gap: 0.75rem; }
+.site-header__inner { display: flex; align-items: center; min-height: 68px; height: 68px; gap: 0.75rem; }
 .site-nav { margin-left: auto; }
 .brand { display: inline-flex; align-items: center; gap: 0.65rem; text-decoration: none; color: var(--ink); font: 700 1.05rem/1 var(--display); letter-spacing: 0.04em; text-transform: uppercase; }
 .brand:hover { color: var(--ink); }

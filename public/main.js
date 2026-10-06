@@ -319,12 +319,10 @@
     }, 4200);
   }
 
-  // Services page: keep the jump bar under the header and mark the service
-  // that's on screen.
-  const header = document.querySelector('.site-header');
-  const setHeaderH = () => header && root.style.setProperty('--header-h', `${header.offsetHeight}px`);
-  setHeaderH();
-  window.addEventListener('resize', setHeaderH);
+  // Services page: mark the service that's on screen in the jump bar. (The
+  // bar's sticky position comes from --header-h in styles.css, not from a
+  // measurement here: Safari could measure the header too tall, which left
+  // the bar stuck partway down the page.)
   const jump = document.querySelector('.svc-jump');
   if (jump && 'IntersectionObserver' in window) {
     const links = [...jump.querySelectorAll('a')];
