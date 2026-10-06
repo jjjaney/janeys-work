@@ -726,18 +726,23 @@ function versionCard(v, i) {
     </li>`;
 }
 
-// About page: a small "On this page" callout in the intro, under the pixel art.
+// About page: a small "On this page" list that lives in the intro's pixel art
+// (top-left of the art on desktop, under it on phones).
 // Each entry links to a section id on the page; keep it in step with the
 // sections below if you add, remove, or reorder them.
 const ABOUT_TOC = [
-  ['about-janey', 'About Janey', 'var(--accent)'],
-  ['principles', 'Operating principles', 'var(--orange)'],
-  ['experience', 'Experience', 'var(--lilac)'],
-  ['this-site', 'About this website', 'var(--green)'],
-  ['fun-facts', 'Fun facts', 'var(--gold)'],
+  // [section id, label, tile color, text color]: fixed brand colors so every
+  // tile keeps its contrast in both light and dark mode
+  ['about-janey', 'About Janey', '#4f33cc', '#fffdf8'],
+  ['principles', 'Operating principles', '#ff7b4d', '#4a1522'],
+  ['experience', 'Experience', '#cfa2ed', '#4a1522'],
+  ['this-site', 'About this website', '#0b704f', '#fffdf8'],
+  ['fun-facts', 'Fun facts', '#c99f43', '#4a1522'],
 ];
+// Each link is a colored pixel tile, stacked with uneven offsets so the list
+// reads as part of the pixel art it sits in.
 function aboutToc() {
-  return `<nav class="toc" aria-label="On this page"><p class="toc__title mono">On this page</p><ol>${ABOUT_TOC.map(([id, label, c]) => `<li><a href="#${id}" style="--c:${c}">${esc(label)}</a></li>`).join('')}</ol></nav>`;
+  return `<nav class="toc" aria-label="On this page"><p class="toc__title mono">On this page</p><ol>${ABOUT_TOC.map(([id, label, bg, fg], i) => `<li style="--o:${[0, 1, 0.5, 1.5, 0.75][i % 5]}"><a href="#${id}" style="--bg:${bg};--fg:${fg}">${esc(label)}</a></li>`).join('')}</ol></nav>`;
 }
 
 export function aboutPage() {

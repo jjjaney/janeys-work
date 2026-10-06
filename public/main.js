@@ -240,7 +240,24 @@
     // layout() sets the art's cell size, which sets the headline column's left
     // padding, so lay out first, fit the headline to that column, then lay out
     // again so the floating squares avoid the headline at its final size.
-    const cull = () => (layout(), fitTitle(), layout(), fillFlanks(), cullCorner());
+    // About page: the "On this page" tiles sit inside the intro art; clear any
+    // art pixels (and floating squares) from the space they take, plus a little
+    // margin, so the list always sits in a clean pocket of the art.
+    const clearToc = () => {
+      const toc = document.querySelector('.portrait .toc');
+      if (!toc) return;
+      const portrait = toc.closest('.portrait');
+      portrait.querySelectorAll('[data-toc-hidden]').forEach((el) => { el.style.visibility = ''; el.removeAttribute('data-toc-hidden'); });
+      if (getComputedStyle(toc).position !== 'absolute') return; // phones: the list sits below the art
+      const pad = 10;
+      const boxes = [toc.querySelector('.toc__title'), ...toc.querySelectorAll('a')].map((e) => e.getBoundingClientRect());
+      const near = (r) => boxes.some((b) => r.left < b.right + pad && r.right > b.left - pad && r.top < b.bottom + pad && r.bottom > b.top - pad);
+      portrait.querySelectorAll('svg rect, .floaters i').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.width && near(r)) { el.style.visibility = 'hidden'; el.setAttribute('data-toc-hidden', ''); }
+      });
+    };
+    const cull = () => (layout(), fitTitle(), layout(), fillFlanks(), cullCorner(), clearToc());
     cull();
     // Refit once the real fonts arrive. Safari can resolve fonts.ready before
     // web fonts have even started loading, so also wait for the heading font
