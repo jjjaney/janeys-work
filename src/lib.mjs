@@ -150,17 +150,6 @@ function erode(body, viewBox, shapeName) {
 }
 
 /** A small decorative strip of squares in the site palette. */
-export function pixelRule(count = 12, seed = 1) {
-  const colors = ['var(--orange)', 'var(--lilac)', 'var(--green)', 'var(--sky)', 'var(--gold)', 'var(--maroon)', 'var(--paper)', 'var(--paper)'];
-  let out = '';
-  let r = seed * 9301 + 49297; // tiny deterministic PRNG so builds are stable
-  for (let i = 0; i < count; i++) {
-    r = (r * 9301 + 49297) % 233280;
-    const c = colors[Math.floor((r / 233280) * colors.length)];
-    out += `<span style="background:${c}"></span>`;
-  }
-  return `<div class="pixel-rule" aria-hidden="true">${out}</div>`;
-}
 
 export const arrow = `<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>`;
 export const external = `<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>`;

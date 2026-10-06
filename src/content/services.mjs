@@ -172,7 +172,7 @@ export const engagement = [
 export const faqs = [
   {
     q: 'What are your content services, and how do I learn more?',
-    a: 'There are five: content strategy and editorial; content design, UX writing, and storytelling; content for teams; documentation and training; and product management and marketing. Each is listed above with what you get. To learn more, use "Ask about this" under any service or send a message, and we\'ll set up a call.',
+    a: 'There are five: content strategy and editorial; content design, UX writing, and storytelling; content for teams; documentation and training; and product management and marketing. Each is listed above with what you get. To learn more, use the "Ask about" link under any service or send a message, and we\'ll set up a call.',
   },
   {
     q: 'How much do content services cost?',

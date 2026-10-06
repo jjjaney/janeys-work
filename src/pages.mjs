@@ -9,12 +9,10 @@ import { esc, todo, figure, pixel, pixelCorner, floaters, arrow, external } from
 // Shared bits
 // ---------------------------------------------------------------------------
 
-const hues = ['', 'orange', 'green', 'lilac', 'gold', 'sky'];
-const hue = (label) => hues[[...label].reduce((a, c) => a + c.charCodeAt(0), 0) % hues.length];
-// Section labels get a colored pixel, not a number: the sections aren't a sequence.
-const eyebrow = (_n, label) => `<p class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}">${esc(label)}</p>`;
+// Section labels (eyebrows): plain small caps above each section heading.
+const eyebrow = (_n, label) => `<p class="eyebrow mono">${esc(label)}</p>`;
 
-const eyebrowSpan = (_n, label) => `<span class="eyebrow mono${hue(label) ? ' eyebrow--' + hue(label) : ''}">${esc(label)}</span>`;
+const eyebrowSpan = (_n, label) => `<span class="eyebrow mono">${esc(label)}</span>`;
 
 // Floating pixels for page headers, in three layers:
 //  - around the art (all screen sizes): above, below and beside it

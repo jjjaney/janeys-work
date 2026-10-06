@@ -220,8 +220,9 @@
         flank.innerHTML = out;
       });
     };
-    // Home headline: two lines on wider screens. The CSS sizes it to the
-    // column; if a line would still overflow with the real font, shrink it.
+    // Home headline: two lines on wider screens. The CSS sizes it roughly to the
+    // column; this measures the real lines and sets the exact size, so it's
+    // right even if the browser got the first layout or the font timing wrong.
     const fitTitle = () => {
       const title = document.querySelector('.hero__title');
       if (!title) return;
@@ -232,13 +233,31 @@
       const cs = getComputedStyle(copy);
       const avail = copy.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       const widest = Math.max(...[...lines].map((l) => l.scrollWidth));
-      if (widest > avail) title.style.fontSize = `${(parseFloat(getComputedStyle(title).fontSize) * avail / widest * 0.99).toFixed(2)}px`;
+      // size it to fill the column exactly (grow or shrink), never past 5.5rem
+      const max = 5.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+      if (widest > 0 && avail > 0) title.style.fontSize = `${Math.min(max, (parseFloat(getComputedStyle(title).fontSize) * avail) / widest * 0.99).toFixed(2)}px`;
     };
-    const cull = () => (fitTitle(), layout(), fillFlanks(), cullCorner());
+    // layout() sets the art's cell size, which sets the headline column's left
+    // padding, so lay out first, fit the headline to that column, then lay out
+    // again so the floating squares avoid the headline at its final size.
+    const cull = () => (layout(), fitTitle(), layout(), fillFlanks(), cullCorner());
     cull();
+    // Refit once the real fonts arrive. Safari can resolve fonts.ready before
+    // web fonts have even started loading, so also wait for the heading font
+    // itself, listen for any later font loads, and refit after the full page load.
     document.fonts?.ready.then(cull);
+    document.fonts?.load('750 1em "Plus Jakarta Sans"').then(cull, () => {});
+    document.fonts?.addEventListener?.('loadingdone', cull);
+    window.addEventListener('load', cull);
     let t;
-    window.addEventListener('resize', () => (clearTimeout(t), (t = setTimeout(cull, 150))));
+    const later = () => (clearTimeout(t), (t = setTimeout(cull, 150)));
+    window.addEventListener('resize', later);
+    // and whenever the headline's column changes size for any other reason
+    const heroCopy = document.querySelector('.hero__copy');
+    if (heroCopy && 'ResizeObserver' in window) {
+      let lastW = 0;
+      new ResizeObserver(([e]) => { const w = Math.round(e.contentRect.width); if (w !== lastW) { lastW = w; later(); } }).observe(heroCopy);
+    }
   }
 
   // Logo pixel: starts orange, then every few seconds flips over edge-on and
@@ -335,7 +354,7 @@
 
   // Gentle reveal for sections ---------------------------------------------
   if ('IntersectionObserver' in window && !reduce) {
-    const targets = document.querySelectorAll('.story, .card, .kind__card, .stairs > li, .svc-type > li, .svc-row, .principles li, .outcome, .highlight, .archive li, .engage li, .facts li');
+    const targets = document.querySelectorAll('.story, .kind__card, .stairs > li, .svc-type > li, .principles li, .outcome, .highlight, .archive li, .engage li, .facts li');
     targets.forEach((t) => t.classList.add('reveal'));
     const bands = [...document.querySelectorAll('.svc-band')];
     const inView = new Set();
