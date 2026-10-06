@@ -41,9 +41,10 @@ export const services = [
   },
   {
     id: 'systems',
-    short: 'Systems', // label in the Services page jump bar
+    short: 'Teams', // label in the Services page jump bar
+    ask: 'Ask about content for teams', // link text under the band (defaults to "Ask about <short> work")
     tint: 'mint', // band color on the Services page
-    name: 'Content for Design Systems',
+    name: 'Content for Teams',
     for: 'Design systems and orgs that want consistency at scale, for people and AI.',
     body: 'Voice and tone, conventions, and component guidance, written so designers can use it and agents can learn from it.',
     deliverables: [
@@ -121,7 +122,7 @@ export const engagement = [
 export const faqs = [
   {
     q: 'What are your content services, and how do I learn more?',
-    a: 'There are five: content strategy and editorial; content design, UX writing, and storytelling; content for design systems; documentation and training; and product management and marketing. Each is listed above with what you get. To learn more, use "Ask about this" under any service or send a message, and we\'ll set up a call.',
+    a: 'There are five: content strategy and editorial; content design, UX writing, and storytelling; content for teams; documentation and training; and product management and marketing. Each is listed above with what you get. To learn more, use "Ask about this" under any service or send a message, and we\'ll set up a call.',
     todo: 'This answer is new. The saved copy of your Work with me page didn\'t include the FAQ answers (they were collapsed), so check it reads the way you want.',
   },
   {

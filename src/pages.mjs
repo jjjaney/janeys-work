@@ -511,7 +511,7 @@ export function servicesPage() {
   return {
     path: '/services/',
     title: 'Services',
-    description: 'Content strategy and editorial; content design, UX writing, and storytelling; content for design systems; documentation and training; and product management and marketing.',
+    description: 'Content strategy and editorial; content design, UX writing, and storytelling; content for teams; documentation and training; and product management and marketing.',
     body: `
 <section class="page-head">
   <div class="wrap">
@@ -540,7 +540,7 @@ export function servicesPage() {
         <p class="svc-band__body">${esc(s.body)}</p>
       </div>
       <ul class="svc-band__gets" style="--cols: ${s.deliverables.length % 4 === 0 ? 4 : 3}">${s.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
-      <a class="link-arrow" href="/contact/?topic=${encodeURIComponent(s.name)}">Ask about ${esc(s.short.toLowerCase())} work ${arrow}</a>
+      <a class="link-arrow" href="/contact/?topic=${encodeURIComponent(s.name)}">${esc(s.ask || `Ask about ${s.short.toLowerCase()} work`)} ${arrow}</a>
     </div>
   </section>`
     )
