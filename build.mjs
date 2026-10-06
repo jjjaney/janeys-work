@@ -5,7 +5,6 @@ import { site } from './src/site.mjs';
 import { layout } from './src/layout.mjs';
 import { setPage, todoLog } from './src/lib.mjs';
 import { work } from './src/content/work.mjs';
-import { serviceWork } from './src/content/service-work.mjs';
 import * as P from './src/pages.mjs';
 
 const OUT = 'dist';
@@ -23,7 +22,6 @@ const pages = [
   P.home,
   P.workIndex,
   ...work.map((w, i) => () => P.caseStudy(w, i)),
-  ...serviceWork.map((w, i) => () => P.caseStudy(w, i, true)),
   P.servicesPage,
   P.aboutPage,
   P.contactPage,

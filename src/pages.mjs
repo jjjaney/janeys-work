@@ -1,6 +1,5 @@
 import { site, companies, testimonials } from './site.mjs';
 import { work } from './content/work.mjs';
-import { serviceWork } from './content/service-work.mjs';
 import { services, engagement, faqs, disciplineLine, freeReview } from './content/services.mjs';
 import { bio, principles, experience, funFacts, siteStory } from './content/about.mjs';
 import { archive } from './content/archive.mjs';
@@ -119,7 +118,10 @@ function archiveNote() {
   </p>`;
 }
 
-const storyGrid = () => `<ul class="stories">${work.map(storyCard).join('')}</ul>${archiveNote()}`;
+// The home page shows only case studies without `onHome: false`; the Case
+// studies page shows them all.
+const storyGrid = (list = work) => `<ul class="stories">${list.map(storyCard).join('')}</ul>${archiveNote()}`;
+const homeWork = work.filter((w) => w.onHome !== false);
 
 // How I work: a staircase of pixels. Each step adds one layer on top of the
 // last (orange, lilac, green, gold from the bottom up), so step D carries
@@ -326,7 +328,7 @@ ${spill(4)}
       </div>
       <a class="link-arrow" href="/work/">All case studies ${arrow}</a>
     </div>
-    ${storyGrid()}
+    ${storyGrid(homeWork)}
   </div>
 </section>
 
@@ -488,14 +490,10 @@ const shots = (h, slug) =>
     ? `<div class="shots" style="--n:${Math.min(h.images.length, 2)}">${h.images.map((im) => figure(im, slug)).join('')}</div>`
     : figure(h.image, slug);
 
-// Case-study page. Main case studies (src/content/work.mjs) get Previous/Next
-// links through that list. Services-only ones (src/content/service-work.mjs)
-// pass `svc: true` and link back to the Services page instead.
-export function caseStudy(w, i, svc = false) {
-  const list = svc ? serviceWork : work;
-  const prev = list[(i - 1 + list.length) % list.length];
-  const next = list[(i + 1) % list.length];
-  const artIdx = svc ? i + work.length : i;
+export function caseStudy(w, i) {
+  const prev = work[(i - 1 + work.length) % work.length];
+  const next = work[(i + 1) % work.length];
+  const artIdx = i;
   let n = 3; // section numbers after Context and The work
   const num = () => String(++n).padStart(2, '0');
   const outcomes = w.outcomes
@@ -508,11 +506,9 @@ export function caseStudy(w, i, svc = false) {
   const results = w.results?.length
     ? `<ul class="results-shots">${w.results.map((r) => `<li><figure class="shot"><img src="${esc(r.src)}" alt="${esc(r.alt)}" loading="lazy" decoding="async"><figcaption>${esc(r.caption)}</figcaption></figure></li>`).join('')}</ul>`
     : '';
-  const firstSvc = svc && services.find((s) => w.services?.includes(s.id));
 
   return {
     path: `/work/${w.slug}/`,
-    navPath: svc ? '/services/' : undefined,
     title: w.title,
     description: w.summary,
     body: `
@@ -523,7 +519,7 @@ export function caseStudy(w, i, svc = false) {
     ])}
     <div class="wrap case__head-inner">
       <div>
-        <p class="eyebrow mono">${svc ? `<a href="/services/${firstSvc ? '#' + firstSvc.id : ''}">Services</a>` : '<a href="/work/">Case studies</a>'} <span aria-hidden="true">/</span> ${esc(w.client)}</p>
+        <p class="eyebrow mono"><a href="/work/">Case studies</a> <span aria-hidden="true">/</span> ${esc(w.client)}</p>
         <h1>${esc(w.title)}</h1>
         <p class="lede">${esc(w.summary)}</p>
       </div>
@@ -587,17 +583,10 @@ export function caseStudy(w, i, svc = false) {
     }
   </div>
 
-  ${
-    svc
-      ? `<nav class="case__nav wrap" aria-label="More work">
-    <a href="/services/${firstSvc ? '#' + firstSvc.id : ''}"><span class="mono muted">Back to</span><span>Services</span></a>
-    ${list.length > 1 ? `<a href="/work/${next.slug}/"><span class="mono muted">More work</span><span>${esc(next.client)} ${arrow}</span></a>` : ''}
-  </nav>`
-      : `<nav class="case__nav wrap" aria-label="More case studies">
+  <nav class="case__nav wrap" aria-label="More case studies">
     <a href="/work/${prev.slug}/"><span class="mono muted">Previous</span><span>${esc(prev.client)}</span></a>
     <a href="/work/${next.slug}/"><span class="mono muted">Next</span><span>${esc(next.client)} ${arrow}</span></a>
-  </nav>`
-  }
+  </nav>
 </article>
 ${ctaBand('Want results like these on your team?', 'Let’s talk about what you’re building.', CARD_TONE[w.hue] || 'lilac')}`,
   };
@@ -641,17 +630,6 @@ function bandPixels(tint, seed) {
   return `<svg class="svc-band__px" viewBox="0 0 ${W} 2" preserveAspectRatio="xMaxYMin slice" style="--w:${W}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
-// Services page: case studies from src/content/service-work.mjs listed under
-// each band whose id appears in their `services` list. Nothing renders for a
-// band with no work yet.
-function bandWork(id) {
-  const items = serviceWork.filter((w) => w.services?.includes(id));
-  if (!items.length) return '';
-  return `<div class="svc-work"><p class="svc-work__label mono">Related work</p><ul>${items
-    .map((w) => `<li><a href="/work/${w.slug}/"><span class="mono">${esc(w.client)}</span><span class="svc-work__title">${esc(w.cardTitle)}</span><span class="svc-work__go" aria-hidden="true">${arrow}</span></a></li>`)
-    .join('')}</ul></div>`;
-}
-
 // Services page. The jump bar, the color bands, and their pixel runs are all
 // built from the `services` list. Each jump-bar square takes the strong color
 // of its band's tint (peach -> orange, mint -> green); a new tint needs an
@@ -691,7 +669,6 @@ export function servicesPage() {
         <p class="svc-band__body">${esc(s.body)}</p>
       </div>
       <ul class="svc-band__gets" style="--cols: ${s.deliverables.length % 4 === 0 ? 4 : 3}">${s.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
-      ${bandWork(s.id)}
       <a class="link-arrow" href="/contact/?topic=${encodeURIComponent(s.name)}">${esc(s.ask || `Ask about ${s.short.toLowerCase()} work`)} ${arrow}</a>
     </div>
   </section>`

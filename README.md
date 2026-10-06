@@ -44,7 +44,6 @@ npm run build   # one-off build into dist/
 | Name, LinkedIn, email, contact form ID, booking/Ko-fi links | `src/site.mjs` |
 | Testimonials, company list, disciplines ticker | `src/site.mjs` |
 | Case studies (text, outcomes, links, screenshots, and the hook question, teaser and color used on the Selected Work cards) | `src/content/work.mjs` |
-| Case studies shown only on the Services page | `src/content/service-work.mjs` |
 | Services, engagement models, FAQ | `src/content/services.mjs` |
 | Bio, principles, experience, fun facts | `src/content/about.mjs` |
 | Archive (2020 and earlier) | `src/content/archive.mjs` |
@@ -79,7 +78,7 @@ Each of these has a "HOW TO" comment, with a copy-and-paste template, right abov
 | Change or add a "Some cool results" number | `src/pages.mjs` | HOW TO CHANGE OR ADD A RESULT (above `RESULTS`) |
 | Add a Kind words quote | `src/site.mjs` | HOW TO ADD A QUOTE (above `testimonials`) |
 | Add a case study | `src/content/work.mjs` | HOW TO ADD A CASE STUDY (top of the file) |
-| Add a case study that only shows on the Services page | `src/content/service-work.mjs` | HOW TO ADD A SERVICES-ONLY CASE STUDY (top of the file) |
+| Show a case study on the Case studies page but not the home page | `src/content/work.mjs` | step 9 of HOW TO ADD A CASE STUDY (`onHome: false`) |
 | Add a fun fact | `src/content/about.mjs` | the note above `funFacts` |
 
 After any change, run `npm run build` and check the pages it touches.
