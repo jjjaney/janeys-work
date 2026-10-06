@@ -1099,7 +1099,7 @@ export function archivePage() {
 </section>
 ${archive
   .map(
-    (g, gi) => `<section class="section section--tight" aria-labelledby="ar-${gi}">
+    (g, gi) => `<section class="section section--tight${gi === archive.length - 1 ? ' section--archive-last' : ''}" aria-labelledby="ar-${gi}">
   <div class="wrap">
     <div class="section__head">${eyebrow(String(gi + 1).padStart(2, '0'), g.group)}<h2 id="ar-${gi}" class="sr-only">${esc(g.group)}</h2></div>
     <ul class="archive">

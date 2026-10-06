@@ -360,6 +360,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 .section { padding-block: clamp(5.5rem, 4rem + 6vw, 10rem); }
 .section--tight { padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
 /* Services: less space between the free-review panel and Engagement models */
+/* Archive: the last group gets full section space before the closing band */
+.section--archive-last { padding-bottom: clamp(5.5rem, 4rem + 6vw, 10rem); }
 .section--free { padding-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
 .section--free + .section { padding-top: clamp(3rem, 2.5rem + 3vw, 5.5rem); }
 /* FAQ is the last section before the closing band: give it the full section space below */
