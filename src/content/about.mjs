@@ -13,23 +13,23 @@ export const principles = [
 ];
 
 export const experience = [
-  { year: 'Now', org: 'FIS (Fidelity Information Services)', roles: ['Content Strategy & UX Writing Lead, Design Systems'] },
+  { year: 'Now', org: 'FIS (Fidelity Information Services)', roles: ['Content Strategy and UX Writing Lead, Design Systems'] },
   {
     year: '2025',
-    org: 'Freelance & contracts',
+    org: 'Freelance and contracts',
     roles: [
-      'UX Writer & Translations Manager · New_ Public',
-      'Content Strategist & Content Designer · The Browser Company',
-      'Ghostwriting & Copywriting · HackerRank',
-      'Content Designer & Product Manager · ProgramEquity',
+      'UX Writer and Translations Manager · New_ Public',
+      'Content Strategist and Content Designer · The Browser Company',
+      'Ghostwriting and Copywriting · HackerRank',
+      'Content Designer and Product Manager · ProgramEquity',
     ],
   },
-  { year: '2023', org: 'Doppler', roles: ['Founding Content Strategist & Technical Writer'] },
+  { year: '2023', org: 'Doppler', roles: ['Founding Content Strategist and Technical Writer'] },
   { year: '2022', org: 'Shopify', roles: ['Content Design Lead, Developer Markets'] },
-  { year: '2021', org: 'GitHub', roles: ['Content Strategist & Editorial Manager → Product Manager, GitHub Sponsors'] },
-  { year: '2018', org: 'Plex', roles: ['Content & Translations Manager'] },
+  { year: '2021', org: 'GitHub', roles: ['Content Strategist and Editorial Manager → Product Manager, GitHub Sponsors'] },
+  { year: '2018', org: 'Plex', roles: ['Content and Translations Manager'] },
   { year: '2017', org: 'Carnegie Mellon University, Computing Services', roles: ['Content, Communications, and Technical Documentation Manager'] },
-  { year: '2013', org: 'ARINC (Rockwell Collins)', roles: ['Associate Civil Engineer (Field) → Corporate Trainer & Technical Writer'] },
+  { year: '2013', org: 'ARINC (Rockwell Collins)', roles: ['Associate Civil Engineer (Field) → Corporate Trainer and Technical Writer'] },
 ];
 
 export const funFacts = [

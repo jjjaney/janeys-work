@@ -129,7 +129,7 @@ const STEPS = [
   ['Audit', 'Inventory what exists, who it serves, and where it breaks. Interviews, surveys, and data before opinions.'],
   ['Model', 'Define the structure: taxonomy, flows, voice, and the decisions each piece of content has to support.'],
   ['Systematize', 'Turn decisions into guidelines, templates, components, and agent instructions others can reuse.'],
-  ['Ship &amp; measure', 'Publish, train the team, watch the numbers, and iterate like any other product.'],
+  ['Ship and measure', 'Publish, train the team, watch the numbers, and iterate like any other product.'],
 ];
 const LAYERS = ['#ff7b4d', '#cfa2ed', '#0b704f', '#c99f43'];
 const SPRINKLE = ['#6b2337', '#ff7b4d', '#cfa2ed', '#c99f43'];
@@ -313,7 +313,7 @@ ${spill(4)}
       <div>
         <h2 id="svc-h">Ways we can work together</h2>
       </div>
-      <a class="link-arrow" href="/services/">All services &amp; FAQ ${arrow}</a>
+      <a class="link-arrow" href="/services/">All services and FAQ ${arrow}</a>
     </div>
     ${svcList()}
   </div>
@@ -837,7 +837,7 @@ export function archivePage() {
     body: `
 <section class="page-head">
   <div class="wrap">
-    ${eyebrow('—', '2020 & earlier')}
+    ${eyebrow('—', '2020 and earlier')}
     <h1>The archive</h1>
     <p class="lede">Marketing, editorial, technical writing, and web work from GitHub, Plex, Ripl, and Carnegie Mellon.</p>
     ${todo('Archive links still point to files on your Squarespace site. Download those PDFs into <code>/public/archive/</code> and update the links in <code>src/content/archive.mjs</code> before you cancel Squarespace.')}

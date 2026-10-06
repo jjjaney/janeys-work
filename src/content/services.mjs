@@ -7,18 +7,18 @@ export const services = [
     id: 'strategy',
     short: 'Strategy', // label in the Services page jump bar
     tint: 'peach', // band color on the Services page
-    name: 'Content strategy & editorial',
+    name: 'Content strategy and editorial',
     for: 'Teams whose content grew faster than its structure, or never had one.',
     body: 'I help establish how you want your audience to see your company: an audit of what exists, company-wide content guidelines, and an editorial plan your team can actually run.',
     deliverables: [
-      'Content audit & inventory',
+      'Content audit and inventory',
       'Grammar, terminology, and style audit',
-      'Personas & audience actions',
+      'Personas and audience actions',
       'User testing, analytics, and SEO (with AEO)',
-      'Editorial calendar & guidelines',
-      'Editing & editorial review',
-      'Taxonomy & information architecture',
-      'Governance & roadmap',
+      'Editorial calendar and guidelines',
+      'Editing and editorial review',
+      'Taxonomy and information architecture',
+      'Governance and roadmap',
     ],
   },
   {
@@ -29,13 +29,13 @@ export const services = [
     for: 'Product and marketing teams shipping flows, pages, and launches that need to land.',
     body: 'From onboarding flows to landing pages and feature launches, I look at the whole experience and the outcome you want, then build the communication plan around it, with wireframes, milestones, and service level agreements.',
     deliverables: [
-      'Audience audits & user journeys',
-      'Flow & microcopy design',
-      'Landing page layout & content ideation',
-      'Narrative & editorial creation or review',
-      'Scripts & storyboards (video, podcasts, learning)',
-      'Ghostwriting & copywriting',
-      'Content & page testing',
+      'Audience audits and user journeys',
+      'Flow and microcopy design',
+      'Landing page layout and content ideation',
+      'Narrative and editorial creation or review',
+      'Scripts and storyboards (video, podcasts, learning)',
+      'Ghostwriting and copywriting',
+      'Content and page testing',
       'Localization-ready strings',
     ],
   },
@@ -43,12 +43,12 @@ export const services = [
     id: 'systems',
     short: 'Systems', // label in the Services page jump bar
     tint: 'mint', // band color on the Services page
-    name: 'Content systems & design-system content',
+    name: 'Content systems and design-system content',
     for: 'Design systems and orgs that want consistency at scale, for people and AI.',
     body: 'Voice and tone, conventions, and component guidance, written so designers can use it and agents can learn from it.',
     deliverables: [
-      'Voice & tone guide',
-      'Content guidelines & conventions',
+      'Voice and tone guide',
+      'Content guidelines and conventions',
       'Component content docs',
       'Templates (email, blog, GitHub issues)',
       'AI-ready guidance, agents, and skills',
@@ -58,33 +58,33 @@ export const services = [
     id: 'docs',
     short: 'Docs', // label in the Services page jump bar
     tint: 'gold', // band color on the Services page
-    name: 'Documentation & training',
+    name: 'Documentation and training',
     for: 'Products whose users (or employees) keep asking the same questions.',
     body: 'Help centers, release notes, developer docs, manuals, and training materials, with templates and processes that keep them current.',
     deliverables: [
-      'Help center & KB architecture',
+      'Help center and KB architecture',
       'Release-note systems',
-      'Technical & developer docs',
-      'Manuals and factory & site acceptance tests',
+      'Technical and developer docs',
+      'Manuals and factory and site acceptance tests',
       'Training course materials',
-      'Templates & publishing workflow',
+      'Templates and publishing workflow',
     ],
   },
   {
     id: 'product',
     short: 'Product', // label in the Services page jump bar
     tint: 'sky', // band color on the Services page
-    name: 'Product management & product marketing',
+    name: 'Product management and product marketing',
     for: 'Content-heavy products and launches that need someone who speaks both languages.',
     body: 'I scope, prioritize, and ship where content is the product, then take it to market: product and communication plans, campaigns, events, and the docs behind them.',
     deliverables: [
       'Discovery, requirements, and roadmaps',
-      'Product & communication plans',
-      'Go-to-market & launch campaigns',
-      'Email & social campaigns (LinkedIn, Reddit, X, Instagram, Facebook)',
-      'Partner articles & thought leadership',
+      'Product and communication plans',
+      'Go-to-market and launch campaigns',
+      'Email and social campaigns (LinkedIn, Reddit, X, Instagram, Facebook)',
+      'Partner articles and thought leadership',
       'Newsletters',
-      'Hackathon & event coverage',
+      'Hackathon and event coverage',
       'Datasheets, e-books, and brochures',
     ],
   },
@@ -95,9 +95,9 @@ export const disciplineLine = ['Content strategy', 'Content design', 'UX writing
 
 // The free review offer for early- to mid-career people
 export const freeReview = [
-  'Resume & cover letter feedback (Google Docs or Figma)',
-  'Portfolio & case-study review (Figma)',
-  'Interview support & guidance',
+  'Resume and cover letter feedback (Google Docs or Figma)',
+  'Portfolio and case-study review (Figma)',
+  'Interview support and guidance',
 ];
 
 export const engagement = [

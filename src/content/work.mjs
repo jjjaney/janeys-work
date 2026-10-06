@@ -39,7 +39,7 @@ export const work = [
     client: 'FIS × Anthropic',
     cardTitle: 'Content foundations for a design system and the AI agents that use it',
     title: 'Content foundations for a design system, built for humans and agents',
-    role: 'Content Strategy & UX Writing Lead, Design Systems',
+    role: 'Content Strategy and UX Writing Lead, Design Systems',
     timeframe: 'Current',
     disciplines: ['Content strategy', 'Content design', 'Documentation', 'Content for AI'],
     summary:
@@ -96,7 +96,7 @@ export const work = [
     client: 'The Browser Company',
     cardTitle: 'Newsletters, release notes, and help-center processes for 500k+ Arc members',
     title: 'Turning "word of mouth" into a repeatable member-communications system',
-    role: 'Content Strategist & Content Designer',
+    role: 'Content Strategist and Content Designer',
     timeframe: 'Contract',
     disciplines: ['Content management', 'Content operations', 'Editorial', 'Release notes'],
     summary:
@@ -162,7 +162,7 @@ export const work = [
     client: 'GitHub',
     cardTitle: 'GitHub Sponsors content and sign-up flow refresh',
     title: 'Refreshing GitHub Sponsors: from growing pains to an expanded program',
-    role: 'Product Manager & Content Designer',
+    role: 'Product Manager and Content Designer',
     timeframe: '2020',
     disciplines: ['Product management', 'Content design', 'UX writing'],
     summary:
@@ -220,7 +220,7 @@ export const work = [
     client: 'New_ Public',
     cardTitle: 'UX writing and translations enablement for the Public Spaces Incubator',
     title: 'UX writing and localization for healthier public conversation spaces',
-    role: 'UX Writer & Translations Manager',
+    role: 'UX Writer and Translations Manager',
     timeframe: 'Contract',
     disciplines: ['UX writing', 'Localization', 'Content design'],
     summary:
@@ -267,7 +267,7 @@ export const work = [
     client: 'Ally.Guide / ProgramEquity',
     cardTitle: 'Brand and service refresh to help people mail their local representatives',
     title: 'Ally.Guide: a brand and service refresh for civic action',
-    role: 'Content Designer & Product Manager',
+    role: 'Content Designer and Product Manager',
     timeframe: 'Volunteer',
     disciplines: ['Content design', 'Product management', 'UX writing', 'Brand'],
     summary:

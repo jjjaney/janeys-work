@@ -43,7 +43,7 @@ export const disciplines = [
   'UX writing',
   'Technical writing',
   'Localization',
-  'Content for AI & agents',
+  'Content for AI and agents',
 ];
 
 export const companies = [
@@ -68,7 +68,7 @@ export const companies = [
 export const testimonials = [
   {
     quote: 'You elevate any content that you touch.',
-    context: 'Content strategy & UX writing',
+    context: 'Content strategy and UX writing',
     org: 'FIS, Design Systems',
     company: 'FIS',
     logo: '',
@@ -76,7 +76,7 @@ export const testimonials = [
   },
   {
     quote: 'You are a master at your craft.',
-    context: 'Storytelling & member content',
+    context: 'Storytelling and member content',
     org: 'The Browser Company',
     company: 'The Browser Company',
     logo: '',
