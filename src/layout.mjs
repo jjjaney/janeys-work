@@ -157,8 +157,8 @@ ${body}
         ${nav.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('')}
       </ul>
       <ul class="site-footer__links site-footer__links--social">
-        <li><a href="${site.linkedin}">LinkedIn</a></li>
         ${site.github ? `<li><a href="${site.github}">GitHub</a></li>` : ''}
+        <li><a href="${site.linkedin}">LinkedIn</a></li>
       </ul>
     </div>
     <p class="site-footer__meta mono">© ${new Date().getFullYear()} ${esc(site.name)}</p>
