@@ -116,7 +116,7 @@ function pixelClock() {
 function archiveNote() {
   const count = archive.reduce((n, g) => n + g.items.length, 0);
   return `<p class="archive-note">
-    <a href="/archive/">${pixelClock()}<span class="archive-note__text"><span class="archive-note__q">What did the work look like before all this?</span><span class="archive-note__meta mono">From the archive · ${count} projects · 2014–2020 ${arrow}</span></span></a>
+    <a href="/archive/">${pixelClock()}<span class="archive-note__text"><span class="archive-note__q">What did the work look like before all this?</span><span class="archive-note__meta mono">${count} projects<span class="archive-note__sep" aria-hidden="true"></span>2014–2020 Archive ${arrow}</span></span></a>
   </p>`;
 }
 
