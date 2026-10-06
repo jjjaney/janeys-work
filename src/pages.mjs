@@ -298,7 +298,7 @@ export function home() {
       <h1 class="hero__title"><span class="hero__line">I design the <span class="hl">systems</span></span> <span class="hero__line">behind the words.</span></h1>
       <p class="lede">I’m Janey, a content strategist, content designer, and product manager. I’ve led content at FIS, Shopify, GitHub, and Carnegie Mellon, building the guidelines, docs, and processes that let teams (and their AI tools) get content right at scale.</p>
       <div class="actions">
-        <a class="btn" href="/work/">See selected work ${arrow}</a>
+        <a class="btn" href="/work/">Read case studies ${arrow}</a>
         <a class="btn btn--ghost" href="/services/">Work with me</a>
       </div>
     </div>
