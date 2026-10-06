@@ -507,6 +507,29 @@ ${ctaBand('Want results like these on your team?', 'Letâ€™s talk about what youâ
 // Services
 // ---------------------------------------------------------------------------
 
+// Services page: an organic pixel border along the top of each service band,
+// at the same cell size as the header art. Mostly the band's own color, with a
+// few pixels from the rest of the palette and a few dropping down a row.
+const BAND_PX = {
+  peach: ['var(--orange)', 'var(--orange)', 'var(--orange)', 'var(--gold)', 'var(--maroon)'],
+  lilac: ['var(--lilac)', 'var(--lilac)', 'var(--accent)', 'var(--lilac)', 'var(--orange)'],
+  mint: ['var(--green)', 'var(--green)', 'var(--green)', 'var(--sky)', 'var(--gold)'],
+  gold: ['var(--gold)', 'var(--gold)', 'var(--gold)', 'var(--orange)', 'var(--maroon)'],
+  sky: ['var(--sky)', 'var(--sky)', 'var(--accent)', 'var(--sky)', 'var(--lilac)'],
+};
+function bandPixels(tint, seed) {
+  const W = 72, pal = BAND_PX[tint] || BAND_PX.lilac;
+  let rects = '';
+  for (let x = 0; x < W; x++) {
+    const r = mix(x + seed * 101, seed * 7 + 3);
+    if (r < 0.2) continue; // a gap in the top row
+    const c = pal[Math.floor(mix(x * 3 + 11, seed + 41) * pal.length)];
+    rects += `<rect x="${x}" y="0" width="1" height="1" fill="${c}"/>`;
+    if (mix(x * 5 + 7, seed * 13 + 2) < 0.22) rects += `<rect x="${x}" y="1" width="1" height="1" fill="${pal[0]}"/>`;
+  }
+  return `<svg class="svc-band__px" viewBox="0 0 ${W} 2" preserveAspectRatio="xMinYMin slice" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+}
+
 export function servicesPage() {
   return {
     path: '/services/',
@@ -533,7 +556,8 @@ export function servicesPage() {
 <div class="svc-bands">
   ${services
     .map(
-      (s) => `<section class="svc-band svc-band--${s.tint}" id="${s.id}" aria-labelledby="${s.id}-h">
+      (s, i) => `<section class="svc-band svc-band--${s.tint}" id="${s.id}" aria-labelledby="${s.id}-h">
+    ${bandPixels(s.tint, i + 1)}
     <div class="wrap">
       <div class="svc-band__top">
         <h2 id="${s.id}-h">${esc(s.name)}</h2>
