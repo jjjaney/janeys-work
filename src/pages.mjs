@@ -642,15 +642,20 @@ function bandPixels(tint, seed) {
   return `<svg class="svc-band__px" viewBox="0 0 ${W} 2" preserveAspectRatio="xMaxYMin slice" style="--w:${W}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
-// Services page: a quiet "Related work" line under each band, listing every
-// case study whose `services` includes that band's id, newest `year` first.
-// Nothing renders for a band with no matching work.
+// Services page: "Related work" under each band. Lists up to RELATED_MAX case
+// studies whose `services` includes that band's id, newest `year` first, each
+// with its client and a one-line description (`cardTitle`). Nothing renders
+// for a band with no matching work.
+const RELATED_MAX = 3;
 function bandWork(id) {
-  const items = work.filter((w) => w.services?.includes(id)).sort((a, b) => (b.year || 0) - (a.year || 0));
+  const items = work
+    .filter((w) => w.services?.includes(id))
+    .sort((a, b) => (b.year || 0) - (a.year || 0))
+    .slice(0, RELATED_MAX);
   if (!items.length) return '';
-  return `<p class="svc-work"><span class="mono">Related work</span> ${items
-    .map((w) => `<a href="/work/${w.slug}/">${esc(w.short || w.client)}</a>`)
-    .join('<span aria-hidden="true">, </span>')}</p>`;
+  return `<div class="svc-work"><p class="svc-work__label mono">Related work</p><ul>${items
+    .map((w) => `<li><a href="/work/${w.slug}/"><span class="svc-work__who mono">${esc(w.short || w.client)}</span><span class="svc-work__what">${esc(w.cardTitle)}</span></a></li>`)
+    .join('')}</ul></div>`;
 }
 
 // Services page. The jump bar, the color bands, and their pixel runs are all

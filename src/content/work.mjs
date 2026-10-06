@@ -58,7 +58,8 @@
 // 10. Set `year` (the year the work ended, for sorting) and `services` (the
 //    ids from src/content/services.mjs: strategy, design, systems, docs,
 //    product). It's then linked under each of those bands on the Services
-//    page as Related work, newest first.
+//    page as Related work, newest first (up to 3 per band; see RELATED_MAX
+//    in src/pages.mjs).
 
 export const work = [
   {
