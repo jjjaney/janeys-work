@@ -914,7 +914,11 @@ function pixelResume() {
 
   const rect = ([x, y, c]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${C[c]}"/>`;
   const glintRects = glint.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="#fffdf8"/>`).join('');
-  return `<div class="rev" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" style="--w:${W};--h:${H}" shape-rendering="crispEdges"><g>${[...page.values()].map(rect).join('')}</g><g class="rev__mag"><g class="rev__glass">${[...lens.values()].map(rect).join('')}</g>${glintRects}${[...glass.values()].map(rect).join('')}</g></svg></div>`;
+  // The drawing spans columns 3 to 19 of the grid, so the viewBox is cropped
+  // to those columns; the art then sits flush with its column and leaves more
+  // room for the text beside it.
+  const X0 = 3, VW = W - 7;
+  return `<div class="rev" aria-hidden="true"><svg viewBox="${X0} 0 ${VW} ${H}" style="--w:${VW};--h:${H}" shape-rendering="crispEdges"><g>${[...page.values()].map(rect).join('')}</g><g class="rev__mag"><g class="rev__glass">${[...lens.values()].map(rect).join('')}</g>${glintRects}${[...glass.values()].map(rect).join('')}</g></svg></div>`;
 }
 
 // Fun facts: a small hand-placed pixel picture for each card, drawn on the
