@@ -517,15 +517,17 @@ const BAND_PX = {
   gold: ['var(--gold)', 'var(--gold)', 'var(--gold)', 'var(--orange)', 'var(--maroon)'],
   sky: ['var(--sky)', 'var(--sky)', 'var(--accent)', 'var(--sky)', 'var(--lilac)'],
 };
+// Tuning: share of top-row cells left empty, and chance a pixel drops a row.
+const BAND_GAPS = 0.55, BAND_DROPS = 0.1;
 function bandPixels(tint, seed) {
   const W = 72, pal = BAND_PX[tint] || BAND_PX.lilac;
   let rects = '';
   for (let x = 0; x < W; x++) {
     const r = mix(x + seed * 101, seed * 7 + 3);
-    if (r < 0.2) continue; // a gap in the top row
+    if (r < BAND_GAPS) continue; // a gap in the top row
     const c = pal[Math.floor(mix(x * 3 + 11, seed + 41) * pal.length)];
     rects += `<rect x="${x}" y="0" width="1" height="1" fill="${c}"/>`;
-    if (mix(x * 5 + 7, seed * 13 + 2) < 0.22) rects += `<rect x="${x}" y="1" width="1" height="1" fill="${pal[0]}"/>`;
+    if (mix(x * 5 + 7, seed * 13 + 2) < BAND_DROPS) rects += `<rect x="${x}" y="1" width="1" height="1" fill="${pal[0]}"/>`;
   }
   return `<svg class="svc-band__px" viewBox="0 0 ${W} 2" preserveAspectRatio="xMinYMin slice" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
