@@ -11,6 +11,9 @@
 //               least 3:1 contrast on the card (purple, green, maroon, red)
 //   art         pixel composition shown on cards and the case-study header
 //   meta        client / role / timeframe / disciplines
+//   year        the year the work ended; sorts Related work on Services
+//   services    Services page bands to list it under, e.g. ['docs']
+//   older       true = "Older" on the Case studies page, not on the home page
 //   summary     one or two sentences for cards and the page intro
 //   context     the problem, as HTML paragraphs
 //   highlights  the work itself; each can have one `image`, or `images` (a
@@ -50,12 +53,19 @@
 //    "Some cool results" strip (RESULTS in src/pages.mjs).
 // 8. Run `npm run build` and check the home page grid, /work/, and the new
 //    case-study page.
-// 9. To list a case study on the Case studies page but NOT the home page,
-//    add `onHome: false` (see the ones at the end of the list).
+// 9. Set `older: true` to list it under "Older" on the Case studies page
+//    and leave it off the home page (see the ones at the end of the list).
+// 10. Set `year` (the year the work ended, for sorting) and `services` (the
+//    ids from src/content/services.mjs: strategy, design, systems, docs,
+//    product). It's then linked under each of those bands on the Services
+//    page as Related work, newest first.
 
 export const work = [
   {
     slug: 'fis-design-systems-ai',
+    short: 'FIS', // link text in Related work on the Services page
+    year: 2026, // for sorting Related work on the Services page (newest first)
+    services: ['design', 'systems', 'docs'], // Services page bands this is listed under
     cover: {
       src: '/images/work/fis-design-systems-ai/conventions-and-formats.webp',
       alt: "Pages from the Unify Design System's 'Conventions and formats' guidance, covering date and time formats, intervals, and best practices.",
@@ -112,6 +122,9 @@ export const work = [
   },
   {
     slug: 'browser-company-member-content',
+    short: 'The Browser Company', // link text in Related work on the Services page
+    year: 2024, // for sorting Related work on the Services page (newest first)
+    services: ['strategy', 'docs'], // Services page bands this is listed under
     cover: {
       src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/51cfb97c-ef48-4b3a-92af-d4c3c12e3f08/windows-fixes.png?format=2500w',
       alt: "The Arc for Windows 2023/2024 release notes page, with a search bar, a Download Arc button, and a list of release dates.",
@@ -181,6 +194,9 @@ export const work = [
   },
   {
     slug: 'github-sponsors',
+    short: 'GitHub Sponsors', // link text in Related work on the Services page
+    year: 2020, // for sorting Related work on the Services page (newest first)
+    services: ['product', 'design'], // Services page bands this is listed under
     cover: {
       src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/a200d2dd-fc65-480d-b889-cbb69c050c67/github+sponsors+and+stripe.png?format=2500w',
       alt: "GitHub's Mona the Octocat holding a pink heart next to the Stripe wordmark, surrounded by confetti.",
@@ -297,6 +313,9 @@ export const work = [
   },
   {
     slug: 'new-public-public-spaces-incubator',
+    short: 'New_ Public', // link text in Related work on the Services page
+    year: 2024, // for sorting Related work on the Services page (newest first)
+    services: ['design'], // Services page bands this is listed under
     cover: {
       src: '/images/work/new-public-public-spaces-incubator/check-your-response.webp',
       alt: "A Public Spaces Incubator discussion about how extreme weather affects outdoor routines, with a poll and a comment marked 'under review'.",
@@ -349,6 +368,9 @@ export const work = [
   },
   {
     slug: 'ally-guide',
+    short: 'Ally.Guide', // link text in Related work on the Services page
+    year: 2020, // for sorting Related work on the Services page (newest first)
+    services: ['design', 'product'], // Services page bands this is listed under
     hook: "How do you turn concern into letters on a lawmaker's desk before the next election?",
     teaser: "Adopted by GitHub",
     hue: 'mint',
@@ -417,13 +439,16 @@ export const work = [
       'Confirm the year for this project.',
     ],
   },
-  // ─── Case studies page only ───────────────────────────────────────────
-  // These have `onHome: false`, so they're on /work/ and in Previous/Next,
-  // but not in the home page's Selected work. Delete that line to add one
-  // to the home page too.
+  // ─── Older work ────────────────────────────────────────────────────────
+  // These have `older: true`: they're under "Older" on the Case studies page
+  // and in Previous/Next, but not on the home page. Delete that line to move
+  // one up to "Current" and onto the home page.
   {
     slug: 'github-editorial',
-    onHome: false, // Case studies page only, not the home page
+    short: 'GitHub Blog', // link text in Related work on the Services page
+    year: 2019, // for sorting Related work on the Services page (newest first)
+    services: ['strategy'], // Services page bands this is listed under
+    older: true, // "Older" on the Case studies page; not on the home page
     cover: {
       src: '/images/work/github-editorial/results-collage.webp',
       alt: 'A collage of GitHub Blog work: an editorial calendar, a Universe event graphic, a blog brief, a DMCA trends chart, feature announcements, analytics, an SAP case study, and a maintainer spotlight.',
@@ -520,7 +545,10 @@ export const work = [
   },
   {
     slug: 'arinc',
-    onHome: false, // Case studies page only, not the home page
+    short: 'ARINC', // link text in Related work on the Services page
+    year: 2013, // for sorting Related work on the Services page (newest first)
+    services: ['docs'], // Services page bands this is listed under
+    older: true, // "Older" on the Case studies page; not on the home page
     cover: {
       src: '/images/work/arinc/security-brochure.webp',
       alt: 'The cover of the ARINC "Security Systems Education Services" brochure, showing a security operations center.',
@@ -567,7 +595,10 @@ export const work = [
   },
   {
     slug: 'cmu-computing-services',
-    onHome: false, // Case studies page only, not the home page
+    short: 'Carnegie Mellon', // link text in Related work on the Services page
+    year: 2016, // for sorting Related work on the Services page (newest first)
+    services: ['strategy', 'systems', 'docs'], // Services page bands this is listed under
+    older: true, // "Older" on the Case studies page; not on the home page
     cover: {
       src: '/images/work/cmu-computing-services/after-set.webp',
       alt: 'The refreshed Computing Services materials: the website, the InfoCenter, CMS documentation, a services brochure, the 2016 Factbook, and an "At a Glance" infographic.',

@@ -67,7 +67,7 @@ function pixelQuestion(dark, light = dark) {
 }
 
 function storyCard(w, i) {
-  return `<li class="story story--${w.hue}${i === 0 ? ' story--featured' : ''}">
+  return `<li class="story story--${w.hue}${i === 0 && !w.notFeatured ? ' story--featured' : ''}">
     <a class="story__link" href="/work/${w.slug}/">
       <div class="story__top">
         <p class="story__client mono">${esc(w.client)}</p>
@@ -118,10 +118,11 @@ function archiveNote() {
   </p>`;
 }
 
-// The home page shows only case studies without `onHome: false`; the Case
-// studies page shows them all.
-const storyGrid = (list = work) => `<ul class="stories">${list.map(storyCard).join('')}</ul>${archiveNote()}`;
-const homeWork = work.filter((w) => w.onHome !== false);
+// The home page shows only current case studies (no `older: true`). The Case
+// studies page shows current ones, then older ones in their own section.
+const storyGrid = (list = work, note = true) => `<ul class="stories">${list.map(storyCard).join('')}</ul>${note ? archiveNote() : ''}`;
+const homeWork = work.filter((w) => !w.older);
+const olderWork = work.filter((w) => w.older);
 
 // How I work: a staircase of pixels. Each step adds one layer on top of the
 // last (orange, lilac, green, gold from the bottom up), so step D carries
@@ -328,7 +329,7 @@ ${spill(4)}
       </div>
       <a class="link-arrow" href="/work/">All case studies ${arrow}</a>
     </div>
-    ${storyGrid(homeWork)}
+    ${storyGrid(homeWork, false)}
   </div>
 </section>
 
@@ -454,11 +455,22 @@ export function workIndex() {
   </div>
 </section>
 
-<section class="section section--tight">
+<section class="section section--tight" aria-labelledby="current-h">
   <div class="wrap">
-    ${storyGrid()}
+    <h2 id="current-h" class="work-group">Current</h2>
+    ${storyGrid(homeWork, false)}
   </div>
 </section>
+${
+  olderWork.length
+    ? `<section class="section section--tight work-older" aria-labelledby="older-h">
+  <div class="wrap">
+    <h2 id="older-h" class="work-group">Older</h2>
+    ${storyGrid(olderWork.map((w) => ({ ...w, notFeatured: true })))}
+  </div>
+</section>`
+    : ''
+}
 <section class="results" aria-labelledby="results-h">
   <div class="wrap">
     <p class="eyebrow mono">By the numbers <span class="results__span">(last 7 years)</span></p>
@@ -630,6 +642,17 @@ function bandPixels(tint, seed) {
   return `<svg class="svc-band__px" viewBox="0 0 ${W} 2" preserveAspectRatio="xMaxYMin slice" style="--w:${W}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
+// Services page: a quiet "Related work" line under each band, listing every
+// case study whose `services` includes that band's id, newest `year` first.
+// Nothing renders for a band with no matching work.
+function bandWork(id) {
+  const items = work.filter((w) => w.services?.includes(id)).sort((a, b) => (b.year || 0) - (a.year || 0));
+  if (!items.length) return '';
+  return `<p class="svc-work"><span class="mono">Related work</span> ${items
+    .map((w) => `<a href="/work/${w.slug}/">${esc(w.short || w.client)}</a>`)
+    .join('<span aria-hidden="true">, </span>')}</p>`;
+}
+
 // Services page. The jump bar, the color bands, and their pixel runs are all
 // built from the `services` list. Each jump-bar square takes the strong color
 // of its band's tint (peach -> orange, mint -> green); a new tint needs an
@@ -669,6 +692,7 @@ export function servicesPage() {
         <p class="svc-band__body">${esc(s.body)}</p>
       </div>
       <ul class="svc-band__gets" style="--cols: ${s.deliverables.length % 4 === 0 ? 4 : 3}">${s.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
+      ${bandWork(s.id)}
       <a class="link-arrow" href="/contact/?topic=${encodeURIComponent(s.name)}">${esc(s.ask || `Ask about ${s.short.toLowerCase()} work`)} ${arrow}</a>
     </div>
   </section>`

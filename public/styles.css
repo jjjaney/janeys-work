@@ -360,6 +360,9 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* FAQ is the last section before the closing band: give it the full section space below */
 .section--faq{ padding-bottom: clamp(5.5rem, 4rem + 6vw, 10rem); }
 .section--surface { background: var(--tint-sky); }
+/* Case studies page: "Current" and "Older" group headings. */
+.work-group { font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.9rem); font-weight: 750; letter-spacing: -0.012em; margin: 0 0 clamp(1.25rem, 1rem + 1vw, 2rem); }
+.work-older { padding-top: 0; }
 .section__head { margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 4rem); }
 .section__head h2 { margin: 0; max-width: 17em; }
 .section__head--split { display: flex; justify-content: space-between; align-items: end; gap: 1rem 2rem; flex-wrap: wrap; }
@@ -707,6 +710,13 @@ html:not(.js) .theme-toggle { display: none !important; }
 .svc-band__gets { list-style: none; margin: 0 0 clamp(1.75rem, 1.5rem + 1vw, 2.5rem); padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 0.9rem clamp(1.5rem, 3vw, 3rem); }
 .svc-band__gets li { display: flex; align-items: baseline; gap: 0.75rem; font-size: 0.95rem; }
 @media (min-width: 761px) and (max-width: 1100px) { .svc-band__gets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Related work under each service band (bandWork() in src/pages.mjs): kept
+   small and muted so the service details stay the focus. */
+.svc-work { margin: calc(clamp(1.75rem, 1.5rem + 1vw, 2.5rem) * -0.2) 0 clamp(1.75rem, 1.5rem + 1vw, 2.5rem); font-size: 0.88rem; color: var(--muted); max-width: 52em; }
+.svc-work .mono { font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; margin-right: 0.6rem; }
+.svc-work a { color: var(--muted); text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); text-underline-offset: 3px; }
+.svc-work a:hover { color: var(--accent); text-decoration-color: currentColor; }
+
 .svc-band__gets li::before { content: ''; width: 10px; height: 10px; background: var(--accent); flex: none; transform: translateY(-1px); }
 @media (max-width: 760px) {
   .svc-band__gets { grid-template-columns: 1fr; }

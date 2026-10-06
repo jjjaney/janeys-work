@@ -78,7 +78,7 @@ Each of these has a "HOW TO" comment, with a copy-and-paste template, right abov
 | Change or add a "Some cool results" number | `src/pages.mjs` | HOW TO CHANGE OR ADD A RESULT (above `RESULTS`) |
 | Add a Kind words quote | `src/site.mjs` | HOW TO ADD A QUOTE (above `testimonials`) |
 | Add a case study | `src/content/work.mjs` | HOW TO ADD A CASE STUDY (top of the file) |
-| Show a case study on the Case studies page but not the home page | `src/content/work.mjs` | step 9 of HOW TO ADD A CASE STUDY (`onHome: false`) |
+| Mark a case study as Older, or list it under a service | `src/content/work.mjs` | steps 9 and 10 of HOW TO ADD A CASE STUDY (`older`, `year`, `services`) |
 | Add a fun fact | `src/content/about.mjs` | the note above `funFacts` |
 
 After any change, run `npm run build` and check the pages it touches.
