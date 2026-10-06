@@ -234,13 +234,13 @@ function quotes() {
   </section>`;
 }
 
-function ctaBand(heading = 'Have a content problem that’s really a systems problem?') {
+function ctaBand(heading = 'Let’s build something people understand.', sub = 'Content strategy, design and systems for products and teams.') {
   return `<section class="cta-band" aria-labelledby="cta-h">
     ${pixelCorner()}
     <div class="wrap cta-band__inner">
       <div>
         <h2 id="cta-h">${heading}</h2>
-        <p>Let’s talk about what you’re building.</p>
+        <p>${sub}</p>
         <div class="actions"><a class="btn btn--light" href="/contact/">Start a conversation ${arrow}</a></div>
       </div>
     </div>
@@ -499,7 +499,7 @@ export function caseStudy(w, i) {
     <a href="/work/${next.slug}/"><span class="mono muted">Next</span><span>${esc(next.client)} ${arrow}</span></a>
   </nav>
 </article>
-${ctaBand('Want results like these on your team?')}`,
+${ctaBand('Want results like these on your team?', 'Let’s talk about what you’re building.')}`,
   };
 }
 
@@ -589,7 +589,7 @@ export function servicesPage() {
     </div>
   </div>
 </section>
-${ctaBand('Not sure which service fits?')}`,
+${ctaBand('Not sure which service fits?', 'Let’s talk about what you’re building.')}`,
   };
 }
 
