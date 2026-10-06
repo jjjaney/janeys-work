@@ -56,7 +56,8 @@ export function ticker() {
 }
 
 // `ogImage` is the link-preview image (Open Graph) for the page, a path in
-// /public. Default: the home image. Services and case studies set their own.
+// /public. Default: the home image (name card). Services uses its own; case
+// studies, the Case studies page, and the Archive use the case-study image.
 // The images live in /public/og/; their sources are in /scripts/og/.
 export function layout({ path, title, description = site.description, body, pageClass = '', ogImage = '/og/og-home.png' }) {
   const fullTitle = path === '/' ? `${site.name} · ${site.role}` : `${title} · ${site.name}`;

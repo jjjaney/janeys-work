@@ -446,6 +446,7 @@ export function workIndex() {
   return {
     path: '/work/',
     title: 'Case studies',
+    ogImage: '/og/og-case-study.png',
     description: 'Case studies in content strategy, content design, documentation, localization, and product management.',
     body: `
 <section class="page-head">
@@ -1089,6 +1090,7 @@ export function archivePage() {
   return {
     path: '/archive/',
     title: 'Archive',
+    ogImage: '/og/og-case-study.png',
     description: 'Earlier work: editorial, marketing, technical writing, and web at GitHub, Plex, Carnegie Mellon, and more.',
     body: `
 <section class="page-head">
