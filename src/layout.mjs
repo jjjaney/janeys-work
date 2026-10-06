@@ -55,7 +55,10 @@ export function ticker() {
   </div>`;
 }
 
-export function layout({ path, title, description = site.description, body, pageClass = '' }) {
+// `ogImage` is the link-preview image (Open Graph) for the page, a path in
+// /public. Default: the home image. Services and case studies set their own.
+// The images live in /public/og/; their sources are in /scripts/og/.
+export function layout({ path, title, description = site.description, body, pageClass = '', ogImage = '/og/og-home.png' }) {
   const fullTitle = path === '/' ? `${site.name} · ${site.role}` : `${title} · ${site.name}`;
   const url = site.url + path;
   const navLinks = nav
@@ -78,7 +81,9 @@ export function layout({ path, title, description = site.description, body, page
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="${site.url}/og.png">
+<meta property="og:image" content="${site.url}${ogImage}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F6F3EC">
 <script>

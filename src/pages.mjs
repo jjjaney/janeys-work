@@ -522,6 +522,7 @@ export function caseStudy(w, i) {
   return {
     path: `/work/${w.slug}/`,
     title: w.title,
+    ogImage: '/og/og-case-study.png',
     description: w.summary,
     body: `
 <article class="case">
@@ -666,6 +667,7 @@ export function servicesPage() {
   return {
     path: '/services/',
     title: 'Services',
+    ogImage: '/og/og-services.png',
     // Lists every service by name for search engines. Update it when a service
     // is added, renamed, or removed (see src/content/services.mjs).
     description: 'Content strategy and editorial; content design, UX writing, and storytelling; content for teams; documentation and training; and product management and marketing.',
