@@ -55,12 +55,14 @@ export function ticker() {
   </div>`;
 }
 
-export function layout({ path, title, description = site.description, body, pageClass = '' }) {
+// `navPath` (optional) marks a different nav item as current, e.g. Services-only
+// case studies live under /work/ but belong to Services.
+export function layout({ path, navPath = path, title, description = site.description, body, pageClass = '' }) {
   const fullTitle = path === '/' ? `${site.name} · ${site.role}` : `${title} · ${site.name}`;
   const url = site.url + path;
   const navLinks = nav
     .map((n) => {
-      const current = path.startsWith(n.href) ? ' aria-current="page"' : '';
+      const current = navPath.startsWith(n.href) ? ' aria-current="page"' : '';
       return `<li><a href="${n.href}"${current}>${esc(n.label)}</a></li>`;
     })
     .join('');

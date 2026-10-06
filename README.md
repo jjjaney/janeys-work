@@ -44,6 +44,7 @@ npm run build   # one-off build into dist/
 | Name, LinkedIn, email, contact form ID, booking/Ko-fi links | `src/site.mjs` |
 | Testimonials, company list, disciplines ticker | `src/site.mjs` |
 | Case studies (text, outcomes, links, screenshots, and the hook question, teaser and color used on the Selected Work cards) | `src/content/work.mjs` |
+| Case studies shown only on the Services page | `src/content/service-work.mjs` |
 | Services, engagement models, FAQ | `src/content/services.mjs` |
 | Bio, principles, experience, fun facts | `src/content/about.mjs` |
 | Archive (2020 and earlier) | `src/content/archive.mjs` |
@@ -57,7 +58,11 @@ npm run build   # one-off build into dist/
 
 ### Screenshots that still load from Squarespace
 
-Each case study's lead screenshot (and the Amplify screenshot on Ally.Guide) is loaded from your current Squarespace site's image server. They'll keep working while that site exists. Before you cancel Squarespace, download each one into `public/images/work/<case-study-slug>/` and change its `src` (or `cover.src`) in `src/content/work.mjs`. Each case study shows a TODO note as a reminder.
+The Browser Company and GitHub Sponsors lead screenshots are loaded from your current Squarespace site's image server. They'll keep working while that site exists. Before you cancel Squarespace, download each one into `public/images/work/<case-study-slug>/` and change its `src` (or `cover.src`) in `src/content/work.mjs`. Each case study shows a TODO note as a reminder.
+
+### Placeholder screenshots
+
+Most images in `public/images/work/` were cropped from rough screenshots of the old site. To replace one, save the better image over it with the same file name, or save it under a new name and update its `src`.
 
 ### Adding a case-study screenshot
 
@@ -74,6 +79,7 @@ Each of these has a "HOW TO" comment, with a copy-and-paste template, right abov
 | Change or add a "Some cool results" number | `src/pages.mjs` | HOW TO CHANGE OR ADD A RESULT (above `RESULTS`) |
 | Add a Kind words quote | `src/site.mjs` | HOW TO ADD A QUOTE (above `testimonials`) |
 | Add a case study | `src/content/work.mjs` | HOW TO ADD A CASE STUDY (top of the file) |
+| Add a case study that only shows on the Services page | `src/content/service-work.mjs` | HOW TO ADD A SERVICES-ONLY CASE STUDY (top of the file) |
 | Add a fun fact | `src/content/about.mjs` | the note above `funFacts` |
 
 After any change, run `npm run build` and check the pages it touches.

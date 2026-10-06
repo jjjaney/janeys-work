@@ -707,6 +707,15 @@ html:not(.js) .theme-toggle { display: none !important; }
 .svc-band__gets { list-style: none; margin: 0 0 clamp(1.75rem, 1.5rem + 1vw, 2.5rem); padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 0.9rem clamp(1.5rem, 3vw, 3rem); }
 .svc-band__gets li { display: flex; align-items: baseline; gap: 0.75rem; font-size: 0.95rem; }
 @media (min-width: 761px) and (max-width: 1100px) { .svc-band__gets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Services-only case studies linked under a band (bandWork() in src/pages.mjs). */
+.svc-work { margin: 0 0 clamp(1.75rem, 1.5rem + 1vw, 2.5rem); }
+.svc-work__label { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.75rem; }
+.svc-work ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 0.75rem; }
+.svc-work a { display: flex; flex-direction: column; gap: 0.3rem; height: 100%; padding: 1rem 1.15rem; background: var(--paper); color: var(--ink); text-decoration: none; transition: transform 0.2s var(--ease), color 0.2s var(--ease); }
+.svc-work a .mono { font-size: 0.78rem; color: var(--muted); }
+.svc-work__title { font: 650 clamp(1rem, 0.95rem + 0.25vw, 1.15rem)/1.3 var(--display); }
+.svc-work__go { margin-top: auto; padding-top: 0.4rem; align-self: flex-end; display: inline-flex; }
+.svc-work a:hover { transform: translateY(-3px); color: var(--accent); }
 .svc-band__gets li::before { content: ''; width: 10px; height: 10px; background: var(--accent); flex: none; transform: translateY(-1px); }
 @media (max-width: 760px) {
   .svc-band__gets { grid-template-columns: 1fr; }
@@ -869,6 +878,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Case study --------------------------------------------------------------- */
 .case__cover { margin: 0 0 clamp(1rem, 3vw, 2.5rem); }
 .case__cover img { width: 100%; height: auto; display: block; background: var(--surface); }
+/* Tall (portrait) covers would fill several screens at full width; cap them. */
+.case__cover--tall img { width: auto; max-width: 100%; max-height: min(78vh, 760px); }
 .case__cover figcaption { margin-top: 0.75rem; font-size: 0.92rem; color: var(--muted); max-width: 46rem; }
 .case__head { padding-top: clamp(2.5rem, 2rem + 4vw, 5rem); }
 .case__head-inner { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.7fr); gap: clamp(2rem, 5vw, 4rem); align-items: end; }
@@ -903,6 +914,26 @@ html:not(.js) .theme-toggle { display: none !important; }
 
 .shot { margin: 0; background: var(--surface); }
 .shot img { width: 100%; height: auto; }
+/* Tall or small screenshots keep their shape instead of filling the column. */
+.highlight .shot img, .shots .shot img { width: auto; max-width: 100%; max-height: 640px; }
+.highlight .shot, .shots .shot { background: none; }
+/* Two or more screenshots side by side under one highlight (`images` in
+   src/content/work.mjs). Stacks on phones. */
+.shots { display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); gap: 1rem; align-items: start; }
+@media (max-width: 640px) { .shots { grid-template-columns: 1fr; } }
+
+/* Screenshots with captions under Outcomes (`results`). */
+.results-shots { list-style: none; margin: clamp(1.5rem, 3vw, 2.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 1.5rem 1rem; align-items: start; }
+.results-shots li:only-child { grid-column: 1 / -1; }
+.results-shots .shot { background: none; }
+.results-shots figcaption { margin-top: 0.65rem; font-size: 0.92rem; color: var(--muted); }
+
+/* "Looking back": the learnings and open questions (`learnings`). */
+.learnings { max-width: 40em; }
+.learnings p { margin: 0 0 1.25rem; }
+.learnings ul { list-style: none; margin: 0; padding: 0 0 0 clamp(1rem, 2vw, 1.5rem); border-left: 3px solid var(--accent); display: grid; gap: 0.9rem; }
+.learnings li { font: 600 clamp(1.05rem, 1rem + 0.3vw, 1.2rem)/1.4 var(--display); }
+
 .shot--empty { position: relative; aspect-ratio: 16 / 9; display: grid; place-items: center; border: 1.5px dashed var(--red); background: rgb(204 51 51 / 0.04); overflow: hidden; }
 .shot__grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 24px 24px; opacity: 0.6; }
 .shot--empty figcaption { position: relative; max-width: 30em; padding: 1rem 1.25rem; background: var(--paper); font-size: 0.92rem; margin: 1rem; }

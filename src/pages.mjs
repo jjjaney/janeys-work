@@ -1,5 +1,6 @@
 import { site, companies, testimonials } from './site.mjs';
 import { work } from './content/work.mjs';
+import { serviceWork } from './content/service-work.mjs';
 import { services, engagement, faqs, disciplineLine, freeReview } from './content/services.mjs';
 import { bio, principles, experience, funFacts, siteStory } from './content/about.mjs';
 import { archive } from './content/archive.mjs';
@@ -481,9 +482,22 @@ ${ctaBand(undefined, undefined, 'green')}`,
   };
 }
 
-export function caseStudy(w, i) {
-  const prev = work[(i - 1 + work.length) % work.length];
-  const next = work[(i + 1) % work.length];
+// One screenshot, or several side by side (`images`), under a highlight.
+const shots = (h, slug) =>
+  h.images?.length
+    ? `<div class="shots" style="--n:${Math.min(h.images.length, 2)}">${h.images.map((im) => figure(im, slug)).join('')}</div>`
+    : figure(h.image, slug);
+
+// Case-study page. Main case studies (src/content/work.mjs) get Previous/Next
+// links through that list. Services-only ones (src/content/service-work.mjs)
+// pass `svc: true` and link back to the Services page instead.
+export function caseStudy(w, i, svc = false) {
+  const list = svc ? serviceWork : work;
+  const prev = list[(i - 1 + list.length) % list.length];
+  const next = list[(i + 1) % list.length];
+  const artIdx = svc ? i + work.length : i;
+  let n = 3; // section numbers after Context and The work
+  const num = () => String(++n).padStart(2, '0');
   const outcomes = w.outcomes
     .map((o) =>
       o.todo
@@ -491,24 +505,29 @@ export function caseStudy(w, i) {
         : `<li class="outcome"><span class="outcome__stat">${esc(o.stat)}</span><span class="outcome__label">${esc(o.label)}</span></li>`
     )
     .join('');
+  const results = w.results?.length
+    ? `<ul class="results-shots">${w.results.map((r) => `<li><figure class="shot"><img src="${esc(r.src)}" alt="${esc(r.alt)}" loading="lazy" decoding="async"><figcaption>${esc(r.caption)}</figcaption></figure></li>`).join('')}</ul>`
+    : '';
+  const firstSvc = svc && services.find((s) => w.services?.includes(s.id));
 
   return {
     path: `/work/${w.slug}/`,
+    navPath: svc ? '/services/' : undefined,
     title: w.title,
     description: w.summary,
     body: `
 <article class="case">
   <header class="case__head">
-    ${gapFloat(6 + i, [
+    ${gapFloat(6 + artIdx, [
       [56, 15, 6, 45, 2],
     ])}
     <div class="wrap case__head-inner">
       <div>
-        <p class="eyebrow mono"><a href="/work/">Case studies</a> <span aria-hidden="true">/</span> ${esc(w.client)}</p>
+        <p class="eyebrow mono">${svc ? `<a href="/services/${firstSvc ? '#' + firstSvc.id : ''}">Services</a>` : '<a href="/work/">Case studies</a>'} <span aria-hidden="true">/</span> ${esc(w.client)}</p>
         <h1>${esc(w.title)}</h1>
         <p class="lede">${esc(w.summary)}</p>
       </div>
-      <div class="case__art">${artFloat(8 + i)}${pixel(w.art, { organic: true })}</div>
+      <div class="case__art">${artFloat(8 + artIdx)}${pixel(w.art, { organic: true })}</div>
     </div>
     <div class="wrap">
       <dl class="meta">
@@ -519,11 +538,11 @@ export function caseStudy(w, i) {
       </dl>
     </div>
   </header>
-  ${spill(7 + i)}
+  ${spill(7 + artIdx)}
 
   <div class="wrap case__body">
     ${w.todos.map((t) => todo(t)).join('')}
-    ${w.cover ? `<figure class="case__cover"><img src="${esc(w.cover.src)}" alt="${esc(w.cover.alt)}" loading="lazy" decoding="async">${w.cover.caption ? `<figcaption>${esc(w.cover.caption)}</figcaption>` : ''}</figure>` : ''}
+    ${w.cover ? `<figure class="case__cover${w.cover.tall ? ' case__cover--tall' : ''}"><img src="${esc(w.cover.src)}" alt="${esc(w.cover.alt)}" loading="lazy" decoding="async">${w.cover.caption ? `<figcaption>${esc(w.cover.caption)}</figcaption>` : ''}</figure>` : ''}
 
     <section class="case__section" aria-labelledby="ctx-${w.slug}">
       <h2 id="ctx-${w.slug}" class="case__h">${eyebrowSpan('01', 'Context')}</h2>
@@ -537,7 +556,7 @@ export function caseStudy(w, i) {
           .map(
             (h) => `<li class="highlight">
           <div class="highlight__text"><h3>${esc(h.title)}</h3><p>${h.body}</p></div>
-          ${figure(h.image, w.slug)}
+          ${shots(h, w.slug)}
         </li>`
           )
           .join('')}
@@ -546,23 +565,39 @@ export function caseStudy(w, i) {
 
     <section class="case__section" aria-labelledby="out-${w.slug}">
       <h2 id="out-${w.slug}" class="case__h">${eyebrowSpan('03', 'Outcomes')}</h2>
-      <ul class="outcomes">${outcomes}</ul>
+      <div><ul class="outcomes">${outcomes}</ul>${results}</div>
     </section>
+
+    ${
+      w.learnings
+        ? `<section class="case__section" aria-labelledby="learn-${w.slug}">
+      <h2 id="learn-${w.slug}" class="case__h">${eyebrowSpan(num(), 'Looking back')}</h2>
+      <div class="learnings"><p>${esc(w.learnings.intro)}</p><ul>${w.learnings.questions.map((q) => `<li>${esc(q)}</li>`).join('')}</ul></div>
+    </section>`
+        : ''
+    }
 
     ${
       w.links.length
         ? `<section class="case__section" aria-labelledby="links-${w.slug}">
-      <h2 id="links-${w.slug}" class="case__h">${eyebrowSpan('04', 'See it live')}</h2>
+      <h2 id="links-${w.slug}" class="case__h">${eyebrowSpan(num(), 'See it live')}</h2>
       <ul class="links">${w.links.map((l) => `<li><a href="${esc(l.href)}">${esc(l.label)} ${external}</a></li>`).join('')}</ul>
     </section>`
         : ''
     }
   </div>
 
-  <nav class="case__nav wrap" aria-label="More case studies">
+  ${
+    svc
+      ? `<nav class="case__nav wrap" aria-label="More work">
+    <a href="/services/${firstSvc ? '#' + firstSvc.id : ''}"><span class="mono muted">Back to</span><span>Services</span></a>
+    ${list.length > 1 ? `<a href="/work/${next.slug}/"><span class="mono muted">More work</span><span>${esc(next.client)} ${arrow}</span></a>` : ''}
+  </nav>`
+      : `<nav class="case__nav wrap" aria-label="More case studies">
     <a href="/work/${prev.slug}/"><span class="mono muted">Previous</span><span>${esc(prev.client)}</span></a>
     <a href="/work/${next.slug}/"><span class="mono muted">Next</span><span>${esc(next.client)} ${arrow}</span></a>
-  </nav>
+  </nav>`
+  }
 </article>
 ${ctaBand('Want results like these on your team?', 'Let’s talk about what you’re building.', CARD_TONE[w.hue] || 'lilac')}`,
   };
@@ -606,6 +641,17 @@ function bandPixels(tint, seed) {
   return `<svg class="svc-band__px" viewBox="0 0 ${W} 2" preserveAspectRatio="xMaxYMin slice" style="--w:${W}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
+// Services page: case studies from src/content/service-work.mjs listed under
+// each band whose id appears in their `services` list. Nothing renders for a
+// band with no work yet.
+function bandWork(id) {
+  const items = serviceWork.filter((w) => w.services?.includes(id));
+  if (!items.length) return '';
+  return `<div class="svc-work"><p class="svc-work__label mono">Related work</p><ul>${items
+    .map((w) => `<li><a href="/work/${w.slug}/"><span class="mono">${esc(w.client)}</span><span class="svc-work__title">${esc(w.cardTitle)}</span><span class="svc-work__go" aria-hidden="true">${arrow}</span></a></li>`)
+    .join('')}</ul></div>`;
+}
+
 // Services page. The jump bar, the color bands, and their pixel runs are all
 // built from the `services` list. Each jump-bar square takes the strong color
 // of its band's tint (peach -> orange, mint -> green); a new tint needs an
@@ -645,6 +691,7 @@ export function servicesPage() {
         <p class="svc-band__body">${esc(s.body)}</p>
       </div>
       <ul class="svc-band__gets" style="--cols: ${s.deliverables.length % 4 === 0 ? 4 : 3}">${s.deliverables.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
+      ${bandWork(s.id)}
       <a class="link-arrow" href="/contact/?topic=${encodeURIComponent(s.name)}">${esc(s.ask || `Ask about ${s.short.toLowerCase()} work`)} ${arrow}</a>
     </div>
   </section>`
