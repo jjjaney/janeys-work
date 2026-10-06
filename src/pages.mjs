@@ -670,7 +670,7 @@ ${ctaBand()}`,
 // motion. Outlines use fixed brand colors so they stay dark in both themes.
 function pixelResume() {
   const W = 24, H = 24;
-  const C = { L: 'var(--lilac)', F: '#a77fd6', P: '#4f33cc', G: 'var(--gold)', g: '#0b704f', O: 'var(--orange)', M: '#6b2337', S: 'var(--sky)' };
+  const C = { L: 'var(--lilac)', F: '#a77fd6', P: '#4f33cc', G: 'var(--gold)', O: 'var(--orange)', M: '#6b2337', S: 'var(--sky)' };
   const page = new Map(), lens = new Map(), glass = new Map();
   const put = (m, x, y, c) => m.set(`${x},${y}`, [x, y, c]);
   const x0 = 3, y0 = 2, w = 14, h = 19;
@@ -684,11 +684,9 @@ function pixelResume() {
   // photo block and name lines
   for (let y = y0 + 2; y < y0 + 5; y++) for (let x = x0 + 2; x < x0 + 5; x++) put(page, x, y, 'G');
   for (const [y, len] of [[y0 + 2, 5], [y0 + 4, 3]]) for (let x = x0 + 6; x < x0 + 6 + len; x++) put(page, x, y, 'P');
-  // text lines; two have a check beside them
-  for (const [y, len, check] of [[y0 + 7, 7, true], [y0 + 9, 9, false], [y0 + 11, 8, true], [y0 + 13, 9, false], [y0 + 15, 7, false], [y0 + 17, 9, false]]) {
+  // text lines
+  for (const [y, len] of [[y0 + 7, 7], [y0 + 9, 9], [y0 + 11, 8], [y0 + 13, 9], [y0 + 15, 7], [y0 + 17, 9]])
     for (let x = x0 + 2; x < x0 + 2 + len; x++) put(page, x, y, 'P');
-    if (check) for (const [dx, dy] of [[0, 0], [1, 1], [2, 0], [3, -1]]) put(page, x0 + w - 4 + dx - 1, y + dy, 'g');
-  }
   // magnifying glass: orange ring, see-through lens, maroon handle
   const cx = 11, cy = 15, R = 4;
   for (let y = cy - R - 1; y <= cy + R + 1; y++)
