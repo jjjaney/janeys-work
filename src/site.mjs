@@ -1,6 +1,7 @@
 // Global site settings. Edit these first.
 export const site = {
   name: 'Janey Annis',
+  brand: 'Janey’s Work', // the name in the header (the footer and page titles use `name`)
   // Used for canonical URLs, Open Graph tags and the sitemap.
   url: 'https://www.janeys.work',
   role: 'Human-first content for products and systems',

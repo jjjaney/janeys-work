@@ -127,7 +127,7 @@ export function layout({ path, title, description = site.description, body, page
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="brand" href="/" aria-label="${esc(site.name)}, home"><span>${esc(site.name)}</span></a>
+    <a class="brand" href="/" aria-label="${esc(site.brand)}, home"><span>${esc(site.brand)}</span></a>
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>${navLinks}</ul>
       <div class="nav-theme">
