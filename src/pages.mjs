@@ -721,12 +721,11 @@ function pixelResume() {
 // Fun facts: a small hand-placed pixel picture for each card, drawn on the
 // same palette as the header art. Letters map to colors ('.' is empty); some
 // letters also carry a class so that part can move (sun, scale pans, blinking
-// eyes, drifting loose pixels). The pictures rise out of the top of the card,
-// and a few loose pixels sit outside it, like the rest of the site's art.
+// eyes). The pictures rise out of the top of the card, like the rest of the
+// site's art breaks out of its boxes.
 const FACT_COLORS = {
   O: ['var(--orange)'], G: ['var(--gold)'], g: ['var(--green)'], M: ['var(--maroon)'], S: ['var(--sky)'], L: ['var(--lilac)'], P: ['var(--accent)'],
   U: ['var(--orange)', 'fa-sun'],
-  l: ['var(--lilac)', 'fa-drift'], s: ['var(--sky)', 'fa-drift fa-drift--b'], o: ['var(--orange)', 'fa-drift fa-drift--c'],
   h: ['var(--gold)', 'fa-pan-l'], a: ['var(--gold)', 'fa-pan-l'], A: ['var(--orange)', 'fa-pan-l'],
   k: ['var(--gold)', 'fa-pan-r'], b: ['var(--gold)', 'fa-pan-r'], B: ['var(--lilac)', 'fa-pan-r'],
   e: ['var(--maroon)', 'fa-blink fa-blink--o'], y: ['var(--gold)', 'fa-blink fa-blink--m'],
@@ -739,16 +738,15 @@ const FACT_ART = [
       '.gg..gg...UUUU..',
       'ggggggggg..UU...',
       'gg.ggMgg.g......',
-      'g....M..g.....l.',
+      'g....M..g.......',
       '.....M..........',
       '......M.........',
       '......M.........',
-      '.s....M.........',
+      '......M.........',
       '.....GGG....S...',
       'S..SGGGGGS.SSS.S',
       'SSSSSSSSSSSSSSSS',
     ],
-    loose: [[-3, 6, 'o'], [18, 2, 's']],
   },
   {
     // the scales of justice (for Judge John Hodgman); the pans gently weigh
@@ -767,7 +765,6 @@ const FACT_ART = [
       '.....MMMMM.....',
       '....GGGGGGG....',
     ],
-    loose: [[17, 0, 's'], [-3, 9, 'l']],
   },
   {
     // two cats, blissfully offline (they blink)
@@ -784,7 +781,6 @@ const FACT_ART = [
       'OOOOOO.O..MMMMMMM.M',
       '.OOOO.OO...MMMMM.MM',
     ],
-    loose: [[8, -2, 'l'], [9, 1, 's'], [22, 4, 'o']],
   },
 ];
 function factArt(i) {
