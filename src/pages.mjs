@@ -706,7 +706,7 @@ export function servicesPage() {
 </div>
 </div>
 
-<section class="section" aria-labelledby="free-h">
+<section class="section section--free" aria-labelledby="free-h">
   <div class="wrap free">
     <div class="free__art">${pixelResume()}</div>
     <div>
