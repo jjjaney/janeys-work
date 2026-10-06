@@ -954,9 +954,9 @@ html:not(.js) .theme-toggle { display: none !important; }
 .facts { --fpx: clamp(10px, 0.45rem + 0.55vw, 16px); --fpx: round(down, clamp(10px, 0.45rem + 0.55vw, 16px), 1px); --fpad: clamp(1.5rem, 1rem + 1.5vw, 2.75rem); list-style: none; margin: calc(var(--fpx) * 6 + 3rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: calc(var(--fpx) * 6 + 1.25rem) clamp(1rem, 0.5rem + 1vw, 1.75rem); }
 /* the generous space before the closing band now follows "About this website" */
 .section--site { padding-bottom: clamp(10rem, 7rem + 11vw, 19rem); }
-.site-story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem clamp(2rem, 6vw, 6rem); align-items: start; margin-bottom: clamp(3rem, 2rem + 4vw, 5.5rem); }
-.site-story .section__head { margin-bottom: 0; }
-.site-story__intro p { max-width: 34em; }
+/* heading first, then the intro beneath it, like the other sections */
+.site-story { margin-bottom: clamp(3rem, 2rem + 4vw, 5.5rem); }
+.site-story__intro { max-width: 40em; }
 .site-story__intro p:last-child { margin-bottom: 0; }
 /* version cards step upward from v1 to v3, like the staircase */
 .versions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 2rem); align-items: start; }
@@ -974,7 +974,6 @@ html:not(.js) .theme-toggle { display: none !important; }
 .version h3 { margin: 0 0 0.4rem; }
 .version > p:last-child { margin: 0; font-size: 0.97rem; }
 @media (max-width: 860px) {
-  .site-story { grid-template-columns: 1fr; align-items: start; }
   .versions { grid-template-columns: 1fr; gap: 2.5rem; max-width: 34rem; }
   .version { margin-top: 0; }
 }
