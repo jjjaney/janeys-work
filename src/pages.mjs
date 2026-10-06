@@ -715,7 +715,7 @@ function versionCard(v, i) {
           <span style="--x:1;--y:3;--w:7;--h:2;opacity:.85"></span><span style="--x:9;--y:3;--w:2;--h:4;opacity:.35"></span>
           <span style="--x:1;--y:6;--w:3;--h:1;opacity:.45"></span><span style="--x:5;--y:6;--w:3;--h:1;opacity:.45"></span>
         </div>`;
-  return `<li class="version version--${esc(v.tint || 'lilac')}" style="--tone:${tone};--step:${i}">
+  return `<li class="version version--${esc(v.tint || 'lilac')}" style="--tone:${tone}">
       <div class="version__frame">
         <div class="version__bar" aria-hidden="true"><i></i><i></i><i></i><span class="mono">janeys.work</span></div>
         <div class="version__shot">${shot}</div>
@@ -788,7 +788,7 @@ ${spill(22)}
   <div class="wrap">
     <div class="site-story">
       <div class="section__head">${eyebrow('04', 'About this website')}<h2 id="site-h">${esc(siteStory.heading)}</h2></div>
-      <div class="site-story__intro">${siteStory.intro.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
+      <div class="site-story__intro">${siteStory.intro.map((p) => `<div><p class="site-story__k mono">${esc(p.label)}</p><p>${esc(p.text)}</p></div>`).join('')}</div>
     </div>
     <ol class="versions" aria-label="Versions of this website">
       ${siteStory.versions.map((v, i) => versionCard(v, i)).join('')}

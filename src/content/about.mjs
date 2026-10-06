@@ -44,9 +44,9 @@ export const funFacts = [
   'I have two cats who know nothing of the internet.',
 ];
 
-// "About this website" at the end of the About page: the intro paragraphs, then
-// one card per version of the site, oldest first, stepping upward like a
-// staircase. Each version has:
+// "About this website" at the end of the About page: three short labeled intro
+// columns, then one card per version of the site, oldest first, side by side.
+// Each version has:
 //   label  short tag shown small (add a date if you like, e.g. 'v2 · 2023')
 //   name   the platform it was built on
 //   body   a sentence or two on what changed
@@ -58,10 +58,11 @@ export const funFacts = [
 //   tint   card color: peach | lilac | mint | sky | gold
 export const siteStory = {
   heading: 'Built like the work it shows',
+  // shown as three short labeled columns under the heading
   intro: [
-    'This site is my portfolio, and a working example of how I approach content: as a product, with real users, a clear structure, and a system behind it.',
-    'It’s for hiring managers, product and design leaders, and teams deciding whether I’m the right fit, and for anyone early in their career looking for a free resume or portfolio review.',
-    'Inside, you’ll find case studies that start with the question each project answered, the services I offer, how I work, and an archive of projects from 2014 to 2020.',
+    { label: 'What it is', text: 'My portfolio, and a working example of how I approach content: as a product, with real users, a clear structure, and a system behind it.' },
+    { label: 'Who it’s for', text: 'Hiring managers, product and design leaders, and teams deciding whether I’m the right fit, plus anyone early in their career looking for a free resume or portfolio review.' },
+    { label: 'What’s inside', text: 'Case studies that start with the question each project answered, the services I offer, how I work, and an archive of projects from 2014 to 2020.' },
   ],
   versions: [
     { label: 'v1', name: 'Squarespace', tint: 'peach', image: '', alt: 'The Squarespace version of janeys.work', body: 'Where janeys.work began: a template-based site that held my case studies, services, and archive.' },

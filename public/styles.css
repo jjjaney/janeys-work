@@ -956,11 +956,11 @@ html:not(.js) .theme-toggle { display: none !important; }
 .section--site { padding-bottom: clamp(10rem, 7rem + 11vw, 19rem); }
 /* heading first, then the intro beneath it, like the other sections */
 .site-story { margin-bottom: clamp(3rem, 2rem + 4vw, 5.5rem); }
-.site-story__intro { max-width: 40em; }
-.site-story__intro p:last-child { margin-bottom: 0; }
-/* version cards step upward from v1 to v3, like the staircase */
+.site-story__intro { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem clamp(1.5rem, 4vw, 4rem); margin-top: 1.5rem; }
+.site-story__intro p { margin: 0; }
+.site-story__k { color: var(--muted); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem !important; }
+/* one card per version, side by side */
 .versions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 2rem); align-items: start; }
-.version { margin-top: calc((2 - var(--step)) * clamp(1.5rem, 1rem + 2vw, 3rem)); }
 .version__frame { border: 2px solid var(--tone); background: var(--paper); }
 .version__bar { display: flex; align-items: center; gap: 5px; padding: 0.45rem 0.6rem; background: var(--tone); }
 .version__bar i { width: 8px; height: 8px; background: var(--paper); opacity: 0.85; }
@@ -975,7 +975,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .version > p:last-child { margin: 0; font-size: 0.97rem; }
 @media (max-width: 860px) {
   .versions { grid-template-columns: 1fr; gap: 2.5rem; max-width: 34rem; }
-  .version { margin-top: 0; }
+  .site-story__intro { grid-template-columns: 1fr; }
 }
 .facts li { position: relative; padding: var(--fpad); min-height: clamp(0px, 20vw, 360px); background: var(--tint-peach); }
 .facts li:nth-child(2) { background: var(--tint-sky); }
