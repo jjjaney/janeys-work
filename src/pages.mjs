@@ -441,7 +441,7 @@ function resultColumn({ colors, rows }, i) {
 export function workIndex() {
   return {
     path: '/work/',
-    title: 'Work',
+    title: 'Case studies',
     description: 'Case studies in content strategy, content design, documentation, localization, and product management.',
     body: `
 <section class="page-head">
@@ -504,7 +504,7 @@ export function caseStudy(w, i) {
     ])}
     <div class="wrap case__head-inner">
       <div>
-        <p class="eyebrow mono"><a href="/work/">Work</a> <span aria-hidden="true">/</span> ${esc(w.client)}</p>
+        <p class="eyebrow mono"><a href="/work/">Case studies</a> <span aria-hidden="true">/</span> ${esc(w.client)}</p>
         <h1>${esc(w.title)}</h1>
         <p class="lede">${esc(w.summary)}</p>
       </div>
