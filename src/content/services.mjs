@@ -12,9 +12,9 @@ export const services = [
     body: 'I help establish how you want your audience to see your company: an audit of what exists, company-wide content guidelines, and an editorial plan your team can actually run.',
     deliverables: [
       'Content audit & inventory',
-      'Grammar, terminology & style audit',
+      'Grammar, terminology, and style audit',
       'Personas & audience actions',
-      'User testing, analytics & SEO (with AEO)',
+      'User testing, analytics, and SEO (with AEO)',
       'Editorial calendar & guidelines',
       'Editing & editorial review',
       'Taxonomy & information architecture',
@@ -25,7 +25,7 @@ export const services = [
     id: 'design',
     short: 'Design', // label in the Services page jump bar
     tint: 'lilac', // band color on the Services page
-    name: 'Content design, UX writing & storytelling',
+    name: 'Content design, UX writing, and storytelling',
     for: 'Product and marketing teams shipping flows, pages, and launches that need to land.',
     body: 'From onboarding flows to landing pages and feature launches, I look at the whole experience and the outcome you want, then build the communication plan around it, with wireframes, milestones, and service level agreements.',
     deliverables: [
@@ -51,7 +51,7 @@ export const services = [
       'Content guidelines & conventions',
       'Component content docs',
       'Templates (email, blog, GitHub issues)',
-      'AI-ready guidance, agents & skills',
+      'AI-ready guidance, agents, and skills',
     ],
   },
   {
@@ -78,14 +78,14 @@ export const services = [
     for: 'Content-heavy products and launches that need someone who speaks both languages.',
     body: 'I scope, prioritize, and ship where content is the product, then take it to market: product and communication plans, campaigns, events, and the docs behind them.',
     deliverables: [
-      'Discovery, requirements & roadmaps',
+      'Discovery, requirements, and roadmaps',
       'Product & communication plans',
       'Go-to-market & launch campaigns',
       'Email & social campaigns (LinkedIn, Reddit, X, Instagram, Facebook)',
       'Partner articles & thought leadership',
       'Newsletters',
       'Hackathon & event coverage',
-      'Datasheets, e-books & brochures',
+      'Datasheets, e-books, and brochures',
     ],
   },
 ];

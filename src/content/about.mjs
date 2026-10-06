@@ -28,7 +28,7 @@ export const experience = [
   { year: '2022', org: 'Shopify', roles: ['Content Design Lead, Developer Markets'] },
   { year: '2021', org: 'GitHub', roles: ['Content Strategist & Editorial Manager → Product Manager, GitHub Sponsors'] },
   { year: '2018', org: 'Plex', roles: ['Content & Translations Manager'] },
-  { year: '2017', org: 'Carnegie Mellon University, Computing Services', roles: ['Content, Communications & Technical Documentation Manager'] },
+  { year: '2017', org: 'Carnegie Mellon University, Computing Services', roles: ['Content, Communications, and Technical Documentation Manager'] },
   { year: '2013', org: 'ARINC (Rockwell Collins)', roles: ['Associate Civil Engineer (Field) → Corporate Trainer & Technical Writer'] },
 ];
 

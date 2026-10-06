@@ -553,7 +553,7 @@ export function servicesPage() {
     <div class="free__art">${pixelResume()}</div>
     <div>
       ${eyebrow('★', 'Free, for early- to mid-career folks')}
-      <h2 id="free-h">Resume, portfolio &amp; case-study reviews</h2>
+      <h2 id="free-h">Resume, portfolio, and case-study reviews</h2>
       <p>I’ve been on many hiring committees and worked with many hiring managers, and with a long and varied career behind me, I’d like to help others build theirs. Whether you’re searching for a role or ready for a resume or portfolio refresh, I’ll review it for general content feedback or from a hiring manager’s perspective, for free. No catch.</p>
       <ul class="checks">${freeReview.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
       <div class="actions">

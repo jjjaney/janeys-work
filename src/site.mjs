@@ -85,7 +85,7 @@ export const testimonials = [
   {
     quote:
       "You're totally rocking it, and I'm so glad to have your copy/linguistic expertise on the project!!",
-    context: 'UX writing, translations & localization',
+    context: 'UX writing, translations, and localization',
     org: 'New_ Public, Public Spaces Incubator',
     company: 'New_ Public',
     logo: '',
