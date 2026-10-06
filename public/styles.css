@@ -940,7 +940,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .timeline ul li { font-size: 0.97rem; }
 @media (max-width: 460px) { .timeline > li { grid-template-columns: 1fr; gap: 0.25rem; } }
 
-.facts { --fpx: clamp(10px, 0.45rem + 0.55vw, 16px); --fpx: round(down, clamp(10px, 0.45rem + 0.55vw, 16px), 1px); --fpad: clamp(1.5rem, 1rem + 1.5vw, 2.75rem); list-style: none; margin: calc(var(--fpx) * 6 + 1.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: calc(var(--fpx) * 6 + 1.25rem) clamp(1rem, 0.5rem + 1vw, 1.75rem); }
+.facts { --fpx: clamp(10px, 0.45rem + 0.55vw, 16px); --fpx: round(down, clamp(10px, 0.45rem + 0.55vw, 16px), 1px); --fpad: clamp(1.5rem, 1rem + 1.5vw, 2.75rem); list-style: none; margin: calc(var(--fpx) * 6 + 3rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: calc(var(--fpx) * 6 + 1.25rem) clamp(1rem, 0.5rem + 1vw, 1.75rem); }
 .section--facts { padding-bottom: clamp(10rem, 7rem + 11vw, 19rem); }
 .facts li { position: relative; padding: var(--fpad); min-height: clamp(0px, 20vw, 360px); background: var(--tint-peach); }
 .facts li:nth-child(2) { background: var(--tint-sky); }
