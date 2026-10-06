@@ -941,7 +941,9 @@ html:not(.js) .theme-toggle { display: none !important; }
 .results-shots figcaption { margin-top: 0.65rem; font-size: 0.92rem; color: var(--muted); }
 
 /* "Looking back": the learnings and open questions (`learnings`). */
-.learnings { max-width: 40em; }
+.learnings { max-width: 52em; }
+.learnings p { text-wrap: pretty; max-width: 40em; }
+.learnings li { text-wrap: balance; }
 .learnings p { margin: 0 0 1.25rem; }
 .learnings ul { list-style: none; margin: 0; padding: 0 0 0 clamp(1rem, 2vw, 1.5rem); border-left: 3px solid var(--accent); display: grid; gap: 0.9rem; }
 .learnings li { font: 600 clamp(1.05rem, 1rem + 0.3vw, 1.2rem)/1.4 var(--display); }
