@@ -386,6 +386,8 @@ html:not(.js) .theme-toggle { display: none !important; }
   padding-block: clamp(4.5rem, 3rem + 7vw, 10rem) clamp(3.5rem, 2.5rem + 4vw, 6rem);
   isolation: isolate;
 }
+/* phones: the hero starts at the same height as every other page's header */
+@media (max-width: 760px) { .hero { padding-top: clamp(3rem, 2rem + 5vw, 6rem); } }
 /* home: extra breathing room after the pixels below the hero */
 .hero + .spill { margin-bottom: clamp(1.5rem, 1rem + 2vw, 3rem); }
 .hero::before {
