@@ -5,7 +5,7 @@ export const site = {
   url: 'https://www.janeys.work',
   role: 'Human-first content for products and systems',
   description:
-    'Janey Annis creates human-first content for products and systems: content strategy, content design, content management, documentation and product management.',
+    'Janey Annis creates human-first content for products and systems: content strategy, content design, content management, documentation, and product management.',
   linkedin: 'https://www.linkedin.com/in/janeyannis/',
 
   // TODO(Janey): add a public email if you want one shown. Leave '' to hide it.

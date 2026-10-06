@@ -26,8 +26,8 @@ export const services = [
     short: 'Design', // label in the Services page jump bar
     tint: 'lilac', // band color on the Services page
     name: 'Content design, UX writing & storytelling',
-    for: 'Product and marketing teams shipping flows, pages and launches that need to land.',
-    body: 'From onboarding flows to landing pages and feature launches, I look at the whole experience and the outcome you want, then build the communication plan around it, with wireframes, milestones and service level agreements.',
+    for: 'Product and marketing teams shipping flows, pages, and launches that need to land.',
+    body: 'From onboarding flows to landing pages and feature launches, I look at the whole experience and the outcome you want, then build the communication plan around it, with wireframes, milestones, and service level agreements.',
     deliverables: [
       'Audience audits & user journeys',
       'Flow & microcopy design',
@@ -45,7 +45,7 @@ export const services = [
     tint: 'mint', // band color on the Services page
     name: 'Content systems & design-system content',
     for: 'Design systems and orgs that want consistency at scale, for people and AI.',
-    body: 'Voice and tone, conventions and component guidance, written so designers can use it and agents can learn from it.',
+    body: 'Voice and tone, conventions, and component guidance, written so designers can use it and agents can learn from it.',
     deliverables: [
       'Voice & tone guide',
       'Content guidelines & conventions',
@@ -60,7 +60,7 @@ export const services = [
     tint: 'gold', // band color on the Services page
     name: 'Documentation & training',
     for: 'Products whose users (or employees) keep asking the same questions.',
-    body: 'Help centers, release notes, developer docs, manuals and training materials, with templates and processes that keep them current.',
+    body: 'Help centers, release notes, developer docs, manuals, and training materials, with templates and processes that keep them current.',
     deliverables: [
       'Help center & KB architecture',
       'Release-note systems',
@@ -76,7 +76,7 @@ export const services = [
     tint: 'sky', // band color on the Services page
     name: 'Product management & product marketing',
     for: 'Content-heavy products and launches that need someone who speaks both languages.',
-    body: 'I scope, prioritize and ship where content is the product, then take it to market: product and communication plans, campaigns, events and the docs behind them.',
+    body: 'I scope, prioritize, and ship where content is the product, then take it to market: product and communication plans, campaigns, events, and the docs behind them.',
     deliverables: [
       'Discovery, requirements & roadmaps',
       'Product & communication plans',
@@ -109,12 +109,12 @@ export const engagement = [
   {
     name: 'Contract',
     note: 'Scoped',
-    body: 'A defined project with clear deliverables and timeline, such as an audit, a guideline set or a docs overhaul.',
+    body: 'A defined project with clear deliverables and timeline, such as an audit, a guideline set, or a docs overhaul.',
   },
   {
     name: 'Freelance',
     note: 'Flexible',
-    body: 'Hourly or fixed-price work for articles, case studies, white papers and technical deep-dives.',
+    body: 'Hourly or fixed-price work for articles, case studies, white papers, and technical deep-dives.',
   },
 ];
 
@@ -126,16 +126,16 @@ export const faqs = [
   },
   {
     q: 'How much do content services cost?',
-    a: 'I work with hourly rates or fixed project pricing, depending on scope. Lifestyle-oriented pieces like tips or FAQs sit at the lower end of my range. Case studies, white papers and technical deep-dives sit at the upper end. Timing depends on subject matter and where the piece will be published, such as LinkedIn, a company newsletter, an internal knowledge base or a guest blog.',
+    a: 'I work with hourly rates or fixed project pricing, depending on scope. Lifestyle-oriented pieces like tips or FAQs sit at the lower end of my range. Case studies, white papers, and technical deep-dives sit at the upper end. Timing depends on subject matter and where the piece will be published, such as LinkedIn, a company newsletter, an internal knowledge base, or a guest blog.',
     todo: 'Add your rate range here if you want to publish it.',
   },
   {
-    q: 'Do you prefer contracts, freelance or full-time work?',
+    q: 'Do you prefer contracts, freelance, or full-time work?',
     a: 'I prefer full-time, embedded work on a content-forward team. That said, contract and freelance work keep my craft growing, and I have no preference between the two.',
   },
   {
     q: 'Do you offer anything for early- to mid-career people?',
-    a: "Yes! I'll review your resume, CV, portfolio or case studies for general content feedback or from a hiring manager's perspective, for free. There's no catch. My availability after work hours varies, so please be patient.",
+    a: "Yes! I'll review your resume, CV, portfolio, or case studies for general content feedback or from a hiring manager's perspective, for free. There's no catch. My availability after work hours varies, so please be patient.",
   },
   {
     q: 'How do we get started?',

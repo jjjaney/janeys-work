@@ -27,7 +27,7 @@ export const work = [
     slug: 'fis-design-systems-ai',
     cover: {
       src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/15f721b0-fc0e-413b-8b43-da142c3200b7/unify-design-content-docs.png?format=2500w',
-      alt: "Pages from the Unify Design System's 'Conventions and formats' guidance, covering date and time formats, intervals and best practices.",
+      alt: "Pages from the Unify Design System's 'Conventions and formats' guidance, covering date and time formats, intervals, and best practices.",
       caption: "Content for design systems and agentic workflows: \"Conventions and formats\" pages in the Unify Design System docsite.",
     },
     hook: "How do you write guidance that both designers and AI agents can follow?",
@@ -51,12 +51,12 @@ export const work = [
     highlights: [
       {
         title: 'Content pages for the Unify Design System',
-        body: 'Based on departmental and cross-functional interviews, surveys and content audits, I authored and published documentation that meets the organization where it is: conventions and formats for dates, times, phone numbers and more.',
+        body: 'Based on departmental and cross-functional interviews, surveys, and content audits, I authored and published documentation that meets the organization where it is: conventions and formats for dates, times, phone numbers, and more.',
         image: { src: '', alt: 'Pages from the "Conventions and formats" guidance in the Unify Design System docsite' },
       },
       {
         title: 'Focused, component-level guidance',
-        body: 'Docsite pages go deep on the moments that matter most in financial products, such as form UX: helper text, placeholders and error messaging.',
+        body: 'Docsite pages go deep on the moments that matter most in financial products, such as form UX: helper text, placeholders, and error messaging.',
         image: { src: '', alt: 'Form messaging guidance page with sidebar navigation' },
       },
       {
@@ -66,7 +66,7 @@ export const work = [
       },
       {
         title: 'Creating and testing skills',
-        body: 'I use Claude, Copilot, Figma MCP and Storybook to prototype AI-powered experiences, including first-draft content reviews that designers can run before a human review.',
+        body: 'I use Claude, Copilot, Figma MCP, and Storybook to prototype AI-powered experiences, including first-draft content reviews that designers can run before a human review.',
         image: null,
       },
     ],
@@ -84,7 +84,7 @@ export const work = [
     slug: 'browser-company-member-content',
     cover: {
       src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/51cfb97c-ef48-4b3a-92af-d4c3c12e3f08/windows-fixes.png?format=2500w',
-      alt: "The Arc for Windows 2023/2024 release notes page, with a search bar, a Download Arc button and a list of release dates.",
+      alt: "The Arc for Windows 2023/2024 release notes page, with a search bar, a Download Arc button, and a list of release dates.",
       caption: "Editorial and member content: Arc for Windows release notes, part of the weekly release-notes system.",
     },
     hook: "How do you talk to half a million people every week without a playbook?",
@@ -94,13 +94,13 @@ export const work = [
     badgeLight: ['#cc3333', '#4f33cc', '#0b704f'],
     art: 'pixel-composition-14',
     client: 'The Browser Company',
-    cardTitle: 'Newsletters, release notes and help-center processes for 500k+ Arc members',
+    cardTitle: 'Newsletters, release notes, and help-center processes for 500k+ Arc members',
     title: 'Turning "word of mouth" into a repeatable member-communications system',
     role: 'Content Strategist & Content Designer',
     timeframe: 'Contract',
     disciplines: ['Content management', 'Content operations', 'Editorial', 'Release notes'],
     summary:
-      'Designing the templates, guidelines and workflow behind weekly member updates and visual release notes for over 500,000 Arc Browser users across macOS, iOS and Windows.',
+      'Designing the templates, guidelines, and workflow behind weekly member updates and visual release notes for over 500,000 Arc Browser users across macOS, iOS, and Windows.',
     context: `
       <p>The Browser Company of New York (BCNY) is a startup <a href="https://www.theverge.com/2022/10/31/23428862/arc-browser-web-company-darin-fisher">developing browsers that streamline tedious tasks and incorporate AI</a>. Its mobile app, Arc Search, features an AI-driven search that compiles results from several sources instead of ranking pages by SEO, like Google Search does.</p>
       <p>When I joined, the team was focused on shipping its latest browser. Member communications and editorial review relied on whoever had time, and the audience had grown past half a million people.</p>
@@ -109,11 +109,11 @@ export const work = [
       {
         title: 'Scalable processes in place of word of mouth',
         body: 'I designed and implemented templates and guidelines for member communications, including weekly update emails and visual release notes, so updates could ship on a predictable cadence.',
-        image: { src: '', alt: 'Release Notes index for Arc on macOS, iOS and Windows' },
+        image: { src: '', alt: 'Release Notes index for Arc on macOS, iOS, and Windows' },
       },
       {
         title: 'Easel: a visual release-notes template',
-        body: 'I created the process and template for visual release notes and drafted, staged and published them weekly across iOS, macOS and Windows.',
+        body: 'I created the process and template for visual release notes and drafted, staged, and published them weekly across iOS, macOS, and Windows.',
         image: { src: '', alt: 'Visual release notes built in Arc Easel' },
       },
       {
@@ -122,7 +122,7 @@ export const work = [
         image: { src: '', alt: 'Staged iPhone mockup used for a feature GIF' },
       },
       {
-        title: 'Help center, AI chatbot macros and ghostwriting',
+        title: 'Help center, AI chatbot macros, and ghostwriting',
         body: 'I reviewed and refined templates and macros for the Resource Center AI chatbot (Archie), and collaborated on blog posts and marketing pages, including the Arc Search landing page and the Arc Search Hidden Features post.',
         image: null,
       },
@@ -169,7 +169,7 @@ export const work = [
       'Leading the refresh of GitHub Sponsors, the program that lets people and companies financially support open source, to serve both developers and enterprise sponsors and reduce churn.',
     context: `
       <p>GitHub Sponsors lets anyone financially support open source work directly on GitHub.com. Think Patreon for open source developers.</p>
-      <p>After the program's initial success, it hit growing pains. The service page was outdated and had to speak to both peer contributors and enterprise-level sponsors. At the same time, the sign-up experience needed to be smoother, better informed and legally compliant to reduce churn.</p>
+      <p>After the program's initial success, it hit growing pains. The service page was outdated and had to speak to both peer contributors and enterprise-level sponsors. At the same time, the sign-up experience needed to be smoother, better informed, and legally compliant to reduce churn.</p>
     `,
     highlights: [
       {
@@ -188,20 +188,20 @@ export const work = [
         image: null,
       },
       {
-        title: 'Actions, collaborators and hurdles',
-        body: 'I worked across legal, payments (Stripe), design and engineering to balance compliance requirements with a welcoming experience.',
+        title: 'Actions, collaborators, and hurdles',
+        body: 'I worked across legal, payments (Stripe), design, and engineering to balance compliance requirements with a welcoming experience.',
         image: null,
       },
     ],
     outcomes: [
-      { todo: 'Add results from your "Successes, questions and takeaways" slide, e.g. waitlist time, churn, sponsors onboarded or regions added.' },
+      { todo: 'Add results from your "Successes, questions, and takeaways" slide, e.g. waitlist time, churn, sponsors onboarded, or regions added.' },
     ],
     links: [
       { label: 'Welcome Malta and Cyprus to GitHub Sponsors', href: 'https://github.blog/2020-07-28-welcome-malta-and-cyprus-to-github-sponsors-plus-updates/' },
     ],
     todos: [
       'The lead screenshot loads from your Squarespace site. Before you cancel Squarespace, save it into /public/images/work/github-sponsors/ and update cover.src.',
-      'Check the "Overhauling the waitlist" and "Actions, collaborators and hurdles" descriptions. The current site only has headings for these, so I drafted the text.',
+      'Check the "Overhauling the waitlist" and "Actions, collaborators, and hurdles" descriptions. The current site only has headings for these, so I drafted the text.',
     ],
   },
   {
@@ -227,7 +227,7 @@ export const work = [
       'Expanding language support for prototype civic-discussion spaces built with four public-service media organizations, while keeping UX strings high quality for diverse audiences.',
     context: `
       <p>The Public Spaces Incubator is an international partnership between New_ Public and four public-service media organizations. Together they develop prototypes for digital conversation spaces that offer a healthy forum for connection and increase engagement in civic discourse.</p>
-      <p>I joined to expand language support while keeping UX strings clear, consistent and appropriate across audiences and cultures.</p>
+      <p>I joined to expand language support while keeping UX strings clear, consistent, and appropriate across audiences and cultures.</p>
     `,
     highlights: [
       {
@@ -237,13 +237,13 @@ export const work = [
       },
       {
         title: 'Translation and localization plan options',
-        body: 'I compared translation platforms and processes and laid out options the partners could choose from based on budget, languages and review capacity.',
+        body: 'I compared translation platforms and processes and laid out options the partners could choose from based on budget, languages, and review capacity.',
         image: { src: '', alt: 'Table of contents from the translations and localization guide' },
       },
       {
         title: 'UX writing options for discussion reactions',
         body: 'I proposed reaction labels, such as "Relatable" and "Helpful", that reward good-faith participation instead of plain agreement.',
-        image: { src: '', alt: 'Reaction label options including Thank you, Respect, Relatable and Helpful' },
+        image: { src: '', alt: 'Reaction label options including Thank you, Respect, Relatable, and Helpful' },
       },
     ],
     outcomes: [
@@ -278,9 +278,9 @@ export const work = [
     `,
     highlights: [
       {
-        title: 'Process, collaborators and challenges',
-        body: 'I audited the content, researched comparable spaces, made recommendations and met with stakeholders, working with front-end and back-end developers, a graphic designer and a product manager. We had little data, a shifting scope and a hard deadline.',
-        image: { src: '', alt: 'Slide listing actions, collaborators and hurdles' },
+        title: 'Process, collaborators, and challenges',
+        body: 'I audited the content, researched comparable spaces, made recommendations, and met with stakeholders, working with front-end and back-end developers, a graphic designer, and a product manager. We had little data, a shifting scope, and a hard deadline.',
+        image: { src: '', alt: 'Slide listing actions, collaborators, and hurdles' },
       },
       {
         title: 'Before and after',
@@ -289,23 +289,23 @@ export const work = [
       },
       {
         title: 'Mockups before Figma was everywhere',
-        body: 'I annotated layout mockups to give developers clear direction on menus, subtitles, navigation and footer content.',
+        body: 'I annotated layout mockups to give developers clear direction on menus, subtitles, navigation, and footer content.',
         image: { src: '', alt: 'Annotated website mockup' },
       },
       {
         title: 'UX writing and the letter-mailing flow',
-        body: 'I redesigned the content for the letter-mailing service (starting with the BREATHE Act), with clear steps, donation options and progress toward funding goals.',
+        body: 'I redesigned the content for the letter-mailing service (starting with the BREATHE Act), with clear steps, donation options, and progress toward funding goals.',
         image: { src: '', alt: 'New letter-mailing flow with steps and a funding progress bar' },
       },
       {
         title: 'The results: funding and adoption',
         body: 'Ally.Guide was later picked up by GitHub (Microsoft) and evolved into a program for internal teams to take part in civic action in their local communities.',
-        image: { src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/f8352405-92b0-471c-b98d-61b0e08212cf/Screenshot+2026-07-27+at+6.06.18%E2%80%AFPM.png?format=2500w', alt: "The 'Why we built Amplify' page about civic engagement, with logos of participating companies such as Slack, Stripe, Vercel, Red Hat, GitHub, Google and MetLife." },
+        image: { src: 'https://images.squarespace-cdn.com/content/v1/6a3af2e47a006d51d924c9da/f8352405-92b0-471c-b98d-61b0e08212cf/Screenshot+2026-07-27+at+6.06.18%E2%80%AFPM.png?format=2500w', alt: "The 'Why we built Amplify' page about civic engagement, with logos of participating companies such as Slack, Stripe, Vercel, Red Hat, GitHub, Google, and MetLife." },
       },
     ],
     outcomes: [
       { stat: 'GitHub', label: 'adopted and evolved the program internally (Amplify)' },
-      { todo: 'Add numbers from your "Results" slide, e.g. letters mailed, funds raised or volunteers.' },
+      { todo: 'Add numbers from your "Results" slide, e.g. letters mailed, funds raised, or volunteers.' },
     ],
     links: [],
     todos: [

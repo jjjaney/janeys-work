@@ -126,9 +126,9 @@ const storyGrid = () => `<ul class="stories">${work.map(storyCard).join('')}</ul
 // last (orange, lilac, green, gold from the bottom up), so step D carries
 // every layer before it. Phones get a horizontal bar that grows instead.
 const STEPS = [
-  ['Audit', 'Inventory what exists, who it serves and where it breaks. Interviews, surveys and data before opinions.'],
-  ['Model', 'Define the structure: taxonomy, flows, voice and the decisions each piece of content has to support.'],
-  ['Systematize', 'Turn decisions into guidelines, templates, components and agent instructions others can reuse.'],
+  ['Audit', 'Inventory what exists, who it serves, and where it breaks. Interviews, surveys, and data before opinions.'],
+  ['Model', 'Define the structure: taxonomy, flows, voice, and the decisions each piece of content has to support.'],
+  ['Systematize', 'Turn decisions into guidelines, templates, components, and agent instructions others can reuse.'],
   ['Ship &amp; measure', 'Publish, train the team, watch the numbers, and iterate like any other product.'],
 ];
 const LAYERS = ['#ff7b4d', '#cfa2ed', '#0b704f', '#c99f43'];
@@ -234,7 +234,7 @@ function quotes() {
   </section>`;
 }
 
-function ctaBand(heading = 'Let’s build something people understand.', sub = 'Content strategy, design and systems for products and teams.') {
+function ctaBand(heading = 'Let’s build something people understand.', sub = 'Content strategy, design, and systems for products and teams.') {
   return `<section class="cta-band" aria-labelledby="cta-h">
     ${pixelCorner()}
     <div class="wrap cta-band__inner">
@@ -266,7 +266,7 @@ export function home() {
       <div class="flank" data-seed="1" aria-hidden="true"></div>
       <p class="eyebrow mono">${esc(site.role)}</p>
       <h1 class="hero__title"><span class="hero__line">I design the <span class="hl">systems</span></span> <span class="hero__line">behind the words.</span></h1>
-      <p class="lede">I’m Janey, a content strategist, content designer and product manager. I’ve led content at FIS, Shopify, GitHub and Carnegie Mellon, building the guidelines, docs and processes that let teams (and their AI tools) get content right at scale.</p>
+      <p class="lede">I’m Janey, a content strategist, content designer, and product manager. I’ve led content at FIS, Shopify, GitHub, and Carnegie Mellon, building the guidelines, docs, and processes that let teams (and their AI tools) get content right at scale.</p>
       <div class="actions">
         <a class="btn" href="/work/">See selected work ${arrow}</a>
         <a class="btn btn--ghost" href="/services/">Work with me</a>
@@ -377,7 +377,7 @@ export function workIndex() {
   return {
     path: '/work/',
     title: 'Work',
-    description: 'Case studies in content strategy, content design, documentation, localization and product management.',
+    description: 'Case studies in content strategy, content design, documentation, localization, and product management.',
     body: `
 <section class="page-head">
   <div class="wrap">
@@ -601,7 +601,7 @@ export function aboutPage() {
   return {
     path: '/about/',
     title: 'About',
-    description: 'Janey Annis: content strategist, content designer and product manager. Experience at FIS, Shopify, GitHub, Plex and Carnegie Mellon.',
+    description: 'Janey Annis: content strategist, content designer, and product manager. Experience at FIS, Shopify, GitHub, Plex, and Carnegie Mellon.',
     body: `
 <section class="page-head page-head--art">
   ${gapFloat(21, [
@@ -612,7 +612,7 @@ export function aboutPage() {
       ${eyebrow('—', 'About')}
       <h1>Hi, I’m Janey.</h1>
       ${bio.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${esc(p)}</p>`).join('')}
-      <p>My work spans information systems, devtools, academia, ecommerce, finance and entertainment.</p>
+      <p>My work spans information systems, devtools, academia, ecommerce, finance, and entertainment.</p>
       <div class="actions"><a class="btn" href="/contact/">Get in touch ${arrow}</a><a class="btn btn--ghost" href="${site.linkedin}">LinkedIn ${external}</a></div>
     </div>
     <div class="portrait">
@@ -791,7 +791,7 @@ export function contactPage() {
   return {
     path: '/contact/',
     title: 'Contact',
-    description: 'Contact Janey about content strategy, content design, documentation, product management or a free resume review.',
+    description: 'Contact Janey about content strategy, content design, documentation, product management, or a free resume review.',
     body: `
 <section class="page-head">
   <div class="wrap contact">
@@ -813,7 +813,7 @@ export function contactPage() {
         <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="f-topic">What’s this about?</label>
           <select id="f-topic" name="topic">${topics.map((t) => `<option>${esc(t)}</option>`).join('')}</select></div>
-        <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="6" required placeholder="A little about your team, the problem and your timeline."></textarea></div>
+        <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="6" required placeholder="A little about your team, the problem, and your timeline."></textarea></div>
         <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="New message from janeys.work">
         <button class="btn" type="submit">Send message ${arrow}</button>
@@ -833,13 +833,13 @@ export function archivePage() {
   return {
     path: '/archive/',
     title: 'Archive',
-    description: 'Work from 2020 and earlier: editorial, marketing, technical writing and web at GitHub, Plex, Carnegie Mellon and more.',
+    description: 'Work from 2020 and earlier: editorial, marketing, technical writing, and web at GitHub, Plex, Carnegie Mellon, and more.',
     body: `
 <section class="page-head">
   <div class="wrap">
     ${eyebrow('—', '2020 & earlier')}
     <h1>The archive</h1>
-    <p class="lede">Marketing, editorial, technical writing and web work from GitHub, Plex, Ripl and Carnegie Mellon.</p>
+    <p class="lede">Marketing, editorial, technical writing, and web work from GitHub, Plex, Ripl, and Carnegie Mellon.</p>
     ${todo('Archive links still point to files on your Squarespace site. Download those PDFs into <code>/public/archive/</code> and update the links in <code>src/content/archive.mjs</code> before you cancel Squarespace.')}
   </div>
 </section>
