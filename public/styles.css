@@ -613,7 +613,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .archive-note { --tint: var(--bg); margin: clamp(1.5rem, 1rem + 2vw, 2.5rem) 0 0; display: flex; justify-content: flex-end; }
 .archive-note a { display: inline-flex; align-items: center; gap: 1rem; padding: 0.9rem 1.1rem; margin-right: -1.1rem; color: var(--ink); text-decoration: none; text-align: right; transition: background 0.2s var(--ease); }
 .archive-note a:hover, .archive-note a:focus-visible { background: var(--tint-lilac); --tint: var(--tint-lilac); }
-.archive-note .story__mark--clock { width: 48px; height: 34px; flex: none; }
+.archive-note .story__mark--clock { width: 48px; height: 34px; flex: none; order: 2; }
 .archive-note__text { display: grid; gap: 0.3rem; justify-items: end; }
 .archive-note__q { font: 650 clamp(1.05rem, 1rem + 0.4vw, 1.3rem)/1.3 var(--display); }
 .archive-note__meta { color: var(--muted); display: inline-flex; align-items: center; gap: 0.45rem; }
