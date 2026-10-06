@@ -646,7 +646,7 @@ html:not(.js) .theme-toggle { display: none !important; }
   .stairs > li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 1.75rem; align-items: stretch; }
   .stairs__up { display: none; }
   .stairs__rail { display: flex; flex-direction: column; align-items: center; }
-  .stairs__icon { display: block; flex: none; width: 56px; height: 56px; }
+  .stairs__icon { display: block; flex: none; width: 56px; height: 56px; margin-top: 10px; } /* centers each icon on its step name */
   .stairs__trail { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; gap: 7px; padding-top: 26px; margin-bottom: 20px; width: 21px; overflow: hidden; }
   .stairs__trail i { flex: none; width: 7px; height: 7px; margin-left: calc(var(--x) * 7px); background: var(--trail); }
   .stairs__text { padding: 0 0 2.25rem; }
