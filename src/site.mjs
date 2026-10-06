@@ -28,10 +28,11 @@ export const site = {
   showTodos: process.env.HIDE_TODOS !== '1',
 };
 
+// Top navigation and footer links, in this order.
 export const nav = [
+  { href: '/about/', label: 'About' },
   { href: '/work/', label: 'Case studies' },
   { href: '/services/', label: 'Services' },
-  { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
 ];
 
