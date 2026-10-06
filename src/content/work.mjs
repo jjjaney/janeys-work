@@ -21,6 +21,26 @@
 //               (currently loaded from your Squarespace site; see README)
 //
 // Text marked TODO renders as a visible placeholder note on the site.
+//
+// ─── HOW TO ADD A CASE STUDY ───────────────────────────────────────────────
+// 1. Copy a whole existing object below (from `{` to its matching `},`) and
+//    paste it where it should appear. The first one is the large featured
+//    card on the home page; the rest fill the grid after it in order.
+// 2. Give it a new `slug` (lowercase-with-dashes); its page becomes
+//    /work/<slug>/ and is built automatically, with Previous/Next links.
+// 3. Pick a `hue` that differs from its neighbors in the grid. The hue also
+//    sets the color of the closing call-to-action band on its page (see
+//    CARD_TONE in src/pages.mjs: lilac -> lilac, peach -> orange,
+//    gold -> green, sky -> sky, mint -> mint).
+// 4. Pick an `art` composition from src/art/ (pixel-composition-12 to -16).
+//    Reusing one is fine; avoid giving neighbors the same one.
+// 5. Copy `badge` and `badgeLight` from another case study with the same hue,
+//    so the card's question-mark pixels keep their contrast.
+// 6. Put screenshots in /public/images/work/<slug>/ and point `src` at them.
+// 7. If the project produced a headline number, consider adding it to the
+//    "Some cool results" strip (RESULTS in src/pages.mjs).
+// 8. Run `npm run build` and check the home page grid, /work/, and the new
+//    case-study page.
 
 export const work = [
   {

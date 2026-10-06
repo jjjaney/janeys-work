@@ -32,6 +32,12 @@ export const experience = [
   { year: '2013', org: 'ARINC (Rockwell Collins)', roles: ['Associate Civil Engineer (Field) → Corporate Trainer and Technical Writer'] },
 ];
 
+// Fun facts on the About page. Each one is a card with its own small pixel
+// picture, matched by position: FACT_ART in src/pages.mjs holds one picture
+// per fact, in the same order. To add a fact, add its sentence here (HTML links
+// are fine) and draw a picture for it in FACT_ART (the comment there explains
+// the letter-per-pixel format); without one, the cards reuse pictures from the
+// start of the list. Three facts fill one row on desktop.
 export const funFacts = [
   'I was one of the 100 employees at the <a href="https://www.inc.com/leila-sheridan/plex-tech-company-retreat-nightmare/91327481">disastrous $500k tropical company retreat</a> covered by Inc. and syndicated across Yahoo, BuzzFeed, MSN, and more.',
   'I argued about apartment security with an ex on Judge John Hodgman\'s podcast, in the <a href="https://maximumfun.org/episodes/judge-john-hodgman/judge-john-hodgman-episode-172-daily-security-beefing/">"Daily Security Beefing" episode (#172)</a>.',

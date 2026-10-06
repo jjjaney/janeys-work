@@ -660,6 +660,9 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Home: services as a big typographic list on thin rules */
 .svc-type { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-strong); }
 .svc-type > li { border-bottom: 1px solid var(--line-strong); --c: var(--orange); }
+/* Home page service list: each row's square takes a color by position. A 6th
+   service falls back to orange; to give it its own color, add a line like
+   .svc-type > li:nth-child(6) { --c: var(--maroon); } */
 .svc-type > li:nth-child(2) { --c: var(--lilac); }
 .svc-type > li:nth-child(3) { --c: var(--green); }
 .svc-type > li:nth-child(4) { --c: var(--gold); }
@@ -778,7 +781,9 @@ html:not(.js) .theme-toggle { display: none !important; }
 .faq__a { padding-bottom: 1.25rem; max-width: 40em; }
 
 /* Quotes ------------------------------------------------------------------- */
-/* Kind words: a wall of tinted cards, all quotes visible at once */
+/* Kind words: a wall of outlined note cards, all quotes visible at once. Quotes
+   live in src/site.mjs (testimonials). The look repeats every three cards via
+   the nth-child(3n + ...) rules below, so new quotes need no CSS changes. */
 .quotes { padding-bottom: clamp(8rem, 5.5rem + 9vw, 15rem); }
 .kind { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr); --kpx: clamp(20px, var(--px-art), 46px); gap: calc(var(--kpx) * 0.5 + 1rem); align-items: start; }
 .kind__card { position: relative; border: 2px solid var(--t); --t: var(--lilac); }
@@ -1069,6 +1074,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* organic, staggered: each result sits on its own column of pixels. Text keeps
    clear of the pixels: a pixel's height of space below it, and (after the first
    result) an indent away from the neighbouring column on its left. */
+/* one column per result: keep repeat(5, ...) equal to the number of RESULTS in
+   src/pages.mjs (see the how-to there) */
 .results__list { list-style: none; margin: 0; padding: 0 var(--gutter); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; align-items: end; }
 .results__item { display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; }
 .results__text { padding-bottom: calc(var(--rpx) * 0.9); }
@@ -1086,7 +1093,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 @media (max-width: 1000px) {
   .results__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 0; }
   .results__item:nth-child(odd) .results__text { padding-left: 0; }
-  .results__item:last-child { grid-column: 1 / -1; }
+  .results__item:last-child { grid-column: 1 / -1; } /* odd count: the last result spans the row; remove for an even count */
 }
 /* phones: one result per row, the pixels running edge to edge */
 @media (max-width: 600px) {

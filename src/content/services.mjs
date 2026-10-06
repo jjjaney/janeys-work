@@ -1,6 +1,53 @@
 // Service offerings, merged from the "Work with me" page on the Squarespace
 // site (October 2026) with the newer content-systems and AI work. Edit freely.
 // `id` is used for links (/services/#strategy), so keep it stable.
+//
+// ─── HOW TO ADD A SERVICE ──────────────────────────────────────────────────
+// Each object below is one service. Its order here is its order everywhere:
+// the home page "Ways we can work together" list, the Services page jump bar,
+// the Services page color bands, and the Contact form's topic dropdown all
+// read from this one list, so a new service shows up in all four at once.
+//
+// 1. Copy this template into the list below, where you want it to appear:
+//
+//   {
+//     id: 'research',               // lowercase, no spaces; becomes /services/#research
+//     short: 'Research',            // one word for the Services page jump bar
+//     ask: 'Ask about research',    // optional: link text under the band
+//                                   //   (leave out to get "Ask about <short> work")
+//     pxSeed: 7,                    // optional: picks the pattern of the pixel run on
+//                                   //   top of the band; try other numbers for a new look
+//     tint: 'lilac',                // band color: peach | lilac | mint | gold | sky
+//     name: 'Content Research and Testing',   // Title Case, serial comma, "and" not "&"
+//     for: 'One line for the home page list, next to the name.',
+//     body: 'A sentence or two for the Services page, under the name.',
+//     deliverables: [               // the bullet list on the Services page
+//       'First deliverable',
+//       'Second deliverable',
+//     ],
+//   },
+//
+// 2. Pick a `tint` that differs from the services directly above and below
+//    it, so neighboring bands don't run together. Only these five exist:
+//    peach, lilac, mint, gold, sky. (A new tint needs a matching
+//    `.svc-band--<tint>` rule in public/styles.css and an entry in BAND_PX
+//    in src/pages.mjs.)
+// 3. Deliverables: a list of 4 or 8 shows in 4 columns on desktop; any other
+//    length shows in 3. Keep each item short (under about 45 characters) so
+//    it fits on one line.
+// 4. Update the two sentences that list every service by name:
+//      - the first FAQ answer below ("There are five: ...")
+//      - the Services page `description` in src/pages.mjs (servicesPage()),
+//        which search engines show under the page title
+// 5. The home page list colors its small squares by position (1st orange,
+//    2nd lilac, 3rd green, 4th gold, 5th sky). A 6th service gets orange
+//    unless you add a color for it; see ".svc-type > li:nth-child" in
+//    public/styles.css.
+// 6. Run `npm run build`, then check the home page, /services/, and the
+//    Contact dropdown.
+//
+// To retire a service, delete its object and repeat steps 4 and 6. Links to
+// its old /services/#id will still open the Services page, just at the top.
 
 export const services = [
   {
@@ -120,6 +167,8 @@ export const engagement = [
   },
 ];
 
+// The first answer lists every service by name. Update it when services
+// change (names in lowercase, separated by semicolons since some contain commas).
 export const faqs = [
   {
     q: 'What are your content services, and how do I learn more?',

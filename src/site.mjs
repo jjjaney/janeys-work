@@ -61,11 +61,36 @@ export const companies = [
   { name: 'Rockwell Collins', url: 'https://www.rtx.com/collinsaerospace' },
 ];
 
-// Each quote shows its company's logo beside it on the home page.
+// Kind words: the quotes on the home page. Each quote is a note card on the
+// "wall"; the company name (or logo) sits under it.
 // TODO(Janey): save each official logo (SVG or PNG from the company's press or
 // brand page) in /public/images/logos/ and set `logo` to its path, for example
 // logo: '/images/logos/fis.svg'. If the logo is dark and disappears in dark
 // mode, add a light version as `logoDark`. Until then the company name shows.
+//
+// ─── HOW TO ADD A QUOTE ────────────────────────────────────────────────────
+// Copy this template into the list below. Order here = order on the page.
+//
+//   {
+//     quote: 'The words exactly as they were said, without quote marks.',
+//     context: 'What we worked on together',      // shown small, after the team
+//     org: 'Company, Team',          // company first; anything after it shows
+//                                    // as the team (leave just 'Company' if none)
+//     company: 'Company',            // shown in purple until a logo is added
+//     logo: '',                      // e.g. '/images/logos/company.svg'
+//     logoDark: '',                  // optional light version for dark mode
+//   },
+//
+// Layout: the wall shows three notes per row on desktop (one column on
+// phones), and the look repeats every three: 1st lilac and largest type,
+// 2nd green and set lower, 3rd gold. So 3 or 6 quotes fill whole rows;
+// 4 or 5 leave a partly filled second row, which still looks fine.
+// Short quotes (one or two sentences) read best; very long ones make their
+// card much taller than its neighbors.
+//
+// Each card also gets a small cluster of corner pixels; those repeat every
+// three cards too (KIND_PIXELS in src/pages.mjs). Run `npm run build` and check
+// the home page in light and dark mode after adding a quote.
 export const testimonials = [
   {
     quote: 'You elevate any content that you touch.',

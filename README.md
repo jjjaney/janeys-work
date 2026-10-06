@@ -64,13 +64,27 @@ Each case study's lead screenshot (and the Amplify screenshot on Ally.Guide) is 
 1. Save the image in `public/images/work/<case-study-slug>/`, for example `public/images/work/github-sponsors/landing-before-after.png`.
 2. In `src/content/work.mjs`, find the highlight and set `src: '/images/work/github-sponsors/landing-before-after.png'`. Keep the `alt` text accurate.
 
+### Step-by-step guides in the code
+
+Each of these has a "HOW TO" comment, with a copy-and-paste template, right above the content it explains. Comments never appear on the live site.
+
+| To... | Open | Look for |
+| --- | --- | --- |
+| Add, rename, or remove a service | `src/content/services.mjs` | HOW TO ADD A SERVICE (top of the file) |
+| Change or add a "Some cool results" number | `src/pages.mjs` | HOW TO CHANGE OR ADD A RESULT (above `RESULTS`) |
+| Add a Kind words quote | `src/site.mjs` | HOW TO ADD A QUOTE (above `testimonials`) |
+| Add a case study | `src/content/work.mjs` | HOW TO ADD A CASE STUDY (top of the file) |
+| Add a fun fact | `src/content/about.mjs` | the note above `funFacts` |
+
+After any change, run `npm run build` and check the pages it touches.
+
 ### Adding company logos to Kind words
 
 Each quote card on the home page shows its company's logo above the team and project line. Save the official logo files (SVG is best, from each company's press or brand page) in `public/images/logos/`, then set `logo` for that quote in `src/site.mjs`, for example `logo: '/images/logos/fis.svg'`. If a logo is dark and disappears in dark mode, add a light version as `logoDark`. Until a logo is added, the company name shows in its place.
 
 ### Adding a case study
 
-Copy one of the objects in `src/content/work.mjs`, give it a new `slug`, and pick one of the pixel compositions for `art`. It shows up on the home page, the Work page and gets its own page automatically.
+Copy one of the objects in `src/content/work.mjs`, give it a new `slug`, and pick one of the pixel compositions for `art`. It shows up on the home page, the Work page, and gets its own page automatically. The full checklist is in the comment at the top of that file.
 
 ### Connecting the contact form
 

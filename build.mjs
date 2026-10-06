@@ -1,5 +1,5 @@
 // Zero-dependency static site build: `npm run build` → ./dist
-import { mkdirSync, rmSync, writeFileSync, cpSync, existsSync } from 'node:fs';
+import { mkdirSync, rmSync, writeFileSync, readFileSync, cpSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { site } from './src/site.mjs';
 import { layout } from './src/layout.mjs';
@@ -11,6 +11,12 @@ const OUT = 'dist';
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 if (existsSync('public')) cpSync('public', OUT, { recursive: true });
+// The stylesheet's /* comments */ are notes for editing the site; strip them
+// from the published copy so they never ship.
+if (existsSync(join(OUT, 'styles.css'))) {
+  const css = readFileSync(join(OUT, 'styles.css'), 'utf8');
+  writeFileSync(join(OUT, 'styles.css'), css.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\n{3,}/g, '\n\n'));
+}
 
 const pages = [
   P.home,

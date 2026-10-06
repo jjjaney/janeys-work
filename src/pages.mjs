@@ -177,6 +177,8 @@ function stairs() {
 
 // Services on the home page: big type on thin rules. Each row is a link to
 // that service's band on the Services page.
+// Adding a service? Add it to src/content/services.mjs (see the how-to at the
+// top of that file); this list picks it up automatically.
 function svcList() {
   return `<ul class="svc-type">
       ${services
@@ -196,6 +198,10 @@ function svcList() {
 
 // Kind words: every quote at once on a "wall" of tinted cards with uneven
 // tops and a few pixels tucked into each corner.
+// Corner pixel clusters for the Kind words cards, reused in order (card 4 gets
+// the 1st cluster, and so on). Each entry is [color, x, y] in pixel steps from
+// the card's top-right corner; x counts leftward and y downward. To give a
+// 4th card its own cluster, add a 4th entry here.
 const KIND_PIXELS = [
   [['var(--gold)', 1, 0], ['var(--lilac)', 0, 0], ['var(--orange)', 0, 1]],
   [['var(--gold)', 2, 0], ['var(--green)', 0, 0]],
@@ -339,6 +345,38 @@ ${ctaBand()}
 
 // Work page: the results, as big numbers standing on a skyline of organic
 // pixel columns (like the header art), after the case-study cards.
+//
+// ─── HOW TO CHANGE OR ADD A RESULT ─────────────────────────────────────────
+// Each object is one column, left to right:
+//
+//   { stat: '12', label: 'docs sites migrated', who: 'Company', colors: ['#0b704f', '#b6d8fe'], rows: 3 },
+//
+//   stat    the big number or word. Keep it short (about 6 characters, like
+//           '500K+' or 'GitHub') so it fits the column on one line.
+//   label   what the number means, in lowercase, about 5 words.
+//   who     the client or project, shown small underneath.
+//   colors  two palette colors for this column's pixels: the first is the
+//           main color, the second is sprinkled in. Palette:
+//             orange #ff7b4d · lilac #cfa2ed · sky #b6d8fe · gold #c99f43
+//             green #0b704f · maroon #6b2337 · purple #4f33cc
+//           Give neighboring columns different main colors.
+//   rows    how tall the pixel stack is (2 to 5). Vary it between neighbors so
+//           the skyline stays uneven; the text sits on top of each stack.
+//
+// Changing a number: edit `stat` (and `label` if the wording changes).
+// Swapping a result: replace the whole object.
+//
+// Adding or removing a column: the layout is built for 5. If you change the
+// count, update `.results__list` in public/styles.css:
+//   - desktop: set `repeat(5, ...)` to the new count (6 is about the most that
+//     fits; past that, swap out an older result instead)
+//   - laptop/tablet (the max-width: 1000px block): results sit two per row,
+//     and the last one stretches full width. That suits an odd count; with an
+//     even count, delete the `.results__item:last-child` line there.
+// Then run `npm run build` and check /work/ at desktop, laptop, and phone sizes.
+//
+// The "(last 7 years)" note next to "By the numbers" is in workIndex() below;
+// update it if the range changes.
 const RESULTS = [
   { stat: '500K+', label: 'members reached by weekly updates', who: 'The Browser Company', colors: ['#ff7b4d', '#cfa2ed'], rows: 4 },
   { stat: '4', label: 'public media partners', who: 'New_ Public', colors: ['#b6d8fe', '#cfa2ed'], rows: 3 },
@@ -518,6 +556,8 @@ ${ctaBand('Want results like these on your team?', 'Let’s talk about what you�
 // Services page: an organic pixel border along the top of each service band,
 // at the same cell size as the header art. Mostly the band's own color, with a
 // few pixels from the rest of the palette and a few dropping down a row.
+// One entry per band tint. If you add a new tint to a service, add a palette
+// for it here too: the first color is the main one, the rest are accents.
 const BAND_PX = {
   peach: ['var(--orange)', 'var(--orange)', 'var(--orange)', 'var(--gold)', 'var(--maroon)'],
   lilac: ['var(--lilac)', 'var(--lilac)', 'var(--accent)', 'var(--lilac)', 'var(--orange)'],
@@ -547,10 +587,16 @@ function bandPixels(tint, seed) {
   return `<svg class="svc-band__px" viewBox="0 0 ${W} 2" preserveAspectRatio="xMaxYMin slice" style="--w:${W}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
+// Services page. The jump bar, the color bands, and their pixel runs are all
+// built from the `services` list. Each jump-bar square takes the strong color
+// of its band's tint (peach -> orange, mint -> green); a new tint needs an
+// entry in that small map inside the jump bar markup below.
 export function servicesPage() {
   return {
     path: '/services/',
     title: 'Services',
+    // Lists every service by name for search engines. Update it when a service
+    // is added, renamed, or removed (see src/content/services.mjs).
     description: 'Content strategy and editorial; content design, UX writing, and storytelling; content for teams; documentation and training; and product management and marketing.',
     body: `
 <section class="page-head">
