@@ -154,7 +154,6 @@ export const work = [
     ],
     links: [
       { label: 'Arc release notes', href: 'https://resources.arc.net/hc/en-us/articles/20498285812375-Release-Notes' },
-      { label: 'Visual release notes v1.56', href: 'https://arc.net/e/65F1A0D1-4AE7-4B3F-97B1-90967E67F700' },
       { label: 'Visual release notes v1.58', href: 'https://arc.net/e/123493AC-A3B7-470F-BC09-DC700B348B59' },
       { label: 'Visual release notes v1.59', href: 'https://arc.net/e/EDB179D6-AD89-4998-8BF6-5E2FD8D94F57' },
       { label: 'Arc Resource Center', href: 'https://resources.arc.net/hc/en-us' },
