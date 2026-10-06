@@ -796,71 +796,45 @@ function factArt(i) {
   return `<svg class="facts__art" viewBox="0 0 ${W} ${H}" style="--w:${W};--h:${H}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
+// Contact: three hand-drawn pixel envelopes in the same style as the About
+// page's fun-facts art: clean shapes, no loose sparkles, and the motion lives in
+// the picture itself. A letter rises out of the gold envelope, and the small
+// lilac one hops, both in whole-pixel steps. Still for reduced motion.
 function pixelEnvelopes() {
   const W = 34, H = 22;
-  const C = { S: '#b6d8fe', L: '#cfa2ed', P: '#4f33cc', O: '#ff7b4d', G: '#c99f43', M: '#6b2337', g: '#0b704f' };
-  const cells = new Map();
-  const put = (x, y, c, bob = '') => cells.set(`${x},${y}`, [x, y, c, bob]);
-  const drop = (x, y) => cells.delete(`${x},${y}`);
+  // outlines use the fixed brand purple, maroon and green so they stay dark on the
+  // light envelopes in both themes
+  const COL = { S: 'var(--sky)', L: 'var(--lilac)', P: '#4f33cc', O: 'var(--orange)', G: 'var(--gold)', M: '#6b2337', g: '#0b704f' };
+  const layer = () => new Map();
+  const back = layer(), front = layer();
+  const put = (m, x, y, c, cls = '') => m.set(`${x},${y}`, [x, y, c, cls]);
 
-  // One envelope: body, a V-shaped flap with colored edges, then erosion so
-  // it frays at the edges like the header art.
-  const envelope = (x0, y0, w, h, { body, flap, edge, accent }, seed, bob) => {
-    for (let y = y0; y < y0 + h; y++) for (let x = x0; x < x0 + w; x++) put(x, y, body, bob);
-    const tip = Math.round(h * 0.68);
-    const outline = new Set(); // flap outline: both sides of the V and its point, kept whole
-    for (let r = 0; r < tip; r++) {
-      const l = x0 + Math.round((r * (w - 1)) / 2 / tip), rr = x0 + w - 1 - Math.round((r * (w - 1)) / 2 / tip);
-      for (let x = l; x <= rr; x++) {
-        const isEdge = r > 0 && (x === l || x === rr);
-        put(x, y0 + r, isEdge ? edge : flap, bob);
-        if (isEdge) outline.add(`${x},${y0 + r}`);
-      }
+  // A closed envelope: body, a V-shaped flap, and a solid outline along both
+  // sides of the V (the top edge stays flap-colored).
+  const envelope = (m, x0, y0, w, h, { body, flap, edge }, cls = '') => {
+    for (let y = y0; y < y0 + h; y++) for (let x = x0; x < x0 + w; x++) put(m, x, y, body, cls);
+    const tip = Math.ceil(w / 2);
+    for (let r = 0; r < tip && r < h; r++) {
+      const l = x0 + r, rr = x0 + w - 1 - r;
+      if (l > rr) break;
+      for (let x = l; x <= rr; x++) put(m, x, y0 + r, r > 0 && (x === l || x === rr) ? edge : flap, cls);
     }
-    // close the point of the V (only if its last row left a gap)
-    const lastL = x0 + Math.round(((tip - 1) * (w - 1)) / 2 / tip), lastR = x0 + w - 1 - Math.round(((tip - 1) * (w - 1)) / 2 / tip);
-    if (lastR - lastL > 1) {
-      const l = x0 + Math.round((tip * (w - 1)) / 2 / tip), rr = x0 + w - 1 - Math.round((tip * (w - 1)) / 2 / tip);
-      for (let x = Math.min(l, rr); x <= Math.max(l, rr); x++) (put(x, y0 + tip, edge, bob), outline.add(`${x},${y0 + tip}`));
-    }
-    // paper texture
-    for (let y = y0 + 1; y < y0 + h; y++)
-      for (let x = x0; x < x0 + w; x++) if (cells.get(`${x},${y}`)?.[2] === body && rand(x * 7 + seed, y * 3) < 0.07) put(x, y, accent, bob);
-    // fray: drop some edge pixels (more along the bottom), and the odd one inside
-    for (let y = y0; y < y0 + h; y++)
-      for (let x = x0; x < x0 + w; x++) {
-        const edgeX = x === x0 || x === x0 + w - 1, bottom = y === y0 + h - 1, nearBottom = y === y0 + h - 2;
-        const r = rand(x + seed * 31, y + seed * 17);
-        if (outline.has(`${x},${y}`)) continue;
-        if ((bottom && r < 0.4) || (edgeX && r < 0.22) || (nearBottom && edgeX && r < 0.5) || (!edgeX && !bottom && y > y0 + tip && r < 0.025)) drop(x, y);
-      }
   };
 
-  envelope(1, 9, 16, 11, { body: 'S', flap: 'L', edge: 'P', accent: 'L' }, 3, '');
-  envelope(20, 2, 11, 8, { body: 'G', flap: 'O', edge: 'M', accent: 'O' }, 8, 'a');
-  envelope(23, 13, 8, 6, { body: 'L', flap: 'S', edge: 'g', accent: 'S' }, 13, 'b');
-  // a stamp on the big one
-  for (let y = 10; y <= 12; y++) for (let x = 12; x <= 14; x++) put(x, y, x === 13 && y === 11 ? 'G' : 'O');
-  // loose pixels drifting off and between them
-  [[0, 17, 'g'], [3, 6, 'L'], [17, 8, 'O'], [18, 14, 'G'], [19, 11, 'S'], [32, 5, 'L'], [33, 11, 'O'], [21, 20, 'M'], [26, 11, 'S'], [12, 21, 'L'], [32, 17, 'G']]
-    .forEach(([x, y, c]) => put(x, y, c));
+  // the big envelope, with a stamp
+  envelope(front, 1, 9, 16, 11, { body: 'S', flap: 'L', edge: 'P' });
+  for (let y = 10; y <= 12; y++) for (let x = 12; x <= 14; x++) put(front, x, y, x === 13 && y === 11 ? 'G' : 'O');
 
-  const rect = ([x, y, c]) => `<rect class="env__px" x="${x}" y="${y}" width="1" height="1" fill="${C[c]}" stroke="${C[c]}" stroke-width="0.08"/>`;
-  const all = [...cells.values()];
-  // each small envelope is its own group so it bobs as one piece
-  const px = ['', 'a', 'b'].map((k) => `<g${k ? ` class="env__bob env__bob--${k}"` : ''}>${all.filter((c) => c[3] === k).map(rect).join('')}</g>`).join('');
-  // small pixel shapes that float up out of the envelopes in turn
-  const SHAPES = {
-    star: { color: '#c99f43', rows: ['..X..', '.XXX.', 'XXXXX', '.XXX.', '.X.X.'] },
-    check: { color: '#0b704f', rows: ['....X', '...X.', 'X.X..', '.X...'] },
-    sparkle: { color: '#ff7b4d', rows: ['.X.', 'XXX', '.X.'] },
-  };
-  const floater = (name, x0, y0, n) => {
-    const { color, rows } = SHAPES[name];
-    const rects = rows.flatMap((row, y) => [...row].map((c, x) => (c === 'X' ? `<rect x="${x0 + x}" y="${y0 + y}" width="1" height="1"/>` : ''))).join('');
-    return `<g class="env__float env__float--${n}" fill="${color}" stroke="${color}" stroke-width="0.08">${rects}</g>`;
-  };
-  return `<div class="env" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges">${floater('star', 6.5, 3, 1)}${floater('check', 22.5, -3.5, 2)}${floater('sparkle', 25.5, 9, 3)}${px}</svg></div>`;
+  // a letter tucked into the gold envelope (drawn behind it, so it can rise)
+  for (let y = 1; y <= 8; y++) for (let x = 22; x <= 28; x++) put(back, x, y, 'L', 'env__letter');
+  for (const [x1, x2, y] of [[23, 27, 2], [23, 26, 4]]) for (let x = x1; x <= x2; x++) put(back, x, y, 'P', 'env__letter');
+  envelope(front, 20, 5, 11, 8, { body: 'G', flap: 'O', edge: 'M' });
+
+  // the small envelope hops
+  envelope(front, 23, 15, 8, 6, { body: 'L', flap: 'S', edge: 'g' }, 'env__hop');
+
+  const rects = (m) => [...m.values()].map(([x, y, c, cls]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${COL[c]}"${cls ? ` class="${cls}"` : ''}/>`).join('');
+  return `<div class="env" aria-hidden="true"><svg viewBox="0 0 ${W} ${H}" style="--w:${W};--h:${H}" shape-rendering="crispEdges">${rects(back)}${rects(front)}</svg></div>`;
 }
 
 export function contactPage() {

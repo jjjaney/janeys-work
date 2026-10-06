@@ -1016,29 +1016,25 @@ html:not(.js) .theme-toggle { display: none !important; }
   .ticker__track { animation: none; }
 }
 
-/* Contact: pixel envelopes ---------------------------------------------------
-   Already in place when the page loads. A star, a checkmark and a sparkle take
-   turns floating up out of them, and the two smaller envelopes bob gently. Still for reduced motion. */
-.env { width: min(100%, 480px); margin-top: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
-.env svg { display: block; width: 100%; height: auto; overflow: visible; }
-.env__float { opacity: 0; animation: env-float 6s ease-in-out infinite; }
-.env__float--1 { animation-delay: 0.8s; }
-.env__float--2 { animation-delay: 2.8s; }
-.env__float--3 { animation-delay: 4.8s; }
-@keyframes env-float {
-  0% { opacity: 0; transform: translateY(5px); }
-  12% { opacity: 1; transform: translateY(2px); }
-  45% { opacity: 1; transform: translateY(-1px); }
-  55%, 100% { opacity: 0; transform: translateY(-3px); }
+/* Contact: pixel envelopes. Cells snap to whole pixels so the art stays crisp.
+   A letter rises out of the gold envelope and the small one hops, in pixel
+   steps. Still for reduced motion. */
+*:has(> .env) { container-type: inline-size; }
+.env { --epx: clamp(9px, 0.4rem + 0.4vw, 13px); --epx: round(down, min(13px, 100cqi / 34), 1px); margin-top: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
+.env svg { display: block; width: calc(var(--w) * var(--epx)); height: calc(var(--h) * var(--epx)); max-width: 100%; overflow: visible; }
+@media (prefers-reduced-motion: no-preference) {
+  .env rect[class] { transform-box: view-box; }
+  .env__letter { animation: env-letter 4.8s steps(1) infinite; }
+  .env__hop { animation: env-hop 3.2s steps(1) infinite; animation-delay: -1.2s; }
 }
+@keyframes env-letter { 0%, 100% { transform: translateY(0); } 20% { transform: translateY(-1px); } 40%, 60% { transform: translateY(-2px); } 80% { transform: translateY(-1px); } }
+@keyframes env-hop { 0%, 60%, 100% { transform: translateY(0); } 70%, 80% { transform: translateY(-1px); } }
+@media (min-width: 861px) { .env { margin-left: auto; width: fit-content; } }
+@media (max-width: 860px) { .env { margin-top: 2rem; } }
+/* the résumé's magnifier on the Services page bobs gently */
 .env__bob { animation: env-bob 3.6s ease-in-out infinite; }
-.env__bob--b { animation-duration: 4.4s; animation-delay: 0.8s; }
 @keyframes env-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.4px); } }
-/* wide screens: the group sits at the right of its column, beside the form */
-@media (min-width: 861px) { .env { margin-left: auto; } }
-@media (max-width: 860px) { .env { width: min(85%, 340px); margin-top: 2rem; } }
-@media (prefers-reduced-motion: reduce) { .env__float, .env__bob { animation: none; } }
-/* the résumé's magnifier bobs with the envelope animation */
+@media (prefers-reduced-motion: reduce) { .env__bob { animation: none; } }
 
 /* Work page: results strip -------------------------------------------------
    Big numbers on a skyline of organic pixel columns, on the page background. */
