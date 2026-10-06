@@ -155,7 +155,6 @@ ${body}
     <div class="site-footer__nav">
       <ul class="site-footer__links">
         ${nav.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join('')}
-        <li><a href="/archive/">Archive</a></li>
       </ul>
       <ul class="site-footer__links site-footer__links--social">
         <li><a href="${site.linkedin}">LinkedIn</a></li>
