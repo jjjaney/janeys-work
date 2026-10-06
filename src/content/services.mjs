@@ -24,6 +24,7 @@ export const services = [
   {
     id: 'design',
     short: 'Design', // label in the Services page jump bar
+    pxSeed: 18, // picks the pattern of the pixel run atop this band; change the number for another look
     tint: 'lilac', // band color on the Services page
     name: 'Content Design, UX Writing, and Storytelling',
     for: 'Product and marketing teams shipping flows, pages, and launches that need to land.',

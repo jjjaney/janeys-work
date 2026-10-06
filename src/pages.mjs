@@ -566,7 +566,7 @@ export function servicesPage() {
   ${services
     .map(
       (s, i) => `<section class="svc-band svc-band--${s.tint}" id="${s.id}" aria-labelledby="${s.id}-h">
-    ${bandPixels(s.tint, i + 1)}
+    ${bandPixels(s.tint, s.pxSeed ?? i + 1)}
     <div class="wrap">
       <div class="svc-band__top">
         <h2 id="${s.id}-h">${esc(s.name)}</h2>
