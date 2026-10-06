@@ -947,12 +947,15 @@ html:not(.js) .theme-toggle { display: none !important; }
 .shot__grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 24px 24px; opacity: 0.6; }
 .shot--empty figcaption { position: relative; max-width: 30em; padding: 1rem 1.25rem; background: var(--paper); font-size: 0.92rem; margin: 1rem; }
 
-.outcomes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 1rem; }
-.outcome { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem; background: var(--tint-lilac); }
+/* Outcome boxes size to their content: the number stays on one line, and the
+   label wraps at a readable width instead of stretching every box to match. */
+.outcomes { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 1rem; }
+.outcome { flex: 0 1 auto; max-width: 100%; display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem 1.4rem; background: var(--tint-lilac); }
 .outcome:nth-child(2) { background: var(--tint-peach); }
-.outcome__stat { font: 750 clamp(2rem, 1.6rem + 1.6vw, 3rem)/1 var(--display); color: var(--accent); letter-spacing: -0.018em; }
-.outcome__label { font-size: 0.95rem; }
-.outcome--todo { grid-column: 1 / -1; padding: 0; background: none; }
+.outcome__stat { font: 750 clamp(1.75rem, 1.45rem + 1.2vw, 2.6rem)/1 var(--display); color: var(--accent); letter-spacing: -0.018em; white-space: nowrap; }
+.outcome__label { font-size: 0.95rem; max-width: 15.5em; }
+@media (max-width: 640px) { .outcome { flex: 1 1 100%; } .outcome__label { max-width: none; } }
+.outcome--todo { flex: 1 1 100%; padding: 0; background: none; }
 .outcome--todo .todo { margin: 0; }
 
 .links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
