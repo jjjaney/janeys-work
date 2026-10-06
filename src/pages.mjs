@@ -541,7 +541,7 @@ function bandPixels(tint, seed) {
     rects += `<rect x="${x}" y="0" width="1" height="1" fill="${c}"/>`;
     if (W - 1 - x < W * 0.7 && mix(x * 5 + 7, seed * 13 + 2) < BAND_DROPS) rects += `<rect x="${x}" y="1" width="1" height="1" fill="${pal[0]}"/>`;
   }
-  return `<svg class="svc-band__px" viewBox="0 0 ${W} 2" style="--w:${W}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
+  return `<svg class="svc-band__px" viewBox="0 0 ${W} 2" preserveAspectRatio="xMaxYMin slice" style="--w:${W}" shape-rendering="crispEdges" aria-hidden="true">${rects}</svg>`;
 }
 
 export function servicesPage() {

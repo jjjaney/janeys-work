@@ -9,7 +9,7 @@
    ========================================================================== */
 
 :root {
-  --px-art: clamp(24px, 2.5vw, 40px); /* header-art pixel size; pages with header art set --art-cell exactly */
+  --px-art: clamp(24px, 2.5vw, 40px); /* one pixel size for all pixel art outside the headers (CTA corner, results, Kind words, service bands): matches the home page header art */
   /* grounds */
   --bg: #f6f3ec;
   --paper: #fffdf8;
@@ -689,8 +689,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 .svc-jump a::before { content: ''; width: 12px; height: 12px; background: var(--c); flex: none; }
 .svc-jump a:hover { background: var(--tint-sky); }
 .svc-jump a[aria-current='true'] { background: var(--tint-lilac); color: var(--accent); }
-.svc-band { padding-block: clamp(5rem, 3.5rem + 5vw, 9rem); scroll-margin-top: calc(var(--header-h, 68px) + 64px); background: var(--band-bg); position: relative; --bpx: clamp(20px, var(--art-cell, var(--px-art)), 46px); padding-top: calc(var(--bpx) * 2 + clamp(3.5rem, 2.5rem + 4vw, 7rem)); }
-.svc-band__px { position: absolute; top: 0; right: 0; width: calc(var(--w) * var(--bpx)); height: calc(var(--bpx) * 2); display: block; pointer-events: none; }
+.svc-band { padding-block: clamp(5rem, 3.5rem + 5vw, 9rem); scroll-margin-top: calc(var(--header-h, 68px) + 64px); background: var(--band-bg); position: relative; --bpx: clamp(20px, var(--px-art), 46px); padding-top: calc(var(--bpx) * 2 + clamp(3.5rem, 2.5rem + 4vw, 7rem)); }
+.svc-band__px { position: absolute; top: 0; right: 0; width: min(100%, calc(var(--w) * var(--bpx))); height: calc(var(--bpx) * 2); display: block; pointer-events: none; }
 .svc-band--peach { --band-bg: var(--tint-peach); }
 .svc-band--lilac { --band-bg: var(--tint-lilac); }
 .svc-band--mint  { --band-bg: var(--tint-mint); }
@@ -780,7 +780,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Quotes ------------------------------------------------------------------- */
 /* Kind words: a wall of tinted cards, all quotes visible at once */
 .quotes { padding-bottom: clamp(8rem, 5.5rem + 9vw, 15rem); }
-.kind { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr); --kpx: clamp(20px, var(--art-cell, var(--px-art)), 46px); gap: calc(var(--kpx) * 0.5 + 1rem); align-items: start; }
+.kind { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr); --kpx: clamp(20px, var(--px-art), 46px); gap: calc(var(--kpx) * 0.5 + 1rem); align-items: start; }
 .kind__card { position: relative; border: 2px solid var(--t); --t: var(--lilac); }
 .kind__card:nth-child(3n + 2) { --t: var(--green); margin-top: 4rem; }
 .kind__card:nth-child(3n + 3) { --t: var(--gold); margin-top: 1.5rem; }
@@ -833,7 +833,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .cta-band {
   position: relative; background: var(--band); color: var(--on-band);
   /* one pixel of the page's header art (set by main.js); a sensible size elsewhere */
-  --c: clamp(20px, var(--art-cell, var(--px-art)), 46px);
+  --c: clamp(20px, var(--px-art), 46px);
 }
 /* per-page band colors; light bands take maroon text in both themes */
 .cta-band--green { --band: #0b704f; --on-band: #fffdf8; }
@@ -1074,7 +1074,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .results__label { margin: 0; font-size: 0.92rem; line-height: 1.4; max-width: 15em; }
 .results__label span { display: block; margin-top: 0.35rem; font-size: 0.68rem; color: var(--muted); }
 /* one pixel = the same size as the closing band's corner pixels */
-.results { --rpx: clamp(20px, var(--art-cell, var(--px-art)), 46px); }
+.results { --rpx: clamp(20px, var(--px-art), 46px); }
 .results__px { display: block; width: 100%; height: calc(var(--rpx) * var(--h)); overflow: hidden; }
 .results__drift { transform-box: fill-box; animation: results-drift var(--t, 4s) ease-in-out var(--w, 0s) infinite; }
 @keyframes results-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.6px); } }
