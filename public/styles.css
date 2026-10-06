@@ -637,13 +637,20 @@ html:not(.js) .theme-toggle { display: none !important; }
 .stairs h3 { margin: 0 0 0.45rem; font-size: clamp(1.05rem, 0.8rem + 0.7vw, 1.25rem); }
 .stairs p { margin: 0; font-size: 0.98rem; max-width: 22em; }
 .stairs__up { display: block; width: 100%; height: auto; }
-.stairs__bar { display: none; }
+.stairs__rail { display: none; }
+/* phones: the staircase gives way to a pixel icon per step, joined by a dotted trail */
 @media (max-width: 760px) {
-  .section--stairs { padding-bottom: clamp(5.5rem, 4rem + 6vw, 10rem); }
-  .stairs { grid-template-columns: 1fr; gap: 1.75rem; margin-top: 0; }
+  .section--stairs { padding-bottom: clamp(5.5rem, 4rem + 6vw, 10rem); --trail: #a2788a; }
+  :root[data-theme='dark'] .section--stairs { --trail: #8a7fb8; }
+  .stairs { grid-template-columns: 1fr; gap: 0; margin-top: 2rem; }
+  .stairs > li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 1.1rem; align-items: stretch; }
   .stairs__up { display: none; }
-  .stairs__bar { display: block; order: -1; align-self: flex-start; height: 28px; width: auto; margin-bottom: 1rem; }
-  .stairs__text { padding: 0; }
+  .stairs__rail { display: flex; flex-direction: column; align-items: center; }
+  .stairs__icon { display: block; flex: none; width: 56px; height: 56px; }
+  .stairs__trail { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; gap: 7px; padding-top: 26px; margin-bottom: 20px; width: 21px; overflow: hidden; }
+  .stairs__trail i { flex: none; width: 7px; height: 7px; margin-left: calc(var(--x) * 7px); background: var(--trail); }
+  .stairs__text { padding: 0 0 2.25rem; }
+  .stairs > li:last-child .stairs__text { padding-bottom: 0; }
 }
 
 /* Services ----------------------------------------------------------------- */

@@ -123,6 +123,9 @@ const storyGrid = () => `<ul class="stories">${work.map(storyCard).join('')}</ul
 // How I work: a staircase of pixels. Each step adds one layer on top of the
 // last (orange, lilac, green, gold from the bottom up), so step D carries
 // every layer before it. Phones get a horizontal bar that grows instead.
+// How I work steps, in order. They feed both the desktop staircase and the phone
+// view (icon + trail). Adding or reordering a step? Add or move its pixel icon
+// in STEP_ICONS below to match (one 8x8 icon per step, same order).
 const STEPS = [
   ['Audit', 'Inventory what exists, who it serves, and where it breaks. Interviews, surveys, and data before opinions.'],
   ['Model', 'Define the structure: taxonomy, flows, voice, and the decisions each piece of content has to support.'],
@@ -147,6 +150,24 @@ const rand = (a, b) => {
   return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
 };
 
+// Phone view of How I work: each step gets a small pixel icon, joined to the
+// next by a dotted pixel trail (the desktop staircase is hidden on phones).
+// Letters map to theme colors, which switch shade in dark mode; '.' is empty.
+const STEP_ICON_COLORS = { O: 'var(--orange)', L: 'var(--lilac)', g: 'var(--green)', G: 'var(--gold)', M: 'var(--maroon)', S: 'var(--sky)', P: 'var(--accent)' };
+const STEP_ICONS = [
+  ['..OOO...', '.O...O..', '.O.S.O..', '.O...O..', '..OOO...', '.....M..', '......M.', '.......M'], // Audit: magnifying glass
+  ['...LL...', '...LL...', '....P...', '.PPPPPP.', '.P....P.', 'LL....LL', 'LL....LL', '........'], // Model: a branching structure
+  ['gg.gg.gg', 'gg.gg.gg', '........', 'gg.SS.gg', 'gg.SS.gg', '........', 'gg.gg.gg', 'gg.gg.gg'], // Systematize: a grid of modules
+  ['....GGGG', '.....GGG', '....G.GG', '...G...G', '..G.....', '.O......', 'OO......', '........'], // Ship and measure: an arrow heading out
+];
+function stepRail(i, last) {
+  const rows = STEP_ICONS[i % STEP_ICONS.length];
+  const rects = rows.flatMap((r, y) => [...r].map((c, x) => (STEP_ICON_COLORS[c] ? `<rect x="${x}" y="${y}" width="1" height="1" fill="${STEP_ICON_COLORS[c]}"/>` : ''))).join('');
+  // the trail zigzags one dot left and right; extra dots are clipped to fit the step's height
+  const dots = last ? '' : `<span class="stairs__trail">${Array.from({ length: 16 }, (_, k) => `<i style="--x:${[0, 1, 2, 1][k % 4]}"></i>`).join('')}</span>`;
+  return `<div class="stairs__rail" aria-hidden="true"><svg class="stairs__icon" viewBox="0 0 8 8" shape-rendering="crispEdges">${rects}</svg>${dots}</div>`;
+}
+
 function stairs() {
   const COLS = 8;
   return `<ol class="stairs">
@@ -160,14 +181,14 @@ function stairs() {
           return r < 0.07 && pick !== LAYERS[l] ? pick : LAYERS[l];
         };
         const up = stairSvg(COLS, rows, layer, 'stairs__up');
-        const bar = stairSvg(rows * 2, 2, (x) => LAYERS[Math.floor(x / 2)], 'stairs__bar');
         return `<li style="--rows:${rows}">
+        ${stepRail(i, i === STEPS.length - 1)}
         <div class="stairs__text">
           <span class="stairs__n mono">${'ABCD'[i]}</span>
           <h3>${name}</h3>
           <p>${body}</p>
         </div>
-        ${up}${bar}
+        ${up}
       </li>`;
       }).join('')}
     </ol>`;
