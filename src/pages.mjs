@@ -446,7 +446,7 @@ export function workIndex() {
     body: `
 <section class="page-head">
   <div class="wrap">
-    ${eyebrow('—', 'Selected work')}
+    ${eyebrow('—', 'Case studies')}
     <h1 class="work-h1"><span>Every project starts with a question.</span> <span>Here’s how I answered a few.</span></h1>
   </div>
 </section>
