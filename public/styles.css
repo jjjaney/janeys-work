@@ -1013,7 +1013,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .site-footer__name { display: flex; align-items: center; gap: 0.6rem; margin: 0 0 0.25rem; font: 700 1.3rem var(--display); color: var(--ink); }
 .site-footer__name .logo-pixel { width: 18px; height: 18px; }
 .site-footer__links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; list-style: none; margin: 0; padding: 0; }
-/* footer links: theme charcoal, semibold like the page's other links, no underline */
+/* footer links: same as the top navigation (theme charcoal, no underline, purple on hover) */
 .site-footer__links a { color: var(--ink); font-weight: 500; text-decoration: none; transition: color 0.2s var(--ease); }
 .site-footer__links a:hover, .site-footer__links a:focus-visible { color: var(--accent); }
 .site-footer__meta { grid-column: 1 / -1; margin: 1rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--line); }
