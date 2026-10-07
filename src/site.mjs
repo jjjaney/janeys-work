@@ -2,6 +2,9 @@
 export const site = {
   name: 'Janey Annis',
   brand: 'Janey’s Work', // the name in the header (the footer and page titles use `name`)
+  // Banner across the top of the home page. Change the text or date as
+  // needed; set `banner: null` to remove it.
+  banner: { text: 'Work in progress', date: 'October 2026' },
   // Used for canonical URLs, Open Graph tags and the sitemap.
   url: 'https://www.janeys.work',
   role: 'Human-first content for products and systems',
