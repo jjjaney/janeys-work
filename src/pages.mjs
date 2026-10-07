@@ -1149,13 +1149,12 @@ function pixelRoadblock() {
   const DIGITS = { 4: ['C.C', 'C.C', 'CCC', '..C', '..C'], 0: ['CCC', 'C.C', 'C.C', 'C.C', 'CCC'] };
   [...'404'].forEach((d, i) => DIGITS[d].forEach((row, y) => [...row].forEach((ch, x) => ch === 'C' && put('sign', 4 + i * 4 + x, 7 + y, 'C'))));
 
-  // traffic cone: an orange cone with two cream stripes on a maroon base
-  for (let y = 20; y <= 26; y++) {
+  // traffic cone: an orange cone with two cream stripes on a thin gray base
+  for (let y = 20; y <= 27; y++) {
     const half = Math.floor((y - 20) / 2) + 1;
     for (let x = 24 - half; x < 24 + half; x++) put('cone', x, y, y === 22 || y === 25 ? 'C' : 'O');
   }
-  for (let x = 19; x <= 28; x++) put('cone', x, 27, 'M');
-  for (let x = 19; x <= 28; x++) put('cone', x, 28, 'M');
+  for (let x = 19; x <= 28; x++) put('cone', x, 28, 'P'); // a thin base, gray so it shows on the dark background
 
   // road barrier: striped board on two legs, with a light on top
   for (let y = 19; y <= 21; y++) for (let x = 30; x <= 39; x++) put('bar', x, y, (x + y) % 4 < 2 ? 'G' : 'C');
