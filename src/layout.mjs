@@ -131,7 +131,7 @@ export function layout({ path, title, description = site.description, body, page
 </head>
 <body class="${pageClass}">
 <a class="skip" href="#main">Skip to content</a>
-${path === '/' && site.banner ? `<div class="wip-banner"><div class="wrap"><p><span class="wip-banner__text">${esc(site.banner.text)}</span><span class="wip-banner__sep" aria-hidden="true"></span><span class="wip-banner__date">${esc(site.banner.date)}</span></p></div></div>` : ''}
+${site.banner ? `<div class="wip-banner"><div class="wrap"><p><span class="wip-banner__tag"><span class="wip-banner__text">${esc(site.banner.text)}</span><span class="wip-banner__sep" aria-hidden="true"></span><span class="wip-banner__date">${esc(site.banner.date)}</span></span>${site.banner.note ? `<span class="wip-banner__note">${esc(site.banner.note)}</span>` : ''}</p></div></div>` : ''}
 <header class="site-header">
   <div class="wrap site-header__inner">
     <a class="brand" href="/" aria-label="${esc(site.brand)}, home"><span>${esc(site.brand)}</span></a>

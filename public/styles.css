@@ -200,11 +200,13 @@ a:hover > .arrow, .btn:hover .arrow { transform: translateX(3px); }
 .link-arrow { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; text-decoration: none; }
 .link-arrow:hover { text-decoration: underline; }
 
-/* Home page banner (site.banner in src/site.mjs). Sits above the header and
+/* Site-wide banner (site.banner in src/site.mjs). Sits above the header and
    scrolls away with the page. */
 .wip-banner { background: var(--tint-gold); border-bottom: 1px solid var(--line); }
-.wip-banner p { margin: 0; padding-block: 0.6rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); text-align: center; }
+.wip-banner p { margin: 0; padding-block: 0.6rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.3rem 1.25rem; color: var(--ink); text-align: center; }
+.wip-banner__tag { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; }
 .wip-banner__text { font-weight: 700; }
+.wip-banner__note { font-size: 0.9rem; }
 .wip-banner__sep { width: 8px; height: 8px; background: var(--gold); flex: none; }
 
 /* Header ------------------------------------------------------------------- */
