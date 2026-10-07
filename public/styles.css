@@ -379,6 +379,12 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Case studies page: "Current" and "Older" group headings. */
 .work-group { font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.9rem); font-weight: 750; letter-spacing: -0.012em; margin: 0 0 clamp(1.25rem, 1rem + 1vw, 2rem); }
 .work-older { padding-top: 0; }
+/* Older case studies are grayscale until hovered or focused. Only on devices
+   that can hover, so phones always show them in color. */
+@media (hover: hover) {
+  .work-older .story { filter: grayscale(1); transition: filter 0.3s var(--ease); }
+  .work-older .story:hover, .work-older .story:focus-within { filter: none; }
+}
 .section__head { margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 4rem); }
 .section__head h2 { margin: 0; max-width: 17em; }
 .section__head--split { display: flex; justify-content: space-between; align-items: end; gap: 1rem 2rem; flex-wrap: wrap; }
