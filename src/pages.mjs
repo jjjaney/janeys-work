@@ -1178,7 +1178,7 @@ export function notFound() {
   ])}
   <div class="wrap hero__inner">
     <div class="hero__copy has-flank">
-      <div class="flank" data-seed="2" aria-hidden="true"></div>
+      <div class="flank" data-seed="2" data-cols="2" aria-hidden="true"></div>
       <p class="eyebrow mono">Error 404: page not found</p>
       <h1 class="hero__title"><span class="hero__line">This page took</span> <span class="hero__line">a <span class="hl">wrong turn</span>.</span></h1>
       <p class="lede">The link may be out of date, or the page moved when the site was rebuilt. These roads still go somewhere:</p>
