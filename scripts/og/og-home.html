@@ -21,9 +21,10 @@ const P=['#ff7b4d','#cfa2ed','#0b704f','#c99f43','#b6d8fe','#6b2337','#4f33cc'];
 const grow=(c,n,r,s)=>Math.max(0,Math.min(r,Math.round((c+1)/n*r*0.95+ (mix(c,s)-0.5)*3)));
 const mound=(c,n,r,s)=>Math.max(0,Math.round(r*Math.sin(Math.PI*(c+0.5)/n)*0.9+(mix(c,s)-0.5)*2.5));
 const stair=(c,n,r,s)=>Math.max(0,Math.min(r,Math.floor((c/n)*5+1)*Math.ceil(r/5)-(mix(c,s)<0.25?1:0)));
-</script><div style="position:absolute;left:72px;top:170px;width:820px">
-<h1 style="font-size:118px">Janey Annis</h1>
-<p style="font-family:'Plus Jakarta Sans';font-weight:650;font-size:38px;margin-top:22px;color:var(--accent)">Human-first content for products and systems.</p>
-<p class=mono style="margin-top:44px;color:var(--muted);font-size:17px">Content strategy · Content design · Documentation · Product</p></div>
-<i id=a></i><script>art('a',8,6,40,(c,n,r,s)=>Math.max(0,Math.round((c+1)/n*r+(mix(c,s)-0.6)*2)),P,21,880,0,false)</script>
+</script><style>body{background:#1c1834;color:#ece6da}</style>
+<div style="position:absolute;left:72px;top:0;bottom:0;width:860px;display:flex;flex-direction:column;justify-content:center">
+<p style="font-family:'Plus Jakarta Sans';font-weight:750;font-size:58px;letter-spacing:-.02em;line-height:1">Janey Annis</p>
+<h1 style="font-size:78px;margin-top:26px;color:#c9a6f5">Human-first content for products and systems.</h1>
+<p class=mono style="margin-top:40px;color:rgb(236 230 218/.8);font-size:20px">Content strategy · Content design · Documentation · Product</p></div>
+<i id=a></i><script>art('a',8,6,40,(c,n,r,s)=>Math.max(0,Math.round((c+1)/n*r+(mix(c,s)-0.6)*2)),['#ff7b4d','#cfa2ed','#0b704f','#c99f43','#b6d8fe','#6b2337','#c9a6f5'],21,880,0,false)</script>
 <script>document.querySelector('svg').style.transform='scaleY(-1)'</script>
