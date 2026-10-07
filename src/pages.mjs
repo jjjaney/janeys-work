@@ -1131,8 +1131,8 @@ ${ctaBand(undefined, undefined, 'sky')}`,
 // variables) so the signs read the same in light and dark mode.
 function pixelRoadblock() {
   const W = 40, H = 30;
-  const COL = { R: '#cc3333', C: '#fffdf8', P: '#8b8f97', O: '#ff7b4d', M: '#6b2337', G: '#c99f43', L: '#4f33cc' };
-  const groups = { sign: new Map(), cone: new Map(), bar: new Map(), light: new Map() };
+  const COL = { R: '#cc3333', C: '#fffdf8', V: 'var(--green)', P: '#8b8f97', O: '#ff7b4d', M: '#6b2337', G: '#c99f43', L: '#4f33cc' };
+  const groups = { sign: new Map(), cone: new Map(), bar: new Map(), light: new Map(), grass: new Map() };
   const put = (g, x, y, c) => groups[g].set(`${x},${y}`, [x, y, c]);
 
   // stop sign: a trim-colored octagon with a red octagon inside it, on a pole
@@ -1145,6 +1145,8 @@ function pixelRoadblock() {
   for (let y = 15; y < 29; y++) for (const x of [9, 10]) put('sign', x, y, 'P');
   octagon('sign', 2, 1, 16, 5, 'C');
   octagon('sign', 3, 2, 14, 4, 'R');
+  // a few blades of grass where the pole meets the ground (they don't sway)
+  for (const [x, y] of [[6, 28], [7, 27], [7, 28], [8, 28], [11, 28], [12, 26], [12, 27], [12, 28], [13, 27], [13, 28]]) put('grass', x, y, 'V');
   // "404" in a 3 x 5 pixel font
   const DIGITS = { 4: ['C.C', 'C.C', 'CCC', '..C', '..C'], 0: ['CCC', 'C.C', 'C.C', 'C.C', 'CCC'] };
   [...'404'].forEach((d, i) => DIGITS[d].forEach((row, y) => [...row].forEach((ch, x) => ch === 'C' && put('sign', 4 + i * 4 + x, 7 + y, 'C'))));
@@ -1163,7 +1165,7 @@ function pixelRoadblock() {
 
   const rects = (g) => [...groups[g].values()].map(([x, y, c]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${COL[c]}" stroke="${COL[c]}" stroke-width="0.05"/>`).join('');
   return `<svg class="pixel nf-art" data-noflip data-cell="px-art" viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges" role="img" aria-label="Pixel art of a stop sign that reads 404, a traffic cone, and a road barrier">
-    <g class="nf-sign">${rects('sign')}</g><g class="nf-cone">${rects('cone')}</g>${rects('bar')}<g class="nf-light">${rects('light')}</g></svg>`;
+    <g class="nf-sign">${rects('sign')}</g>${rects('grass')}<g class="nf-cone">${rects('cone')}</g>${rects('bar')}<g class="nf-light">${rects('light')}</g></svg>`;
 }
 
 // 404 page: the same layout as the home page header (without the column of
@@ -1182,7 +1184,7 @@ export function notFound() {
     <div class="hero__copy">
       <p class="eyebrow mono">Error 404: page not found</p>
       <h1 class="hero__title"><span class="hero__line">This page took</span> <span class="hero__line">a <span class="nf-hl">wrong turn</span>.</span></h1>
-      <p class="lede">The link may be out of date, or the page moved when the site was rebuilt. These roads still go somewhere:</p>
+      <p class="lede">The link may be out of date, or the page moved. These roads still go somewhere:</p>
       <div class="actions">
         <a class="btn" href="/">Go home ${arrow}</a>
         <a class="btn btn--ghost" href="/work/">Case studies</a>
