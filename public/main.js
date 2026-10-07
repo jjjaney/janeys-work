@@ -208,8 +208,7 @@
         const text = flank.parentElement.getBoundingClientRect();
         // columns that fit between the screen edge and the text, rows to cover it
         const textLeft = text.left + parseFloat(getComputedStyle(flank.parentElement).paddingLeft);
-        const maxCols = Number(flank.dataset.cols) || 3; // data-cols on the flank caps it (the 404 page uses 2)
-        const cols = Math.min(maxCols, Math.max(2, Math.floor((textLeft - 12) / g.cell)));
+        const cols = Math.min(3, Math.max(2, Math.floor((textLeft - 12) / g.cell)));
         // snap rows to the art's grid
         const firstRow = Math.floor((fb.top - g.y0) / g.cell);
         const rows = Math.ceil(fb.height / g.cell) + 1;

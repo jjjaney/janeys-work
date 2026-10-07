@@ -1166,7 +1166,8 @@ function pixelRoadblock() {
     <g class="nf-sign">${rects('sign')}</g><g class="nf-cone">${rects('cone')}</g>${rects('bar')}<g class="nf-light">${rects('light')}</g></svg>`;
 }
 
-// 404 page: the same layout as the home page header, with road-closed art.
+// 404 page: the same layout as the home page header (without the column of
+// pixels on the left), with road-closed art.
 export function notFound() {
   return {
     path: '/404.html',
@@ -1177,8 +1178,7 @@ export function notFound() {
     [50, 18, 6, 50, 2],
   ])}
   <div class="wrap hero__inner">
-    <div class="hero__copy has-flank">
-      <div class="flank" data-seed="2" data-cols="2" aria-hidden="true"></div>
+    <div class="hero__copy">
       <p class="eyebrow mono">Error 404: page not found</p>
       <h1 class="hero__title"><span class="hero__line">This page took</span> <span class="hero__line">a <span class="hl">wrong turn</span>.</span></h1>
       <p class="lede">The link may be out of date, or the page moved when the site was rebuilt. These roads still go somewhere:</p>
