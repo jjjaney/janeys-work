@@ -1118,11 +1118,18 @@ html:not(.js) .theme-toggle { display: none !important; }
 .nf-art { overflow: visible; }
 .hero--404 .hero__title { margin-bottom: clamp(1.75rem, 1.4rem + 1vw, 2.5rem); }
 .hero--404 .lede { margin-bottom: clamp(2rem, 1.6rem + 1.2vw, 3rem); }
-/* 404 art trim (the sign's border and the barrier stripes): a slate
-   gray in light mode so it stands out on the cream page, cream in dark mode. */
-/* The stop sign's border (--nf-rim) is a lighter gray than the pole. */
-.nf-art { --nf-trim: #575a66; --nf-rim: #b3b6bd; }
-:root[data-theme='dark'] .nf-art { --nf-trim: #fffdf8; --nf-rim: #fffdf8; }
+/* Light mode: the 404 header sits on the theme's lilac so the cream parts of
+   the art stand out. Text gets darker to keep its contrast on lilac, and the
+   lilac floating pixels turn cream so they don't vanish into it. */
+:root:not([data-theme='dark']) .hero--404 {
+  --ink: #2b2838; --muted: rgb(43 40 56 / 0.85);
+  --accent: #3d25a8; --accent-deep: #2c1a80;
+  --line: rgb(43 40 56 / 0.12);
+  background: var(--lilac);
+}
+:root:not([data-theme='dark']) .hero--404 i[style*="#cfa2ed"],
+:root:not([data-theme='dark']) .hero--404 i[style*="207, 162, 237"] { background: #fffdf8 !important; }
+.nf-hl { color: var(--accent); }
 /* a wider art column than the home page, so the scene reads at a decent size */
 @media (min-width: 861px) { .hero--404 .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(320px, 44vw, 680px); } .hero--404 .hero__art { max-width: none; } }
 @media (prefers-reduced-motion: no-preference) {
