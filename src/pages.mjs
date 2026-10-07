@@ -764,7 +764,9 @@ ${ctaBand('Not sure which service fits?', 'Let’s talk about what you’re buil
 const VERSION_TONE = { peach: 'var(--orange)', lilac: 'var(--lilac)', mint: 'var(--green)', sky: 'var(--sky)', gold: 'var(--gold)' };
 function versionCard(v, i) {
   const tone = VERSION_TONE[v.tint] || 'var(--lilac)';
-  const shot = v.image
+  const shot = v.video
+    ? `<video poster="${esc(v.video)}.jpg" muted loop playsinline preload="none" aria-label="${esc(`Screen recording: ${v.alt || v.name}`)}" data-autoplay><source src="${esc(v.video)}.webm" type="video/webm"><source src="${esc(v.video)}.mp4" type="video/mp4"></video>`
+    : v.image
     ? `<img src="${esc(v.image)}" alt="${esc(v.alt || v.name)}" loading="lazy">`
     : `<div class="version__placeholder" role="img" aria-label="${esc(`Screenshot of the ${v.name} version, coming soon`)}">
           <span style="--x:1;--y:1;--w:5;--h:1"></span><span style="--x:9;--y:1;--w:2;--h:1;opacity:.5"></span>
@@ -773,7 +775,7 @@ function versionCard(v, i) {
         </div>`;
   return `<li class="version version--${esc(v.tint || 'lilac')}" style="--tone:${tone}">
       <div class="version__frame">
-        <div class="version__bar" aria-hidden="true"><i></i><i></i><i></i><span class="mono">janeys.work</span></div>
+        <div class="version__bar" aria-hidden="true"><i></i><i></i><i></i><span class="mono">${esc(v.host || 'janeys.work')}</span></div>
         <div class="version__shot">${shot}</div>
       </div>
       <p class="version__label mono">${esc(v.label)}</p>

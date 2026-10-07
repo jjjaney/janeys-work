@@ -287,6 +287,20 @@
     }
   }
 
+  // About page: the version recordings play while on screen and pause when
+  // scrolled away. Visitors who prefer reduced motion see the still image;
+  // clicking a recording plays or pauses it.
+  const vids = [...document.querySelectorAll('video[data-autoplay]')];
+  if (vids.length) {
+    vids.forEach((v) => v.addEventListener('click', () => (v.paused ? v.play() : v.pause())));
+    if (!reduce && 'IntersectionObserver' in window) {
+      const vio = new IntersectionObserver((entries) => entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.preload = 'auto'; e.target.play().catch(() => {}); } else e.target.pause();
+      }), { threshold: 0.4 });
+      vids.forEach((v) => vio.observe(v));
+    }
+  }
+
   // Pixel art: now and then a single tile flips over to another color --------
   // One flip at a time across the whole page, only for art that's on screen.
   // The tile flips back after a while so each composition stays recognizable.

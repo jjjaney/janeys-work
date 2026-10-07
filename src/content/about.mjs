@@ -64,9 +64,14 @@ export const siteStory = {
     { label: 'Who it’s for', text: 'Hiring managers, product and design leaders, and teams deciding whether I’m the right fit, plus anyone early in their career looking for a free resume or portfolio review.' },
     { label: 'What’s inside', text: 'Case studies that start with the question each project answered, the services I offer, how I work, and an archive of earlier projects.' },
   ],
+  // Each version shows a short screen recording in its browser frame: set
+  // `video` to the path without the extension; the site needs <video>.mp4,
+  // <video>.webm, and <video>.jpg (the still shown before it plays) in
+  // /public/videos/about/. `host` is the address shown in the frame's bar.
+  // With no video, `image` is used; with neither, a placeholder shows.
   versions: [
-    { label: 'v1', name: 'Squarespace', tint: 'peach', image: '', alt: 'The Squarespace version of janeys.work', body: 'Where janeys.work began: a template-based site that held my case studies, services, and archive.' },
-    { label: 'v2', name: 'Webflow', tint: 'lilac', image: '', alt: 'The Webflow version of janeys.work', body: 'A rebuild with more control over layout, structure, and the way the work was presented.' },
-    { label: 'v3', name: 'Claude', tint: 'mint', image: '', alt: 'This version of janeys.work, built with Claude', body: 'This version. I directed the content, design, and decisions in conversation with Claude, which wrote the code: a hand-built site on GitHub, published with Vercel, with original pixel art, light and dark modes, and accessibility checks along the way.' },
+    { label: 'v1', name: 'Squarespace', tint: 'peach', image: '', video: '/videos/about/v1-squarespace', host: 'janeyjack.com', alt: 'The Squarespace version of janeys.work', body: 'Where janeys.work began: a template-based site that held my case studies, services, and archive.' },
+    { label: 'v2', name: 'Webflow', tint: 'lilac', image: '', video: '/videos/about/v2-webflow', host: 'janeys.work', alt: 'The Webflow version of janeys.work', body: 'A rebuild with more control over layout, structure, and the way the work was presented.' },
+    { label: 'v3', name: 'Claude', tint: 'mint', image: '', video: '/videos/about/v3-claude', host: 'janeys.work', alt: 'This version of janeys.work, built with Claude', body: 'This version. I directed the content, design, and decisions in conversation with Claude, which wrote the code: a hand-built site on GitHub, published with Vercel, with original pixel art, light and dark modes, and accessibility checks along the way.' },
   ],
 };
