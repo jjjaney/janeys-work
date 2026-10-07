@@ -1116,7 +1116,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* 404 page: the home header layout with road-closed art (pixelRoadblock() in
    src/pages.mjs). The sign sways, the cone hops, and the barrier light blinks. */
 .nf-art { overflow: visible; }
-.hero--404 .hero__title { margin-bottom: 1.25rem; }
+.hero--404 .hero__title { margin-bottom: clamp(1.75rem, 1.4rem + 1vw, 2.5rem); }
+.hero--404 .lede { margin-bottom: clamp(2rem, 1.6rem + 1.2vw, 3rem); }
 /* a wider art column than the home page, so the scene reads at a decent size */
 @media (min-width: 861px) { .hero--404 .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(320px, 44vw, 680px); } .hero--404 .hero__art { max-width: none; } }
 @media (prefers-reduced-motion: no-preference) {
