@@ -1062,6 +1062,13 @@ html:not(.js) .theme-toggle { display: none !important; }
 /* Scrub slider under each recording: a thin track in the window's color with
    a square handle, like the rest of the pixel details. */
 .version__scrub { -webkit-appearance: none; appearance: none; display: block; width: 100%; height: 20px; margin: 0; padding: 0 0.6rem; background: var(--paper); cursor: pointer; --p: 0%; }
+/* On devices that can hover, the slider sits over the bottom of the recording
+   and only appears while the window is hovered or the slider has focus. */
+@media (hover: hover) {
+  .version__frame { position: relative; }
+  .version__scrub { position: absolute; left: 0; right: 0; bottom: 0; opacity: 0; transition: opacity 0.2s var(--ease); }
+  .version__frame:hover .version__scrub, .version__scrub:focus-visible { opacity: 1; }
+}
 .version__scrub:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .version__scrub::-webkit-slider-runnable-track { height: 4px; background: linear-gradient(var(--tone), var(--tone)) left / var(--p) 100% no-repeat, color-mix(in srgb, var(--tone) 30%, var(--paper)); }
 .version__scrub::-moz-range-track { height: 4px; background: color-mix(in srgb, var(--tone) 30%, var(--paper)); }
