@@ -1118,17 +1118,12 @@ html:not(.js) .theme-toggle { display: none !important; }
 .nf-art { overflow: visible; }
 .hero--404 .hero__title { margin-bottom: clamp(1.75rem, 1.4rem + 1vw, 2.5rem); }
 .hero--404 .lede { margin-bottom: clamp(2rem, 1.6rem + 1.2vw, 3rem); }
-/* Light mode: the 404 header sits on the theme's lilac so the cream parts of
-   the art stand out. Text gets darker to keep its contrast on lilac, and the
-   lilac floating pixels turn cream so they don't vanish into it. */
-:root:not([data-theme='dark']) .hero--404 {
-  --ink: #2b2838; --muted: rgb(43 40 56 / 0.85);
-  --accent: #3d25a8; --accent-deep: #2c1a80;
-  --line: rgb(43 40 56 / 0.12);
-  background: var(--lilac);
-}
-:root:not([data-theme='dark']) .hero--404 i[style*="#cfa2ed"],
-:root:not([data-theme='dark']) .hero--404 i[style*="207, 162, 237"] { background: #fffdf8 !important; }
+/* Light mode: the 404 header sits on a lighter version of the theme's sky
+   blue so the cream parts of the art stand out from the background. The sky
+   floating pixels turn cream so they don't vanish into it. */
+:root:not([data-theme='dark']) .hero--404 { background: #cfe4fe; }
+:root:not([data-theme='dark']) .hero--404 i[style*="#b6d8fe"],
+:root:not([data-theme='dark']) .hero--404 i[style*="182, 216, 254"] { background: #fffdf8 !important; }
 .nf-hl { color: var(--accent); }
 /* a wider art column than the home page, so the scene reads at a decent size */
 @media (min-width: 861px) { .hero--404 .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(320px, 44vw, 680px); } .hero--404 .hero__art { max-width: none; } }
