@@ -1027,7 +1027,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .xp { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 2rem clamp(2rem, 5vw, 5rem); }
 @media (max-width: 760px) { .xp { grid-template-columns: 1fr; } }
 .timeline { list-style: none; margin: 0; padding: 0; }
-.timeline > li { position: relative; display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line-strong); }
+.timeline > li { position: relative; display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem clamp(1.75rem, 1rem + 2vw, 3rem); padding: 1.25rem 0; border-bottom: 1px solid var(--line-strong); }
 .timeline > li:first-child { padding-top: 0; }
 .timeline__year { margin: 0.2rem 0 0; color: var(--maroon); font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
 .timeline__year::before { content: ''; width: 8px; height: 8px; background: var(--c, var(--orange)); flex: none; }
