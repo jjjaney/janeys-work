@@ -1025,8 +1025,8 @@ html:not(.js) .theme-toggle { display: none !important; }
 .principles p { margin: 0; font-size: 0.97rem; }
 
 .xp { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 2rem clamp(2rem, 5vw, 5rem); }
-@media (max-width: 760px) { .xp { grid-template-columns: 1fr; } }
-.timeline { list-style: none; margin: 0; padding: 0; }
+@media (max-width: 1000px) { .xp { grid-template-columns: 1fr; } } /* stack the heading above the list before the list gets too narrow for one-line roles */
+.timeline { list-style: none; margin: 0; padding: 0; container-type: inline-size; }
 .timeline > li { position: relative; display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem clamp(1.75rem, 1rem + 2vw, 3rem); padding: 1.25rem 0; border-bottom: 1px solid var(--line-strong); }
 .timeline > li:first-child { padding-top: 0; }
 .timeline__year { margin: 0.2rem 0 0; color: var(--maroon); font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
@@ -1037,7 +1037,10 @@ html:not(.js) .theme-toggle { display: none !important; }
 .timeline h3 { margin: 0 0 0.35rem; }
 .timeline ul { margin: 0; padding: 0; list-style: none; }
 .timeline ul li { font-size: 0.97rem; }
-@media (max-width: 460px) { .timeline > li { grid-template-columns: 1fr; gap: 0.25rem; } }
+/* Dates stack above the roles as soon as the side-by-side layout would wrap a
+   role onto a second line. 720px fits the longest role (GitHub's) beside the
+   dates; raise it if a longer role is added. */
+@container (max-width: 720px) { .timeline > li { grid-template-columns: 1fr; gap: 0.25rem; } }
 
 .facts { --fpx: clamp(10px, 0.45rem + 0.55vw, 16px); --fpx: round(down, clamp(10px, 0.45rem + 0.55vw, 16px), 1px); --fpad: clamp(1.5rem, 1rem + 1.5vw, 2.75rem); list-style: none; margin: calc(var(--fpx) * 6 + 3rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: calc(var(--fpx) * 6 + 1.25rem) clamp(1rem, 0.5rem + 1vw, 1.75rem); }
 /* Fun facts close the About page, with generous space before the closing band */
