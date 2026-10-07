@@ -1172,6 +1172,7 @@ export function notFound() {
   return {
     path: '/404.html',
     title: 'Page not found',
+    pageClass: 'page-404',
     body: `
 <section class="hero hero--404">
   ${gapFloat(3, [
