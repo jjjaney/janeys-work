@@ -1162,7 +1162,7 @@ function pixelRoadblock() {
   for (let y = 17; y <= 18; y++) for (const x of [34, 35]) put('light', x, y, 'O');
 
   const rects = (g) => [...groups[g].values()].map(([x, y, c]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${COL[c]}" stroke="${COL[c]}" stroke-width="0.05"/>`).join('');
-  return `<svg class="pixel nf-art" data-noflip viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges" role="img" aria-label="Pixel art of a stop sign that reads 404, a traffic cone, and a road barrier">
+  return `<svg class="pixel nf-art" data-noflip data-cell="px-art" viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges" role="img" aria-label="Pixel art of a stop sign that reads 404, a traffic cone, and a road barrier">
     <g class="nf-sign">${rects('sign')}</g><g class="nf-cone">${rects('cone')}</g>${rects('bar')}<g class="nf-light">${rects('light')}</g></svg>`;
 }
 

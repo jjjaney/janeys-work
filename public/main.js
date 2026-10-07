@@ -89,9 +89,19 @@
       const [, , vw, vh] = svg.getAttribute('viewBox').split(/\s+/).map(Number);
       const box = svg.getBoundingClientRect();
       const scale = Math.min(box.width / vw, box.height / vh); // the art is scaled to fit its box
+      // Art drawn on a finer grid (the 404 scene) sets data-cell="px-art" so its
+      // floating squares use the site's standard pixel size, not its own tiny cells.
+      let cell = Number(rect.getAttribute('width')) * scale;
+      if (svg.dataset.cell === 'px-art') {
+        const probe = document.createElement('i');
+        probe.style.cssText = 'position:absolute;visibility:hidden;width:var(--px-art)';
+        document.body.append(probe);
+        cell = probe.getBoundingClientRect().width || cell;
+        probe.remove();
+      }
       return {
         svg,
-        cell: Number(rect.getAttribute('width')) * scale,
+        cell,
         // where the art's top-left corner lands on the page
         x0: box.left + (box.width - vw * scale) / 2,
         y0: box.top + (box.height - vh * scale) / 2,
