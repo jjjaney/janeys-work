@@ -1131,11 +1131,14 @@ ${ctaBand(undefined, undefined, 'sky')}`,
 // variables) so the signs read the same in light and dark mode.
 function pixelRoadblock() {
   const W = 40, H = 30;
-  const COL = { R: '#cc3333', C: '#fffdf8', P: '#8b8f97', O: '#ff7b4d', M: '#6b2337', G: '#c99f43', L: '#4f33cc' };
+  // T is the trim: the sign's border and the cone and barrier stripes. It's a
+  // slate gray in light mode (cream would vanish on the cream page) and cream
+  // in dark mode; see --nf-trim in styles.css.
+  const COL = { R: '#cc3333', C: '#fffdf8', T: 'var(--nf-trim)', P: '#8b8f97', O: '#ff7b4d', M: '#6b2337', G: '#c99f43', L: '#4f33cc' };
   const groups = { sign: new Map(), cone: new Map(), bar: new Map(), light: new Map() };
   const put = (g, x, y, c) => groups[g].set(`${x},${y}`, [x, y, c]);
 
-  // stop sign: a cream octagon with a red octagon inside it, on a pole
+  // stop sign: a trim-colored octagon with a red octagon inside it, on a pole
   const octagon = (g, x0, y0, s, cut, c) => {
     for (let y = 0; y < s; y++) {
       const inset = Math.max(0, cut - y, y - (s - 1 - cut));
@@ -1143,41 +1146,27 @@ function pixelRoadblock() {
     }
   };
   for (let y = 15; y < 29; y++) for (const x of [9, 10]) put('sign', x, y, 'P');
-  octagon('sign', 2, 1, 16, 5, 'C');
+  octagon('sign', 2, 1, 16, 5, 'T');
   octagon('sign', 3, 2, 14, 4, 'R');
   // "404" in a 3 x 5 pixel font
   const DIGITS = { 4: ['C.C', 'C.C', 'CCC', '..C', '..C'], 0: ['CCC', 'C.C', 'C.C', 'C.C', 'CCC'] };
   [...'404'].forEach((d, i) => DIGITS[d].forEach((row, y) => [...row].forEach((ch, x) => ch === 'C' && put('sign', 4 + i * 4 + x, 7 + y, 'C'))));
 
-  // traffic cone: an orange cone with two cream stripes on a thin gray base
+  // traffic cone: an orange cone with two trim stripes on a thin gray base
   for (let y = 20; y <= 27; y++) {
     const half = Math.floor((y - 20) / 2) + 1;
-    for (let x = 24 - half; x < 24 + half; x++) put('cone', x, y, y === 22 || y === 25 ? 'C' : 'O');
+    for (let x = 24 - half; x < 24 + half; x++) put('cone', x, y, y === 22 || y === 25 ? 'T' : 'O');
   }
   for (let x = 19; x <= 28; x++) put('cone', x, 28, 'P'); // a thin base, gray so it shows on the dark background
 
   // road barrier: striped board on two legs, with a light on top
-  for (let y = 19; y <= 21; y++) for (let x = 30; x <= 39; x++) put('bar', x, y, (x + y) % 4 < 2 ? 'G' : 'C');
+  for (let y = 19; y <= 21; y++) for (let x = 30; x <= 39; x++) put('bar', x, y, (x + y) % 4 < 2 ? 'G' : 'T');
   for (let y = 22; y <= 28; y++) for (const x of [31, 38]) put('bar', x, y, 'P');
   for (let y = 17; y <= 18; y++) for (const x of [34, 35]) put('light', x, y, 'O');
 
   const rects = (g) => [...groups[g].values()].map(([x, y, c]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${COL[c]}" stroke="${COL[c]}" stroke-width="0.05"/>`).join('');
-  // A one-pixel dark outline around each shape (light mode only; see .nf-ol in
-  // styles.css), so pale parts like the sign's border don't blend into the page.
-  const outline = (...names) => {
-    const filled = new Set(names.flatMap((n) => [...groups[n].keys()]));
-    const ring = new Set();
-    for (const k of filled) {
-      const [x, y] = k.split(',').map(Number);
-      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
-        const nk = `${x + dx},${y + dy}`;
-        if (!filled.has(nk) && y + dy < H) ring.add(nk);
-      }
-    }
-    return [...ring].map((k) => { const [x, y] = k.split(','); return `<rect class="nf-ol" x="${x}" y="${y}" width="1" height="1" fill="#4f4f4f" stroke="#4f4f4f" stroke-width="0.05"/>`; }).join('');
-  };
-  return `<svg class="pixel nf-art" data-noflip data-cell="px-art" viewBox="-1 0 ${W + 2} ${H}" shape-rendering="crispEdges" role="img" aria-label="Pixel art of a stop sign that reads 404, a traffic cone, and a road barrier">
-    <g class="nf-sign">${outline('sign')}${rects('sign')}</g><g class="nf-cone">${outline('cone')}${rects('cone')}</g>${outline('bar', 'light')}${rects('bar')}<g class="nf-light">${rects('light')}</g></svg>`;
+  return `<svg class="pixel nf-art" data-noflip data-cell="px-art" viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges" role="img" aria-label="Pixel art of a stop sign that reads 404, a traffic cone, and a road barrier">
+    <g class="nf-sign">${rects('sign')}</g><g class="nf-cone">${rects('cone')}</g>${rects('bar')}<g class="nf-light">${rects('light')}</g></svg>`;
 }
 
 // 404 page: the same layout as the home page header (without the column of
