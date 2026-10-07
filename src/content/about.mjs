@@ -13,9 +13,9 @@ export const principles = [
 ];
 
 export const experience = [
-  { year: 'Now', org: 'FIS (Fidelity Information Services)', roles: ['Content Strategy and UX Writing Lead, Design Systems'] },
+  { year: '2025–now', org: 'FIS (Fidelity Information Services)', roles: ['Content Strategy and UX Writing Lead, Design Systems'] },
   {
-    year: '2025',
+    year: '2023–2025',
     org: 'Freelance and contracts',
     roles: [
       'UX Writer and Translations Manager · New_ Public',
@@ -26,10 +26,10 @@ export const experience = [
   },
   { year: '2023', org: 'Doppler', roles: ['Founding Content Strategist and Technical Writer'] },
   { year: '2022', org: 'Shopify', roles: ['Content Design Lead, Developer Markets'] },
-  { year: '2021', org: 'GitHub', roles: ['Content Strategist and Editorial Manager → Product Manager, GitHub Sponsors'] },
-  { year: '2018', org: 'Plex', roles: ['Content and Translations Manager'] },
-  { year: '2017', org: 'Carnegie Mellon University, Computing Services', roles: ['Content, Communications, and Technical Documentation Manager'] },
-  { year: '2013', org: 'ARINC (Rockwell Collins)', roles: ['Associate Civil Engineer (Field) → Corporate Trainer and Technical Writer'] },
+  { year: '2018–2021', org: 'GitHub', roles: ['Content Strategist and Editorial Manager → Product Manager, GitHub Sponsors'] },
+  { year: '2017–2018', org: 'Plex', roles: ['Content and Translations Manager'] },
+  { year: '2013–2017', org: 'Carnegie Mellon University, Computing Services', roles: ['Content, Communications, and Technical Documentation Manager'] },
+  { year: '2007–2013', org: 'ARINC (Rockwell Collins)', roles: ['Associate Civil Engineer (Field) → Corporate Trainer and Technical Writer'] },
 ];
 
 // Fun facts on the About page. Each one is a card with its own small pixel
