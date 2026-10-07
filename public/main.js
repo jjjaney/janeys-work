@@ -287,19 +287,16 @@
     }
   }
 
-  // About page: the version recordings play while on screen and pause when
-  // scrolled away. Visitors who prefer reduced motion see the still image;
-  // clicking a recording plays or pauses it.
-  const vids = [...document.querySelectorAll('video[data-autoplay]')];
-  if (vids.length) {
-    vids.forEach((v) => v.addEventListener('click', () => (v.paused ? v.play() : v.pause())));
-    if (!reduce && 'IntersectionObserver' in window) {
-      const vio = new IntersectionObserver((entries) => entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.preload = 'auto'; e.target.play().catch(() => {}); } else e.target.pause();
-      }), { threshold: 0.4 });
-      vids.forEach((v) => vio.observe(v));
-    }
-  }
+  // About page: each version recording shows its still image and plays only
+  // while the pointer is over its window, then pauses. On touch screens,
+  // tapping plays or pauses it.
+  document.querySelectorAll('video[data-autoplay]').forEach((v) => {
+    const frame = v.closest('.version__frame') || v;
+    const play = () => { v.preload = 'auto'; v.play().catch(() => {}); };
+    frame.addEventListener('mouseenter', play);
+    frame.addEventListener('mouseleave', () => v.pause());
+    frame.addEventListener('click', (e) => { if (e.pointerType !== 'mouse') v.paused ? play() : v.pause(); });
+  });
 
   // Pixel art: now and then a single tile flips over to another color --------
   // One flip at a time across the whole page, only for art that's on screen.
