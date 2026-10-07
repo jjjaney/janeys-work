@@ -1,5 +1,5 @@
 export const bio = [
-  "I write a lot on the web. Millions of people have read my work.",
+  "Millions of people have read my work.",
   "I've written technical and creative content for, and alongside, students, founders, teachers, researchers, developers, lawyers, engineers, designers, policymakers, venture capitalists, marketers, support staff, experts, rookies, humans, AI, and everyone in between.",
   "I started as a field civil engineer, became a corporate trainer and technical writer, and have since led content at FIS, Shopify, GitHub, Carnegie Mellon, and more. That path is why I think in systems: I care less about any single page and more about the structures, processes, and products that make good content repeatable.",
 ];
