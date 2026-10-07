@@ -775,7 +775,7 @@ function versionCard(v, i) {
         </div>`;
   return `<li class="version version--${esc(v.tint || 'lilac')}" style="--tone:${tone}">
       <div class="version__frame">
-        <div class="version__bar" aria-hidden="true"><i></i><i></i><i></i><span class="mono">${esc(v.host || 'janeys.work')}</span></div>
+        <div class="version__bar" aria-hidden="true"><i></i><i></i><i></i><span class="mono">Janey’s portfolio</span></div>
         <div class="version__shot">${shot}</div>
       </div>
       <p class="version__label mono">${esc(v.label)}</p>
