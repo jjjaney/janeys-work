@@ -1118,7 +1118,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 .nf-art { overflow: visible; }
 .hero--404 .hero__title { margin-bottom: clamp(1.75rem, 1.4rem + 1vw, 2.5rem); }
 .hero--404 .lede { margin-bottom: clamp(2rem, 1.6rem + 1.2vw, 3rem); }
-/* 404 art trim (the sign's border and the cone and barrier stripes): a slate
+/* 404 art trim (the sign's border and the barrier stripes): a slate
    gray in light mode so it stands out on the cream page, cream in dark mode. */
 .nf-art { --nf-trim: #575a66; }
 :root[data-theme='dark'] .nf-art { --nf-trim: #fffdf8; }

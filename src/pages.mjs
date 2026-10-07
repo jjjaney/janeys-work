@@ -1131,10 +1131,10 @@ ${ctaBand(undefined, undefined, 'sky')}`,
 // variables) so the signs read the same in light and dark mode.
 function pixelRoadblock() {
   const W = 40, H = 30;
-  // T is the trim: the sign's border and the cone and barrier stripes. It's a
+  // T is the trim: the sign's border and the barrier stripes. It's a
   // slate gray in light mode (cream would vanish on the cream page) and cream
   // in dark mode; see --nf-trim in styles.css.
-  const COL = { R: '#cc3333', C: '#fffdf8', T: 'var(--nf-trim)', P: '#8b8f97', O: '#ff7b4d', M: '#6b2337', G: '#c99f43', L: '#4f33cc' };
+  const COL = { R: '#cc3333', C: '#fffdf8', T: 'var(--nf-trim)', Y: '#f7e6a6', P: '#8b8f97', O: '#ff7b4d', M: '#6b2337', G: '#c99f43', L: '#4f33cc' };
   const groups = { sign: new Map(), cone: new Map(), bar: new Map(), light: new Map() };
   const put = (g, x, y, c) => groups[g].set(`${x},${y}`, [x, y, c]);
 
@@ -1152,10 +1152,10 @@ function pixelRoadblock() {
   const DIGITS = { 4: ['C.C', 'C.C', 'CCC', '..C', '..C'], 0: ['CCC', 'C.C', 'C.C', 'C.C', 'CCC'] };
   [...'404'].forEach((d, i) => DIGITS[d].forEach((row, y) => [...row].forEach((ch, x) => ch === 'C' && put('sign', 4 + i * 4 + x, 7 + y, 'C'))));
 
-  // traffic cone: an orange cone with two trim stripes on a thin gray base
+  // traffic cone: an orange cone with two pale yellow stripes on a thin gray base
   for (let y = 20; y <= 27; y++) {
     const half = Math.floor((y - 20) / 2) + 1;
-    for (let x = 24 - half; x < 24 + half; x++) put('cone', x, y, y === 22 || y === 25 ? 'T' : 'O');
+    for (let x = 24 - half; x < 24 + half; x++) put('cone', x, y, y === 22 || y === 25 ? 'Y' : 'O');
   }
   for (let x = 19; x <= 28; x++) put('cone', x, 28, 'P'); // a thin base, gray so it shows on the dark background
 
