@@ -381,13 +381,11 @@ html:not(.js) .theme-toggle { display: none !important; }
 .work-older { padding-top: 0; }
 /* Older case studies are gray until hovered or focused: every card takes the
    same gray (one for light mode, one for dark), and the question-mark pixels
-   turn one muted gray. Only on devices that can hover, so phones show color. */
+   turn one muted gray. Phones show them gray all the time. */
 .work-older { --older-gray: #e7e5e0; }
 :root[data-theme='dark'] .work-older { --older-gray: #2b2838; }
-@media (hover: hover) {
-  .work-older .story:not(:hover):not(:focus-within) { --tint: var(--older-gray); }
-  .work-older .story:not(:hover):not(:focus-within) .story__mark--q rect { fill: var(--muted); }
-}
+.work-older .story:not(:hover):not(:focus-within) { --tint: var(--older-gray); }
+.work-older .story:not(:hover):not(:focus-within) .story__mark--q rect { fill: var(--muted); }
 .section__head { margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 4rem); }
 .section__head h2 { margin: 0; max-width: 17em; }
 .section__head--split { display: flex; justify-content: space-between; align-items: end; gap: 1rem 2rem; flex-wrap: wrap; }
