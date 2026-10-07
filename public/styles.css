@@ -1120,8 +1120,9 @@ html:not(.js) .theme-toggle { display: none !important; }
 .hero--404 .lede { margin-bottom: clamp(2rem, 1.6rem + 1.2vw, 3rem); }
 /* 404 art trim (the sign's border and the barrier stripes): a slate
    gray in light mode so it stands out on the cream page, cream in dark mode. */
-.nf-art { --nf-trim: #575a66; }
-:root[data-theme='dark'] .nf-art { --nf-trim: #fffdf8; }
+/* The stop sign's border (--nf-rim) is a lighter gray than the pole. */
+.nf-art { --nf-trim: #575a66; --nf-rim: #b3b6bd; }
+:root[data-theme='dark'] .nf-art { --nf-trim: #fffdf8; --nf-rim: #fffdf8; }
 /* a wider art column than the home page, so the scene reads at a decent size */
 @media (min-width: 861px) { .hero--404 .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(320px, 44vw, 680px); } .hero--404 .hero__art { max-width: none; } }
 @media (prefers-reduced-motion: no-preference) {

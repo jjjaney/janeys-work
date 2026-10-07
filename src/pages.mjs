@@ -1131,10 +1131,10 @@ ${ctaBand(undefined, undefined, 'sky')}`,
 // variables) so the signs read the same in light and dark mode.
 function pixelRoadblock() {
   const W = 40, H = 30;
-  // T is the trim: the sign's border and the barrier stripes. It's a
+  // T is the trim (the barrier stripes) and S the stop sign's border. Each is a
   // slate gray in light mode (cream would vanish on the cream page) and cream
-  // in dark mode; see --nf-trim in styles.css.
-  const COL = { R: '#cc3333', C: '#fffdf8', T: 'var(--nf-trim)', P: '#8b8f97', O: '#ff7b4d', M: '#6b2337', G: '#c99f43', L: '#4f33cc' };
+  // in dark mode; see --nf-trim and --nf-rim in styles.css.
+  const COL = { R: '#cc3333', C: '#fffdf8', T: 'var(--nf-trim)', S: 'var(--nf-rim)', P: '#8b8f97', O: '#ff7b4d', M: '#6b2337', G: '#c99f43', L: '#4f33cc' };
   const groups = { sign: new Map(), cone: new Map(), bar: new Map(), light: new Map() };
   const put = (g, x, y, c) => groups[g].set(`${x},${y}`, [x, y, c]);
 
@@ -1146,7 +1146,7 @@ function pixelRoadblock() {
     }
   };
   for (let y = 15; y < 29; y++) for (const x of [9, 10]) put('sign', x, y, 'P');
-  octagon('sign', 2, 1, 16, 5, 'T');
+  octagon('sign', 2, 1, 16, 5, 'S'); // the sign's border: --nf-rim
   octagon('sign', 3, 2, 14, 4, 'R');
   // "404" in a 3 x 5 pixel font
   const DIGITS = { 4: ['C.C', 'C.C', 'CCC', '..C', '..C'], 0: ['CCC', 'C.C', 'C.C', 'C.C', 'CCC'] };
