@@ -1113,8 +1113,20 @@ html:not(.js) .theme-toggle { display: none !important; }
 .archive__links a { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600; font-size: 0.92rem; }
 
 /* 404 ---------------------------------------------------------------------- */
-.notfound { min-height: 60vh; }
-.notfound__art { width: 160px; margin-bottom: 2rem; }
+/* 404 page: the home header layout with road-closed art (pixelRoadblock() in
+   src/pages.mjs). The sign sways, the cone hops, and the barrier light blinks. */
+.nf-art { overflow: visible; }
+.hero--404 .hero__title { margin-bottom: 1.25rem; }
+/* a wider art column than the home page, so the scene reads at a decent size */
+@media (min-width: 861px) { .hero--404 .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(320px, 44vw, 680px); } .hero--404 .hero__art { max-width: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .nf-art g { transform-box: view-box; }
+  .nf-sign { animation: nf-sway 5s steps(1) infinite; }
+  .nf-cone { animation: env-hop 3.2s steps(1) infinite; animation-delay: -0.8s; }
+  .nf-light { animation: nf-blink 1.2s steps(1) infinite; }
+}
+@keyframes nf-sway { 0%, 50%, 100% { transform: translateX(0); } 60%, 70% { transform: translateX(1px); } 80% { transform: translateX(0); } 85%, 92% { transform: translateX(-1px); } }
+@keyframes nf-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.15; } }
 
 /* Footer ------------------------------------------------------------------- */
 .site-footer { background: var(--bg-deep); }

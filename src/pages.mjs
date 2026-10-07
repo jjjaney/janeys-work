@@ -1126,19 +1126,74 @@ ${ctaBand(undefined, undefined, 'sky')}`,
   };
 }
 
+// 404 art: a stop sign that reads 404, a traffic cone, and a road barrier with
+// a blinking light, drawn on one pixel grid. Colors are fixed (not theme
+// variables) so the signs read the same in light and dark mode.
+function pixelRoadblock() {
+  const W = 40, H = 30;
+  const COL = { R: '#cc3333', C: '#fffdf8', P: '#8b8f97', O: '#ff7b4d', M: '#6b2337', G: '#c99f43', L: '#4f33cc' };
+  const groups = { sign: new Map(), cone: new Map(), bar: new Map(), light: new Map() };
+  const put = (g, x, y, c) => groups[g].set(`${x},${y}`, [x, y, c]);
+
+  // stop sign: a cream octagon with a red octagon inside it, on a pole
+  const octagon = (g, x0, y0, s, cut, c) => {
+    for (let y = 0; y < s; y++) {
+      const inset = Math.max(0, cut - y, y - (s - 1 - cut));
+      for (let x = inset; x < s - inset; x++) put(g, x0 + x, y0 + y, c);
+    }
+  };
+  for (let y = 15; y < 29; y++) for (const x of [9, 10]) put('sign', x, y, 'P');
+  octagon('sign', 2, 1, 16, 5, 'C');
+  octagon('sign', 3, 2, 14, 4, 'R');
+  // "404" in a 3 x 5 pixel font
+  const DIGITS = { 4: ['C.C', 'C.C', 'CCC', '..C', '..C'], 0: ['CCC', 'C.C', 'C.C', 'C.C', 'CCC'] };
+  [...'404'].forEach((d, i) => DIGITS[d].forEach((row, y) => [...row].forEach((ch, x) => ch === 'C' && put('sign', 4 + i * 4 + x, 7 + y, 'C'))));
+
+  // traffic cone: an orange cone with two cream stripes on a maroon base
+  for (let y = 16; y <= 26; y++) {
+    const half = Math.floor((y - 16) / 3) + 1;
+    for (let x = 24 - half; x < 24 + half; x++) put('cone', x, y, (y >= 19 && y <= 20) || (y >= 23 && y <= 24) ? 'C' : 'O');
+  }
+  for (let x = 18; x <= 29; x++) for (const y of [27, 28]) put('cone', x, y, 'M');
+
+  // road barrier: striped board on two legs, with a light on top
+  for (let y = 19; y <= 21; y++) for (let x = 30; x <= 39; x++) put('bar', x, y, (x + y) % 4 < 2 ? 'G' : 'C');
+  for (let y = 22; y <= 28; y++) for (const x of [31, 38]) put('bar', x, y, 'P');
+  for (let y = 17; y <= 18; y++) for (const x of [34, 35]) put('light', x, y, 'O');
+
+  const rects = (g) => [...groups[g].values()].map(([x, y, c]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${COL[c]}" stroke="${COL[c]}" stroke-width="0.05"/>`).join('');
+  return `<svg class="pixel nf-art" data-noflip viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges" role="img" aria-label="Pixel art of a stop sign that reads 404, a traffic cone, and a road barrier">
+    <g class="nf-sign">${rects('sign')}</g><g class="nf-cone">${rects('cone')}</g>${rects('bar')}<g class="nf-light">${rects('light')}</g></svg>`;
+}
+
+// 404 page: the same layout as the home page header, with road-closed art.
 export function notFound() {
   return {
     path: '/404.html',
     title: 'Page not found',
     body: `
-<section class="page-head notfound">
-  <div class="wrap">
-    <div class="notfound__art">${pixel('pixel-composition-14')}</div>
-    ${eyebrow('404', 'Missing tile')}
-    <h1>This page wandered off the grid.</h1>
-    <p class="lede">It may have moved when the site was rebuilt.</p>
-    <div class="actions"><a class="btn" href="/">Go home ${arrow}</a><a class="btn btn--ghost" href="/work/">See work</a></div>
+<section class="hero hero--404">
+  ${gapFloat(3, [
+    [50, 18, 6, 50, 2],
+  ])}
+  <div class="wrap hero__inner">
+    <div class="hero__copy has-flank">
+      <div class="flank" data-seed="2" aria-hidden="true"></div>
+      <p class="eyebrow mono">Error 404: page not found</p>
+      <h1 class="hero__title"><span class="hero__line">This page took</span> <span class="hero__line">a <span class="hl">wrong turn</span>.</span></h1>
+      <p class="lede">The link may be out of date, or the page moved when the site was rebuilt. These roads still go somewhere:</p>
+      <div class="actions">
+        <a class="btn" href="/">Go home ${arrow}</a>
+        <a class="btn btn--ghost" href="/work/">Case studies</a>
+        <a class="btn btn--ghost" href="/services/">Services</a>
+      </div>
+    </div>
+    <div class="hero__art">
+      ${artFloat(5)}
+      ${pixelRoadblock()}
+    </div>
   </div>
-</section>`,
+</section>
+${spill(4)}`,
   };
 }

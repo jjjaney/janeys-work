@@ -281,7 +281,7 @@
   // One flip at a time across the whole page, only for art that's on screen.
   // The tile flips back after a while so each composition stays recognizable.
   if (!reduce && 'IntersectionObserver' in window) {
-    const arts = [...document.querySelectorAll('.pixel')].map((svg) => {
+    const arts = [...document.querySelectorAll('.pixel:not([data-noflip])')].map((svg) => {
       const rects = [...svg.querySelectorAll('rect')];
       return { svg, rects, palette: [...new Set(rects.map((r) => r.getAttribute('fill')))], visible: false };
     }).filter((a) => a.rects.length && a.palette.length > 1);
