@@ -664,7 +664,7 @@ html:not(.js) .theme-toggle { display: none !important; }
   .section--stairs { padding-bottom: clamp(5.5rem, 4rem + 6vw, 10rem); --trail: #a2788a; }
   :root[data-theme='dark'] .section--stairs { --trail: #8a7fb8; }
   .stairs { grid-template-columns: 1fr; gap: 0; margin-top: 2rem; }
-  .stairs > li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 1.75rem; align-items: stretch; }
+  .stairs > li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 2.75rem; align-items: stretch; }
   .stairs__up { display: none; }
   .stairs__rail { display: flex; flex-direction: column; align-items: center; }
   .stairs__icon { display: block; flex: none; width: 56px; height: 56px; margin-top: 10px; } /* centers each icon on its step name */
