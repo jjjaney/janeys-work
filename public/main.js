@@ -290,12 +290,31 @@
   // About page: each version recording shows its still image and plays only
   // while the pointer is over its window, then pauses. On touch screens,
   // tapping plays or pauses it.
+  // A slider under each window jumps to any point in the recording; it
+  // follows along while the video plays.
   document.querySelectorAll('video[data-autoplay]').forEach((v) => {
     const frame = v.closest('.version__frame') || v;
+    const shot = v.closest('.version__shot') || v;
+    const scrub = frame.querySelector('.version__scrub');
+    let dragging = false;
     const play = () => { v.preload = 'auto'; v.play().catch(() => {}); };
-    frame.addEventListener('mouseenter', play);
-    frame.addEventListener('mouseleave', () => v.pause());
-    frame.addEventListener('click', (e) => { if (e.pointerType !== 'mouse') v.paused ? play() : v.pause(); });
+    const sync = () => { if (scrub && !dragging && v.duration) { scrub.value = Math.round((v.currentTime / v.duration) * 1000); scrub.style.setProperty('--p', `${scrub.value / 10}%`); } };
+    frame.addEventListener('mouseenter', () => { if (!dragging) play(); });
+    frame.addEventListener('mouseleave', () => { if (!dragging) v.pause(); });
+    shot.addEventListener('click', (e) => { if (e.pointerType !== 'mouse') v.paused ? play() : v.pause(); });
+    v.addEventListener('timeupdate', sync);
+    if (scrub) {
+      const seek = () => {
+        scrub.style.setProperty('--p', `${scrub.value / 10}%`);
+        const go = () => { v.currentTime = (scrub.value / 1000) * v.duration; };
+        if (v.readyState >= 1) go(); else { v.preload = 'auto'; v.load(); v.addEventListener('loadedmetadata', go, { once: true }); }
+      };
+      scrub.addEventListener('pointerdown', () => { dragging = true; v.pause(); });
+      scrub.addEventListener('input', seek);
+      // after scrubbing, keep playing from the new spot if the pointer is still over the window
+      scrub.addEventListener('change', () => { dragging = false; if (frame.matches(':hover')) play(); });
+      window.addEventListener('pointerup', () => { dragging = false; });
+    }
   });
 
   // Pixel art: now and then a single tile flips over to another color --------
@@ -374,14 +393,9 @@
   if ('IntersectionObserver' in window && !reduce) {
     const targets = document.querySelectorAll('.story, .kind__card, .stairs > li, .svc-type > li, .principles li, .outcome, .highlight, .archive li, .engage li, .facts li');
     targets.forEach((t) => t.classList.add('reveal'));
-    const bands = [...document.querySelectorAll('.svc-band')];
-    const inView = new Set();
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
-          e.isIntersecting ? inView.add(e.target) : inView.delete(e.target);
-          // past the last band (or above the first): nothing is current
-          if (!inView.size) return links.forEach((a) => a.removeAttribute('aria-current'));
           if (!e.isIntersecting) return;
           e.target.classList.add('is-in');
           io.unobserve(e.target);

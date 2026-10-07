@@ -777,6 +777,7 @@ function versionCard(v, i) {
       <div class="version__frame">
         <div class="version__bar" aria-hidden="true"><i></i><i></i><i></i><span class="mono">Janey’s portfolio</span></div>
         <div class="version__shot">${shot}</div>
+        ${v.video ? `<input class="version__scrub" type="range" min="0" max="1000" value="0" step="1" aria-label="${esc(`Scrub through the ${v.name} recording`)}">` : ''}
       </div>
       <p class="version__label mono">${esc(v.label)}</p>
       <h3>${esc(v.name)}</h3>

@@ -1059,6 +1059,15 @@ html:not(.js) .theme-toggle { display: none !important; }
 :root:not([data-theme='dark']) .version--mint .version__bar span { color: #fffdf8; }
 .version__shot { aspect-ratio: 16 / 10; overflow: hidden; }
 .version__shot img, .version__shot video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+/* Scrub slider under each recording: a thin track in the window's color with
+   a square handle, like the rest of the pixel details. */
+.version__scrub { -webkit-appearance: none; appearance: none; display: block; width: 100%; height: 20px; margin: 0; padding: 0 0.6rem; background: var(--paper); cursor: pointer; --p: 0%; }
+.version__scrub:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.version__scrub::-webkit-slider-runnable-track { height: 4px; background: linear-gradient(var(--tone), var(--tone)) left / var(--p) 100% no-repeat, color-mix(in srgb, var(--tone) 30%, var(--paper)); }
+.version__scrub::-moz-range-track { height: 4px; background: color-mix(in srgb, var(--tone) 30%, var(--paper)); }
+.version__scrub::-moz-range-progress { height: 4px; background: var(--tone); }
+.version__scrub::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; margin-top: -4px; border: 0; border-radius: 0; background: var(--tone); }
+.version__scrub::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 0; background: var(--tone); }
 .version__placeholder { position: relative; width: 100%; height: 100%; background: color-mix(in srgb, var(--tone) 12%, var(--paper)); }
 .version__placeholder span { position: absolute; left: calc(var(--x) / 12 * 100%); top: calc(var(--y) / 8 * 100%); width: calc(var(--w) / 12 * 100%); height: calc(var(--h) / 8 * 100%); background: var(--tone); }
 .version__label { margin: 1.1rem 0 0.35rem; color: var(--muted); font-size: 0.8rem; }
