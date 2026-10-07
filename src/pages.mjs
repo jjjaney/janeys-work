@@ -1162,8 +1162,22 @@ function pixelRoadblock() {
   for (let y = 17; y <= 18; y++) for (const x of [34, 35]) put('light', x, y, 'O');
 
   const rects = (g) => [...groups[g].values()].map(([x, y, c]) => `<rect x="${x}" y="${y}" width="1" height="1" fill="${COL[c]}" stroke="${COL[c]}" stroke-width="0.05"/>`).join('');
-  return `<svg class="pixel nf-art" data-noflip data-cell="px-art" viewBox="0 0 ${W} ${H}" shape-rendering="crispEdges" role="img" aria-label="Pixel art of a stop sign that reads 404, a traffic cone, and a road barrier">
-    <g class="nf-sign">${rects('sign')}</g><g class="nf-cone">${rects('cone')}</g>${rects('bar')}<g class="nf-light">${rects('light')}</g></svg>`;
+  // A one-pixel dark outline around each shape (light mode only; see .nf-ol in
+  // styles.css), so pale parts like the sign's border don't blend into the page.
+  const outline = (...names) => {
+    const filled = new Set(names.flatMap((n) => [...groups[n].keys()]));
+    const ring = new Set();
+    for (const k of filled) {
+      const [x, y] = k.split(',').map(Number);
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const nk = `${x + dx},${y + dy}`;
+        if (!filled.has(nk) && y + dy < H) ring.add(nk);
+      }
+    }
+    return [...ring].map((k) => { const [x, y] = k.split(','); return `<rect class="nf-ol" x="${x}" y="${y}" width="1" height="1" fill="#4f4f4f" stroke="#4f4f4f" stroke-width="0.05"/>`; }).join('');
+  };
+  return `<svg class="pixel nf-art" data-noflip data-cell="px-art" viewBox="-1 0 ${W + 2} ${H}" shape-rendering="crispEdges" role="img" aria-label="Pixel art of a stop sign that reads 404, a traffic cone, and a road barrier">
+    <g class="nf-sign">${outline('sign')}${rects('sign')}</g><g class="nf-cone">${outline('cone')}${rects('cone')}</g>${outline('bar', 'light')}${rects('bar')}<g class="nf-light">${rects('light')}</g></svg>`;
 }
 
 // 404 page: the same layout as the home page header (without the column of

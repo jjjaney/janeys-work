@@ -1118,18 +1118,10 @@ html:not(.js) .theme-toggle { display: none !important; }
 .nf-art { overflow: visible; }
 .hero--404 .hero__title { margin-bottom: clamp(1.75rem, 1.4rem + 1vw, 2.5rem); }
 .hero--404 .lede { margin-bottom: clamp(2rem, 1.6rem + 1.2vw, 3rem); }
-/* Light mode: the 404 header uses the dark-mode colors, so the cream parts of
-   the signs (border, stripes) stand out against the background instead of
-   blending into it. Dark mode already looks like this. */
-:root:not([data-theme='dark']) .hero--404 {
-  --bg: #1c1834; --paper: #252044; --surface: #2e2854;
-  --ink: #ece6da; --accent: #c9a6f5; --accent-deep: #e0caff;
-  --green: #7fd6b3; --maroon: #ffab94;
-  --tint-lilac: #2f2552; --tint-sky: #1f2b4f;
-  --line: rgb(236 230 218 / 0.14); --line-strong: rgb(236 230 218 / 0.28);
-  --muted: rgb(236 230 218 / 0.78); --on-accent: #1c1834;
-  background: var(--bg); color: var(--ink);
-}
+/* Light mode: a dark outline around each sign (the .nf-ol pixels) so the
+   cream, gold, and gray parts stand out from the cream page. Dark mode doesn't
+   need it, so the outline is hidden there. */
+:root[data-theme='dark'] .nf-ol { display: none; }
 /* a wider art column than the home page, so the scene reads at a decent size */
 @media (min-width: 861px) { .hero--404 .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(320px, 44vw, 680px); } .hero--404 .hero__art { max-width: none; } }
 @media (prefers-reduced-motion: no-preference) {
