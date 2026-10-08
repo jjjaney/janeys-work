@@ -1047,11 +1047,9 @@ function pixelEnvelopes() {
 
 export function contactPage() {
   // Contact form topics: [value sent to Formspree and used by ?topic= links, label shown].
-  // Service bands link here with ?topic=<service name>; a service left out of
-  // this list (Content Strategy and Editorial) falls back to "Something else".
-  const SHOWN = ['design', 'systems', 'docs', 'product'];
+  // Every service is listed; the Services page links here with ?topic=<service name>.
   const topics = [
-    ...services.filter((s) => SHOWN.includes(s.id)).map((s) => [s.name, `Service: ${s.name}`]),
+    ...services.map((s) => [s.name, `Service: ${s.name}`]),
     ['Free review', 'Free review: resume, portfolio, or case study'],
     ['Potential role', 'Potential role'],
     ['Something else', 'Something else'],
