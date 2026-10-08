@@ -1048,8 +1048,11 @@ function pixelEnvelopes() {
 export function contactPage() {
   // Contact form topics: [value sent to Formspree and used by ?topic= links, label shown].
   // Every service is listed; the Services page links here with ?topic=<service name>.
+  // ['-'] is a blank, unselectable line that separates groups in the menu.
   const topics = [
+    ['-'],
     ...services.map((s) => [s.name, `Service: ${s.name}`]),
+    ['-'],
     ['Free review', 'Free review: resume, portfolio, or case study'],
     ['Potential role or contract', 'Potential role or contract'],
     ['Something else', 'Something else'],
@@ -1079,7 +1082,7 @@ export function contactPage() {
         <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
         <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="f-topic">What’s this about?</label>
-          <select id="f-topic" name="topic" required><option value="" disabled selected>Choose an option</option>${topics.map(([v, l]) => `<option value="${esc(v)}">${esc(l)}</option>`).join('')}</select></div>
+          <select id="f-topic" name="topic" required><option value="" disabled selected>Choose an option</option>${topics.map(([v, l]) => (v === '-' ? '<option disabled></option>' : `<option value="${esc(v)}">${esc(l)}</option>`)).join('')}</select></div>
         <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="6" required placeholder="A little about your team, the problem, and your timeline."></textarea></div>
         <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="New message from janeys.work">
