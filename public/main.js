@@ -429,13 +429,27 @@
       status.textContent = 'Sending…';
       try {
         const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-        if (!res.ok) throw new Error();
+        if (!res.ok) {
+          // Formspree explains what went wrong in its JSON reply (for example
+          // a spam check or a form setting). Log it for troubleshooting, then
+          // send the form the regular way: Formspree's own page can handle
+          // checks (like a CAPTCHA) that an in-page send can't.
+          let detail = '';
+          try { detail = ((await res.json()).errors || []).map((x) => x.message).join(' '); } catch {}
+          console.warn('Contact form: Formspree replied', res.status, detail);
+          status.textContent = 'Sending…';
+          HTMLFormElement.prototype.submit.call(form);
+          return;
+        }
         form.reset();
         status.classList.add('is-ok');
         status.textContent = 'Thanks! Your message is on its way. I’ll get back to you soon.';
-      } catch {
-        status.classList.add('is-error');
-        status.textContent = 'Something went wrong sending that. Please try again or message me on LinkedIn.';
+      } catch (err) {
+        // the in-page send couldn't connect (a blocker or network issue):
+        // fall back to a regular submission
+        console.warn('Contact form: in-page send failed, submitting normally', err);
+        HTMLFormElement.prototype.submit.call(form);
+        return;
       } finally {
         btn.disabled = false;
       }
