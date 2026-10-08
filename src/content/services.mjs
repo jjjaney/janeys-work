@@ -168,6 +168,7 @@ export const engagement = [
 
 // The first answer lists every service by name. Update it when services
 // change (names in lowercase, separated by semicolons since some contain commas).
+// FAQ answers can include links as HTML, e.g. <a href="/contact/">contact page</a>.
 export const faqs = [
   {
     q: 'How much do content services cost?',
@@ -179,6 +180,6 @@ export const faqs = [
   },
   {
     q: 'How do we get started?',
-    a: "Send a message through the contact page with a little about the work. We'll set up a call to sort out the details.",
+    a: "Send a message through the <a href=\"/contact/\">contact page</a> with a little about the work. We'll set up a call to sort out the details.",
   },
 ];

@@ -743,7 +743,7 @@ export function servicesPage() {
         .map(
           (f) => `<details class="faq__item">
         <summary>${esc(f.q)}<span class="faq__icon" aria-hidden="true"></span></summary>
-        <div class="faq__a"><p>${esc(f.a)}</p>${f.todo ? todo(f.todo) : ''}</div>
+        <div class="faq__a"><p>${f.a}</p>${f.todo ? todo(f.todo) : ''}</div>
       </details>`
         )
         .join('')}
