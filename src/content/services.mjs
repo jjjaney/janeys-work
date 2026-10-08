@@ -35,10 +35,9 @@
 // 3. Deliverables: a list of 4 or 8 shows in 4 columns on desktop; any other
 //    length shows in 3. Keep each item short (under about 45 characters) so
 //    it fits on one line.
-// 4. Update the two sentences that list every service by name:
-//      - the first FAQ answer below ("There are five: ...")
-//      - the Services page `description` in src/pages.mjs (servicesPage()),
-//        which search engines show under the page title
+// 4. Update the sentence that lists every service by name: the Services
+//    page `description` in src/pages.mjs (servicesPage()), which search
+//    engines show under the page title
 // 5. The home page list colors its small squares by position (1st orange,
 //    2nd lilac, 3rd green, 4th gold, 5th sky). A 6th service gets orange
 //    unless you add a color for it; see ".svc-type > li:nth-child" in
@@ -171,20 +170,12 @@ export const engagement = [
 // change (names in lowercase, separated by semicolons since some contain commas).
 export const faqs = [
   {
-    q: 'What are your content services, and how do I learn more?',
-    a: 'There are five: content strategy and editorial; content design, UX writing, and storytelling; content for teams; documentation and training; and product management and marketing. Each is listed above with what you get. To learn more, use the "Ask about" link under any service or send a message, and we\'ll set up a call.',
-  },
-  {
     q: 'How much do content services cost?',
     a: 'I work with hourly rates or fixed project pricing, depending on scope. Lifestyle-oriented pieces like tips or FAQs sit at the lower end of my range. Case studies, white papers, and technical deep-dives sit at the upper end. Timing depends on subject matter and where the piece will be published, such as LinkedIn, a company newsletter, an internal knowledge base, or a guest blog.',
   },
   {
     q: 'Do you prefer contracts, freelance, or full-time work?',
     a: 'I prefer full-time, embedded work on a content-forward team. That said, contract and freelance work keep my craft growing, and I have no preference between the two.',
-  },
-  {
-    q: 'Do you offer anything for early- to mid-career people?',
-    a: "Yes! I'll review your resume, CV, portfolio, or case studies for general content feedback or from a hiring manager's perspective, for free. There's no catch. My availability after work hours varies, so please be patient.",
   },
   {
     q: 'How do we get started?',
