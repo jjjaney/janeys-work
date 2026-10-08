@@ -1060,7 +1060,7 @@ export function contactPage() {
       <h1>Let’s work together</h1>
       <p class="lede">Send a short note about what you’re working on. Share as much or as little as you like, and we’ll sort out details on a call.</p>
       <ul class="contact__alt">
-        <li><a href="${site.linkedin}">Message me on LinkedIn ${external}</a></li>
+        <li><a href="${site.linkedin}">You can also message me on LinkedIn ${external}</a></li>
         ${site.email ? `<li><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></li>` : ''}
         ${site.bookingUrl ? `<li><a href="${esc(site.bookingUrl)}">Book a call ${external}</a></li>` : ''}
       </ul>
