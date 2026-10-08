@@ -1152,7 +1152,7 @@ html:not(.js) .theme-toggle { display: none !important; }
 :root:not([data-theme='dark']) .page-404 main i[style*="182, 216, 254"] { background: #fffdf8 !important; }
 .nf-hl { color: var(--accent); }
 /* a wider art column than the home page, so the scene reads at a decent size */
-@media (min-width: 861px) { .hero--404 .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(320px, 44vw, 680px); } .hero--404 .hero__art { max-width: none; } }
+@media (min-width: 861px) { .hero--404 .hero__inner { grid-template-columns: minmax(0, 1fr) clamp(340px, 49vw, 760px); } .hero--404 .hero__art { max-width: none; } }
 @media (prefers-reduced-motion: no-preference) {
   .nf-art g { transform-box: view-box; }
   .nf-sign { animation: nf-sway 5s steps(1) infinite; }
