@@ -1187,7 +1187,7 @@ export function notFound() {
     <div class="hero__copy">
       <p class="eyebrow mono">Error 404: page not found</p>
       <h1 class="hero__title"><span class="hero__line">This page took</span> <span class="hero__line">a <span class="nf-hl">wrong turn</span>.</span></h1>
-      <p class="lede">The link may be out of date, or the page moved. These roads still go somewhere:</p>
+      <p class="lede">The link may be out of date or the page moved. Try one of these:</p>
       <div class="actions">
         <a class="btn" href="/">Go home ${arrow}</a>
         <a class="btn btn--ghost" href="/work/">Case studies</a>
