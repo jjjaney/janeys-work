@@ -171,7 +171,7 @@ export const engagement = [
 // FAQ answers can include links as HTML, e.g. <a href="/contact/">contact page</a>.
 export const faqs = [
   {
-    q: 'How much do content services cost?',
+    q: 'How much do your services cost?',
     a: 'I work with hourly rates or fixed project pricing, depending on scope. Lifestyle-oriented pieces like tips or FAQs sit at the lower end of my range. Case studies, white papers, and technical deep-dives sit at the upper end. Timing depends on subject matter and where the piece will be published, such as LinkedIn, a company newsletter, an internal knowledge base, or a guest blog.',
   },
   {
