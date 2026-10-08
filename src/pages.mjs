@@ -1051,7 +1051,7 @@ export function contactPage() {
   const topics = [
     ...services.map((s) => [s.name, `Service: ${s.name}`]),
     ['Free review', 'Free review: resume, portfolio, or case study'],
-    ['Potential role', 'Potential role'],
+    ['Potential role or contract', 'Potential role or contract'],
     ['Something else', 'Something else'],
   ];
   const action = site.formspreeId ? `https://formspree.io/f/${site.formspreeId}` : '';
