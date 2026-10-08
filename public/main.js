@@ -413,7 +413,7 @@
     const select = form.querySelector('select[name="topic"]');
     if (topic && select) {
       const match = [...select.options].find((o) => o.value === topic);
-      if (match) select.value = topic;
+      select.value = match ? topic : 'Something else';
     }
 
     form.addEventListener('submit', async (e) => {

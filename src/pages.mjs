@@ -1046,7 +1046,16 @@ function pixelEnvelopes() {
 }
 
 export function contactPage() {
-  const topics = [...services.map((s) => s.name), 'Free review', 'Full-time role', 'Something else'];
+  // Contact form topics: [value sent to Formspree and used by ?topic= links, label shown].
+  // Service bands link here with ?topic=<service name>; a service left out of
+  // this list (Content Strategy and Editorial) falls back to "Something else".
+  const SHOWN = ['design', 'systems', 'docs', 'product'];
+  const topics = [
+    ...services.filter((s) => SHOWN.includes(s.id)).map((s) => [s.name, `Service: ${s.name}`]),
+    ['Free review', 'Free review: resume, portfolio, or case study'],
+    ['Potential role', 'Potential role'],
+    ['Something else', 'Something else'],
+  ];
   const action = site.formspreeId ? `https://formspree.io/f/${site.formspreeId}` : '';
   return {
     path: '/contact/',
@@ -1072,7 +1081,7 @@ export function contactPage() {
         <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
         <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="f-topic">What’s this about?</label>
-          <select id="f-topic" name="topic">${topics.map((t) => `<option>${esc(t)}</option>`).join('')}</select></div>
+          <select id="f-topic" name="topic">${topics.map(([v, l]) => `<option value="${esc(v)}">${esc(l)}</option>`).join('')}</select></div>
         <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="6" required placeholder="A little about your team, the problem, and your timeline."></textarea></div>
         <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="New message from janeys.work">
